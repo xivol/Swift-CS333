@@ -24,8 +24,10 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section><h1>WELCOME</h1></section>
-				<section><h1>So SWIFT</h1></section>
+				<section data-background-video="http://i.imgur.com/mGtnm6U.webm" data-background-video-loop="true" data-background-color="#000000" >
+					<h3 style="margin-top:650px;">SWIFT-CS333</h3>
+				</section>
+
 			</div>
 		</div>
 
@@ -36,7 +38,7 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
-
+				slideNumber: 'c/t',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '../plugin/markdown/marked.js' },
@@ -45,6 +47,7 @@
 					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+						
 		</script>
 	</body>
 </html>
