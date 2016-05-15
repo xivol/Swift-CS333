@@ -330,11 +330,10 @@ body {
 /*********************************************
  * TODO
  *********************************************/
+
 .TODO:before {
   content: "TODO:";
   padding-right: 20px; }
 
 .TODO {
-  color: #00A050;
-  background-color: #00FFA0;
-}
+  color: #00A050; }
