@@ -7,7 +7,7 @@
 		<title>Swift-CS333. Introduction</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
-		<link rel="stylesheet" href="../css/theme/league.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="../lib/css/zenburn.css">
@@ -24,10 +24,49 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section data-background-video="http://i.imgur.com/mGtnm6U.webm" data-background-video-loop="true" data-background-color="#000000" >
-					<h3 style="margin-top:650px;">SWIFT-CS333</h3>
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p>
+						<br>SFEDU 2016
+					</p>
 				</section>
-
+				<section>
+					<div class="row">
+						<div class="col" >
+							<img src="../img/Apple-logo-white-md.png" alt="Apple Logo"/>
+						</div>
+						<div class="col" >
+							<img src="../img/Apple_iOS.png" alt="iOS Logo"/>
+						</div>
+						</div>
+					<div class="row">
+						<div class="col" >
+						  <img src="../img/Xcode_icon.png" alt="XCode Logo"/>
+						</div>
+						<div class="col" >
+						  <img src="../img/apple_swift_logo.png" alt="Swift Logo"/>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h1>Short history of iOS</h1>
+					<ul>
+						<li>2007 — iPhone</li>
+						<li>2008 — iOS 2 — App Store &amp; iOS SDK</li>
+						<li>2010 — iOS 4 — iPad</li>
+						<li class="TODO">...</li>
+						<li>2015 — iOS 9 — tvOS, iWatch</li>
+					</ul>
+				</section>
+				<section>
+					<h1>Objective-C &amp; Cocoa</h1>
+					<p><br/>Objective-C разработан в Stepstone в начале 1980-х</p>
+				</section>
 			</div>
 		</div>
 
@@ -47,7 +86,19 @@
 					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
-						
+
 		</script>
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+		    <filter id="drop-shadow">
+		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+		        <feOffset dx="12" dy="12" result="offsetblur"/>
+		        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+		        <feComposite in2="offsetblur" operator="in"/>
+		        <feMerge>
+		            <feMergeNode/>
+		            <feMergeNode in="SourceGraphic"/>
+		        </feMerge>
+		    </filter>
+		</svg>
 	</body>
 </html>
