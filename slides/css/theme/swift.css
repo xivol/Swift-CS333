@@ -317,15 +317,24 @@ body {
   max-width: 60%; }
 
 .reveal section .row {
+  position:relative;
   display: table;
   width: 100%;
-  max-height: 50%;
   margin-bottom: 5%; }
 
   .reveal section .row:after {
   content: "";
   display: table;
   clear: both; }
+
+  .reveal section .left {
+    float: left; }
+
+  .reveal section .right {
+    float: right; }
+
+  .reveal section .middle {
+    margin: auto; }
 
 /*********************************************
  * TODO
@@ -337,3 +346,14 @@ body {
 
 .TODO {
   color: #00A050; }
+
+/*********************************************
+ * IMAGE
+ *********************************************/
+.reveal section img.small {
+  max-width: 50%;
+  max-height: 50%; }
+
+.reveal section img.logo {
+  max-width: 30%;
+  max-height: 30%; }
