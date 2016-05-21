@@ -312,7 +312,7 @@ body {
   padding-right: 20px; }
 
 .reveal section .col:last-of-type{
-  padding-right: 0; }
+/*padding-right: 0;*/}
 
 .reveal section .row {
   position:relative;
@@ -327,6 +327,9 @@ body {
   content: "";
   display: table;
   clear: both; }
+
+.reveal h3:last-child {
+  margin: 0px !important; }
 
 .reveal section .left {
   float: left; }
@@ -370,18 +373,13 @@ body {
 /*********************************************
  * IMAGE-BACKGROUND
  *********************************************/
-.reveal section[data-background] {
+.reveal section[data-background],
+.reveal section[data-background-video] {
   background: rgb(20,22,24);
   background: -moz-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
   background: -webkit-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
   background: linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7)); }
 
-.reveal section[data-background]:empty,
-.reveal section[data-background].clear {
+.reveal section:empty,
+.reveal section.clear {
   background: transparent; }
-  .reveal h*:last-child {
-    margin: 0px !important;
-  }
-.reveal h3:last-child {
-  margin: 0px !important;
-}
