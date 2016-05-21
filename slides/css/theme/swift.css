@@ -5,8 +5,8 @@
  *
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
-@import url(../../lib/font/league-gothic/league-gothic.css);
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700,300italic,400italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic);
 /*********************************************
  * GLOBAL STYLES
  *********************************************/
@@ -23,7 +23,7 @@ body {
 .reveal {
   font-family: "Lato", sans-serif;
   font-size: 36px;
-  font-weight: normal;
+  font-weight: 300;
   color: #eee; }
 
 ::selection {
@@ -47,12 +47,13 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #eee;
-  font-family: "League Gothic", Impact, sans-serif;
-  font-weight: normal;
+  font-family: "Oswald", Impact, sans-serif;*/
+  /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;*/
+  font-weight: 700;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
-  text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+  /*text-transform: uppercase;*/
+  text-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);
   word-wrap: break-word; }
 
 .reveal h1 {
@@ -68,7 +69,7 @@ body {
   font-size: 1em; }
 
 .reveal h1 {
-  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15); }
+/*text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0, 0, 0, 0.15);*/ }
 
 /*********************************************
  * OTHER
@@ -157,7 +158,7 @@ body {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
 
 .reveal code {
-  font-family: monospace; }
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif; }
 
 .reveal pre code {
   display: block;
@@ -313,28 +314,28 @@ body {
 .reveal section .col:last-of-type{
   padding-right: 0; }
 
-.reveal section .col img {
-  max-width: 60%; }
-
 .reveal section .row {
   position:relative;
   display: table;
   width: 100%;
   margin-bottom: 5%; }
 
-  .reveal section .row:after {
+.reveal section .row:last-of-type {
+  margin-bottom: 0 !important; }
+
+.reveal section .row:after {
   content: "";
   display: table;
   clear: both; }
 
-  .reveal section .left {
-    float: left; }
+.reveal section .left {
+  float: left; }
 
-  .reveal section .right {
-    float: right; }
+.reveal section .right {
+  float: right; }
 
-  .reveal section .middle {
-    margin: auto; }
+.reveal section .middle {
+  margin: auto; }
 
 /*********************************************
  * TODO
@@ -357,3 +358,30 @@ body {
 .reveal section img.logo {
   max-width: 30%;
   max-height: 30%; }
+
+.reveal section .col img.logo {
+  max-width: 60%;
+  max-height: 60%; }
+
+.reveal section .col img {
+  max-width: 80%;
+  max-height: 80%; }
+
+/*********************************************
+ * IMAGE-BACKGROUND
+ *********************************************/
+.reveal section[data-background] {
+  background: rgb(20,22,24);
+  background: -moz-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
+  background: -webkit-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
+  background: linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7)); }
+
+.reveal section[data-background]:empty,
+.reveal section[data-background].clear {
+  background: transparent; }
+  .reveal h*:last-child {
+    margin: 0px !important;
+  }
+.reveal h3:last-child {
+  margin: 0px !important;
+}
