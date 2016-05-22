@@ -376,8 +376,8 @@ body {
 .reveal section[data-background],
 .reveal section[data-background-video] {
   background: rgb(20,22,24);
-  background: -moz-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
-  background: -webkit-linear-gradient(rgba(20,22,24.7),rgba(20,22,24,.7));
+  background: -moz-linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7));
+  background: -webkit-linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7));
   background: linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7)); }
 
 .reveal section:empty,
