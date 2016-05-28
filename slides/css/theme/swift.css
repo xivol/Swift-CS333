@@ -233,6 +233,7 @@ body {
 .reveal section img {
   margin: 15px 0px;
   -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
+  filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
   filter: url(#drop-shadow);
   -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
   filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')"; }
@@ -374,7 +375,8 @@ body {
  * IMAGE-BACKGROUND
  *********************************************/
 .reveal section[data-background],
-.reveal section[data-background-video] {
+.reveal section[data-background-video],
+.reveal section[data-background-iframe] {
   background: rgb(20,22,24);
   background: -moz-linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7));
   background: -webkit-linear-gradient(rgba(20,22,24,.7),rgba(20,22,24,.7));
