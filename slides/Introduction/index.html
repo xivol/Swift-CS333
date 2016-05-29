@@ -19,7 +19,7 @@
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+ 		</script>
 	</head>
 	<body>
 		<div class="reveal">
@@ -38,15 +38,15 @@
 				<section>
 					<div class="row">
 						<div class="col" >
-							<img class="logo" src="../img/Apple-logo-white-md.png" alt="Apple Logo"/>
+							<img class="" src="../img/Apple-logo-white-md.png" alt="Apple Logo"/>
 						</div>
 						<div class="col" >
-							<img class="logo" src="../img/Apple_iOS.png" alt="iOS Logo"/>
+							<img class="" src="../img/ios_icon_large_2x.png" alt="iOS Logo"/>
 						</div>
 						</div>
 					<div class="row">
 						<div class="col" >
-						  <img class="logo" src="../img/Xcode_icon.png" alt="XCode Logo"/>
+						  <img class="" src="../img/Xcode_icon.png" alt="XCode Logo"/>
 						</div>
 						<div class="col" >
 						  <img class="logo" src="../img/apple_swift_logo.png" alt="Swift Logo"/>
@@ -235,20 +235,19 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/apple-watch.png">
+					<section data-background="../img/swift-og.png">
 						<div class="row">
-							<div class="col">
+							<div class="col center">
 								<h3>2014</h3>
 							</div>
 							<div class="col">
-								<p>HealthKit</p>
-								<p>App Extensions</p>
+								<h2>Swift</h2>
 							</div>
 						</div>
 					</section>
 					<section data-background="../img/ipad-pro.png">
 						<div class="row">
-							<div class="col">
+							<div class="col center">
 								<h3>2015</h3>
 							</div>
 							<div class="col">
@@ -258,9 +257,56 @@
 						</div>
 					</section>
 				</section>
-				<section data-background="../img/swift-og.png"></section>
-				<section class="TODO">
-					<h1>Origins of Swift</h1>
+				<section class="">
+					<h2>Origins of Swift</h2>
+					<section>
+						<div class="row">
+							<div class="col">
+								<img src="../img/chris_latner.jpeg" alt="Chris Latner" />
+							</div>
+							<div class="col">
+								<h3>Chris Latner</h3>
+								<small><a href="https://twitter.com/clattner_llvm">@clattner_llvm</a></small>
+								<p>Senior Director and Architect, Developer Tools Department, Apple Inc</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="frame">
+							<iframe src="http://llvm.org" style="background-color:;height:250px;width:100%"></iframe>
+						</div>
+						<small><a href="http://llvm.org">http://llvm.org</a></small>
+						<h3>2002</h3>
+						<p>"LLVM: An Infrastructure for Multi-Stage Optimization"</p>
+						<small>Chris&nbsp;Lattner, Masters Thesis, Computer Science Dept., University of Illinois at Urbana-Champaign</small>
+					</section>
+					<section>
+						<div class="row">
+							<div class="col">
+								<img class="large" src="../img/480px-LLVM_Logo.svg.png" alt="LLVM Logo" />
+							</div>
+							<div class="col">
+								<h3>2005</h3>
+								<p>
+									Apple Inc hires Chris Lattner as Senior Compiler Engineer
+								</p>
+								<p>
+									Clang project is born
+								</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<blockquote>
+							<p>
+								I started work on the Swift Programming Language in July of 2010.</p>
+							<p>
+								A few other (amazing) people started contributing in earnest late in 2011,
+								and it became a major focus for the Apple Developer Tools group in July 2013
+							</p>
+							<cite>&mdash; <a href="http://www.nondot.org/sabre/">Chris Lattner</a></cite>
+						</blockquote>
+					</section>
 				</section>
 				<section class="TODO">
 					<h1>Why Swift?</h1>
@@ -269,7 +315,7 @@
 					<h1>Syntax</h1>
 				</section>
 				<section>
-<img src="../img/iOStech_intro_2x.png" />
+					<img src="../img/iOStech_intro_2x.png" />
 					<section>
 						<h1>Playground</h1>
 					</section>
@@ -291,6 +337,7 @@
 			Reveal.initialize({
 				history: true,
 				slideNumber: 'c/t',
+				transition: 'slide',
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '../plugin/markdown/marked.js' },
