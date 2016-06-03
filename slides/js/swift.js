@@ -45,7 +45,7 @@ Reveal.addEventListener('slidechanged', function(event) {
   if (hideBreadcrumbsOn(slide)) {
     topBar.style.display = "none";
   } else {
-    document.querySelector(".reveal .topbar .title").innerHTML = getBreadcrumbs(slide);
+    document.querySelector(".reveal .topbar .breadcrumbs").innerHTML = getBreadcrumbs(slide);
     topBar.style.display = 'block';
   }
   // move slide number to breadcrumbs

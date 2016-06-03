@@ -430,12 +430,12 @@ body {
   margin-right:-5%; }
 */
 
-/*
+/*********************************************
  * TOPBAR
- */
- 
+ *********************************************/
+
 .reveal .topbar {
-  position:absolute;
+  position:relative;
   width: 100%;
   font-size: 0.5em;
   text-align: left;
@@ -445,11 +445,22 @@ body {
   z-index:10;
   display: none; }
 
+.reveal .topbar .breadcrumbs{
+  display: inline-block;
+  width: 90%;
+  height: 1em;
+  overflow: auto;
+  text-overflow: ellipsis; }
+
 .reveal .topbar .slide-number {
+  width: 10%;
+  right: 0;
+  top: 0;
   bottom: auto;
-  top: 0.5em;
-  right: 1em;
-  padding: 0;
-  position: absolute;
+  padding: 0.2em;
   font-family: inherit;
+  font-size: 0.8em;
+  line-height: inherit;
+  text-align: right;
+  color: #eee;
   background: transparent; }
