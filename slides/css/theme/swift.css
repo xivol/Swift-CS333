@@ -304,9 +304,6 @@ body {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-.reveal section section {
-  margin-top: 5%;
-}
 .reveal section .col {
   display: table-cell;
   width: 50%;
@@ -356,6 +353,7 @@ body {
 /*********************************************
  * IMAGE
  *********************************************/
+
 .reveal section img.small {
   max-width: 50%;
   max-height: 50%; }
@@ -402,6 +400,10 @@ body {
 .reveal section.clear {
   background: transparent; }
 
+/*
+ * BLOCKQUOTE
+ */
+
 .reveal blockquote {
   border-left: 10px solid #ccc;
   padding: 10px 1em;
@@ -427,3 +429,27 @@ body {
   margin-top:-5%;
   margin-right:-5%; }
 */
+
+/*
+ * TOPBAR
+ */
+ 
+.reveal .topbar {
+  position:absolute;
+  width: 100%;
+  font-size: 0.5em;
+  text-align: left;
+  line-height: 1em;
+  padding: 0.1em;
+  background: rgba(0,0,0,0.4);
+  z-index:10;
+  display: none; }
+
+.reveal .topbar .slide-number {
+  bottom: auto;
+  top: 0.5em;
+  right: 1em;
+  padding: 0;
+  position: absolute;
+  font-family: inherit;
+  background: transparent; }

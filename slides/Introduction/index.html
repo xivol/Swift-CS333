@@ -20,9 +20,14 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
  		</script>
+
 	</head>
 	<body>
 		<div class="reveal">
+			<div class="topbar">
+				<div class="title">
+				</div>
+			</div>
 			<div class="slides">
 				<section>
 					<h2>CS333</h2>
@@ -157,6 +162,7 @@
 						</div>
 					</section>
 					<section data-background="../img/hello-iphone.png" data-background-size="contain" data-background-color="#000">
+						<h3 style="display:none;">Say hello to iPhone</h3>
 						<div class="row">
 							<div class="col">
 								<p>Touch Interface</p>
@@ -221,7 +227,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/ipad2.jpg">
+					<section data-background="../img/ipad2.jpg" class="TODO">
 						<div class="row">
 							<div class="col">
 								<h3>2013</h3>
@@ -235,7 +241,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/swift-og.png">
+					<section data-background="../img/swift-og.png" class="TODO">
 						<div class="row">
 							<div class="col center">
 								<h3>2014</h3>
@@ -245,7 +251,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/ipad-pro.png">
+					<section data-background="../img/ipad-pro.png" class="TODO">
 						<div class="row">
 							<div class="col center">
 								<h3>2015</h3>
@@ -258,14 +264,16 @@
 					</section>
 				</section>
 				<section class="">
-					<h2>Origins of Swift</h2>
+					<section data-background="../img/swift-bird.jpg">
+						<h1>Origins of Swift</h1>
+					</section>
 					<section>
 						<div class="row">
 							<div class="col">
 								<img src="../img/chris_latner.jpeg" alt="Chris Latner" />
 							</div>
 							<div class="col">
-								<h3>Chris Latner</h3>
+								<h3>Chris Lattner</h3>
 								<small><a href="https://twitter.com/clattner_llvm">@clattner_llvm</a></small>
 								<p>Senior Director and Architect, Developer Tools Department, Apple Inc</p>
 							</div>
@@ -273,7 +281,7 @@
 					</section>
 					<section>
 						<div class="frame">
-							<iframe src="http://llvm.org" style="background-color:;height:250px;width:100%"></iframe>
+							<iframe sealmess="seamless" scrolling="no" src="http://llvm.org" style="height:250px;"></iframe>
 						</div>
 						<small><a href="http://llvm.org">http://llvm.org</a></small>
 						<h3>2002</h3>
@@ -306,6 +314,16 @@
 							</p>
 							<cite>&mdash; <a href="http://www.nondot.org/sabre/">Chris Lattner</a></cite>
 						</blockquote>
+						<h3>2010</h3>
+					</section>
+					<section class="TODO">
+						<h3>2012</h3>
+					</section>
+					<section class="TODO">
+						<h3>2014</h3>
+					</section>
+					<section class="TODO">
+						<h3>2015</h3>
 					</section>
 				</section>
 				<section class="TODO">
@@ -331,23 +349,8 @@
 
 		<script src="../lib/js/head.min.js"></script>
 		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
-				slideNumber: 'c/t',
-				transition: 'slide',
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: '../plugin/markdown/marked.js' },
-					{ src: '../plugin/markdown/markdown.js' },
-					{ src: '../plugin/notes/notes.js', async: true },
-					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-
-		</script>
 		<svg height="0" xmlns="http://www.w3.org/2000/svg">
 		    <filter id="drop-shadow">
 		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
