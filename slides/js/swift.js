@@ -3,6 +3,7 @@ Reveal.initialize({
   history: true,
   slideNumber: 'c/t',
   transition: 'slide',
+  keyboard: { 32: 'next' },
   // More info https://github.com/hakimel/reveal.js#dependencies
   dependencies: [
     { src: '../plugin/markdown/marked.js' },

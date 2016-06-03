@@ -445,8 +445,7 @@ body {
   z-index:10;
   display: none; }
 
-.reveal .topbar .breadcrumbs{
-  display: inline-block;
+.reveal .topbar .breadcrumbs {
   width: 90%;
   height: 1em;
   overflow: auto;
