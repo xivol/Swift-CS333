@@ -8,12 +8,9 @@
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="../lib/css/zenburn.css">
-
+		<!-- Theme used for syntax highlighting of code included in main theme -->
 		<!-- Printing and PDF exports -->
-		<script>
+		<script type="text/javascript">
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
@@ -40,6 +37,8 @@
 						<br>SFEDU 2016
 					</p>
 				</section>
+
+<!-- Introduction			-->
 				<section>
 					<div class="row">
 						<div class="col" >
@@ -49,15 +48,16 @@
 							<img class="" src="../img/ios_icon_large_2x.png" alt="iOS Logo"/>
 						</div>
 						</div>
-					<div class="row">
+					<div class="row spaced">
 						<div class="col" >
 						  <img class="" src="../img/Xcode_icon.png" alt="XCode Logo"/>
 						</div>
 						<div class="col" >
-						  <img class="logo" src="../img/apple_swift_logo.png" alt="Swift Logo"/>
+						  <img class="" src="../img/apple_swift_logo.png" alt="Swift Logo"/>
 						</div>
 					</div>
 				</section>
+<!-- iOS History			-->
 				<section>
  					<section class="clear" data-background="../img/darkrift-orig_full.jpg">
 						<h1>Brief history of iOS</h1>
@@ -125,7 +125,7 @@
 							</div>
 							<div class="col">
 								<p>Apple releases iPod</p>
-								<small>FireWire interface</br>iTunes is just another audio manager</small>
+								<small>FireWire interface</br>5GB storage</br>iTunes is a music library manager</br></small>
 							</div>
 						</div>
 					</section>
@@ -139,6 +139,9 @@
 								<small>First legal online music store</small>
 							</div>
 						</div>
+					</section>
+					<section class ="clear" data-background="../img/Ipod_sales_per_quarter.svg" data-background-size="contain" data-background-color="#FFF">
+						<h3 style="display:none;">iPod Sales</h3>
 					</section>
 					<section data-background="../img/motorola-rokr-e1-full-1.jpg" data-background-size="contain" data-background-repeat="repeat">
 						<div class="row">
@@ -178,12 +181,20 @@
 							</div>
 						</div>
 					</section>
+					<section class="TODO" data-background="../img/osx-2007.png" data-background-size="contain" data-background-color="#000">
+						<h3 >Darwin</h3>
+						<p>Core Foundation</p>
+						<p>Foundation Kit</p>
+						<p>Cocoa Touch</p>
+						<p>UIKit</p>
+					</section>
 					<section data-background="../img/ios2.jpg" data-background-size="">
 						<div class="row">
 							<div class="col">
 								<h3>2008</h3>
 							</div>
 							<div class="col">
+								<p class="TODO">Xcode</p>
 								<p>App Store</p>
 								<p>iOS SDK</p>
 								<p>3G and GPS</p>
@@ -263,6 +274,7 @@
 						</div>
 					</section>
 				</section>
+<!-- Swift History		-->
 				<section class="">
 					<section data-background="../img/swift-bird.jpg">
 						<h1>Origins of Swift</h1>
@@ -281,7 +293,7 @@
 					</section>
 					<section>
 						<div class="frame">
-							<iframe sealmess="seamless" scrolling="no" src="https://www.google.com/search?q=%http://llvm.org&btnI=Im+Feeling+Lucky" style="height:250px;"></iframe>
+							<iframe sealmess="seamless" scrolling="no" src="https://www.google.com/search?q=%http://llvm.org&btnI=1" style="height:250px;"></iframe>
 						</div>
 						<small><a href="http://llvm.org">http://llvm.org</a></small>
 						<h3>2002</h3>
@@ -356,12 +368,82 @@
 						</div>
 					</section>
 				</section>
-				<section class="TODO">
-					<h1>Why Swift?</h1>
+<!-- Swift Reasons		-->
+				<section>
+					<section data-background="../img/neo-red-pill.jpg" data-background-size="contain" data-background-color="#000">
+						<h1>Reasons to go Swift</h1>
+					</section>
+					<section>
+						<h3>Modern Syntax</h3>
+						<img src="../img/swift-multylang-lol.jpg" class="large" />
+					</section>
+					<section>
+						<h3>Modern Syntax</h3>
+						<div class="row">
+							Obective-C:
+							<pre><code class="lang-objc">
+									@interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;
+									@property (strong, nonatomic) UIWindow *window;
+									@end
+									@implementation AppDelegate
+									- (BOOL)application: (UIApplication *)application
+									        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+									    return YES;
+									}
+									@end</code></pre>
+						</div>
+						<div class="row">
+							Swift:
+							<pre><code class="swift">
+							class AppDelegate: UIResponder, UIApplicationDelegate {
+								var window: UIWindow?
+								func application( application: UIApplication,
+										didFinishLaunchingWithOptions
+										launchOptions: [NSObject: AnyObject]?) -> Bool {
+									return true
+								}
+							}
+							</code></pre>
+						</div>
+					</section>
+					<section>
+						<h3>Optionals</h3>
+					</section>
+					<section>
+						<h3>Error Handling</h3>
+					</section>
+					<section>
+						<h3>Speed</h3>
+					</section>
+					<section>
+						<h3>But...</h3>
+					</section>
+					<section>
+						<h3>Interoperability</h3>
+						<pre><code class="swift">
+							@UIApplicationMain
+							class AppDelegate: UIResponder, UIApplicationDelegate {
+
+							    var window: UIWindow?;
+							    var userDataBase: UserDB?;
+
+							    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+							        // Create all databases
+							        userDataBase = UserDB();
+							        WeatherDownloader.getDataFromServer();
+							        Cities.loadCitiesImages();
+							        // Override point for customization after application launch.
+							        return true
+							    }
+							}
+						</code></pre>
+					</section>
 				</section>
+<!-- Swift Basics			-->
 				<section class="TODO">
 					<h1>Syntax</h1>
 				</section>
+<!-- Playgrounds			-->
 				<section>
 					<img src="../img/iOStech_intro_2x.png" />
 					<section>
@@ -380,6 +462,7 @@
 		<script src="../lib/js/head.min.js"></script>
 		<script src="../js/reveal.js"></script>
 		<script src="../js/swift.js"></script>
+
 
 		<svg height="0" xmlns="http://www.w3.org/2000/svg">
 		    <filter id="drop-shadow">
