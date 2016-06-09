@@ -380,7 +380,7 @@
 					<section>
 						<h3>Modern Syntax</h3>
 						<div class="row">
-							Obective-C:
+							Objective-C:
 							<pre><code class="lang-objc">
 									@interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;
 									@property (strong, nonatomic) UIWindow *window;
@@ -408,6 +408,22 @@
 					</section>
 					<section>
 						<h3>Optionals</h3>
+						<div class="row">
+							Objective-C:
+							<pre><code class="objectivec">
+								if (myDelegate != nil) {
+									if ([myDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+										[myDelegate scrollViewDidScroll:myScrollView];
+									}
+								}
+							</code></pre>
+						</div>
+						<div class="row">
+							Swift:
+							<pre><code class="swift">
+								myDelegate?.scrollViewDidScroll?(myScrollView)
+							</code></pre>
+						</div>
 					</section>
 					<section>
 						<h3>Error Handling</h3>

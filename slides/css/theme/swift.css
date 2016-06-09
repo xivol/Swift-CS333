@@ -303,29 +303,26 @@ body {
 .hljs {
   display: block;
   overflow-x: auto;
-  padding: 0.5em;
-  color: #CCC; }
+  padding: 0.5em; }
 
 .hljs-comment,
 .hljs-quote {
   color: #41B645; }
 
-.hljs-keyword {
-  color: #AF5193/*B22989*/;}
-
+.hljs-keyword,
 .hljs-literal {
-  color: #A381DB;}
+  color: #CA5CA9; }
 
 .hljs-section,
 .hljs-type,
 .hljs-built_in,
 .hljs-builtin-name,
 .hljs-name {
-  color: #00A0BE;}
+  color: #13DAEC; }
 
 .hljs-meta,
 .hljs-preprocessor {
- color: #C67C48;}
+ color: #FF8D3C; }
 
 .hljs-string {
  color: #E43944; }
@@ -419,7 +416,7 @@ body {
 .reveal pre,
 .reveal blockquote,
 .reveal iframe {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(20,22,24,0.4);
   box-shadow: 0px 0px 10px rgba(0,0,0,0.4); }
 
 .reveal section iframe {
@@ -480,7 +477,7 @@ body {
   width: 90%;
   height: 1em;
   padding-bottom: 0.1em;
-  overflow: auto;
+  overflow: hidden;
   text-overflow: ellipsis; }
 
 .reveal .topbar .slide-number {
