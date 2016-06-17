@@ -415,7 +415,8 @@ body {
 *********************************************/
 .reveal pre,
 .reveal blockquote,
-.reveal iframe {
+.reveal iframe,
+.reveal canvas {
   background-color: rgba(20,22,24,0.4);
   box-shadow: 0px 0px 10px rgba(0,0,0,0.4); }
 
@@ -423,6 +424,10 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   max-width: 100%;
   width: 100%; }
+
+  .reveal canvas {
+    max-height: 50%
+  }
 
 /*********************************************
  * IMAGE-BACKGROUND

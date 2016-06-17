@@ -19,6 +19,12 @@ Reveal.initialize({
     { src: '../plugin/markdown/marked.js' },
     { src: '../plugin/markdown/markdown.js' },
     { src: '../plugin/notes/notes.js', async: true },
+    { src: '../plugin/chart/reveal-chart.js' },
+    { src: '../plugin/chart/chart.min.js', callback: function() {
+        RevealChart();
+      }
+    },
+    { src: '../plugin/chart/chart-horizontal-bar.js' },
     { src: '../plugin/highlight/highlight.pack.js', async: true, callback: function() {
       hljs.configure({ tabReplace: '    ', languages: ['swift', 'objectivec']});
         // pre code
@@ -55,7 +61,26 @@ Reveal.initialize({
           hljs.initHighlightingOnLoad();
       }
     }
-  ]
+  ],
+  chart: {
+      defaults: {
+          global: {
+            title: { fontSize: 20, fontColor: "#eee" },
+            legend: {
+                labels: { fontSize: 20, fontColor: "#eee" },
+            },
+          },
+            scale: {
+                scaleLabel: { fontColor: "#eee" },
+                gridLines: { color: "#eee", zeroLineColor: "#eee" },
+                ticks: { fontColor: "#eee" },
+            }
+        },
+        line: { borderColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ], "borderDash": [ [5,10], [0,0] ]},
+        bar: { backgroundColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
+        pie: { backgroundColor: [ [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ] ]},
+        radar: { borderColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
+    },
 });
 // breadcrumbs string construction
 function getBreadcrumbsFor(slide) {

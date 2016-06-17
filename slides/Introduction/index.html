@@ -367,6 +367,9 @@
 							</div>
 						</div>
 					</section>
+					<section class="gluten-free" data-background-iframe="https://www.youtube.com/embed/cJAGqDYmW1o?autoplay=1">
+
+					</section>
 				</section>
 <!-- Swift Reasons		-->
 				<section>
@@ -374,7 +377,7 @@
 						<h1>Reasons to go Swift</h1>
 					</section>
 					<section>
-						<h3>Modern Syntax</h3>
+						<h3>Modern Syntax?</h3>
 						<img src="../img/swift-multylang-lol.jpg" class="large" />
 					</section>
 					<section>
@@ -408,7 +411,10 @@
 					</section>
 					<section>
 						<h3>Optionals</h3>
-						<div class="row">
+						<p>
+							No more <code class="hljs-literal">nil</code> objects!
+						</p>
+						<div class="row" style="text-align:left;">
 							Objective-C:
 							<pre><code class="objectivec">
 								if (myDelegate != nil) {
@@ -418,7 +424,7 @@
 								}
 							</code></pre>
 						</div>
-						<div class="row">
+						<div class="row" style="text-align:left;">
 							Swift:
 							<pre><code class="swift">
 								myDelegate?.scrollViewDidScroll?(myScrollView)
@@ -427,12 +433,67 @@
 					</section>
 					<section>
 						<h3>Error Handling</h3>
+						<div class="row">
+							Objective-C:
+							<pre><code class="objectivec">
+								NSError *anyError;
+								BOOL success = [receivedData writeToURL:someLocalFileURL
+											options:0
+											error:&amp;anyError];
+								if (!success) {
+									NSLog(@"Write failed with error: %@", anyError);
+								}
+							</code></pre>
+						</div>
+						<div class="row">
+							Swift:
+							<pre><code class="swift">
+								do {
+									try receivedData.writeToURL(someLocalFileURL, options:0)
+								} catch let error as NSError {
+									print(error)
+								}
+							</code></pre>
+						</div>
 					</section>
-					<section>
+					<section class="TODO">
 						<h3>Speed</h3>
+						<img src="../img/swift-org-logo.png" />
+						<p>
+							<small>Source: <a href="https://yalantis.com/blog/is-swift-faster-than-objective-c/">yalantis.com</a></small>
+						</p>
+						<p>
+							Swift is a static language with static typing.
+						</p>
+						<p>
+							Allows for better compile time optimisation.
+						</p>
 					</section>
 					<section>
 						<h3>But...</h3>
+						<canvas data-chart="bar">
+						<!--
+						{
+						 "data": {
+						  "labels": ["Number of repos"],
+						  "datasets": [
+						   {
+						    "data":[24054],
+						    "label":"Swift"
+						   },
+						   {
+						    "data":[64000],
+						    "label": "Objective-C"
+						   }
+						  ]
+						 },
+						 "options": {"tooltips":{ "enabled": false }}
+						}
+						-->
+						</canvas>
+						<p>
+							<small>Source: <a href="https://github.com">github.com</a></small>
+						</p>
 					</section>
 					<section>
 						<h3>Interoperability</h3>
@@ -478,7 +539,6 @@
 		<script src="../lib/js/head.min.js"></script>
 		<script src="../js/reveal.js"></script>
 		<script src="../js/swift.js"></script>
-
 
 		<svg height="0" xmlns="http://www.w3.org/2000/svg">
 		    <filter id="drop-shadow">
