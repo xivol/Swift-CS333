@@ -440,7 +440,8 @@ body {
   background: rgba(20,22,24,0.7); }
 
 .reveal section:empty,
-.reveal section.clear {
+.reveal section.clear,
+.reveal section.gluten-free {
   background: transparent; }
 
 /*

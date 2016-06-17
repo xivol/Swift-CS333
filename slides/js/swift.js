@@ -76,10 +76,10 @@ Reveal.initialize({
                 ticks: { fontColor: "#eee" },
             }
         },
-        line: { borderColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ], "borderDash": [ [5,10], [0,0] ]},
-        bar: { backgroundColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
-        pie: { backgroundColor: [ [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ] ]},
-        radar: { borderColor: [ "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
+        line: { borderColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ], "borderDash": [ [5,10], [0,0] ]},
+        bar: { backgroundColor: [ "#FF8D3C" ,"#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
+        pie: { backgroundColor: [ [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ] ]},
+        radar: { borderColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
     },
 });
 // breadcrumbs string construction

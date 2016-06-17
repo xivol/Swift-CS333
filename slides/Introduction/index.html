@@ -471,29 +471,34 @@
 					</section>
 					<section>
 						<h3>But...</h3>
-						<canvas data-chart="bar">
-						<!--
-						{
-						 "data": {
-						  "labels": ["Number of repos"],
-						  "datasets": [
-						   {
-						    "data":[24054],
-						    "label":"Swift"
-						   },
-						   {
-						    "data":[64000],
-						    "label": "Objective-C"
-						   }
-						  ]
-						 },
-						 "options": {"tooltips":{ "enabled": false }}
-						}
-						-->
-						</canvas>
-						<p>
-							<small>Source: <a href="https://github.com">github.com</a></small>
-						</p>
+						<div class="row">
+							<div class="col">
+								<canvas data-chart="bar" height="230" class="stretch">
+								<!--
+								{
+								 "data": {
+								  "labels": ["Number of repositories"],
+								  "datasets": [
+								   {
+								    "data":[149876],
+								    "label":"Swift"
+								   },
+								   {
+								    "data":[307527],
+								    "label": "Objective-C"
+								   }
+								  ]
+								 },
+								 "options": {"scales": { "xAxes": [{"stacked": true}], "yAxes":[{"ticks":{"beginAtZero":true}}] } }
+								}
+								-->
+								</canvas>
+								<p>
+									<small>Source: <a href="https://github.com">github.com</a></small>
+								</p>
+							</div>
+							Objective-C has larger codebase!
+						</div>
 					</section>
 					<section>
 						<h3>Interoperability</h3>
