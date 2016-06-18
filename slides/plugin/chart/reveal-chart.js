@@ -126,7 +126,6 @@ var RevealChart = window.RevealChart || (function(){
 							console.warn( 'Failed to get file ' + canvas.getAttribute("data-chart-src") +". ReadyState: " + xhr.readyState + ", Status: " + xhr.status);
 						}
 					};
-
 					xhr.open( 'GET', canvas.getAttribute("data-chart-src"), false );
 					try {
 						xhr.send();
@@ -135,7 +134,6 @@ var RevealChart = window.RevealChart || (function(){
 						console.warn( 'Failed to get file ' + canvas.getAttribute("data-chart-src") + '. Make sure that the presentation and the file are served by a HTTP server and the file can be found there. ' + error );
 					}
 				}
-
 			}
 		}
 	}
@@ -149,14 +147,22 @@ var RevealChart = window.RevealChart || (function(){
 		mergeRecursive(Chart.defaults, config);
 	}
 
-	window.addEventListener('load', function(){
-		initializeCharts();
+	Reveal.addEventListener('ready', function(){
+		//initializeCharts();
 		Reveal.addEventListener('slidechanged', function(){
 			var canvases = Reveal.getCurrentSlide().querySelectorAll("canvas[data-chart]");
 			for (var i = 0; i < canvases.length; i++ ){
-				if ( canvases[i].chart ){
-					// bug redraw canvas - animation doesn't work here
-					canvases[i].chart.render();
+				// check if canvas has data-chart attribute
+				if ( canvases[i].hasAttribute("data-chart") ){
+					var CSV = canvases[i].innerHTML.trim();
+					var comments = CSV.match(/<!--[\s\S]*?-->/g);
+					CSV = CSV.replace(/<!--[\s\S]*?-->/g,'').replace(/^\s*\n/gm, "")
+					if ( ! canvases[i].hasAttribute("data-chart-src") ) {
+						createChart(canvases[i], CSV, comments);
+					}
+					else {
+						console.error( 'CSV NOT IMPLEMENTED ' + canvas.getAttribute("data-chart-src") );
+					}
 				}
 			}
 

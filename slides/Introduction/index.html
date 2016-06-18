@@ -368,7 +368,6 @@
 						</div>
 					</section>
 					<section class="gluten-free" data-background-iframe="https://www.youtube.com/embed/cJAGqDYmW1o?autoplay=1">
-
 					</section>
 				</section>
 <!-- Swift Reasons		-->
@@ -382,21 +381,20 @@
 					</section>
 					<section>
 						<h3>Modern Syntax</h3>
-						<div class="row">
-							Objective-C:
-							<pre><code class="lang-objc">
+						<div class="row fragment fade-out">
+							<pre><code class="objectivec">
 									@interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;
 									@property (strong, nonatomic) UIWindow *window;
 									@end
 									@implementation AppDelegate
 									- (BOOL)application: (UIApplication *)application
-									        didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-									    return YES;
+											didFinishLaunchingWithOptions:
+											(NSDictionary *)launchOptions {
+										return YES;
 									}
 									@end</code></pre>
 						</div>
-						<div class="row">
-							Swift:
+						<div class="row fragment">
 							<pre><code class="swift">
 							class AppDelegate: UIResponder, UIApplicationDelegate {
 								var window: UIWindow?
@@ -407,15 +405,15 @@
 								}
 							}
 							</code></pre>
+							<p >
+								30% less code
+							</p>
 						</div>
+
 					</section>
 					<section>
 						<h3>Optionals</h3>
-						<p>
-							No more <code class="hljs-literal">nil</code> objects!
-						</p>
-						<div class="row" style="text-align:left;">
-							Objective-C:
+						<div class="row">
 							<pre><code class="objectivec">
 								if (myDelegate != nil) {
 									if ([myDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
@@ -424,17 +422,18 @@
 								}
 							</code></pre>
 						</div>
-						<div class="row" style="text-align:left;">
-							Swift:
+						<div class="row fragment">
 							<pre><code class="swift">
 								myDelegate?.scrollViewDidScroll?(myScrollView)
 							</code></pre>
+							<p>
+								No more <code class="hljs-literal">nil</code> objects!
+							</p>
 						</div>
 					</section>
 					<section>
 						<h3>Error Handling</h3>
 						<div class="row">
-							Objective-C:
 							<pre><code class="objectivec">
 								NSError *anyError;
 								BOOL success = [receivedData writeToURL:someLocalFileURL
@@ -445,8 +444,7 @@
 								}
 							</code></pre>
 						</div>
-						<div class="row">
-							Swift:
+						<div class="row fragment">
 							<pre><code class="swift">
 								do {
 									try receivedData.writeToURL(someLocalFileURL, options:0)
@@ -454,30 +452,50 @@
 									print(error)
 								}
 							</code></pre>
+							<p>
+								Native exception support!<br/>
+								<small>(since Swift 2.2)</small>
+							</p>
 						</div>
 					</section>
-					<section class="TODO">
+					<section class="">
 						<h3>Speed</h3>
-						<img src="../img/swift-org-logo.png" />
+							<canvas data-chart="bar" height="350" width="960" class="middle	">
+								<!--
+								{
+									"data": {
+										"labels": ["Add", "Update", "FastEnumeration","GetByIndex","Delete","Find"],
+										"datasets": [
+										 {
+											"data":[70,80,1,1,190,10],
+											"label":"Swift"
+										 },
+										 {
+											"data":[210,220,15,20,27,10],
+											"label": "Objective-C"
+										 }
+									]
+								 },
+								 "options": { "title": { "display": true, "text": "Array Operations (average time in ms)" },
+								 "scales": { "xAxes": [], "yAxes": [{ "ticks": { "beginAtZero":true } }] } }
+								}
+								-->
+							</canvas>
 						<p>
 							<small>Source: <a href="https://yalantis.com/blog/is-swift-faster-than-objective-c/">yalantis.com</a></small>
 						</p>
 						<p>
-							Swift is a static language with static typing.
-						</p>
-						<p>
-							Allows for better compile time optimisation.
+							Better compile time optimisation!
 						</p>
 					</section>
 					<section>
-						<h3>But...</h3>
+						<h3>The Catch-up Game</h3>
 						<div class="row">
-							<div class="col">
-								<canvas data-chart="bar" height="230" class="stretch">
+								<canvas data-chart="horizontalBar" height="480" width="960">
 								<!--
 								{
 								 "data": {
-								  "labels": ["Number of repositories"],
+								  "labels": [],
 								  "datasets": [
 								   {
 								    "data":[149876],
@@ -489,41 +507,53 @@
 								   }
 								  ]
 								 },
-								 "options": {"scales": { "xAxes": [{"stacked": true}], "yAxes":[{"ticks":{"beginAtZero":true}}] } }
+								 "options": { "title": { "display": true, "text": "Number of repositories per language" },
+								 "scales": { "xAxes":[{"ticks":{"beginAtZero":true},"barPercentage":0.25, "categoryPercentage":0.5}] } }
 								}
 								-->
 								</canvas>
+								<!---->
 								<p>
 									<small>Source: <a href="https://github.com">github.com</a></small>
 								</p>
-							</div>
-							Objective-C has larger codebase!
 						</div>
 					</section>
 					<section>
-						<h3>Interoperability</h3>
-						<pre><code class="swift">
-							@UIApplicationMain
-							class AppDelegate: UIResponder, UIApplicationDelegate {
+						<h3>Why not both?</h3>
+						<pre><code class="objectivec">
+							// Bridging Header
+							// special header supplied to compiler through project options
 
-							    var window: UIWindow?;
-							    var userDataBase: UserDB?;
-
-							    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-							        // Create all databases
-							        userDataBase = UserDB();
-							        WeatherDownloader.getDataFromServer();
-							        Cities.loadCitiesImages();
-							        // Override point for customization after application launch.
-							        return true
-							    }
-							}
+							#import "XYZCustomCell.h"
 						</code></pre>
+						<pre><code class="swift">
+							let myCell = XYZCustomCell()
+						</code></pre>
+						<p>
+							Full Swift &#8646; Objective-C interoperability!
+						</p>
 					</section>
 				</section>
 <!-- Swift Basics			-->
-				<section class="TODO">
-					<h1>Syntax</h1>
+				<section class="">
+					<section data-background="../img/swift-og.png">
+						<h1>Syntax</h1>
+					</section>
+					<section>
+						<h3>Lets and Vars</h3>
+					</section>
+					<section>
+						<h3>Basic Datatypes</h3>
+					</section>
+					<section>
+						<h3>Type Casting</h3>
+					</section>
+					<section>
+						<h3>Functions</h3>
+					</section>
+					<section>
+						<h3>Optionals</h3>
+					</section>
 				</section>
 <!-- Playgrounds			-->
 				<section>

@@ -153,9 +153,7 @@ body {
   font-size: 0.55em;
   font-family: monospace;
   line-height: 1.2em;
-  word-wrap: break-word;
-  background: rgba(20,22,24,0.4);
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+  word-wrap: break-word; }
 
 .reveal code {
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif; }
@@ -426,7 +424,10 @@ body {
   width: 100%; }
 
   .reveal canvas {
-    max-height: 50%
+    hegth: 100%;
+    max-height: 50%;
+    max-width: 95%;
+    margin: auto;
   }
 
 /*********************************************
@@ -463,6 +464,41 @@ body {
   line-height: 0.1em;
   margin-left: -0.1em;
   margin-top: 0.1em; }
+
+.reveal pre code {
+  border-left: 10px solid #CCC;
+  padding: 1.7em 10px 10px !important; }
+
+.reveal code.swift {
+  border-left-color: #FF8D3C;}
+
+.reveal code.swift::before {
+  width: 99%;
+  float: left;
+  position: absolute;
+  background-color: #FF8D3C;
+  content: "Swift";
+  font-family:: "Lato", sans-serif;
+  font-style: italic;
+  line-height: 1.5em;
+  margin-left: -10px;
+  margin-top: -1.7em; }
+
+.reveal code.objectivec {
+  border-left-color: #E43944;}
+
+.reveal code.objectivec::before {
+  width: 99%;
+  float: left;
+  position: absolute;
+  background-color: #E43944;
+  content: "Objective-C";
+  font-family:: "Lato", sans-serif;
+  font-style: italic;
+  line-height: 1.5em;
+  margin-left: -10px;
+  margin-top: -1.7em; }
+
 
 /*********************************************
  * TOPBAR

@@ -24,7 +24,6 @@ Reveal.initialize({
         RevealChart();
       }
     },
-    { src: '../plugin/chart/chart-horizontal-bar.js' },
     { src: '../plugin/highlight/highlight.pack.js', async: true, callback: function() {
       hljs.configure({ tabReplace: '    ', languages: ['swift', 'objectivec']});
         // pre code
@@ -65,19 +64,20 @@ Reveal.initialize({
   chart: {
       defaults: {
           global: {
-            title: { fontSize: 20, fontColor: "#eee" },
+            title: { fontSize: 20,  fontStyle: "italic", fontColor: "#ccc", position: "bottom"},
             legend: {
-                labels: { fontSize: 20, fontColor: "#eee" },
+                labels: { fontSize: 20, fontStyle: "italic", fontColor: "#ccc" },
             },
           },
             scale: {
-                scaleLabel: { fontColor: "#eee" },
-                gridLines: { color: "#eee", zeroLineColor: "#eee" },
-                ticks: { fontColor: "#eee" },
+                scaleLabel: { fontColor: "#ccc" },
+                gridLines: { color: "#666", zeroLineColor: "#ccc" },
+                ticks: { fontColor: "#ccc" },
             }
         },
         line: { borderColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ], "borderDash": [ [5,10], [0,0] ]},
-        bar: { backgroundColor: [ "#FF8D3C" ,"#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
+        bar: { backgroundColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ] },
+        horizontalBar: { backgroundColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
         pie: { backgroundColor: [ [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ] ]},
         radar: { borderColor: [ "#FF8D3C" , "#E43944" , "#CA5CA9", "#13DAEC", "#41B645" ]},
     },
