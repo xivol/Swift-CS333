@@ -144,27 +144,6 @@ body {
 .reveal q {
   font-style: italic; }
 
-.reveal pre {
-  display: block;
-  position: relative;
-  width: 90%;
-  margin: 20px auto;
-  text-align: left;
-  font-size: 0.55em;
-  font-family: monospace;
-  line-height: 1.2em;
-  word-wrap: break-word; }
-
-.reveal code {
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif; }
-
-.reveal pre code {
-  display: block;
-  padding: 5px;
-  overflow: hidden;
-  max-height: 400px;
-  word-wrap: normal; }
-
 .reveal table {
   margin: auto;
   border-collapse: collapse;
@@ -307,8 +286,7 @@ body {
 .hljs-quote {
   color: #41B645; }
 
-.hljs-keyword,
-.hljs-literal {
+.hljs-keyword {
   color: #CA5CA9; }
 
 .hljs-section,
@@ -325,11 +303,10 @@ body {
 .hljs-string {
  color: #E43944; }
 
-.hljs-strong {
- font-weight: bold; }
-
-.hljs-emphasis {
- font-style: italic; }
+ .hljs-literal,
+ .hljs-number,
+ .hljs-subst {
+  color: #1896A5; }
 
 /*********************************************
  * GRID
@@ -445,9 +422,9 @@ body {
 .reveal section.gluten-free {
   background: transparent; }
 
-/*
+/*********************************************
  * BLOCKQUOTE
- */
+*********************************************/
 
 .reveal blockquote {
   border-left: 10px solid #ccc;
@@ -465,40 +442,53 @@ body {
   margin-left: -0.1em;
   margin-top: 0.1em; }
 
+/*********************************************
+ * CODE
+*********************************************/
+
+.reveal pre {
+  display: block;
+  position: relative;
+  width: 90%;
+  margin: 20px auto;
+  text-align: left;
+  font-size: 0.55em;
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  line-height: 1.2em;
+  word-wrap: break-word; }
+
+.reveal code {
+  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace; }
+
 .reveal pre code {
+  display: block;
+  padding: 5px;
+  overflow: hidden;
+  max-height: 400px;
+  word-wrap: normal;
   border-left: 10px solid #CCC;
-  padding: 1.7em 10px 10px !important; }
+  padding: 10px !important; }
 
-.reveal code.swift {
-  border-left-color: #FF8D3C;}
-
-.reveal code.swift::before {
-  width: 99%;
-  float: left;
-  position: absolute;
-  background-color: #FF8D3C;
-  content: "Swift";
-  font-family:: "Lato", sans-serif;
+.reveal pre p {
   font-style: italic;
   line-height: 1.5em;
-  margin-left: -10px;
-  margin-top: -1.7em; }
+  margin: 0;
+  padding: 2px 2px 2px 10px; }
 
-.reveal code.objectivec {
-  border-left-color: #E43944;}
+.reveal pre code.swift {
+  border-left-color: #FF8D3C; }
 
-.reveal code.objectivec::before {
-  width: 99%;
-  float: left;
-  position: absolute;
-  background-color: #E43944;
-  content: "Objective-C";
-  font-family:: "Lato", sans-serif;
-  font-style: italic;
-  line-height: 1.5em;
-  margin-left: -10px;
-  margin-top: -1.7em; }
+.reveal pre p.swift  {
+  background-color: #FF8D3C; }
 
+.reveal pre code.objectivec {
+  border-left-color: #E43944; }
+
+.reveal pre p.objectivec {
+  background-color: #E43944; }
+
+.reveal code:not(.hljs) {
+  text-shadow: 1px 0px 1px #000; }
 
 /*********************************************
  * TOPBAR
@@ -535,3 +525,18 @@ body {
   text-align: right;
   color: #eee;
   background: transparent; }
+
+  .reveal p.notice:before {
+    position: absolute;
+    margin-left: -1.5em;
+    margin-top: 0.3em;
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    font-size: 75%;
+    content: "!";
+    color: #FF8D3C;
+    border: #FF8D3C solid 2px;
+    border-radius: 1em;
+    background-color: rgba(20, 22, 24, 0.4);
+  }

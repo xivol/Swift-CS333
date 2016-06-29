@@ -147,7 +147,7 @@ var RevealChart = window.RevealChart || (function(){
 		mergeRecursive(Chart.defaults, config);
 	}
 
-	Reveal.addEventListener('ready', function(){
+	Reveal.addEventListener('ready', function( event ){
 		//initializeCharts();
 		Reveal.addEventListener('slidechanged', function(){
 			var canvases = Reveal.getCurrentSlide().querySelectorAll("canvas[data-chart]");
@@ -165,7 +165,7 @@ var RevealChart = window.RevealChart || (function(){
 					}
 				}
 			}
-
 		});
+		event.currentSlide.dispatchEvent(new Event('slidechanged'));
 	});
 });

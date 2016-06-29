@@ -28,7 +28,7 @@ Reveal.initialize({
       hljs.configure({ tabReplace: '    ', languages: ['swift', 'objectivec']});
         // pre code
         [].forEach.call(document.querySelectorAll('pre code'), function($code) {
-            // trim leading white spaces
+            // Trim leading white spaces
             if( ! $code.hasAttribute( 'data-notrim' ) ) {
               var lines = $code.textContent.split('\n');
               // remove empty lines
@@ -55,9 +55,30 @@ Reveal.initialize({
             $code.addEventListener( 'focusout', function( event ) {
               hljs.highlightBlock( event.currentTarget );
             }, false );
-
           });
-          hljs.initHighlightingOnLoad();
+
+          window.addEventListener('load', function() {
+            [].forEach.call(document.querySelectorAll('pre code'), function($code) {
+              hljs.highlightBlock($code);
+              // Add header with language name and source file name
+              if( ! $code.hasAttribute( 'data-noheader' )) {
+                var $source = document.createElement('p');
+                var $langNames = {'swift':'Swift', 'objectivec':'Objective-C'}
+                for ($langClass in $langNames) {
+                  if ( $code.className.indexOf($langClass) > -1) {
+                    $source.className = $langClass;
+                    $source.innerHTML = $langNames[$langClass];
+                  }
+                }
+                if( $code.hasAttribute( 'src' ) ) {
+                  $source.innerHTML = $source.innerHTML + ' - ' + $code.getAttribute( 'src' ) ;
+                }
+                if ( !!$source.innerHTML)
+                  $code.parentNode.insertBefore($source, $code);
+              }
+            });
+          });
+          //hljs.initHighlightingOnLoad();
       }
     }
   ],

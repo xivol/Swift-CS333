@@ -37,7 +37,6 @@
 						<br>SFEDU 2016
 					</p>
 				</section>
-
 <!-- Introduction			-->
 				<section>
 					<div class="row">
@@ -273,6 +272,16 @@
 							</div>
 						</div>
 					</section>
+					<section data-background="../img/2016.png" class="TODO">
+						<div class="row">
+							<div class="col center">
+								<h3>2016</h3>
+							</div>
+							<div class="col">
+								<p>iOS 10</p>
+							</div>
+						</div>
+					</section>
 				</section>
 <!-- Swift History		-->
 				<section class="">
@@ -336,7 +345,7 @@
 							<div class="col">
 								<h3>2014</h3>
 								<p>
-									September 9 &ndash; Swift 1.0
+									September 9th &ndash; Swift 1.0
 								</p>
 							</div>
 						</div>
@@ -348,10 +357,10 @@
 						<small><a href="https://swift.org/">https://swift.org</a></small>
 						<h3>2015</h3>
 						<p>
-							September 21 &ndash; Swift 2.0
+							September 21th &ndash; Swift 2.0
 						</p>
 						<p>
-							Swift goes open source
+							December 8th &ndash; Swift goes open source
 						</p>
 					</section>
 					<section class="">
@@ -362,7 +371,10 @@
 							<div class="col">
 								<h3>2016</h3>
 								<p>
-									March 16 &ndash; Swift 2.2
+									March 16th &ndash; Swift 2.2
+								</p>
+								<p>
+									??? &ndash; Swift 2.3 & Swift 3.0
 								</p>
 							</div>
 						</div>
@@ -381,7 +393,7 @@
 					</section>
 					<section>
 						<h3>Modern Syntax</h3>
-						<div class="row fragment fade-out">
+						<div class="row" >
 							<pre><code class="objectivec">
 									@interface AppDelegate : UIResponder &lt;UIApplicationDelegate&gt;
 									@property (strong, nonatomic) UIWindow *window;
@@ -394,7 +406,7 @@
 									}
 									@end</code></pre>
 						</div>
-						<div class="row fragment">
+						<div class="row fragment" style="position:absolute;">
 							<pre><code class="swift">
 							class AppDelegate: UIResponder, UIApplicationDelegate {
 								var window: UIWindow?
@@ -405,11 +417,7 @@
 								}
 							}
 							</code></pre>
-							<p >
-								30% less code
-							</p>
 						</div>
-
 					</section>
 					<section>
 						<h3>Optionals</h3>
@@ -426,6 +434,11 @@
 							<pre><code class="swift">
 								myDelegate?.scrollViewDidScroll?(myScrollView)
 							</code></pre>
+						</div>
+						<div class="fragment">
+							<p>
+								30% less code
+							</p>
 							<p>
 								No more <code class="hljs-literal">nil</code> objects!
 							</p>
@@ -449,7 +462,7 @@
 								do {
 									try receivedData.writeToURL(someLocalFileURL, options:0)
 								} catch let error as NSError {
-									print(error)
+									print("Write failed with error: \(error)")
 								}
 							</code></pre>
 							<p>
@@ -507,7 +520,7 @@
 								   }
 								  ]
 								 },
-								 "options": { "title": { "display": true, "text": "Number of repositories per language" },
+								 "options": { "title": { "display": true, "text": "Number of repositories" },
 								 "scales": { "xAxes":[{"ticks":{"beginAtZero":true},"barPercentage":0.25, "categoryPercentage":0.5}] } }
 								}
 								-->
@@ -519,18 +532,17 @@
 						</div>
 					</section>
 					<section>
-						<h3>Why not both?</h3>
-						<pre><code class="objectivec">
-							// Bridging Header
-							// special header supplied to compiler through project options
+						<h3>Mix and Match</h3>
+						<pre><code class="objectivec" src="My-Bridging-Header.h">
+							// Special header provided for compiler with project options
 
-							#import "XYZCustomCell.h"
+							#import "MySuperObject.h"
 						</code></pre>
 						<pre><code class="swift">
-							let myCell = XYZCustomCell()
+							let myObject = MySuperObject()
 						</code></pre>
 						<p>
-							Full Swift &#8646; Objective-C interoperability!
+							Xcode allows full Swift &#8646; Objective-C interoperability!
 						</p>
 					</section>
 				</section>
@@ -540,7 +552,27 @@
 						<h1>Syntax</h1>
 					</section>
 					<section>
-						<h3>Lets and Vars</h3>
+						<h3>Constants and Variables</h3>
+						<pre><code>
+							let pi = 3.14
+							var r = 1
+							while r < 100 {
+								let sqr = r * r * pi
+								print("Radius: \(r); Square: \(sqr)")
+								r += 1
+							}
+						</code></pre>
+						<div class="row">
+							<div class="col">
+								<code class="hljs-keyword">let</code> decalres a constant
+							</div>
+							<div class="col">
+								<code class="hljs-keyword">var</code> declares a variable
+							</div>
+						</div>
+						<p class="notice">
+							Always declare a constant unless absolutely necessary
+						</p>
 					</section>
 					<section>
 						<h3>Basic Datatypes</h3>
@@ -567,6 +599,18 @@
 					<section>
 
 					</section>
+				</section>
+<!-- Resources			-->
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li>
+							<a href="https://swift.org/blog">Swift Blog</a>
+						</li>
+						<li>
+							<a href="https://developer.apple.com/swift/resources/">Swift Resources - Apple Developer</a>
+						</li>
+					</ul>
 				</section>
 			</div>
 		</div>
