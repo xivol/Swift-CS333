@@ -121,14 +121,16 @@
 						<div class="row">
 							<div class="col">
 								<h3>2001</h3>
+								<h3>2003</h3>
 							</div>
 							<div class="col">
 								<p>Apple releases iPod</p>
-								<small>FireWire interface</br>5GB storage</br>iTunes is a music library manager</br></small>
+								<p>iTunes Store</p>
+								<!--<small>FireWire interface</br>5GB storage</br>iTunes is a music library manager</br></small>-->
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/itunes-store.jpg">
+					<!--<section data-background="../img/itunes-store.jpg">
 						<div class="row">
 							<div class="col">
 								<h3>2003</h3>
@@ -138,11 +140,11 @@
 								<small>First legal online music store</small>
 							</div>
 						</div>
-					</section>
+					</section>-->
 					<section class ="clear" data-background="../img/Ipod_sales_per_quarter.svg" data-background-size="contain" data-background-color="#FFF">
 						<h3 style="display:none;">iPod Sales</h3>
 					</section>
-					<section data-background="../img/motorola-rokr-e1-full-1.jpg" data-background-size="contain" data-background-repeat="repeat">
+					<!--<section data-background="../img/motorola-rokr-e1-full-1.jpg" data-background-size="contain" data-background-repeat="repeat">
 						<div class="row">
 							<div class="col">
 								<h3>2005</h3>
@@ -152,14 +154,14 @@
 								<small>First and last non-Apple phone with iTunes access</small>
 							</div>
 						</div>
-					</section>
+					</section>-->
 					<section data-background="../img/iphone.jpg" >
 						<div class="row">
 							<div class="col">
 								<h3>2007</h3>
 							</div>
 							<div class="col">
-								<p>Apple reinvents the phone</p>
+								<p>"Apple reinvents the phone"</p>
 							</div>
 						</div>
 					</section>
@@ -180,12 +182,19 @@
 							</div>
 						</div>
 					</section>
-					<section class="TODO" data-background="../img/osx-2007.png" data-background-size="contain" data-background-color="#000">
-						<h3 >Darwin</h3>
-						<p>Core Foundation</p>
-						<p>Foundation Kit</p>
-						<p>Cocoa Touch</p>
-						<p>UIKit</p>
+					<section class="" data-background="../img/osx-2007.png" data-background-size="contain" data-background-color="#000">
+						<div class="row">
+							<div class="col">
+								<h3>Darwin 9.0</h3>
+								<small>MacOS Kernel</small>
+							</div>
+							<div class="col">
+								<p>Core Foundation</p>
+								<p>Foundation Kit</p>
+								<p>Cocoa Touch</p>
+								<p>UIKit</p>
+							</div>
+						</div>
 					</section>
 					<section data-background="../img/ios2.jpg" data-background-size="">
 						<div class="row">
@@ -193,8 +202,8 @@
 								<h3>2008</h3>
 							</div>
 							<div class="col">
-								<p class="TODO">Xcode</p>
 								<p>App Store</p>
+								<p>Xcode 3.1</p>
 								<p>iOS SDK</p>
 								<p>3G and GPS</p>
 							</div>
@@ -225,7 +234,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/iphone4s.jpg">
+					<!--<section data-background="../img/iphone4s.jpg">
 						<div class="row">
 							<div class="col">
 								<h3>2011</h3>
@@ -250,8 +259,8 @@
 								<p>iCloud&nbsp;Keychain</p>
 							</div>
 						</div>
-					</section>
-					<section data-background="../img/swift-og.png" class="TODO">
+					</section>-->
+					<section data-background="../img/swift-og.png" class="">
 						<div class="row">
 							<div class="col center">
 								<h3>2014</h3>
@@ -261,7 +270,7 @@
 							</div>
 						</div>
 					</section>
-					<section data-background="../img/ipad-pro.png" class="TODO">
+					<!--<section data-background="../img/ipad-pro.png" class="TODO">
 						<div class="row">
 							<div class="col center">
 								<h3>2015</h3>
@@ -281,7 +290,7 @@
 								<p>iOS 10</p>
 							</div>
 						</div>
-					</section>
+					</section>-->
 				</section>
 <!-- Swift History		-->
 				<section class="">
@@ -379,8 +388,8 @@
 							</div>
 						</div>
 					</section>
-					<section class="gluten-free" data-background-iframe="https://www.youtube.com/embed/cJAGqDYmW1o?autoplay=1">
-					</section>
+					<!--<section class="gluten-free" data-background-iframe="https://www.youtube.com/embed/cJAGqDYmW1o?autoplay=1">
+					</section>-->
 				</section>
 <!-- Swift Reasons		-->
 				<section>
@@ -576,22 +585,80 @@
 					</section>
 					<section>
 						<h3>Basic Datatypes</h3>
+						<pre><code>
+							let i: Int = 1  // is either Int32 or Int64
+							let f: Float = 2.7
+							let d: Double = 3.1
+							let b: Bool = true
+							let s: String = "hello"
+						</code></pre>
+						<p>
+							Swift can infer type of a variable
+						</p>
+						<pre><code>
+								let x = 5, y = 3.142, z = true
+						</code></pre>
 					</section>
 					<section>
-						<h3>Type Casting</h3>
+						<h3>Type Conversion</h3>
+						<p>
+							Swift is type-safe language
+						</p>
+						<pre><code>
+							var pi = 3 + 0.14 // literals don't have explicit type
+							let three = 3
+							let pointOneFour = 0.14
+							pi = Double(three) + pointOneFour
+							// implicit type conversions are not allowed
+							let roundPi:Int = Int(pi)
+						</code></pre>
+						<p class="notice">
+							All type conversions must be explicit
+						</p>
 					</section>
 					<section>
 						<h3>Functions</h3>
+						<pre><code>
+							func greet(person: String, from hometown: String) -> String {
+								return "Hello, \(person)! Glad you could visit from \(hometown)!"
+							}
+
+							print(greet(person: "Ivan", from: "Rostov"))
+						</code></pre>
+						<p>
+							Every parameter has a name and an argument label
+						</p>
+						<p class="notice">
+							Arguments must be labeled when function is called
+						</p>
 					</section>
 					<section>
 						<h3>Optionals</h3>
+						<pre><code>
+							let someNum = "3.14"
+							let number = Double(someNum) // Double?
+							if number != nil {
+								print("parsed number: \(number!)") // unwraped value 3.14
+							}
+						</code></pre>
+						<p>
+							Optional contains either value or <code class="hljs-literal">nil</code>
+						</p>
+						<p class="notice">Always make sure optional contains a value before unwraping</p>
 					</section>
 				</section>
 <!-- Playgrounds			-->
 				<section>
-					<img src="../img/iOStech_intro_2x.png" />
+					<section data-background="../img/playground-title.jpg">
+						<h1>Playground</h1>
+					</section>
 					<section>
 						<h1>Playground</h1>
+						<!--<img src="../img/iOStech_intro_2x.png" />-->
+						<img src="../img/playground_view.png" />
+						<p>
+							Playrgounds are interactive Swift enviroment
+						</p>
 					</section>
 					<section>
 						HOW?
@@ -609,6 +676,8 @@
 						</li>
 						<li>
 							<a href="https://developer.apple.com/swift/resources/">Swift Resources - Apple Developer</a>
+						</li>
+						<li><a href="https://developer.apple.com/library/ios/recipes/Playground_Help/Chapters/AboutPlaygrounds.html">About Playgrounds - Apple Developer</a>
 						</li>
 					</ul>
 				</section>
