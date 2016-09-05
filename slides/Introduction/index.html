@@ -377,13 +377,13 @@
 							<div class="col">
 								<img class="" src="../img/swift-org-logo.png" alt="Swift Logo" />
 							</div>
-							<div class="col">
+							<div class="col" style="text-align:left;">
 								<h3>2016</h3>
 								<p>
 									March 16th &ndash; Swift 2.2
 								</p>
 								<p>
-									??? &ndash; Swift 2.3 & Swift 3.0
+									September 7th &ndash; Swift 2.3 &amp; Swift 3.0 ?
 								</p>
 							</div>
 						</div>
@@ -429,6 +429,28 @@
 						</div>
 					</section>
 					<section>
+					 	<h3>Safe Space</h3>
+						<div class="row">
+							<div class="col">
+								<img class="" src="../img/swift-org-logo.png" alt="Swift Logo" />
+							</div>
+							<div class="col" style="text-align:left;">
+								<p>
+									Strong typing and type-safety
+								</p>
+								<p>
+									Initializers
+								</p>
+								<p>
+									Range Checks
+								</p>
+								<p>
+									Memory managment
+								</p>
+							</div>
+						</div>
+					</section>
+					<section>
 						<h3>Optionals</h3>
 						<div class="row">
 							<pre><code class="objectivec">
@@ -446,10 +468,10 @@
 						</div>
 						<div class="fragment">
 							<p>
-								30% less code
+								Optional chaining == 30% less code
 							</p>
 							<p>
-								No more <code class="hljs-literal">nil</code> objects!
+								Makes possibility of <code class="hljs-literal">nil</code> objects compile time errors!
 							</p>
 						</div>
 					</section>
@@ -555,6 +577,53 @@
 						</p>
 					</section>
 				</section>
+<!-- Playgrounds			-->
+				<section>
+					<section data-background="../img/playground-title.jpg">
+						<h1>Playground</h1>
+					</section>
+					<section>
+						<h3>Write Code</h3>
+						<!---->
+						<img src="../img/playground_view.png" />
+						<p>
+							Interactive Swiwf experience
+						</p>
+					</section>
+					<section>
+						<h3>Get Errors</h3>
+						<img src="../img/swifterror.png" />
+						<p>
+							Get those errors as soon as possible
+						</p>
+					</section>
+					<section>
+						<h3>View results</h3>
+						<img src="../img/playground_results_view.png" />
+						<div class="row">
+							<div class="col">
+								<ol>
+									<li>Strings</li>
+									<li>Numbers
+									</li>
+								</ol>
+							</div>
+							<div class="col">
+								<ol start="3">
+									<li>
+										Image
+									</li>
+									<li>
+										View
+									</li>
+								</ol>
+							</div>
+						</div>
+					</section>
+					<section>
+						<img src="../img/iOStech_intro_2x.png" />
+					</section>
+				</section>
 <!-- Swift Basics			-->
 				<section class="">
 					<section data-background="../img/swift-og.png">
@@ -586,7 +655,7 @@
 					<section>
 						<h3>Basic Datatypes</h3>
 						<pre><code>
-							let i: Int = 1  // is either Int32 or Int64
+							let i: Int = 1  // default Int is either Int32 or Int64
 							let f: Float = 2.7
 							let d: Double = 3.1
 							let b: Bool = true
@@ -597,6 +666,7 @@
 						</p>
 						<pre><code>
 								let x = 5, y = 3.142, z = true
+								let names = ["Alex", "Anna", "Ivan", "Maria"]
 						</code></pre>
 					</section>
 					<section>
@@ -638,34 +708,81 @@
 							let someNum = "3.14"
 							let number = Double(someNum) // Double?
 							if number != nil {
-								print("parsed number: \(number!)") // unwraped value 3.14
+								print("parsed number: \(number!)") // unwraped value is 3.14
 							}
 						</code></pre>
 						<p>
-							Optional contains either value or <code class="hljs-literal">nil</code>
+							Optional value contains either value or <code class="hljs-literal">nil</code>
 						</p>
-						<p class="notice">Always make sure optional contains a value before unwraping</p>
-					</section>
-				</section>
-<!-- Playgrounds			-->
-				<section>
-					<section data-background="../img/playground-title.jpg">
-						<h1>Playground</h1>
+						<p class="notice">Always make sure optional contains a value before foced unwraping</p>
 					</section>
 					<section>
-						<h1>Playground</h1>
-						<!--<img src="../img/iOStech_intro_2x.png" />-->
-						<img src="../img/playground_view.png" />
-						<p>
-							Playrgounds are interactive Swift enviroment
+						<h3>Conditional Statement</h3>
+						<pre><code>
+							let someChar: Character = "z"
+							if someChar >= "0" &amp;&amp; someChar <= "9" {
+								print("This is a digit.")
+							} else if someChar >= "a" &amp;&amp; someChar <= "z" {
+								print("This is a letter.")
+							}
+						</code></pre>
+						<p class="notice">
+							Curved braces are required
 						</p>
 					</section>
 					<section>
-						HOW?
+						<h3>Optional Binding</h3>
+						<pre><code>
+							let someNum = "3.14"
+							if let number = Double(someNum) { // number is Double!
+								print("parsed number: \(number)")
+							} else {
+								print("\(someNum) is not a number") // number is not reachble from here
+							}
+						</code></pre>
+						<p class="notice">
+							Bound optional always contains a value
+						</p>
 					</section>
 					<section>
+						<h3>Conditional Statement &ndash; Switch</h3>
+						<pre><code>
+							let someChar: Character = "z"
+							switch (someChar) {
+								case "a":
+									print("It is the first letter of the alphabet")
+								case "b"..."y":
+									print("It is some other letter of the alphabet")
+								case "z":
+									print("It is the last letter of the alphabet")
+								default:
+									print("It is some other character")
+							}
+						</code></pre>
+						<p class="notice">
+							Case must always have a body
+						</p>
+					</section>
+          <section>
+            <h3>Loops</h3>
+						<pre><code>
+							var i = 0
+							while i < 5 {
+								i += 1
+							}
 
-					</section>
+							for j in 0...i {
+								for k in 0...j {
+									print(".")
+								}
+								print("\n")
+							}
+
+							repeat {
+								i -= 1
+							} while i > 0
+						</code></pre>
+          </section>
 				</section>
 <!-- Resources			-->
 				<section>
