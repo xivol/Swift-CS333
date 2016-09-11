@@ -150,7 +150,7 @@
 							if let number = Double(someNum) { // number is Double!
 								print("parsed number: \(number)")
 							} else {
-								print("\(someNum) is not a number") // number is not reachble
+								print("\(someNum) is not a number") // number is not reachable
 							}
 						</code></pre>
 						<p class="notice">
@@ -178,61 +178,410 @@
 					</section>
           <section>
             <h3>Loops</h3>
-						<pre><code data-noheader>
-							var i = 0
-							while i < 5 {
-								i += 1
-							}
+            <div class="row">
+  						<div class="col"><pre><code data-noheader>
+  							var i = 0
+  							while i < 5 {
+  								i += 1
+  							}
+  							repeat {
+  								i -= 1
+  							} while i > 0
+              </code></pre></div>
+  						<div class="col"><pre><code data-noheader>
+  							for i in 0...10 {
+  								for j in 0...i {
+  									print(".")
+  								}
+  								print("\n")
 
-							for j in 0...i {		// .
-								for k in 0...j {	// ..
-									print(".")	// ...
-								}			// ....
-								print("\n")		// .....
-							}
-
-							repeat {
-								i -= 1
-							} while i > 0
-						</code></pre>
+  							}
+              </code></pre></div>
+            </div>
           </section>
 				</section>
-<!-- Collections      -->
-        <section>
-          <section data-background="../img/book-collection.jpg">
-            <h1>Collections</h1>
-          </section>
-          <section>
-            <h3>Arrays</h3>
-          </section>
-          <section>
-            <h3>Indexes</h3>
-          </section>
-          <section>
-            <h3>Ranges</h3>
-          </section>
-          <section>
-            <h3>Sets</h3>
-          </section>
-          <section>
-            <h3>Dictionaries</h3>
-          </section>
-        </section>
 <!-- Functions      -->
         <section>
-          <section data-background="../img/spirals.jpg">
+          <section data-background="../img/swift-og.png">
             <h1>Functions</h1>
           </section>
           <section>
+            <h3>Argument labels and Parameter names</h3>
+            <pre><code data-noheader>
+              func greet(person name: String, from hometown: String) -> String {
+                return "Hello, \(name)! Glad you could visit from \(hometown)!"
+              }
+              print(greet(person: "Ivan", from: "Rostov"))
+            </code></pre>
+            <p>
+              You can ommit a label by using <code class="hljs-number">_</code>
+            </p>
+            <pre><code data-noheader>
+              func greet(_ name: String, _ hometown: String) -> String {
+                return "Hello, \(name)! Glad you could visit from \(hometown)!"
+              }
+              print(greet("Ivan", "Rostov"))
+            </code></pre>
+            <p>
+              Labels allow function to be called in an expressive manner
+            </p>
+            <p class="notice">
+              Think hard before you ommit an argument label
+            </p>
+          </section>
+          <section>
+            <h3>In-Out parameters</h3>
+            <pre><code data-noheader>
+              func swapTwo(_ a: inout Int, _ b: inout Int){
+                let c = a; a = b; b = c
+              }
+              var a = 1, b = 2
+              swapTwo(&amp;a, &amp;b)
+            </code></pre>
+            <p>
+              All parameters are constant by default
+            </p>
+            <p class="notice">
+              Swift doesn't encourage functions with side effect
+            </p>
+          </section>
+          <section>
+            <h3>Function Types</h3>
+            <pre><code data-noheader>
+              func add(_ a: Int, _ b: Int) -> Int {
+                return a + b;
+              }
+              func mult(_ a:  Int, _ b: Int) -> Int {
+                return a * b;
+              }
+              func calc (_ op: (Int, Int) -> Int, _ a: Int, _ b: Int)) {
+                print(op(a, b))
+              }
+              let a = 5, b = 6
+              calc(add, a, b)
+              calc(mult, a, b)
+            </code></pre>
+            <p>
+              Function's type consists of <br> types of parameters and return value
+            </p>
+          </section>
+					<section>
+						<h3>Operators</h3>
+						<pre><code data-noheader>
+							func +(_ left: Bool, _ right: Bool) {
+								return left || right
+							}
+							let a = true, b = false
+							let c = a + b
+						</code></pre>
+					</section>
+          <section>
+            <h3>Nested Functions</h3>
+            <pre><code data-noheader>
+              func counter(forward: Bool) -> (Int) -> Int {
+                func stepForward(input: Int) -> Int {
+                  return input + 1
+                }
+                func stepBackward(input: Int) -> Int {
+                  return input - 1
+                }
 
+                return forward ? stepForward : stepBackward
+              }
+            </code></pre>
+          </section>
+        </section>
+<!-- Closures			-->
+        <section>
+          <section data-background="../img/swift-og.png">
+            <h1>Closures</h1>
+          </section>
+          <section>
+            <h3>Closing over context</h3>
+            <pre><code data-noheader>
+              func counter(increment: Int, forward: Bool) -> (Int) -> Int {
+
+                func backward(input: Int) -> Int {
+                  return input - increment
+                }
+
+                return !forward ? backward :
+                  { (input: Int) -> Int in return input + increment }
+              }
+            </code></pre>
+            <p>
+              Closures are blocks of code that can capture <br>local constants and variables
+            </p>
+          </section>
+          <section>
+            <h3>Local context</h3>
+            <pre><code data-noheader>
+              // global function
+              func counter(increment: Int, forward: Bool) -> (Int) -> Int {
+                // local function &ndash; increment is captured
+                func backward(input: Int) -> Int {
+                  return input - increment
+                }
+
+                return !forward ? backward :
+                // closure expression &ndash; increment is captured
+                  { (input: Int) -> Int in return input + increment }
+              }
+            </code></pre>
+            <p>
+              Local functions and closure expressions <br>can capture any value in context
+            </p>
+            <p>
+              Global functions don't capture any values
+            </p>
+          </section>
+          <section>
+            <h3>Closure Expression</h3>
+            <pre><code data-noheader>
+              let names = ["Anna", "Ivan", "Maria", "John"]
+
+              var reversedNames = names.sorted(by: {
+                  (s1: String, s2: String) -> Bool in
+                    return s1 > s2
+              })
+            </code></pre>
+            <p>
+              Closure expression &ndash; unnamed block of executable code <br> that can capture values from local context
+            </p>
+          </section>
+          <section>
+            <h3>Brevity of a closure</h3>
+            <div class="row">
+              <pre><code data-noheader>
+                var reversedNames = names.sorted(by:
+                  { s1, s2 in return s1 > s2 })
+              </code></pre>
+              <p>
+                Parameter types can be inferred from context
+              </p>
+            </div>
+            <div class="row">
+              <pre><code data-noheader>
+                var reversedNames = names.sorted(by: { return $0 > $1 })
+              </code></pre>
+              <p>
+                Parameters can be referenced by shorthand names
+              </p>
+            </div>
+            <div class="row">
+              <pre><code data-noheader>
+                var reversedNames = names.sorted(by: { $0 > $1 })
+              </code></pre>
+              <p>
+                Single-expression closure implicitly returns its result
+              </p>
+            </div>
+          </section>
+          <section>
+            <h3>Even shorter</h3>
+						<div class="row">
+	            <pre><code data-noheader>
+	              var reversedNames = names.sorted { $0 > $1 }
+	            </code></pre>
+	            <p>
+	              Closure can be passed with trailing syntax
+	            </p>
+						</div>
+						<div>
+	            <pre><code data-noheader>
+	              var reversedNames = names.sorted(by: >)
+	            </code></pre>
+	            <p>
+	              Any operator is a function
+	            </p>
+						</div>
+          </section>
+          <section>
+            <h3>Sharing a variable</h3>
+            <pre><code data-noheader>
+              func counter(withIncrement: Int) -> () -> Int {
+                var totalCount = 0
+                return { totalCount += withIncrement }
+              }
+
+              let newCounter = counter(withIncrement: 10)
+              print(newCounter()) // 10
+              let anotherCounter = newCounter
+              print(anotherCounter()) // 20
+            </code></pre>
+            <p class = "notice">
+              Closures are reference type
+            </p>
+          </section>
+          <section>
+            <h3>Autoclosures</h3>
+            <pre><code data-noheader>
+              var names = ["Anna", "Ivan", "Maria", "John"]
+              let nextInLine = { names.remove(at:0) }
+
+              print("Next one is \(nextInLine()!") // Anna!
+              print(names.count) // 3
+
+              func whosNext(provider nextInLine: @autoclosure () -> String) {
+                print("Next one is \(nextInLine())")
+              }
+              whosNext(provider: names.remove(at:0))
+            </code></pre>
+            <p>
+              <code class="hljs-attribute">@autoclosure</code> automaticaly wraps parameter <br> in closure expression
+            </p>
           </section>
         </section>
 <!-- Classes      -->
 				<section>
-          <section data-background="">
+          <section data-background="../img/swift-og.png">
             <h1>Classes</h1>
           </section>
+					<section>
+						<h3>Classes and Structures</h3>
+						<pre><code data-noheader>
+							struct Point {
+								var x = 0.0, y = 0.0
+							}
+
+							class Polygon {
+								let points: [Point]
+								init (_ points: [Point]) {
+									self.points = points
+								}
+								var center: Point {
+									/* Calculate center */
+									return Point(x: xVal, y:yVal)
+								}
+							}
+						</code></pre>
+						<p>
+							Classes are reference type
+						</p>
+						<p>
+							Structures are value type and can not be inherited
+						</p>
+					</section>
+					<section>
+						<h3>Properties</h3>
+						<pre><code data-noheader>
+							class Polygon {
+								let points: [Point]  // has to be set in initializer
+								let name = "polygon" // has a default value
+								var area: Double {  // read-only property
+									/* Calculate area */
+								}
+								var origin: Point {
+									get {/* do something */}
+									set(newOrigin) {/* do something */}
+								}
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Methods</h3>
+						<pre><code data-noheader>
+							struct Point {
+								mutating func offset(_ xStep: Double, _  yStep: Double) {
+									/* Change x, y */
+								}
+								func distance(_ to: Point) -> Double {
+									/* Calculate distance */
+								}
+							}
+							class Polygon {
+								func contains(_ p: Point) -> Bool {
+									/* do something */
+								}
+							}
+						</code></pre>
+						<p>
+							Structure methods that change properties has to be marked <code class="hljs-keyword">mutating</code>
+						</p>
+					</section>
+					<section>
+						<h3>Access Control</h3>
+						<pre><code data-noheader>
+							class Shady { // implicitly internal
+								 private var things: [String] = []
+								 private func stuff() {}
+								 func allClear() {} // implicitly internal
+								 public var totallyClear: String
+							}
+							private class Classified { // explicitly private
+								var nothing: String // implicitly private
+							}
+						</code></pre>
+						<p class="notice">
+							All classes and class members are implicitly <code class="hljs-keyword">internal</code>
+						</p>
+					</section>
+					<section>
+						<h3>Automatic Reference Counting</h3>
+						<pre><code data-noheader>
+							class ARCout {
+								init(){
+									print ("initialized")
+								}
+								deinit() {
+									print ("deinitialized")
+								}
+							}
+							var reference1: ARCout? = ARCout() // initialized
+							var reference2 = reference1
+							reference1 = nil
+							reference2 = nil // deinitialized
+						</code></pre>
+						<p>
+							Deallocates memory if no references to object exists
+						</p>
+					</section>
+					<section>
+						<h3>Reference Loops</h3>
+						<pre><code data-noheader>
+							class ARCout {
+								var reference: ARCout?
+							}
+							var obj1 = ARCout() // initialized
+							var obj2 = ARCout() // initialized
+							obj1.reference = obj2
+							obj2.reference = obj1
+							obj1 = nil
+							obj2 = nil
+							// But nothing happened!
+						</code></pre>
+						<pre><code data-noheader>
+							class ARCout {
+								weak var reference: ARCout?
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-keyword">weak</code> references don't increase retain count
+						</p>
+						<p>
+							<code class="hljs-keyword">unowned</code> references don't have to be optional values
+						</p>
+					</section>
+					<section>
+						<h3>Inheritance</h3>
+						<pre><code data-noheader>
+							class Triangle: Polygon {
+								init(_ a: Point, _ b: Point, _ c: Point) {
+									let verts = [a,b,c]
+									super.init(verts)
+									name = "triangle"
+								}
+								override var area: {
+									/* Calculate area */
+								}
+								override func contains(_ p: Point) -> Bool {
+									/* do something */
+								}
+							}
+						</code></pre>
+					</section>
         </section>
+<!-- Error Handling -->
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>

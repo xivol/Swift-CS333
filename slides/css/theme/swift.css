@@ -434,7 +434,8 @@ body {
   color: #41B645; }
 
 .hljs-keyword {
-  color: #CA5CA9; }
+/*  color: #CA5CA9; */
+  color: #ff6ed4; }
 
 .hljs-section,
 .hljs-type,
