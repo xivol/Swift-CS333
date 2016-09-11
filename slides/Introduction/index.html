@@ -737,7 +737,7 @@
 							if let number = Double(someNum) { // number is Double!
 								print("parsed number: \(number)")
 							} else {
-								print("\(someNum) is not a number") // number is not reachble from here
+								print("\(someNum) is not a number") // number is not reachble
 							}
 						</code></pre>
 						<p class="notice">
@@ -771,11 +771,11 @@
 								i += 1
 							}
 
-							for j in 0...i {
-								for k in 0...j {
-									print(".")
-								}
-								print("\n")
+							for j in 0...i {		// .
+								for k in 0...j {	// ..
+									print(".")	// ...
+								}			// ....
+								print("\n")		// .....
 							}
 
 							repeat {

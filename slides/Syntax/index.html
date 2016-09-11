@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. Swift 101</title>
+		<title>Swift-CS333. Swift Syntax</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -40,7 +40,7 @@
 <!-- Swift Basics			-->
 				<section class="">
 					<section data-background="../img/swift-og.png">
-						<h1>Syntax</h1>
+						<h1>The Basics</h1>
 					</section>
 					<section>
 						<h3>Constants and Variables</h3>
@@ -68,7 +68,7 @@
 					<section>
 						<h3>Basic Datatypes</h3>
 						<pre><code>
-							let i: Int = 1  // is either Int32 or Int64
+							let i: Int = 1  // default Int is either Int32 or Int64
 							let f: Float = 2.7
 							let d: Double = 3.1
 							let b: Bool = true
@@ -79,6 +79,7 @@
 						</p>
 						<pre><code>
 								let x = 5, y = 3.142, z = true
+								let names = ["Alex", "Anna", "Ivan", "Maria"]
 						</code></pre>
 					</section>
 					<section>
@@ -87,12 +88,12 @@
 							Swift is type-safe language
 						</p>
 						<pre><code>
-							var pi = 3 + 0.14 // Double
-							let three = 3 // Int
-							let pointOneFour = 0.14  // Double
+							var pi = 3 + 0.14 // literals don't have explicit type
+							let three = 3
+							let pointOneFour = 0.14
 							pi = Double(three) + pointOneFour
 							// implicit type conversions are not allowed
-							let intPi:Int = Int(pi)
+							let roundPi:Int = Int(pi)
 						</code></pre>
 						<p class="notice">
 							All type conversions must be explicit
@@ -120,28 +121,94 @@
 							let someNum = "3.14"
 							let number = Double(someNum) // Double?
 							if number != nil {
-								print("parsed number: \(number!)") // unwraped value 3.14
+								print("parsed number: \(number!)") // unwraped value is 3.14
 							}
 						</code></pre>
 						<p>
-							Optional contains either value or <code class="hljs-literal">nil</code>
+							Optional value contains either value or <code class="hljs-literal">nil</code>
 						</p>
-						<p class="notice">Always make sure optional contains a value before unwraping</p>
+						<p class="notice">Always make sure optional contains a value before foced unwraping</p>
+					</section>
+					<section>
+						<h3>Conditional Statement</h3>
+						<pre><code>
+							let someChar: Character = "z"
+							if someChar >= "0" &amp;&amp; someChar <= "9" {
+								print("This is a digit.")
+							} else if someChar >= "a" &amp;&amp; someChar <= "z" {
+								print("This is a letter.")
+							}
+						</code></pre>
+						<p class="notice">
+							Curved braces are required
+						</p>
+					</section>
+					<section>
+						<h3>Optional Binding</h3>
+						<pre><code>
+							let someNum = "3.14"
+							if let number = Double(someNum) { // number is Double!
+								print("parsed number: \(number)")
+							} else {
+								print("\(someNum) is not a number") // number is not reachble
+							}
+						</code></pre>
+						<p class="notice">
+							Bound optional always contains a value
+						</p>
+					</section>
+					<section>
+						<h3>Conditional Statement &ndash; Switch</h3>
+						<pre><code>
+							let someChar: Character = "z"
+							switch (someChar) {
+								case "a":
+									print("It is the first letter of the alphabet")
+								case "b"..."y":
+									print("It is some other letter of the alphabet")
+								case "z":
+									print("It is the last letter of the alphabet")
+								default:
+									print("It is some other character")
+							}
+						</code></pre>
+						<p class="notice">
+							Case must always have a body
+						</p>
 					</section>
           <section>
-            <h3>Conditional Statements</h3>
-            <pre><code>
-              let pi = 3.14
-              let angle = 90
-              if Double(angle) / 180.0 < 0.5 {
-                print("")
-              }
-            </code></pre>
-          </section>
-          <section>
-            <h3>Iteration</h3>
+            <h3>Loops</h3>
+						<pre><code>
+							var i = 0
+							while i < 5 {
+								i += 1
+							}
+
+							for j in 0...i {		// .
+								for k in 0...j {	// ..
+									print(".")	// ...
+								}			// ....
+								print("\n")		// .....
+							}
+
+							repeat {
+								i -= 1
+							} while i > 0
+						</code></pre>
           </section>
 				</section>
+<!-- Collections      -->
+        <section>
+          <section data-background="">
+            <h1>Collections</h1>
+          </section>
+        </section>
+<!-- Functions      -->
+        <section>
+          <section data-background="">
+            <h1>Functions</h1>
+          </section>
+        </section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
