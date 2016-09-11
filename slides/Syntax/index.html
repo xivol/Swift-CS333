@@ -44,9 +44,9 @@
 					</section>
 					<section>
 						<h3>Constants and Variables</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let pi = 3.14
-							var r = 1
+							var r = 1.0
 							while r < 100 {
 								let sqr = r * r * pi
 								print("Radius: \(r); Square: \(sqr)")
@@ -67,7 +67,7 @@
 					</section>
 					<section>
 						<h3>Basic Datatypes</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let i: Int = 1  // default Int is either Int32 or Int64
 							let f: Float = 2.7
 							let d: Double = 3.1
@@ -77,7 +77,7 @@
 						<p>
 							Swift can infer type of a variable
 						</p>
-						<pre><code>
+						<pre><code data-noheader>
 								let x = 5, y = 3.142, z = true
 								let names = ["Alex", "Anna", "Ivan", "Maria"]
 						</code></pre>
@@ -87,7 +87,7 @@
 						<p>
 							Swift is type-safe language
 						</p>
-						<pre><code>
+						<pre><code data-noheader>
 							var pi = 3 + 0.14 // literals don't have explicit type
 							let three = 3
 							let pointOneFour = 0.14
@@ -101,7 +101,7 @@
 					</section>
 					<section>
 						<h3>Functions</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							func greet(person: String, from hometown: String) -> String {
 								return "Hello, \(person)! Glad you could visit from \(hometown)!"
 							}
@@ -117,7 +117,7 @@
 					</section>
 					<section>
 						<h3>Optionals</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someNum = "3.14"
 							let number = Double(someNum) // Double?
 							if number != nil {
@@ -131,7 +131,7 @@
 					</section>
 					<section>
 						<h3>Conditional Statement</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someChar: Character = "z"
 							if someChar >= "0" &amp;&amp; someChar <= "9" {
 								print("This is a digit.")
@@ -145,7 +145,7 @@
 					</section>
 					<section>
 						<h3>Optional Binding</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someNum = "3.14"
 							if let number = Double(someNum) { // number is Double!
 								print("parsed number: \(number)")
@@ -159,7 +159,7 @@
 					</section>
 					<section>
 						<h3>Conditional Statement &ndash; Switch</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someChar: Character = "z"
 							switch (someChar) {
 								case "a":
@@ -178,7 +178,7 @@
 					</section>
           <section>
             <h3>Loops</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							var i = 0
 							while i < 5 {
 								i += 1
@@ -202,11 +202,20 @@
           <section data-background="">
             <h1>Collections</h1>
           </section>
+          <section>
+            <h3>Array</h3>
+          </section>
         </section>
 <!-- Functions      -->
         <section>
           <section data-background="">
             <h1>Functions</h1>
+          </section>
+        </section>
+<!-- Classes      -->
+				<section>
+          <section data-background="">
+            <h1>Classes</h1>
           </section>
         </section>
 <!-- Resources			-->

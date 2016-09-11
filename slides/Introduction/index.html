@@ -587,7 +587,7 @@
 						<!---->
 						<img src="../img/playground_view.png" />
 						<p>
-							Interactive Swiwf experience
+							Interactive Swift experience
 						</p>
 					</section>
 					<section>
@@ -614,14 +614,16 @@
 										Image
 									</li>
 									<li>
-										View
+										UI
 									</li>
 								</ol>
 							</div>
 						</div>
 					</section>
-					<section>
-						<img src="../img/iOStech_intro_2x.png" />
+					<section data-background="../img/iOStech_intro_2x.png" data-background-size="contain">
+						<div class="row"><h3 class="middle">Let's take a look</h3></div>
+						<!--<img class="image" src="../img/iOStech_intro_2x.png" />-->
+
 					</section>
 				</section>
 <!-- Swift Basics			-->
@@ -631,7 +633,7 @@
 					</section>
 					<section>
 						<h3>Constants and Variables</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let pi = 3.14
 							var r = 1
 							while r < 100 {
@@ -654,7 +656,7 @@
 					</section>
 					<section>
 						<h3>Basic Datatypes</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let i: Int = 1  // default Int is either Int32 or Int64
 							let f: Float = 2.7
 							let d: Double = 3.1
@@ -664,7 +666,7 @@
 						<p>
 							Swift can infer type of a variable
 						</p>
-						<pre><code>
+						<pre><code data-noheader>
 								let x = 5, y = 3.142, z = true
 								let names = ["Alex", "Anna", "Ivan", "Maria"]
 						</code></pre>
@@ -674,7 +676,7 @@
 						<p>
 							Swift is type-safe language
 						</p>
-						<pre><code>
+						<pre><code data-noheader>
 							var pi = 3 + 0.14 // literals don't have explicit type
 							let three = 3
 							let pointOneFour = 0.14
@@ -688,7 +690,7 @@
 					</section>
 					<section>
 						<h3>Functions</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							func greet(person: String, from hometown: String) -> String {
 								return "Hello, \(person)! Glad you could visit from \(hometown)!"
 							}
@@ -704,7 +706,7 @@
 					</section>
 					<section>
 						<h3>Optionals</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someNum = "3.14"
 							let number = Double(someNum) // Double?
 							if number != nil {
@@ -718,7 +720,7 @@
 					</section>
 					<section>
 						<h3>Conditional Statement</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someChar: Character = "z"
 							if someChar >= "0" &amp;&amp; someChar <= "9" {
 								print("This is a digit.")
@@ -732,7 +734,7 @@
 					</section>
 					<section>
 						<h3>Optional Binding</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someNum = "3.14"
 							if let number = Double(someNum) { // number is Double!
 								print("parsed number: \(number)")
@@ -746,7 +748,7 @@
 					</section>
 					<section>
 						<h3>Conditional Statement &ndash; Switch</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							let someChar: Character = "z"
 							switch (someChar) {
 								case "a":
@@ -765,22 +767,22 @@
 					</section>
           <section>
             <h3>Loops</h3>
-						<pre><code>
+						<pre><code data-noheader>
 							var i = 0
 							while i < 5 {
 								i += 1
 							}
-
-							for j in 0...i {		// .
-								for k in 0...j {	// ..
-									print(".")	// ...
-								}			// ....
-								print("\n")		// .....
-							}
-
 							repeat {
 								i -= 1
 							} while i > 0
+						</code></pre>
+						<pre><code data-noheader>
+							for i in 0...10 {
+								for j in 0...<i></i> {
+									print(".")
+								}
+								print("\n")
+							}
 						</code></pre>
           </section>
 				</section>

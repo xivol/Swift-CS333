@@ -385,7 +385,7 @@ body {
   text-align: left;
   font-size: 0.55em;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-  line-height: 1.2em;
+  line-height: 1.5em;
   word-wrap: break-word; }
 
 .reveal code {
@@ -448,7 +448,8 @@ body {
   color: #FF8D3C; }
 
 .hljs-string {
-  color: #E43944; }
+/*color: #E43944;*/
+  color: #ff4d58; }
 
  .hljs-literal,
  .hljs-number,
