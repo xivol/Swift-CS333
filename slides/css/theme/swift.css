@@ -510,3 +510,8 @@ body {
     border-radius: 1em;
     background-color: rgba(20, 22, 24, 0.4);
   }
+
+
+.reveal .hidden {
+  display: none;
+}
