@@ -515,6 +515,9 @@
 						<p class="notice">
 							All classes and class members are implicitly <code class="hljs-keyword">internal</code>
 						</p>
+						<p class="notice">
+							All classes and class members are implicitly <code class="hljs-keyword">internal</code>
+						</p>
 					</section>
 					<section>
 						<h3>Automatic Reference Counting</h3>
@@ -571,14 +574,44 @@
 									super.init(verts)
 									name = "triangle"
 								}
-								override var area: {
+								override var area: Double {
 									/* Calculate area */
 								}
-								override func contains(_ p: Point) -> Bool {
-									/* do something */
+								func inradius: Double {
+									/* Calculate incircle radius */
 								}
 							}
 						</code></pre>
+						<p>
+							<code class="hljs-keyword">super</code> provides access to superclass members
+						</p>
+						<p class="notice">
+							Any overwritten member should be marked with <code class="hljs-keyword">override</code>
+						</p>
+					</section>
+					<section>
+						<h3>Type Casting</h3>
+						<pre><code data-noheader>
+							let shapes = [Polygon]()
+							/* appended something to shapes */
+							for shape in shapes {
+								if shape is Triangle {
+									print("it's a triangle")
+								}
+							}
+
+							for shape in shapes {
+								if let tri = shape as? Triangle {
+									print(tri.inradius)
+								}
+							}
+							</code></pre>
+							<p>
+								<code class="hljs-keyword">as?</code> wraps result into optional,	<br> returns <code class="hljs-literal">nil</code> if variable cannot be downcasted
+							</p>
+							<p>
+								<code class="hljs-keyword">as!</code> triggers a runtime error instead
+							</p>
 					</section>
         </section>
 <!-- Error Handling -->
@@ -595,32 +628,72 @@
 							func chooseOption() throws -> Int {
 								throw MyErrors.OutOfOptions
 							}
-							var option = try? chooseOption()
 						</code></pre>
 						<p>
-							<code>ErrorType</code> &ndash; empty protocol for declaring errors
+							<code class="hljs-type">ErrorType</code> &ndash; empty protocol for declaring errors
 						</p>
 						<p class="notice">
-							Only throwing functions can propagate errors
+							Only throwing functions can throw and propagate errors
 						</p>
 					</section>
 					<section>
 						<h3>Catching Errors</h3>
 						<pre><code data-noheader>
+							do {
+								var option = try chooseOption()
+							}
+							catch MyErrors.OutOfOptions {
+								print("I'm all out of options here!")
+							}
 						</code></pre>
+						<p>
+							<code class="hljs-keyword">try</code> can only be used in <code class="hljs-keyword">do-catch</code> block
+						</p>
+						<p>
+							<code class="hljs-keyword">do-catch</code> block stops error propagation <br> if it catches an error
+						</p>
 					</section>
 					<section>
-						<h3>try try? try!</h3>
+						<h3>Other Options</h3>
+						<pre><code data-noheader>
+							var option = try? chooseOption() // Int?
+
+							func makeAnOption() -> Int {
+								var option = try! chooseOption() // just do it
+								return option
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-keyword">try?</code> wraps value into an optinal, retruns <code class="hljs-literal">nil</code> if error occurs
+						</p>
+						<p>
+							<code class="hljs-keyword">try!</code> fails here and now, stops error popagation
+						</p>
+					</section>
+					<section>
+						<h3>Guard</h3>
+						<pre><code data-noheader>
+							guard let option = try? chooseOption() else {
+								print("Sorry, we're out of options!")
+								return
+							}
+							print("Congratulations, your option is \(option)")
+						</code></pre>
+						<p>
+							<code class="hljs-keyword">guard</code> is assert-like operator that allow quick escape <br> if condition is not met
+						</p>
+						<p class = "notice">
+							guard-bound optional is accesible outside of it's else clause
+						</p>
 					</section>
 				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
-						<li><a href="https://swift.org/blog">Swift Blog</a>
-						</li>
 						<li><a href="https://developer.apple.com/swift/resources/">Swift Resources - Apple Developer</a>
 						</li>
+						<
 					</ul>
 				</section>
 			</div>
