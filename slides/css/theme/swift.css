@@ -96,13 +96,13 @@ body {
 .reveal ul {
   display: inline-block;
   text-align: left;
-  margin: 0 0 0 1em; }
+  margin: 0 1em 0 1em; }
 
 .reveal ol {
   list-style-type: decimal; }
 
 .reveal ul {
-  list-style-type: disc; }
+  list-style-type: none; }
 
 .reveal ul ul {
   list-style-type: square; }
