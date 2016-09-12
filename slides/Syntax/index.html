@@ -582,6 +582,37 @@
 					</section>
         </section>
 <!-- Error Handling -->
+				<section>
+					<section data-background="../img/swift-og.png">
+						<h1>Error Handling</h1>
+					</section>
+					<section>
+						<h3>Throwing Errors</h3>
+						<pre><code data-noheader>
+							enum MyErrors: ErrorType {
+								case OutOfOptions
+							}
+							func chooseOption() throws -> Int {
+								throw MyErrors.OutOfOptions
+							}
+							var option = try? chooseOption()
+						</code></pre>
+						<p>
+							<code>ErrorType</code> &ndash; empty protocol for declaring errors
+						</p>
+						<p class="notice">
+							Only throwing functions can propagate errors
+						</p>
+					</section>
+					<section>
+						<h3>Catching Errors</h3>
+						<pre><code data-noheader>
+						</code></pre>
+					</section>
+					<section>
+						<h3>try try? try!</h3>
+					</section>
+				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
