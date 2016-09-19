@@ -383,26 +383,8 @@
 								}
 							}
 							var numbers = [3.14, 2.71, 1.8]
-							numbers.printMe()
+							print(numbers.description)
             </code></pre>
-          </section>
-          <section>
-            <h3>Autoclosures</h3>
-            <pre><code data-noheader>
-              var names = ["Anna", "Ivan", "Maria", "John"]
-              let nextInLine = { names.remove(at:0) }
-
-              print("Next one is \(nextInLine()!") // Anna!
-              print(names.count) // 3
-
-              func whosNext(provider nextInLine: @autoclosure () -> String) {
-                print("Next one is \(nextInLine())")
-              }
-              whosNext(provider: names.remove(at:0))
-            </code></pre>
-            <p>
-              <code class="hljs-attribute">@autoclosure</code> automaticaly wraps parameter <br> in closure expression
-            </p>
           </section>
         </section>
 <!-- Enumerations      -->
@@ -411,177 +393,87 @@
             <h1>Enumerations</h1>
           </section>
 					<section>
-						<h3>Classes and Structures</h3>
+						<h3>Enumeration Syntax</h3>
 						<pre><code data-noheader>
-							struct Point {
-								var x = 0.0, y = 0.0
-							}
-
-							class Polygon {
-								let points: [Point]
-								init (_ points: [Point]) {
-									self.points = points
-								}
-								var center: Point {
-									/* Calculate center */
-									return Point(x: xVal, y:yVal)
-								}
+							enum Compass: Character {
+								case South = "S"
+								case North = "N"
+								case East = "E"
+								case West = "W"
 							}
 						</code></pre>
 						<p>
-							Classes are reference type
+							Raw value of enumeration can be integer, <br>
+							floating point number, string or character
 						</p>
-						<p>
-							Structures are value type and can not be inherited
-						</p>
-					</section>
-					<section>
-						<h3>Properties</h3>
 						<pre><code data-noheader>
-							class Polygon {
-								let points: [Point]  // has to be set in initializer
-								let name = "polygon" // has a default value
-								var area: Double {  // read-only property
-									/* Calculate area */
-								}
-								var origin: Point {
-									get {/* do something */}
-									set(newOrigin) {/* do something */}
-								}
-							}
+							print(Compass.South.rawValue)
 						</code></pre>
 					</section>
 					<section>
-						<h3>Methods</h3>
+						<h3>Raw Value Initializer</h3>
 						<pre><code data-noheader>
-							struct Point {
-								mutating func offset(_ xStep: Double, _  yStep: Double) {
-									/* Change x, y */
-								}
-								func distance(_ to: Point) -> Double {
-									/* Calculate distance */
-								}
-							}
-							class Polygon {
-								func contains(_ p: Point) -> Bool {
-									/* do something */
-								}
-							}
-						</code></pre>
-						<p>
-							Structure methods that change properties has to be marked <code class="hljs-keyword">mutating</code>
-						</p>
-					</section>
-					<section>
-						<h3>Access Control</h3>
-						<pre><code data-noheader>
-							class Shady { // implicitly internal
-								 private var things: [String] = []
-								 private func stuff() {}
-								 func allClear() {} // implicitly internal
-								 public var totallyClear: String
-							}
-							private class Classified { // explicitly private
-								var nothing: String // implicitly private
-							}
+							var south = Compass(rawValue: "S")
 						</code></pre>
 						<p class="notice">
-							All classes and class members are implicitly <code class="hljs-keyword">internal</code>
+							Raw value initalizer returns an optional
 						</p>
 					</section>
 					<section>
-						<h3>Automatic Reference Counting</h3>
+						<h3>Associated Values</h3>
 						<pre><code data-noheader>
-							class ARCout {
-								init(){
-									print ("initialized")
-								}
-								deinit() {
-									print ("deinitialized")
-								}
+							enum Barcode {
+							    case UPCA(Int, Int, Int, Int)
+							    case QRCode(String)
 							}
-							var reference1: ARCout? = ARCout() // initialized
-							var reference2 = reference1
-							reference1 = nil
-							reference2 = nil // deinitialized
 						</code></pre>
 						<p>
-							Deallocates memory if no references to object exists
+							Enumerations can store associated values of any given type
 						</p>
+						<pre><code data-noheader>
+							var productBarcode = Barcode.UPCA(8, 85909, 51226, 3)»
+
+							switch productBarcode {
+							case let .UPCA(numberSystem, manufacturer, product, check):
+							    print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")
+							case let .QRCode(productCode):
+							    print("QR code: \(productCode).")
+							}
+						</code></pre>
 					</section>
 					<section>
-						<h3>Reference Loops</h3>
+						<h3>Properties and Methods</h3>
 						<pre><code data-noheader>
-							class ARCout {
-								var reference: ARCout?
-							}
-							var obj1 = ARCout() // initialized
-							var obj2 = ARCout() // initialized
-							obj1.reference = obj2
-							obj2.reference = obj1
-							obj1 = nil
-							obj2 = nil
-							// But nothing happened!
-						</code></pre>
-						<pre><code data-noheader>
-							class ARCout {
-								weak var reference: ARCout?
-							}
-						</code></pre>
-						<p>
-							<code class="hljs-keyword">weak</code> references don't increase retain count
-						</p>
-						<p>
-							<code class="hljs-keyword">unowned</code> references don't have to be optional values
-						</p>
-					</section>
-					<section>
-						<h3>Inheritance</h3>
-						<pre><code data-noheader>
-							class Triangle: Polygon {
-								init(_ a: Point, _ b: Point, _ c: Point) {
-									let verts = [a,b,c]
-									super.init(verts)
-									name = "triangle"
-								}
-								override var area: Double {
-									/* Calculate area */
-								}
-								func inradius: Double {
-									/* Calculate incircle radius */
+							enum Compass {
+								var opposite: Compass {
+									// return opposite direction
 								}
 							}
 						</code></pre>
 						<p>
-							<code class="hljs-keyword">super</code> provides access to superclass members
+							Enumerations can store properties and methods
 						</p>
 						<p class="notice">
-							Any overwritten member should be marked with <code class="hljs-keyword">override</code>
+							Enumerations are value types
 						</p>
 					</section>
 					<section>
-						<h3>Type Casting</h3>
+						<h3>Recursive Enumerations</h3>
 						<pre><code data-noheader>
-							let shapes = [Polygon]()
-							/* appended something to shapes */
-							for shape in shapes {
-								if shape is Triangle {
-									print("it's a triangle")
-								}
+							indirect enum ArithmeticExpression {
+								case Number(Int)
+								case Addition(ArithmeticExpression, ArithmeticExpression)
 							}
-
-							for shape in shapes {
-								if let tri = shape as? Triangle {
-									print(tri.inradius)
-								}
-							}
-							</code></pre>
-							<p>
-								<code class="hljs-keyword">as?</code> wraps result into optional,	<br> returns <code class="hljs-literal">nil</code> if variable cannot be downcasted
-							</p>
-							<p>
-								<code class="hljs-keyword">as!</code> triggers a runtime error instead
-							</p>
+						</code></pre>
+						<p>
+							Enumeration can refer itself in its declaration <br>
+							with <code class="hljs-keyword">indirect</code>
+						</p>
+						<pre><code data-noheader>
+								let five = ArithmeticExpression.Number(5)
+								let four = ArithmeticExpression.Number(4)
+								let sum = ArithmeticExpression.Addition(five, four)
+						</code></pre>
 					</section>
         </section>
 <!-- Standart Library -->
@@ -591,67 +483,12 @@
 					</section>
 					<section>
 						<h3>Array</h3>
-						<pre><code data-noheader>
-							enum MyErrors: ErrorType {
-								case OutOfOptions
-							}
-							func chooseOption() throws -> Int {
-								throw MyErrors.OutOfOptions
-							}
-						</code></pre>
-						<p class="notice">
-							Only throwing functions can throw and propagate errors
-						</p>
 					</section>
 					<section>
 						<h3>Dictionary</h3>
-						<pre><code data-noheader>
-							do {
-								var option = try chooseOption()
-							}
-							catch MyErrors.OutOfOptions {
-								print("I'm all out of options here!")
-							}
-						</code></pre>
-						<p>
-							<code class="hljs-keyword">try</code> can only be used in <code class="hljs-keyword">do-catch</code> block
-						</p>
-						<p>
-							<code class="hljs-keyword">do-catch</code> block stops error propagation <br> if it catches an error
-						</p>
 					</section>
 					<section>
 						<h3>Set</h3>
-						<pre><code data-noheader>
-							var option = try? chooseOption() // Int?
-
-							func makeAnOption() -> Int {
-								var option = try! chooseOption() // just do it
-								return option
-							}
-						</code></pre>
-						<p>
-							<code class="hljs-keyword">try?</code> wraps value into an optinal, retruns <code class="hljs-literal">nil</code> if error occurs
-						</p>
-						<p>
-							<code class="hljs-keyword">try!</code> fails here and now, stops error popagation
-						</p>
-					</section>
-					<section>
-						<h3>Guard</h3>
-						<pre><code data-noheader>
-							guard let option = try? chooseOption() else {
-								print("Sorry, we're out of options!")
-								return
-							}
-							print("Congratulations, your option is \(option)")
-						</code></pre>
-						<p>
-							<code class="hljs-keyword">guard</code> is assert-like operator that allow quick escape <br> if condition is not met
-						</p>
-						<p class = "notice">
-							guard-bound optional is accesible outside of it's else clause
-						</p>
 					</section>
 				</section>
 <!-- Resources			-->
