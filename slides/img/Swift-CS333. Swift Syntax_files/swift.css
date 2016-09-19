@@ -198,7 +198,7 @@ body {
   margin: 15px 0px;
   -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
   filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
-  /*filter: url(#drop-shadow); - fails in moz*/
+  filter: url(#drop-shadow);
   -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
   filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')"; }
 
@@ -501,12 +501,6 @@ body {
   color: #eee;
   background: transparent; }
 
-  .reveal .emphasis {
-    font-style: normal;
-    color: #FF8D3C;
-    text-shadow: 1px 0px 1px #000;
-  }
-
   .reveal .notice:before {
     position: absolute;
     margin-left: -1.5em;
@@ -515,10 +509,9 @@ body {
     height: 1em;
     line-height: 1em;
     font-size: 75%;
+    text-shadow: none;
     font-style: normal;
     font-weight: normal;
-    text-shadow: none;
-    text-align: center;
     content: "!";
     color: #FF8D3C;
     border: #FF8D3C solid 2px;

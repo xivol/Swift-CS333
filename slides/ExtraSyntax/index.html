@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. Swift Syntax</title>
+		<title>Swift-CS333. Swift Syntax. Part 2</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -18,12 +18,12 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
  		</script>
 		<style>
-			#swift-bird{
-				-webkit-clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
-				clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
-				max-width:100%;
-				/*max-height: 100%*/
-			}
+		#swift-bird{
+			-webkit-clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
+			clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
+			max-width:100%;
+			/*max-height: 100%*/
+		}
 		</style>
 	</head>
 	<body>
@@ -48,252 +48,189 @@
 					<h3 class="hidden">Overview</h3>
 					<div class="row">
 						<div class="col">
-					<ul>
-						<li>
-							<a href="#/2">The Basics</a>
-						</li>
-						<li>
-							<a href="#/3">Functions</a>
-						</li>
-						<li>
-							<a href="#/4">Closures</a>
-						</li>
-						<li>
-							<a href="#/5">Classes</a>
-						</li>
-						<li>
-							<a href="#/6">Error Handling</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col">
-					<img id="swift-bird" src="../img/swift-bird.jpg" />
-				</div>
-				</div>
+						<ul>
+							<li>
+								<a href="#/2">Initialization</a>
+							</li>
+							<li>
+								<a href="#/3">Protocols</a>
+							</li>
+							<li>
+								<a href="#/4">Extentions</a>
+							</li>
+							<li>
+								<a href="#/5">Enumerations</a>
+							</li>
+							<li>
+								<a href="#/6">Standart Library</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/swift-bird.jpg" />
+						</div>
+					</div>
 				</section>
-<!-- Swift Basics			-->
+<!-- Initialization				-->
 				<section class="">
 					<section data-background="../img/swift-og.png">
-						<h1>The Basics</h1>
+						<h1>Initialization</h1>
 					</section>
 					<section>
-						<h3>Constants and Variables</h3>
+						<h3>Structure Initialization</h3>
 						<pre><code data-noheader>
-							let pi = 3.14
-							var r = 1.0
-							while r < 100 {
-								let sqr = r * r * pi
-								print("Radius: \(r); Square: \(sqr)")
-								r += 1
+							struct Point {
+								var x = 0.0, y = 0.0
+							}
+							struct Size {
+								var width = 0.0, height = 0.0
+							}
+							let p = Point(x: 1.0, y: 1.0)
+						</code></pre>
+						<p class="notice">
+							Structures have default memberwise initializers
+						</p>
+					</section>
+					<section>
+						<h3>Class Initialization</h3>
+						<pre><code data-noheader>
+							class Rect {
+								var origin = Point()
+								var size = Size()
+								init() {}
+								init(origin: Point, size: Size) {
+									self.origin = origin
+									self.size = size
+								}
 							}
 						</code></pre>
-						<div class="row">
-							<div class="col">
-								<code class="hljs-keyword">let</code> decalres a constant
-							</div>
-							<div class="col">
-								<code class="hljs-keyword">var</code> declares a variable
-							</div>
-						</div>
 						<p class="notice">
-							Always declare a constant unless absolutely necessary
+							Classes don't have default memberwise initialisers
 						</p>
 					</section>
 					<section>
-						<h3>Basic Datatypes</h3>
+						<h3>Two Kinds of Initializers</h3>
 						<pre><code data-noheader>
-							let i: Int = 1  // default Int is either Int32 or Int64
-							let f: Float = 2.7
-							let d: Double = 3.1
-							let b: Bool = true
-							let s: String = "hello"
+								init(origin: Point, size: Size) { // designated init
+									self.origin = origin
+									self.size = size
+								}
 						</code></pre>
 						<p>
-							Swift can infer type of a variable
+							<span class="emphasis">Designated initializer</span> fully initializes all proprties of the class
 						</p>
 						<pre><code data-noheader>
-								let x = 5, y = 3.142, z = true
-								let names = ["Alex", "Anna", "Ivan", "Maria"]
-						</code></pre>
-					</section>
-					<section>
-						<h3>Type Conversion</h3>
-						<p>
-							Swift is type-safe language
-						</p>
-						<pre><code data-noheader>
-							var pi = 3 + 0.14 // literals don't have explicit type
-							let three = 3
-							let pointOneFour = 0.14
-							pi = Double(three) + pointOneFour
-							// implicit type conversions are not allowed
-							let roundPi:Int = Int(pi)
-						</code></pre>
-						<p class="notice">
-							All type conversions must be explicit
-						</p>
-					</section>
-					<section>
-						<h3>Functions</h3>
-						<pre><code data-noheader>
-							func greet(person: String, from hometown: String) -> String {
-								return "Hello, \(person)! Glad you could visit from \(hometown)!"
-							}
-
-							print(greet(person: "Ivan", from: "Rostov"))
-						</code></pre>
-						<p>
-							Every parameter has a name and an argument label
-						</p>
-						<p class="notice">
-							Arguments must be labeled when function is called
-						</p>
-					</section>
-					<section>
-						<h3>Optionals</h3>
-						<pre><code data-noheader>
-							let someNum = "3.14"
-							let number = Double(someNum) // Double?
-							if number != nil {
-								print("parsed number: \(number!)") // unwraped value is 3.14
+							convenience init(center: Point, size: Size) {
+								let originX = center.x - (size.width / 2)
+								let originY = center.y - (size.height / 2)
+								self.init(origin: Point(x: originX, y: originY), size: size)
 							}
 						</code></pre>
 						<p>
-							Optional value contains either value or <code class="hljs-literal">nil</code>
-						</p>
-						<p class="notice">Always make sure optional contains a value before foced unwraping</p>
-					</section>
-					<section>
-						<h3>Conditional Statement</h3>
-						<pre><code data-noheader>
-							let someChar: Character = "z"
-							if someChar >= "0" &amp;&amp; someChar <= "9" {
-								print("This is a digit.")
-							} else if someChar >= "a" &amp;&amp; someChar <= "z" {
-								print("This is a letter.")
-							}
-						</code></pre>
-						<p class="notice">
-							Curved braces are required
+							<span class="emphasis">Convenience initializer</span> covers specific use case <br> of initialization parameters
 						</p>
 					</section>
 					<section>
-						<h3>Optional Binding</h3>
-						<pre><code data-noheader>
-							let someNum = "3.14"
-							if let number = Double(someNum) { // number is Double!
-								print("parsed number: \(number)")
-							} else {
-								print("\(someNum) is not a number") // number is not reachable
-							}
-						</code></pre>
-						<p class="notice">
-							Bound optional always contains a value
-						</p>
+						<h3>Rules of Class Initialization</h3>
+						<ul>
+							<li class="notice">
+								Any designated initializer must call a designated initializer <br> from its superclass
+							</li>
+							<li class="notice">
+								Any convenience initializer must call another initializer <br> from the same class
+							</li>
+							<li class="notice">
+								Any convenience initializer must ultimately call <br> a designated initializer
+							</li>
+						</ul>
 					</section>
 					<section>
-						<h3>Conditional Statement &ndash; Switch</h3>
+						<h3>Initializer Delegation</h3>
 						<pre><code data-noheader>
-							let someChar: Character = "z"
-							switch (someChar) {
-								case "a":
-									print("It is the first letter of the alphabet")
-								case "b"..."y":
-									print("It is some other letter of the alphabet")
-								case "z":
-									print("It is the last letter of the alphabet")
-								default:
-									print("It is some other character")
+							class TextBox: Rect {
+								var text: String = ""
+								init(text: String, origin: Point, size: Size) { //designated init
+									super.init(origin: origin, size: size)
+									self.text = text;
+								}
+								convenience init(text: String, center: Point, size: Size) {
+									let originX = center.x - (size.width / 2)
+									let originY = center.y - (size.height / 2)
+									self.init(text: text, origin: Point(x: originX, y: originY),
+										size: size)
+								}
 							}
 						</code></pre>
-						<p class="notice">
-							Case must always have a body
-						</p>
 					</section>
-          <section>
-            <h3>Loops</h3>
-            <div class="row">
-  						<div class="col"><pre><code data-noheader>
-  							var i = 0
-  							while i < 5 {
-  								i += 1
-  							}
-  							repeat {
-  								i -= 1
-  							} while i > 0
-              </code></pre></div>
-  						<div class="col"><pre><code data-noheader>
-  							for i in 0...10 {
-  								for j in 0...i {
-  									print(".")
-  								}
-  								print("\n")
-
-  							}
-              </code></pre></div>
-            </div>
-          </section>
+					<section>
+						<h3>Initializer Inheritance</h3>
+						<pre><code data-noheader>
+							class TextBox: Rect {
+								var text: String = ""
+								convenience init(text: String, origin: Point, size: Size) {
+									self.init(origin: origin, size: size)
+									self.text = text
+								}
+							}
+							var t = TextBox()
+						</code></pre>
+					</section>
+					<section>
+						<h3>Required Initializers</h3>
+						<pre><code data-noheader>
+							class Rect {
+								required init(){}
+							}
+							class TextBox {
+								required init(){
+									super.init()
+								}
+							}
+							</code></pre>
+					</section>
+					<section>
+						<h3>Failable Initialization</h3>
+						<pre><code data-noheader>
+							class TextBox: Rect {
+								init? (text: String){
+									if text.characters.count == 0 { return nil }
+									super.init()
+								}
+							}
+						</code></pre>
+					</section>
 				</section>
-<!-- Functions      -->
+<!-- Protocols    	  -->
         <section>
           <section data-background="../img/swift-og.png">
-            <h1>Functions</h1>
+            <h1>Protocols</h1>
           </section>
           <section>
-            <h3>Argument labels and Parameter names</h3>
+            <h3>Protocol Rquirements</h3>
             <pre><code data-noheader>
-              func greet(person name: String, from hometown: String) -> String {
-                return "Hello, \(name)! Glad you could visit from \(hometown)!"
-              }
-              print(greet(person: "Ivan", from: "Rostov"))
+							protocol IntContainer {
+								var count: UInt { get }
+								subscript(index: Int) -> Int { get }
+								mutating func append(item: Int)
+							}
             </code></pre>
             <p>
-              You can ommit a label by using <code class="hljs-number">_</code>
-            </p>
-            <pre><code data-noheader>
-              func greet(_ name: String, _ hometown: String) -> String {
-                return "Hello, \(name)! Glad you could visit from \(hometown)!"
-              }
-              print(greet("Ivan", "Rostov"))
-            </code></pre>
-            <p>
-              Labels allow function to be called in an expressive manner
-            </p>
-            <p class="notice">
-              Think hard before you ommit an argument label
+							Protocols list methods and properties reqiered for implementation
             </p>
           </section>
           <section>
-            <h3>In-Out parameters</h3>
+            <h3>Conforming to protocol</h3>
             <pre><code data-noheader>
-              func swapTwo(_ a: inout Int, _ b: inout Int){
-                let c = a; a = b; b = c
-              }
-              var a = 1, b = 2
-              swapTwo(&amp;a, &amp;b)
-            </code></pre>
-            <p>
-              All parameters are constant by default
-            </p>
-            <p class="notice">
-              Swift doesn't encourage functions with side effect
-            </p>
-          </section>
-          <section>
-            <h3>Function Types</h3>
-            <pre><code data-noheader>
-              func add(_ a: Int, _ b: Int) -> Int {
-                return a + b;
-              }
-              func mult(_ a:  Int, _ b: Int) -> Int {
-                return a * b;
-              }
-              func calc (_ op: (Int, Int) -> Int, _ a: Int, _ b: Int)) {
-                print(op(a, b))
-              }
-              let a = 5, b = 6
-              calc(add, a, b)
-              calc(mult, a, b)
+              class IntStack: IntContainer {
+								let elements: [Int]
+								var count {
+									return elements.count
+								}
+								subscript(index: Int) -> Int {
+									return elements[index]
+								}
+								func
+							}
             </code></pre>
             <p>
               Function's type consists of <br> types of parameters and return value
@@ -325,11 +262,26 @@
             </code></pre>
           </section>
         </section>
-<!-- Closures			-->
+<!-- Extentions				-->
         <section>
           <section data-background="../img/swift-og.png">
-            <h1>Closures</h1>
+            <h1>Extentions</h1>
           </section>
+					<section>
+						<h3>Extending basic structures</h3>
+						<pre><code data-noheader>
+							extension Int {
+									mutating func square() {
+											self = self * self
+									}
+								func repeatitions(task: () -> Void) {
+										for _ in 0..&lt;self {
+												task()
+										}
+									}
+							}
+						</code></pre>
+					</section>
           <section>
             <h3>Closing over context</h3>
             <pre><code data-noheader>
@@ -426,7 +378,7 @@
 	              var reversedNames = names.sorted(by: >)
 	            </code></pre>
 	            <p>
-	              Any operator is a closure
+	              Any operator is a function
 	            </p>
 						</div>
           </section>
@@ -466,10 +418,10 @@
             </p>
           </section>
         </section>
-<!-- Classes      -->
+<!-- Enumerations      -->
 				<section>
           <section data-background="../img/swift-og.png">
-            <h1>Classes</h1>
+            <h1>Enumerations</h1>
           </section>
 					<section>
 						<h3>Classes and Structures</h3>
@@ -645,13 +597,13 @@
 							</p>
 					</section>
         </section>
-<!-- Error Handling -->
+<!-- Standart Library -->
 				<section>
 					<section data-background="../img/swift-og.png">
-						<h1>Error Handling</h1>
+						<h1>Standart Library</h1>
 					</section>
 					<section>
-						<h3>Throwing Errors</h3>
+						<h3>Array</h3>
 						<pre><code data-noheader>
 							enum MyErrors: ErrorType {
 								case OutOfOptions
@@ -660,15 +612,12 @@
 								throw MyErrors.OutOfOptions
 							}
 						</code></pre>
-						<p>
-							<code class="hljs-type">ErrorType</code> &ndash; empty protocol for declaring errors
-						</p>
 						<p class="notice">
 							Only throwing functions can throw and propagate errors
 						</p>
 					</section>
 					<section>
-						<h3>Catching Errors</h3>
+						<h3>Dictionary</h3>
 						<pre><code data-noheader>
 							do {
 								var option = try chooseOption()
@@ -685,7 +634,7 @@
 						</p>
 					</section>
 					<section>
-						<h3>Other Options</h3>
+						<h3>Set</h3>
 						<pre><code data-noheader>
 							var option = try? chooseOption() // Int?
 
