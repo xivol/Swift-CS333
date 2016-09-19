@@ -56,7 +56,7 @@
 								<a href="#/3">Protocols</a>
 							</li>
 							<li>
-								<a href="#/4">Extentions</a>
+								<a href="#/4">Extensions</a>
 							</li>
 							<li>
 								<a href="#/5">Enumerations</a>
@@ -72,7 +72,7 @@
 					</div>
 				</section>
 <!-- Initialization				-->
-				<section class="">
+				<section>
 					<section data-background="../img/swift-og.png">
 						<h1>Initialization</h1>
 					</section>
@@ -161,6 +161,12 @@
 								}
 							}
 						</code></pre>
+						<p>
+							<span class="emphasis">↑</span> designated delegate up <span class="emphasis">↑</span>
+						</p>
+						<p>
+							<span class="emphasis">←</span> convenience delegate across <span class="emphasis">→</span>
+						</p>
 					</section>
 					<section>
 						<h3>Initializer Inheritance</h3>
@@ -174,6 +180,10 @@
 							}
 							var t = TextBox()
 						</code></pre>
+						<p class="notice">
+							If no designated initializers declared in subclass <br>
+							it inherits designated initializers of its superclass
+						</p>
 					</section>
 					<section>
 						<h3>Required Initializers</h3>
@@ -187,6 +197,10 @@
 								}
 							}
 							</code></pre>
+							<p class="notice">
+								Required initializers must be implemented as <br>
+								<code class="hljs-keyword">required</code> or <code class="hljs-keyword">final</code>
+							</p>
 					</section>
 					<section>
 						<h3>Failable Initialization</h3>
@@ -198,6 +212,9 @@
 								}
 							}
 						</code></pre>
+						<p class="notice">
+							Failiable initializers return an optional
+						</p>
 					</section>
 				</section>
 <!-- Protocols    	  -->
@@ -215,13 +232,13 @@
 							}
             </code></pre>
             <p>
-							Protocols list methods and properties reqiered for implementation
+							Protocol lists methods and properties <br> required for implementation
             </p>
           </section>
           <section>
-            <h3>Conforming to protocol</h3>
+            <h3>Adopting a Protocol</h3>
             <pre><code data-noheader>
-              class IntStack: IntContainer {
+							class IntStackClass: IntContainer {
 								let elements: [Int]
 								var count {
 									return elements.count
@@ -229,175 +246,145 @@
 								subscript(index: Int) -> Int {
 									return elements[index]
 								}
-								func
+								func append(item: Int) {
+									elements.append(item)
+								}
 							}
             </code></pre>
             <p>
-              Function's type consists of <br> types of parameters and return value
+            	Structures and classes that adopt a protocol <br> must implement all of the required members
             </p>
           </section>
 					<section>
-						<h3>Operators</h3>
+						<h3>Checking for Conformance</h3>
 						<pre><code data-noheader>
-							func +(_ left: Bool, _ right: Bool) {
-								return left || right
+							if someObject is IntContainer {
+								print((someObject as! IntContainer).count)
 							}
-							let a = true, b = false
-							let c = a + b
+							// binding is always a better solution
+							if let container = someObject as? IntContainer {
+								print(container.count)
+							}
 						</code></pre>
+						<p>
+							<code class="hljs-keyword">is</code> and <code class="hljs-keyword">as</code> can be used with protocols
+						</p>
 					</section>
-          <section>
-            <h3>Nested Functions</h3>
-            <pre><code data-noheader>
-              func counter(forward: Bool) -> (Int) -> Int {
-                func stepForward(input: Int) -> Int {
-                  return input + 1
-                }
-                func stepBackward(input: Int) -> Int {
-                  return input - 1
-                }
-
-                return forward ? stepForward : stepBackward
-              }
-            </code></pre>
-          </section>
+					<section>
+						<h3>Protocol as Type</h3>
+						<pre><code data-noheader>
+							func createContainer(ofSize size: UInt,
+								fillWith value: Int) -> IntContainer
+							{
+								// create some value conforming to IntContainer
+							}
+							let container = createContainer(ofSize: 10, fillwith:0)
+							let conatiners: [IntContainer]
+						</code></pre>
+						<p>
+							Any value of a type that adopts required protocol <br> can be assigned to the variable of protocol type
+						</p>
+						<p class="notice">
+							You can requre multiple protocol conformance by using <code class="hljs-keyword">protocol&lt;someProtocol, anotherProtocol&gt;</code>
+						</p>
+					</section>
         </section>
-<!-- Extentions				-->
+<!-- Extensions				-->
         <section>
           <section data-background="../img/swift-og.png">
-            <h1>Extentions</h1>
+            <h1>Extensions</h1>
           </section>
 					<section>
-						<h3>Extending basic structures</h3>
+						<h3>Extension Properties</h3>
+						<pre><code data-noheader>
+							extension Double {
+							    var km: Double { return self * 1_000.0 }
+							    var  m: Double { return self }
+							    var cm: Double { return self / 100.0 }
+							    var mm: Double { return self / 1_000.0 }
+							    var ft: Double { return self / 3.28084 }
+							}
+							let oneInch = 25.4.mm
+						</code></pre>
+						<p>
+							Extensions can add new functionality to a type <br> but they cannot override existing functionality
+						</p>
+						<p class="notice">
+							Extensions cannot add stored properties
+						</p>
+					</section>
+					<section>
+						<h3>Extension Methods</h3>
 						<pre><code data-noheader>
 							extension Int {
-									mutating func square() {
-											self = self * self
+								func times(do: () -> Void) {
+									for _ in 0..&lt;self {
+											task()
 									}
-								func repeatitions(task: () -> Void) {
-										for _ in 0..&lt;self {
-												task()
-										}
-									}
+								}
 							}
+
+							3.times(do: { print("Hello! ") })
 						</code></pre>
+						<p>
+							The new functionality will be availiable <br>
+							 on all existing instaces of a type
+						</p>
 					</section>
           <section>
-            <h3>Closing over context</h3>
+            <h3>Extension for Protocol Adoption</h3>
             <pre><code data-noheader>
-              func counter(increment: Int, forward: Bool) -> (Int) -> Int {
-
-                func backward(input: Int) -> Int {
-                  return input - increment
-                }
-
-                return !forward ? backward :
-                  { (input: Int) -> Int in return input + increment }
-              }
+							protocol TextRepresentable {
+								var description: String { get }
+							}
+							extension Int: TextRepresentable {
+								var description: String {
+									return "Integer: \(self)"
+								}
+							}
+							var i: TextRepresentable
+							i = 1
             </code></pre>
             <p>
-              Closures are blocks of code that can capture <br>local constants and variables
+							All existing instances of a type automatically adopt and conform to a protocol
             </p>
           </section>
           <section>
-            <h3>Local context</h3>
+            <h3>Protocol Extension</h3>
             <pre><code data-noheader>
-              // global function
-              func counter(increment: Int, forward: Bool) -> (Int) -> Int {
-                // local function &ndash; increment is captured
-                func backward(input: Int) -> Int {
-                  return input - increment
-                }
-
-                return !forward ? backward :
-                // closure expression &ndash; increment is captured
-                  { (input: Int) -> Int in return input + increment }
-              }
+							extension TextRepresentable {
+								var description: String { // default implementation
+									return "I am \(self)!"
+								}
+								func printMe() {
+									print(self.description)
+								}
+							}
+							extention Double: TextRepresentable {}
             </code></pre>
             <p>
-              Local functions and closure expressions <br>can capture any value in context
+              Type should explicitly adopt a protocol
             </p>
+						<pre><code data-noheader>
+							3.14.printMe() // "I am 3.14!"
+						</code></pre>
             <p>
-              Global functions don't capture any values
+              If no implementation declared in a conforming type <br>
+							default one is used
             </p>
           </section>
           <section>
-            <h3>Closure Expression</h3>
+            <h3>Adding Constraints</h3>
             <pre><code data-noheader>
-              let names = ["Anna", "Ivan", "Maria", "John"]
-
-              var reversedNames = names.sorted(by: {
-                  (s1: String, s2: String) -> Bool in
-                    return s1 > s2
-              })
+							extension CollectionType where Generator.Element: TextRepresentable {
+								var description: String {
+									let itemsAsText = self.map { $0.description }
+									return "[" + itemsAsText.joinWithSeparator(", ") + "]"
+								}
+							}
+							var numbers = [3.14, 2.71, 1.8]
+							numbers.printMe()
             </code></pre>
-            <p>
-              Closure expression &ndash; unnamed block of executable code <br> that can capture values from local context
-            </p>
-          </section>
-          <section>
-            <h3>Brevity of a closure</h3>
-            <div class="row">
-              <pre><code data-noheader>
-                var reversedNames = names.sorted(by:
-                  { s1, s2 in return s1 > s2 })
-              </code></pre>
-              <p>
-                Parameter types can be inferred from context
-              </p>
-            </div>
-            <div class="row">
-              <pre><code data-noheader>
-                var reversedNames = names.sorted(by: { return $0 > $1 })
-              </code></pre>
-              <p>
-                Parameters can be referenced by shorthand names
-              </p>
-            </div>
-            <div class="row">
-              <pre><code data-noheader>
-                var reversedNames = names.sorted(by: { $0 > $1 })
-              </code></pre>
-              <p>
-                Single-expression closure implicitly returns its result
-              </p>
-            </div>
-          </section>
-          <section>
-            <h3>Even shorter</h3>
-						<div class="row">
-	            <pre><code data-noheader>
-	              var reversedNames = names.sorted { $0 > $1 }
-	            </code></pre>
-	            <p>
-	              Closure can be passed with trailing syntax
-	            </p>
-						</div>
-						<div>
-	            <pre><code data-noheader>
-	              var reversedNames = names.sorted(by: >)
-	            </code></pre>
-	            <p>
-	              Any operator is a function
-	            </p>
-						</div>
-          </section>
-          <section>
-            <h3>Sharing a variable</h3>
-            <pre><code data-noheader>
-              func counter(withIncrement: Int) -> () -> Int {
-                var totalCount = 0
-                return { totalCount += withIncrement }
-              }
-
-              let newCounter = counter(withIncrement: 10)
-              print(newCounter()) // 10
-              let anotherCounter = newCounter
-              print(anotherCounter()) // 20
-            </code></pre>
-            <p class = "notice">
-              Closures are reference type
-            </p>
           </section>
           <section>
             <h3>Autoclosures</h3>
