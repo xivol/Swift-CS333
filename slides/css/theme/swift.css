@@ -530,3 +530,25 @@ body {
 .reveal .hidden {
   display: none;
 }
+
+.reveal .fw-stack {
+  height: 20em;
+  background: url("../../img/hardware_full_silver_medium_2x.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.reveal .fw-stack:first-child{
+  padding-top: 22%;
+}
+
+.reveal .fw-item {
+  margin: 1% 21% 1%;
+  height: 19%;
+  padding: 0.75em;
+  background-color: rgba(19,218,236,0.4);
+  color: rgba(20, 22, 24, 0.7);
+  font-family: "Oswald", Impact, sans-serif;
+  font-weight: normal;
+}

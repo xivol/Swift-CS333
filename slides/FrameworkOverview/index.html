@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. Swift Syntax. Part 2</title>
+		<title>Swift-CS333. iOS Framework</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -50,19 +50,19 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">Initialization</a>
+								<a href="#/2">iOS Framework</a>
 							</li>
 							<li>
-								<a href="#/3">Protocols</a>
+								<a href="#/3">App LifeCycle</a>
 							</li>
 							<li>
-								<a href="#/4">Extensions</a>
+								<a href="#/4">Storyboards</a>
 							</li>
 							<li>
-								<a href="#/5">Enumerations</a>
+								<a href="#/5"></a>
 							</li>
 							<li>
-								<a href="#/6">Standart Library</a>
+								<a href="#/6"></a>
 							</li>
 						</ul>
 						</div>
@@ -74,22 +74,30 @@
 <!-- Initialization				-->
 				<section>
 					<section data-background="../img/swift-og.png">
-						<h1>Initialization</h1>
+						<h1>iOS Frameworks</h1>
 					</section>
 					<section>
-						<h3>Structure Initialization</h3>
-						<pre><code data-noheader>
-							struct Point {
-								var x = 0.0, y = 0.0
-							}
-							struct Size {
-								var width = 0.0, height = 0.0
-							}
-							let p = Point(x: 1.0, y: 1.0)
-						</code></pre>
-						<p class="notice">
-							Structures have default memberwise initializers
-						</p>
+						<div class="row">
+							<div class="col">
+								<h3>Framework Stack</h3>
+							</div>
+							<div class="col">
+								<div class="fw-stack">
+									<div class="fw-item">
+										Core Touch
+									</div>
+									<div class="fw-item">
+										Media
+									</div>
+									<div class="fw-item">
+										Core Services
+									</div>
+									<div class="fw-item">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
 					</section>
 					<section>
 						<h3>Class Initialization</h3>
