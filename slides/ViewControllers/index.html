@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. iOS Frameworks</title>
+		<title>Swift-CS333. Views &amp; Controllers</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -50,19 +50,19 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">Layers of iOS</a>
+								<a href="#/2">UIWindow</a>
 							</li>
 							<li>
-								<a href="#/3">App Life Cycle</a>
+								<a href="#/3">Auto Layout</a>
 							</li>
 							<li>
-								<a href="#/4">Model View Controller</a>
+								<a href="#/4">Default Controllers</a>
 							</li>
 							<li>
-								<a href="#/5">App Delegate</a>
+								<a href="#/5">Custom UI</a>
 							</li>
 							<li>
-								<a href="#/6">Storyboard</a>
+								<a href="#/">Segues</a>
 							</li>
 						</ul>
 						</div>
@@ -71,74 +71,17 @@
 						</div>
 					</div>
 				</section>
-<!-- iOS Framework Layers				-->
+<!-- UIWindow				-->
 				<section>
-					<section data-background="../img/onion_layers.jpg">
-						<h1>Layers of iOS</h1>
+					<section data-background="../img/window.jpg">
+						<h1>UIWindow</h1>
 					</section>
-					<section data-transition="fade-out fast">
-						<div class="row">
-							<div class="col">
-								<h3>Stack of Frameworks</h3>
-							</div>
-							<div class="col">
-								<div class="iphone-box">
-									<div class="fw-item">
-										Cocoa Touch
-									</div>
-									<div class="fw-item">
-										Media
-									</div>
-									<div class="fw-item">
-										Core Services
-									</div>
-									<div class="fw-item">
-										Core OS
-									</div>
-								</div>
-							</div>
-						</div>
+					<section>
+						<h3>UI Startup</h3>
 					</section>
-					<section data-transition="fade-in">
-						<div class="row">
-							<div class="col">
-								<h3 class="hidden">Core OS</h3>
-								<ul class="fragment fade-up">
-									<li>
-										Darwin Kernel<br />
-										<small>Concurrency, Networking, File-system</small>
-									</li>
-									<li>
-										Security<br />
-										<small>Encription, Certificates, Keychain</small>
-									</li>
-									<li>
-										Accessory<br />
-										<small>Bluetooth, Attached hardware communication</small>
-									</li>
-									<li>
-										Accelerate<br />
-										<small>Signal processing, Linear algebra</small>
-									</li>
-								</ul>
-							</div>
-							<div class="col">
-								<div class="iphone-box">
-									<div class="fw-item">
-										Cocoa Touch
-									</div>
-									<div class="fw-item">
-										Media
-									</div>
-									<div class="fw-item">
-										Core Services
-									</div>
-									<div class="fw-item current">
-										Core OS
-									</div>
-								</div>
-							</div>
-						</div>
+					<section>
+						<img src="" />
+						<h3>View Stack</h3>
 					</section>
 					<section data-transition="fade-in">
 						<div class="row">
@@ -399,7 +342,7 @@
 								CoreData Objects
 							</li>
 							<li>
-								Custom Classes
+								Classes and Structures
 							</li>
 						</ul>
 					</section>
@@ -424,7 +367,7 @@
 						<h3>Controller</h3>
 						<ul class="controller">
 							<li>
-								AppDelegate Subclass
+								AppDelegate Subclasses
 							</li>
 							<li>
 								Storyboard Segues
@@ -435,118 +378,16 @@
 						</ul>
 					</section>
 				</section>
-<!-- App Delegate				-->
-				<section>
-					<section data-background="../img/project-delegation.jpg" data-background-size="contain">
-            <h1>App Delegate</h1>
-          </section>
-					<section>
-						<h3>App Launch</h3>
-						<img src="../img/app_launch.png" class="small"/>
-					</section>
-					<section>
-						<h3>UIWindow</h3>
-						<p>
-							Stores root View Controller<br />
-							Handles basic input interactions and screen rendering
-						</p>
-					</section>
-					<section>
-						<h3>Simple App</h3>
-						<pre><code class="swift" src="AppDelegate.swift">
-						@UIApplicationMain
-						class AppDelegate: UIResponder, UIApplicationDelegate {
-							// Create new UIWindow
-							var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-							func application(application: UIApplication,
-								didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-								// Create root ViewController
-								window!.rootViewController = UIViewController()
-								// Set window to handle input and show it
-								window!.makeKeyAndVisible()
-								return true
-							}
-						}
-						</code></pre>
-					</section>
-				</section>
 <!-- Storyboards				-->
         <section>
           <section data-background="../img/storyboard.png">
             <h1>Storyboards</h1>
           </section>
 					<section>
-						<h3>ViewController Stack</h3>
-						<img src="../img/viewstack.png" class="small"/>
+						<h3>UIWindow</h3>
 					</section>
 					<section>
-						<h3>Storyboarding Your App</h3>
-						<img src="../img/storyboard_bird_sightings.png" />
-					</section>
-					<section>
-						<h3>Segue</h3>
-						<img src="../img/segue_defined_2x.png" />
-					</section>
-					<section>
-						<h3>Segue Type</h3>
-						<table>
-							<tr>
-								<th>
-									Show
-								</th>
-								<td>
-									<img src="../img/segue_push.png" class="flat"/>
-								</td>
-								<td>
-									<small>Push on top of main stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Show Detail
-								</th>
-								<td>
-									<img src="../img/segue_push.png" class="flat"/>
-								</td>
-								<td>
-									<small>Push on top of detail stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Present in Popover
-								</th>
-								<td>
-									<img src="../img/segue_popover.png" class="flat"/>
-								</td>
-								<td>
-									<small>Show in popover view</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Present Modally
-								</th>
-								<td>
-									<img src="../img/segue_modal.png" class="flat"/>
-								</td>
-								<td>
-									<small>Show in new view stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Custom
-								</th>
-								<td>
-									<img src="../img/segue_custom.png" class="flat"/>
-								</td>
-								<td>
-									<small>Custom Segue</small>
-								</td>
-							</tr>
-						</table>
+						<h3>View Stack</h3>
 					</section>
         </section>
 <!-- Resources			-->
@@ -557,7 +398,8 @@
 						</li>
 						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">App Programming Guide - Apple Developer</a>
 						</li>
-						<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">Model-View-Controller - Apple Developer</a>
+						<li>
+							https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html
 						</li>
 					</ul>
 				</section>

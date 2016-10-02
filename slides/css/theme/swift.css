@@ -113,7 +113,9 @@ body {
 }
 
 .reveal ul ul {
-  list-style-type: square; }
+  list-style-type: circle;
+  font-size: 0.75em;
+}
 
 .reveal ul ul ul {
   list-style-type: circle; }
@@ -137,10 +139,13 @@ body {
   border-spacing: 0; }
 
 .reveal table th {
-  font-weight: bold; }
+  font-size: 0.75em;
+  font-family: "Oswald", Impact, sans-serif;
+  font-weight: normal; }
 
 .reveal table th,
 .reveal table td {
+  vertical-align: middle;
   text-align: left;
   padding: 0.2em 0.5em 0.2em 0.5em;
   border-bottom: 1px solid; }
@@ -152,6 +157,10 @@ body {
 .reveal table th[align="right"],
 .reveal table td[align="right"] {
   text-align: right; }
+
+.reveal table tr td:not(:first-child) {
+  text-align: center;
+}
 
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
@@ -217,6 +226,9 @@ body {
 .reveal section img.logo {
   max-width: 30%;
   max-height: 30%; }
+
+  .reveal img.flat {
+    filter:none; }
 
 /*********************************************
  * NAVIGATION CONTROLS
@@ -501,54 +513,94 @@ body {
   color: #eee;
   background: transparent; }
 
-  .reveal .emphasis {
-    font-style: normal;
-    color: #FF8D3C;
-    text-shadow: 1px 0px 1px #000;
-  }
+.reveal .emphasis {
+  font-style: normal;
+  color: #FF8D3C;
+  text-shadow: 1px 0px 1px #000; }
 
-  .reveal .notice:before {
-    position: absolute;
-    margin-left: -1.5em;
-    margin-top: 0.3em;
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    font-size: 75%;
-    font-style: normal;
-    font-weight: normal;
-    text-shadow: none;
-    text-align: center;
-    content: "!";
-    color: #FF8D3C;
-    border: #FF8D3C solid 2px;
-    border-radius: 1em;
-    background-color: rgba(20, 22, 24, 0.4);
-  }
-
+.reveal .notice:before {
+  position: absolute;
+  margin-left: -1.5em;
+  margin-top: 0.3em;
+  width: 1em;
+  height: 1em;
+  line-height: 1em;
+  font-size: 75%;
+  font-style: normal;
+  font-weight: normal;
+  text-shadow: none;
+  text-align: center;
+  content: "!";
+  color: #FF8D3C;
+  border: #FF8D3C solid 2px;
+  border-radius: 1em;
+  background-color: rgba(20, 22, 24, 0.4); }
 
 .reveal .hidden {
-  display: none;
-}
+  display: none; }
 
-.reveal .fw-stack {
+.reveal .iphone-box  {
   height: 20em;
   background: url("../../img/hardware_full_silver_medium_2x.png");
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
-}
+  background-position: center; }
 
-.reveal .fw-stack:first-child{
-  padding-top: 22%;
-}
+.reveal .iphone-box:first-child{
+  padding-top: 21.5%; }
 
 .reveal .fw-item {
-  margin: 1% 21% 1%;
-  height: 19%;
-  padding: 0.75em;
+  margin: 1% 20.5% 1% 20%;
+  height: 19.25%;
+  padding: 1em;
   background-color: rgba(19,218,236,0.4);
   color: rgba(20, 22, 24, 0.7);
   font-family: "Oswald", Impact, sans-serif;
-  font-weight: normal;
-}
+  font-weight: normal; }
+
+.reveal .fw-item.current {
+  background-color: rgba(255,141,60,1);
+  color: #eee; }
+
+.reveal .iphone-box img {
+  filter:none; }
+
+.reveal .iphone-box .logo{
+  margin-top: 27.5%; }
+
+.reveal .bundle {
+  background-color: rgba(19,218,236,0.4);
+  border-radius: 1em;
+  padding: 0.5em;
+  position: relative; }
+
+.reveal .bundle:after {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-right-color: rgba(19,218,236,0.4);
+	border-width: 3em;
+	margin-top: -3em; }
+
+.reveal .model {
+  background-color: rgba(255,77,88,0.7);
+  border-radius: 1em;
+  padding: 0.5em;
+  position: relative; }
+
+.reveal .view {
+  background-color: rgba(255,141,60,0.7);
+  border-radius: 1em;
+  padding: 0.5em;
+  position: relative; }
+
+.reveal .controller {
+  background-color: rgba(19,218,236,0.4);
+  border-radius: 1em;
+  padding: 0.5em;
+  position: relative; }
