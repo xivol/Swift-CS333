@@ -139,7 +139,6 @@ body {
   border-spacing: 0; }
 
 .reveal table th {
-  font-size: 0.75em;
   font-family: "Oswald", Impact, sans-serif;
   font-weight: normal; }
 
@@ -158,9 +157,8 @@ body {
 .reveal table td[align="right"] {
   text-align: right; }
 
-.reveal table tr td:not(:first-child) {
-  text-align: center;
-}
+.reveal table[align="center"] tr td:not(:first-child) {
+  text-align: center; }
 
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
@@ -214,6 +212,10 @@ body {
 .reveal section img.small {
   max-width: 50%;
   max-height: 50%; }
+
+.reveal section img.medium {
+  max-width: 65%;
+  max-height: 65%; }
 
 .reveal section .col img {
   max-width: 80%;
@@ -513,10 +515,14 @@ body {
   color: #eee;
   background: transparent; }
 
-.reveal .emphasis {
+.reveal .emphasis,
+.reveal em {
   font-style: normal;
   color: #FF8D3C;
   text-shadow: 1px 0px 1px #000; }
+
+.reveal em.error {
+    color: #ff4d58; }
 
 .reveal .notice:before {
   position: absolute;

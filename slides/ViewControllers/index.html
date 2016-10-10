@@ -19,9 +19,8 @@
  		</script>
 		<style>
 		#swift-bird{
-			-webkit-clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
-			clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
-			max-width:100%;
+			-webkit-clip-path: polygon(10% 20%, 100% 0%, 90% 80%, 0% 100%);
+			clip-path: polygon(10% 20%, 100% 0%, 90% 80%, 0% 100%);
 			/*max-height: 100%*/
 		}
 		</style>
@@ -50,7 +49,7 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">UIWindow</a>
+								<a href="#/2">UIKit</a>
 							</li>
 							<li>
 								<a href="#/3">Auto Layout</a>
@@ -59,347 +58,460 @@
 								<a href="#/4">Default Controllers</a>
 							</li>
 							<li>
-								<a href="#/5">Custom UI</a>
-							</li>
-							<li>
-								<a href="#/">Segues</a>
+								<a href="#/5">Handling Segues</a>
 							</li>
 						</ul>
 						</div>
 						<div class="col">
-							<img id="swift-bird" src="../img/swallow.jpg" />
+							<img id="swift-bird" src="../img/martin.jpg" />
 						</div>
 					</div>
 				</section>
-<!-- UIWindow				-->
+<!-- UIKit				-->
 				<section>
-					<section data-background="../img/window.jpg">
-						<h1>UIWindow</h1>
+					<section data-background="../img/uikit.png">
+						<h1>UIKit</h1>
 					</section>
 					<section>
-						<h3>UI Startup</h3>
+						<h3>View Architecture</h3>
+						<p>
+							Every view has underlying Core Animation layer
+						</p>
+						<ul>
+							<li>
+								<span class="emphasis">UIView</span> &ndash; defines a rectangular region on the screen and handles the drawing and touch events
+							</li>
+							<li>
+								<span class="emphasis">CALayer</span> &ndash; manages the backing store for the view and handles view-related animations
+							</li>
+						</ul>
 					</section>
 					<section>
-						<img src="" />
-						<h3>View Stack</h3>
+						<h3>View Properties</h3>
+						<pre><code class="swift" data-noheader>
+							// Defines position of the view in it's parent
+							var frame: CGRect
+							// Defines bounding rectangle for view's content
+							var bounds: CGRect
+							// Array of all subviews contained in the view
+							var subview: [UIView]
+							// Access to underlying Core Animation
+							var layer: CALayer
+						</code></pre>
 					</section>
-					<section data-transition="fade-in">
+					<section>
+						<h3>Views Stack</h3>
+						<img src="../img/viewstack.png" class="medium"/>
+					</section>
+					<section>
+						<h3>UIView Subclasses</h3>
+						<table>
+							<tr>
+								<th>UILabel</th>
+								<td>displays static text</td>
+							</tr>
+							<tr>
+								<th>UIPickerView</th>
+								<td>lets the user choose between certain options</td>
+							</tr>
+							<tr>
+								<th>UIImageView</th>
+								<td>displays an image or<br /> an animated sequence of images</td>
+							</tr>
+							<tr>
+								<th>UIWebView</th>
+								<td>can display HTML content</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>UIScrollView</h3>
+						<p>
+							Allows to display content bigger than view's boundaries
+						</p>
+						<table>
+							<tr>
+								<th>UITableView</th>
+								<td> presents data in a scrollable list of<br /> multiple rows</td>
+							</tr>
+							<tr>
+								<th>UICollectionView</th>
+								<td> displays an ordered collection of<br /> data items</td>
+							</tr>
+							<tr>
+								<th>UITextView</th>
+								<td>accepts and displays<br /> multiple lines of text</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>UIControl</h3>
+						<p>
+							Conveys a particular action or intention to the app<br /> through user interaction
+						</p>
+						<table>
+							<tr>
+								<th>UIButton</th>
+								<td>lets a user initiate behavior with a tap</td>
+							</tr>
+							<tr>
+								<th>UITextField</th>
+								<td>allows the user to input a single line of text</td>
+							</tr>
+							<tr>
+								<th>UISwitch</th>
+								<td>lets the user turn an option on and off</td>
+							</tr>
+							<tr>
+								<th>UISlider</th>
+								<td>enables users to interactively modify some adjustable value</td>
+							</tr>
+							<tr>
+								<th>UIDatePicker</th>
+								<td>is used for selecting a specific date, time, or both</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Outlet</h3>
+						<img src="../img/outlet.jpg" />
+						<p>
+							Connects storyboard item to the code
+						</p>
+						<pre><code class="swift" data-noheader>
+							@IBOutlet weak var myButton: UIButton!
+						</code></pre>
+					</section>
+					<section>
+						<h3>Action</h3>
+						<img src="../img/action.jpg" />
+						<p>
+							Connects event handler to a control
+						</p>
+						<pre><code class="swift" data-noheader>
+							@IBAction func buttonTouched(sender: UIButton) { }
+						</code></pre>
+					</section>
+					<section>
+						<h3>Connections</h3>
 						<div class="row">
 							<div class="col">
-								<h3 class="hidden">Core Services</h3>
-								<ul class="fragment fade-up">
-									<li>
-										Foundation<br />
-										<small>Collections, Threads, Socket communication</small>
-									</li>
-									<li>
-										Core Data<br />
-										<small>Internal database storage system</small>
-									</li>
-									<li>
-										Core Media<br />
-										<small>Low-level media data access</small>
-									</li>
-									<li>
-										Core Location<br />
-										<small>Positioning and compass</small>
-									</li>
-									<li>
-										Core Motion<br />
-										<small>Motion-data access</small>
-									</li>
-								</ul>
+								List of all objects <br> connected to the UI element
+								<p class="notice">
+									Element must be removed from connections <br> when deleted
+								</p>
 							</div>
 							<div class="col">
-								<div class="iphone-box">
-									<div class="fw-item">
-										Cocoa Touch
-									</div>
-									<div class="fw-item">
-										Media
-									</div>
-									<div class="fw-item current">
-										Core Services
-									</div>
-									<div class="fw-item">
-										Core OS
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<section data-transition="fade-in">
-						<div class="row">
-							<div class="col">
-								<h3 class="hidden">Media</h3>
-								<ul class="fragment fade-up">
-									<li>
-										Core Graphics<br />
-										<small>Low-lewel drawing</small>
-									</li>
-									<li>
-										Core Animation<br />
-										<small>Low-lewel animation</small>
-									</li>
-									<li>
-										Core Image<br />
-										<small>Image manipulation</small>
-									</li>
-									<li>
-										AV Foundation<br />
-										<small>Recording and playback of audio and video</small>
-									</li>
-									<li>
-										Advanced graphics<br />
-										<small>OpenGL, Metal, SceneKit, SpriteKit</small>
-									</li>
-								</ul>
-							</div>
-							<div class="col">
-								<div class="iphone-box">
-									<div class="fw-item">
-										Cocoa Touch
-									</div>
-									<div class="fw-item current">
-										Media
-									</div>
-									<div class="fw-item">
-										Core Services
-									</div>
-									<div class="fw-item">
-										Core OS
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-					<section data-transition="fade-in">
-						<div class="row">
-							<div class="col">
-								<h3 class="hidden">Cocoa Touch</h3>
-								<ul class="fragment fade-up">
-									<li>
-										UIKit<br />
-										<ul>
-											<li>
-												Lifecycle mangement
-											</li>
-											<li>
-												UI managment
-											</li>
-											<li>
-												Multitasking
-											</li>
-											<li>
-												Notifications
-											</li>
-										</ul>
-									</li>
-									<li>
-										App Extensions<br />
-										<small>Calling an app from within another app</small>
-									</li>
-									<li>
-										Notification Center<br />
-										<small>Showing custom data in notification center</small>
-									</li>
-								</ul>
-							</div>
-							<div class="col">
-								<div class="iphone-box">
-									<div class="fw-item current">
-										Cocoa Touch
-									</div>
-									<div class="fw-item">
-										Media
-									</div>
-									<div class="fw-item">
-										Core Services
-									</div>
-									<div class="fw-item">
-										Core OS
-									</div>
-								</div>
+								<img src="../img/ui_connections.jpg" style="max-height:70%;"/>
 							</div>
 						</div>
 					</section>
 				</section>
-<!-- App Life Cycle						-->
+<!-- Auto Layout						-->
 				<section>
-					<section data-background="../img/circle_of_life.png">
-						<h1>App Life Cycle</h1>
+					<section data-background="../img/automatic.jpg">
+						<h1>Auto Layout</h1>
 					</section>
 					<section>
-						<h3>App Bundle</h3>
-						<div  class="row">
-							<div class="col">
-								<img src="../img/AppStore8_2x.png" class=""/>
-							</div>
-							<div class="col bundle" >
-								<ul>
-									<li>App Executable</li>
-									<li>UI files</li>
-									<li>Stored Images</li>
-									<li>Localization Resources</li>
-									<li>Temporary Files</li>
-									<li>Cache</li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					<section>
-						<div class="row">
-							<div class="col">
-								<h3>Execution States</h3>
-							</div>
-							<div class="col">
-								<img src="../img/high_level_flow_2x.png"  />
-							</div>
-						</div>
-					</section>
-					<section>
-						<h3 class="hidden">States</h3>
-						<div class=" left">
-							<ul>
-								<li>
-									<span class="emphasis">Inactive</span> &ndash; app is executed but cannot recieve any events. <br />
-									Usually right after launch or coming from background
-								</li>
-								<li>
-									<span class="emphasis">Active</span> &ndash; app is up and running
-								</li>
-								<li>
-									<span class="emphasis">Background</span> &ndash; app is finishing it's tasks ready to get closed.
-									Usually right after being switched out or turned off
-								</li>
-								<li>
-									<span class="emphasis">Suspended</span> &ndash; app is not running and can be terminated by the system without any warning
-								</li>
-							</ul>
-						</div>
-					</section>
-					<section>
-						<h3>Allowed Background Tasks</h3>
-						<div class="row">
-							<div class="col">
-								<ul>
-									<li>Audio Player/Recorder</li>
-									<li>Location Updater</li>
-									<li>VoIP Listener</li>
-								</ul>
-							</div>
-							<div clas="col">
-								<ul>
-									<li>Accessory Listener</li>
-									<li>Background Downloader</li>
-									<li>Push Notification Listener</li>
-								</ul>
-							</div>
-						</div>
-						<p class="notice">
-							Background task must be declared in app preferences
+						<h3>Purpose</h3>
+						<img src="../img/autolayout_purpose.jpg" />
+						<p>
+							Auto Layout provides a set of constraints <br />
+							to describe position and size of a view<br />
+							in relation to its surrondings
 						</p>
 					</section>
 					<section>
-						<h3>App's Limits</h3>
+						<h3>Attributes</h3>
+						<img src="../img/layout_attributes.png" class="small"/>
+						<p>
+							Every view has 9 Layout Attributes
+						</p>
+					</section>
+					<section>
+						<h3>Anatomy of Constraint</h3>
+						<img src="../img/layout_constraint.png" />
+						<p>
+							Every constraint describes relationship <br/> between two attributes
+						</p>
+					</section>
+					<section>
+						<h3>Types of Constraints</h3>
+						<ul>
+							<li><em>Alignment Constraint</em> describes how views are positioned in relation to each other and to their container</li>
+							<li><em>Pinning Constaraint</em> describes view's intrinsic attributes and margins</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Alignment Constraints</h3>
+							<img src="../img/alignment_constraints.png" class="medium"/>
+					</section>
+					<section>
+						<h3>Pinning Constraints</h3>
+						<img src="../img/pin_constraints.png" class="small"/>
+					</section>
+					<section>
+						<h3>Debugging Constraints</h3>
+						<ul>
+							<li>
+								<em>Warnings</em> can be resolved automatically by either fixing view, or modifing constraints
+							</li>
+							<li>
+								<em class="error">Errors</em> could only be resolwed by a programmer:
+									<ul>
+										<li><em>Unsatisfiable Layouts</em>: your layout has no valid solution</li>
+										<li><em>Ambiguous Layouts</em>: your layout has two or more possible solutions</li>
+										<li><em>Logical Errors</em>: there is a bug in your layout logic</li>
+									</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Stack View</h3>
 						<div class="row">
 							<div class="col">
-								<ul>
-									<li>Sandbox FileSystem</li>
-									<li>250/500MB RAM</li>
-									<li>Workflow Guidelines</li>
-									<li>User Permissions</li>
-								</ul>
+								<img src="../img/simple_stack.png" style="max-height:60%;"/>
 							</div>
 							<div class="col">
-								<div class="iphone-box" style="height:18em;">
-									<img src="../img/Apple-logo-white-md.png" class="logo" />
-								</div>
+								<p>
+									Allows automatic alignment of contained views <br/> for simplified layout
+								</p>
 							</div>
 						</div>
 					</section>
-				</section>
-<!-- MVC    	  -->
-        <section>
-          <section data-background="../img/model_view.jpg">
-            <h1>Model View Controller</h1>
-          </section>
-          <section>
-						<h3 class="hidden">Roles</h3>
-						<img src="../img/mvc_role_diagram.png" />
-					</section>
 					<section>
-						<h3 class="hidden">App Structure</h3>
-						<img src="../img/Core_Objects_2x.png" style=""/>
-					</section>
-					<section>
-						<h3>Model</h3>
-						<ul class="model">
+						<h3>Intrinsic Content Size</h3>
+						<img src="../img/intrinsic_content_size.png" class="small"/>
+						<ul>
 							<li>
-								Stored Files
+								<em>Content hugging</em> pulls the view inward <br />so that it fits snugly around the content
 							</li>
 							<li>
-								CoreData Objects
-							</li>
-							<li>
-								Classes and Structures
+								<em>Compression resistance</em> pushes the view outward<br /> so that it does not clip the content
 							</li>
 						</ul>
 					</section>
 					<section>
-						<h3>View</h3>
-						<ul class="view">
-							<li>
-								.Xib Files
-							</li>
-							<li>
-								Storyboard Views
-							</li>
-							<li>
-								Layout Constrains
-							</li>
-							<li>
-								Code-generated Views
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Controller</h3>
-						<ul class="controller">
-							<li>
-								AppDelegate Subclasses
-							</li>
-							<li>
-								Storyboard Segues
-							</li>
-							<li>
-								ViewController Subclasses
-							</li>
-						</ul>
-					</section>
-				</section>
-<!-- Storyboards				-->
-        <section>
-          <section data-background="../img/storyboard.png">
-            <h1>Storyboards</h1>
-          </section>
-					<section>
-						<h3>UIWindow</h3>
-					</section>
-					<section>
-						<h3>View Stack</h3>
+						<h3>Constraints at Runtime</h3>
+						<pre><code class="swift" data-noheader>
+							// Creaye new constraint
+							// myView.Leading = view.LeadingMargin * 1.0 + 0.0
+							let constraint = NSLayoutConstraint(
+								item: myView, attribute: .Leading,
+								relatedBy: .Equal,
+								toItem: view, attribute: .LeadingMargin,
+								multiplier: 1.0, constant: 0.0)
+							// Activate new constraint
+							constraint.active = true
+							// Recalculate view's dimentions
+							myView.layoutIfNeeded()
+							// Remove new constraint
+							myView.removeConstraint(constraint)
+
+						</code></pre>
 					</section>
         </section>
+<!-- Default Controllers		-->
+				<section>
+					<section data-background="../img/controllers.jpg">
+						<h1>Default Controllers</h1>
+					</section>
+					<section>
+						<h3>Navigation Controller</h3>
+						<img src="../img/navigation_interface.png" />
+						Allows users to navigate to the previous view
+					</section>
+					<section>
+						<h3>Navigation Bar</h3>
+						<img src="../img/uinavbar.png" />
+						<p>
+							A navigation bar can display a left button, title, prompt string and right button(s)
+						</p>
+					</section>
+					<section>
+						<h3>Navigation in Storyboard</h3>
+						<p>
+							Editor &rarr; Embed In &rarr; Navigation Controller
+						</p>
+						<img src="../img/embed_nav_controller.jpg" />
+					</section>
+					<section>
+						<h3>Tab Bar Controller</h3>
+						<img src="../img/uitabbar.png"/>
+						<p>
+							Provides easy access to different views in an app
+						</p>
+						<p>
+							Each view can be a start of separate view stack
+						</p>
+					</section>
+					<section>
+						<h3>Table View Controller</h3>
+						<div class="row">
+							<div class="col">
+								<p>
+									Divided into sections
+								</p>
+								<p>
+									Each section contains<br />	 any number of cells
+								</p>
+								<p>
+									Able to present static or <br />dynamic content
+								</p>
+							</div>
+							<div class="col">
+								<img src="../img/uitableview.png"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Table View Cell</h3>
+						<ul>
+							<li>In <em></em>dynamic Table View <br />
+								Each prototype cell describes appearence of <br />multiple cells in the table. Each prototype has a <em>Reuse Identifier</em>
+							</li>
+							<li>In static Table View <br />
+								Each cell added in Interface Builder describes its own content
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Default Cell Style</h3>
+						<img src="../img/uitableviewcell.jpg" class="medium"/>
+						<pre class="col"><code class="swift" data-noheader>
+							// Returns the label used for the main textual content of the table cell
+							var textLabel: UILabel?
+							// Returns the secondary label of the table cell if one exists
+							var detailTextLabel: UILabel?
+							// Returns the image view of the table cell
+							var imageView: UIImageView?
+						</code></pre>
+					</section>
+					<section>
+						<h3>Data Source</h3>
+						<pre class="col"><code class="swift" src="TableViewController.swift">
+						override func tableView(tableView: UITableView,
+							numberOfRowsInSection section: Int) -> Int {
+							return 5
+						}
+						override func tableView(tableView: UITableView,
+							cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+							let cell = tableView.dequeueReusableCellWithIdentifier("RobinTheMan",
+								forIndexPath: indexPath)
+							cell.textLabel = String(indexPath.row)
+							return cell
+						}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Collection View Controller</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Presents views of arbitrary sizes</li>
+								</ul>
+							</div>
+							<div class="col">
+
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Collection View Cell</h3>
+					</section>
+				</section>
+<!-- Handling Segues		-->
+				<section>
+					<section data-background="../img/segues.jpg">
+						<h1>Handling Segues</h1>
+					</section>
+					<section>
+						<h3>Segue</h3>
+						<img src="../img/segue_defined_2x.png" />
+						<p>
+							A <em>segue</em> represents the transition from one scene <br> to the next scene
+						</p>
+					</section>
+					<section>
+						<h3>Segue Type</h3>
+						<table>
+							<tr>
+								<th>
+									Show
+								</th>
+								<td>
+									<img src="../img/segue_push.png" class="flat"/>
+								</td>
+								<td>
+									<small>Push on top of main stack</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Show Detail
+								</th>
+								<td>
+									<img src="../img/segue_push.png" class="flat"/>
+								</td>
+								<td>
+									<small>Push on top of detail stack</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Present in Popover
+								</th>
+								<td>
+									<img src="../img/segue_popover.png" class="flat"/>
+								</td>
+								<td>
+									<small>Show in popover view</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Present Modally
+								</th>
+								<td>
+									<img src="../img/segue_modal.png" class="flat"/>
+								</td>
+								<td>
+									<small>Show on top of current root view</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Custom
+								</th>
+								<td>
+									<img src="../img/segue_custom.png" class="flat"/>
+								</td>
+								<td>
+									<small>Custom Segue</small>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Identifier</h3>
+					</section>
+					<section>
+						<h3>Perfom Segue</h3>
+					</section>
+				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
-						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
-						</li>
-						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">App Programming Guide - Apple Developer</a>
+						<li><a href="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html">View Controller Programming Guide - Apple Developer</a>
 						</li>
 						<li>
-							https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html
+							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">Auto Layout Guide - Apple Developer</a>
+						</li>
+						<li>
+							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/UIKitUICatalog/index.html">UIKit Catalog - Apple Developer</a>
+						</li>
+						<li>
 						</li>
 					</ul>
 				</section>

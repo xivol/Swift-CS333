@@ -18,11 +18,25 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
  		</script>
 		<style>
-		#swift-bird{
+		#swift-bird {
 			-webkit-clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
 			clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
 			max-width:100%;
 			/*max-height: 100%*/
+		}
+		#xib {
+			background-color: rgba(255,141,60,0.7);
+			border-bottom-left-radius: 0.5em;
+			border-top-left-radius: 0.5em;
+			-webkit-clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
+			clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
+		}
+		#storyboard {
+			background-color: rgba(255,141,60,0.7);
+			border-bottom-right-radius: 0.5em;
+			border-top-right-radius: 0.5em;
+			-webkit-clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
+			clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
 		}
 		</style>
 	</head>
@@ -80,6 +94,9 @@
 						<div class="row">
 							<div class="col">
 								<h3>Stack of Frameworks</h3>
+								<small>
+									Fro low-level access to high-level abstractions
+								</small>
 							</div>
 							<div class="col">
 								<div class="iphone-box">
@@ -103,7 +120,7 @@
 						<div class="row">
 							<div class="col">
 								<h3 class="hidden">Core OS</h3>
-								<ul class="fragment fade-up">
+								<ul>
 									<li>
 										Darwin Kernel<br />
 										<small>Concurrency, Networking, File-system</small>
@@ -140,11 +157,11 @@
 							</div>
 						</div>
 					</section>
-					<section data-transition="fade-in">
+					<section data-transition="fade-up">
 						<div class="row">
 							<div class="col">
 								<h3 class="hidden">Core Services</h3>
-								<ul class="fragment fade-up">
+								<ul>
 									<li>
 										Foundation<br />
 										<small>Collections, Threads, Socket communication</small>
@@ -185,11 +202,11 @@
 							</div>
 						</div>
 					</section>
-					<section data-transition="fade-in">
+					<section data-transition="fade-up">
 						<div class="row">
 							<div class="col">
 								<h3 class="hidden">Media</h3>
-								<ul class="fragment fade-up">
+								<ul class>
 									<li>
 										Core Graphics<br />
 										<small>Low-lewel drawing</small>
@@ -230,11 +247,11 @@
 							</div>
 						</div>
 					</section>
-					<section data-transition="fade-in">
+					<section data-transition="fade-up">
 						<div class="row">
 							<div class="col">
 								<h3 class="hidden">Cocoa Touch</h3>
-								<ul class="fragment fade-up">
+								<ul class>
 									<li>
 										UIKit<br />
 										<ul>
@@ -402,6 +419,9 @@
 								Custom Classes
 							</li>
 						</ul>
+						<p>
+							Describes data and it's relations
+						</p>
 					</section>
 					<section>
 						<h3>View</h3>
@@ -413,12 +433,12 @@
 								Storyboard Views
 							</li>
 							<li>
-								Layout Constrains
-							</li>
-							<li>
 								Code-generated Views
 							</li>
 						</ul>
+						<p>
+							Provides interface for data and user actions
+						</p>
 					</section>
 					<section>
 						<h3>Controller</h3>
@@ -430,26 +450,45 @@
 								Storyboard Segues
 							</li>
 							<li>
+								Layout Constrains
+							</li>
+							<li>
 								ViewController Subclasses
 							</li>
 						</ul>
+						<p>
+							Describes possible actions and reactions to events
+						</p>
 					</section>
 				</section>
 <!-- App Delegate				-->
 				<section>
-					<section data-background="../img/project-delegation.jpg" data-background-size="contain">
+					<section data-background="../img/delegate.jpg">
             <h1>App Delegate</h1>
           </section>
 					<section>
-						<h3>App Launch</h3>
-						<img src="../img/app_launch.png" class="small"/>
+						<h3 class="hidden">App Structure</h3>
+						<img src="../img/Core_Objects_2x.png" style=""/>
+					</section>
+					<section>
+						<h3>UIApplicationDelegate</h3>
+						<p class="controller">
+							Provides custom handlers for system events<br />
+							Handles basic app operations<br/>
+							Stores main window of the app
+						</br/>
+						</p>
 					</section>
 					<section>
 						<h3>UIWindow</h3>
-						<p>
-							Stores root View Controller<br />
-							Handles basic input interactions and screen rendering
+						<p class="view">
+							Root view of the application<br />
+							Stores View Stack
 						</p>
+					</section>
+					<section>
+						<h3>App Launch</h3>
+						<img src="../img/app_launch.png" class="small"/>
 					</section>
 					<section>
 						<h3>Simple App</h3>
@@ -477,76 +516,59 @@
             <h1>Storyboards</h1>
           </section>
 					<section>
-						<h3>ViewController Stack</h3>
-						<img src="../img/viewstack.png" class="small"/>
+						<h3>Scenes</h3>
+						<img src="../img/indexedtable-demo.jpg" />
+						<p>
+							A <em>scene</em> represents an onscreen content area
+						</p>
 					</section>
 					<section>
-						<h3>Storyboarding Your App</h3>
-						<img src="../img/storyboard_bird_sightings.png" />
-					</section>
-					<section>
-						<h3>Segue</h3>
+						<h3>Segues</h3>
 						<img src="../img/segue_defined_2x.png" />
+						<p>
+							A <em>segue</em> represents the transition from one scene <br> to the next scene
+						</p>
 					</section>
 					<section>
-						<h3>Segue Type</h3>
-						<table>
-							<tr>
-								<th>
-									Show
-								</th>
-								<td>
-									<img src="../img/segue_push.png" class="flat"/>
-								</td>
-								<td>
-									<small>Push on top of main stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Show Detail
-								</th>
-								<td>
-									<img src="../img/segue_push.png" class="flat"/>
-								</td>
-								<td>
-									<small>Push on top of detail stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Present in Popover
-								</th>
-								<td>
-									<img src="../img/segue_popover.png" class="flat"/>
-								</td>
-								<td>
-									<small>Show in popover view</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Present Modally
-								</th>
-								<td>
-									<img src="../img/segue_modal.png" class="flat"/>
-								</td>
-								<td>
-									<small>Show in new view stack</small>
-								</td>
-							</tr>
-							<tr>
-								<th>
-									Custom
-								</th>
-								<td>
-									<img src="../img/segue_custom.png" class="flat"/>
-								</td>
-								<td>
-									<small>Custom Segue</small>
-								</td>
-							</tr>
-						</table>
+						<h3>Designing with Storyboard</h3>
+						<img src="../img/storyboard_bird_sightings.png" style="height:500px;"/>
+						<p>
+							Storyboards allow to graphically lay out<br/>
+							the user’s path through your app
+						</p>
+					</section>
+					<section>
+						<h3>Storyboard vs XiB</h3>
+						<div class="row">
+							<div class="col" id="xib">
+								<h5>.xib</h5>
+								<ul>
+									<li>
+										Single scene
+									</li>
+									<li>
+										A file for every scene
+									</li>
+									<li>
+										Manual scene transition
+									</li>
+								</p>
+							</div>
+							<div class="col" id="storyboard">
+								<h5>Storyboard</h5>
+								<ul>
+									<li>
+										Multiple scenes and segues
+									</li>
+									<li>
+										Can be slow and heavy<br />
+									</li>
+									<li>
+										Not well-suited for collaborative development
+									</li>
+								</ul>
+							</div>
+						</div>
 					</section>
         </section>
 <!-- Resources			-->
@@ -555,7 +577,7 @@
 					<ul>
 						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
 						</li>
-						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">App Programming Guide - Apple Developer</a>
+						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">iOS Programming Guide - Apple Developer</a>
 						</li>
 						<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">Model-View-Controller - Apple Developer</a>
 						</li>
