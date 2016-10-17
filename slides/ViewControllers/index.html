@@ -19,8 +19,8 @@
  		</script>
 		<style>
 		#swift-bird{
-			-webkit-clip-path: polygon(10% 20%, 100% 0%, 90% 80%, 0% 100%);
-			clip-path: polygon(10% 20%, 100% 0%, 90% 80%, 0% 100%);
+			-webkit-clip-path: polygon(0% 30%, 100% -10%, 100% 70%, 0% 110%);
+			clip-path: polygon(0% 30%, 100% -10%, 100% 70%, 0% 110%);
 			/*max-height: 100%*/
 		}
 		</style>
@@ -350,7 +350,7 @@
 						<div class="row">
 							<div class="col">
 								<p>
-									Divided into sections
+									Can be divided into sections
 								</p>
 								<p>
 									Each section contains<br />	 any number of cells
@@ -367,13 +367,24 @@
 					<section>
 						<h3>Table View Cell</h3>
 						<ul>
-							<li>In <em></em>dynamic Table View <br />
+							<li>In <em>dynamic</em> Table View <br />
 								Each prototype cell describes appearence of <br />multiple cells in the table. Each prototype has a <em>Reuse Identifier</em>
 							</li>
-							<li>In static Table View <br />
+							<li>In <em>static</em> Table View <br />
 								Each cell added in Interface Builder describes its own content
 							</li>
 						</ul>
+					</section>
+					<section>
+						<h3>Prototype Cells</h3>
+						<p>
+							Each prototype cell describes appearence of <br />multiple cells in the table
+
+						</p>
+						<img src="../img/reuse.jpg" class="small" />
+						<p>
+							Each prototype cell has a <em>Reuse Identifier</em>
+						</p>
 					</section>
 					<section>
 						<h3>Default Cell Style</h3>
@@ -388,7 +399,7 @@
 						</code></pre>
 					</section>
 					<section>
-						<h3>Data Source</h3>
+						<h3>Table View Data Source</h3>
 						<pre class="col"><code class="swift" src="TableViewController.swift">
 						override func tableView(tableView: UITableView,
 							numberOfRowsInSection section: Int) -> Int {
@@ -398,7 +409,7 @@
 							cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 							let cell = tableView.dequeueReusableCellWithIdentifier("RobinTheMan",
 								forIndexPath: indexPath)
-							cell.textLabel = String(indexPath.row)
+							cell.textLabel.text = String(indexPath.row)
 							return cell
 						}
 						</code></pre>
@@ -408,7 +419,8 @@
 						<div class="row">
 							<div class="col">
 								<ul>
-									<li>Presents views of arbitrary sizes</li>
+									<li>Presents views of different sizes</li>
+									<li>Can have horizontal or vertical scrolling</li>
 								</ul>
 							</div>
 							<div class="col">
@@ -496,7 +508,10 @@
 						<h3>Identifier</h3>
 					</section>
 					<section>
-						<h3>Perfom Segue</h3>
+						<h3>Prepare for Segue</h3>
+					</section>
+					<section>
+						<h3>Perform Segue</h3>
 					</section>
 				</section>
 <!-- Resources			-->
