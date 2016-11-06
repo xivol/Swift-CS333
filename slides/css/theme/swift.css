@@ -441,7 +441,8 @@ body {
   background-color: #E43944; }
 
 .reveal code:not(.hljs) {
-  text-shadow: 1px 0px 1px #000; }
+  text-shadow: 1px 0px 1px #000;
+  font-size: 0.9em; }
 
 /*********************************************
  * HLJS

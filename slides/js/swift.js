@@ -71,7 +71,12 @@ Reveal.initialize({
                   }
                 }
                 if( $code.hasAttribute( 'src' ) ) {
-                  $source.innerHTML = $source.innerHTML + ' - ' + $code.getAttribute( 'src' ) ;
+                  var $fileName=$code.getAttribute( 'src' );
+                  if( $fileName.indexOf('/') >-1 ){
+                    var $filePath = $fileName.split('/');
+                    $source.innerHTML = $filePath[0]+ ' - ' + $filePath[1];
+                  } else
+                    $source.innerHTML = $source.innerHTML + ' - ' + $fileName;
                 }
                 if ( !!$source.innerHTML)
                   $code.parentNode.insertBefore($source, $code);
