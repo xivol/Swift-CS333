@@ -413,7 +413,7 @@
 						<img src="../img/relationship.jpg" src="Entity Graph" />
 					</section>
 					<section>
-						<h3>Relationship Type &amp; Inverse Type</h3>
+						<h3>Relationship &amp; Inverse Type</h3>
 						<div class="row">
 							<div class="col">
 							<table>
@@ -427,7 +427,8 @@
 							</div>
 						</div>
 						<p class="notice">
-							Assigment of inverse relationship help to preserv object graph integrity
+							Assigment of inverse relationship helps <br />
+							to preserve object graph integrity
 						</p>
 					</section>
 					<section>
@@ -453,7 +454,7 @@
 						<h3>Entity Description</h3>
 						<p>
 							Specifies an entity’s name, its properties <br />
-							and the class by which it is represented.
+							and the class by which it is represented
 						</p>
 						<pre><code class="swift" src="Ornitary/Bird.swift">
 							static let entityName = "Bird"
@@ -473,7 +474,8 @@
 						<h3>Intialization</h3>
 						<pre><code class="swift" src="Ornitary/Bird.swift">
 							// NSManagedObject subclass should override this initializer
-							override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+							override init(entity: NSEntityDescription,
+								insertInto context: NSManagedObjectContext?) {
 								super.init(entity: entity, insertInto: context)
 							}
 							convenience init() {
@@ -545,8 +547,8 @@
 						<h3>Deleting Objects</h3>
 						<pre><code class="swift" data-noheader>
 							let birdsToDelete = try! context.fetch(request)
-							for birdToDelete in birdsToDelete {
-								context.delete(birdToDelete)
+							for bird in birdsToDelete {
+								context.delete(bird)
 							}
 							// Or you can just:
 							context.delete(thisBirdInParticular)
@@ -557,6 +559,59 @@
 				<section>
 					<section data-background="../img/apple-core-migration.jpg">
 						<h1>Core Data Migration</h1>
+					</section>
+					<section>
+						<h3>Migraion Type</h3>
+						<p>
+							Migraton allows to automatically convert entities <br>
+							of an old model into entities of a new model
+						</p>
+						<table>
+							<tr>
+								<th></th><th>Settings</th><th>Changes</th>
+							</tr>
+							<tr>
+								<th>Lightweight</th><td>Automatic</td><td>Add/Remove Entities</td>
+							</tr>
+							<tr>
+								<th>Mapping Model</th><td>Custom</td><td>Any Model Changes</td>
+							</tr>
+							<tr>
+								<th>Custom</th><td>Migration code</td><td>Anything</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Model Version</h3>
+						<img src="../img/model-version.svg" alt="model version diagram" />
+					</section>
+					<section>
+						<h3>Lightweight Migration</h3>
+						<p>
+							Lightweight migrations are perfomed automatically <br/>
+							if the new version changes are limited to:
+						</p>
+						<ul>
+							<li>Add/Remove Entities</li>
+							<li>Add/Remove Entity Attributes</li>
+							<li>Add/Remove Relationships</li>
+							<li>Change Relationship Types</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Coordinator Options</h3>
+						<pre><code class="swift" data-noheader>
+							let options = [
+								NSMigratePersistentStoresAutomaticallyOption : true,
+								NSInferMappingModelAutomaticallyOption : true
+							]
+							try coordinator.addPersistentStore(
+								ofType: NSSQLiteStoreType,
+								configurationName: nil,
+								at: location,
+								options: options
+							)
+						</code></pre>
 					</section>
 				</section>
 <!-- Resources			-->
@@ -589,11 +644,5 @@
 		        </feMerge>
 		    </filter>
 		</svg>
-
-<svg width="480px" height="480px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs>Swift-logo</defs>
-    <path d="M42.9,59.7 L15.7,59.7 C10.2,59.7 5.7,55.2 5.7,49.7 L5.7,22.7 C5.7,17.2 10.2,12.7 15.7,12.7 L42.8,12.7 C48.3,12.7 52.8,17.2 52.8,22.7 L52.8,49.8 C52.9,55.2 48.4,59.7 42.9,59.7 L42.9,59.7 Z" id="Shape" stroke="none" fill="#EF5138" fill-rule="evenodd"></path>
-    <path d="M42.8,41.7 L42.8,41.7 C42.8,41.5 42.9,41.3 42.9,41.2 C44.9,33.4 40.1,24.2 32,19.4 C35.5,24.2 37.1,30 35.7,35.1 C35.6,35.6 35.4,36 35.3,36.4 C35.1,36.3 34.9,36.2 34.6,36 C34.6,36 26.6,31 17.9,22.3 C17.7,22.1 22.5,29.3 28.1,35.1 C25.5,33.6 18.2,28.4 13.7,24.2 C14.3,25.1 14.9,26 15.7,26.9 C19.5,31.8 24.5,37.8 30.5,42.4 C26.3,45 20.3,45.2 14.4,42.4 C12.9,41.7 11.6,40.9 10.3,39.9 C12.8,43.9 16.7,47.4 21.4,49.4 C27,51.8 32.6,51.6 36.7,49.4 L36.7,49.4 C38.4,48.3 43,46.6 45.3,51.1 C45.7,52 46.8,46.7 42.8,41.7 L42.8,41.7 Z" id="Shape" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
-</svg>
 	</body>
 </html>
