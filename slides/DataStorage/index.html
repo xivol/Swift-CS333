@@ -193,7 +193,7 @@
 						<h3>NSCoder</h3>
 						<pre><code class="swift" data-noheader>
 							coder.encode(42, forKey: "42")
-							coder.decodeInt32(forKey: "42")
+							let i = coder.decodeInt32(forKey: "42")
 						</code></pre>
 						<p>
 							Objects are written to and read from archives <br> with coder objects
@@ -395,7 +395,7 @@
 					</section>
 					<section>
 						<h3>Model to Objects</h3>
-						<img src="../img/core-data-model.svg" alt="Core Data Model to Context relationships" />
+						<img src="../img/core-data-model.svg" alt="Core Data Model to Context relationship" />
 					</section>
 					<section>
 						<h3>Entity</h3>
@@ -423,7 +423,7 @@
 							</table>
 							</div>
 							<div class="col">
-								<img src="../img/relationship-desc.jpg" src="Entity Graph" />
+								<img src="../img/relationship-desc.jpg" src="Relationship Example" />
 							</div>
 						</div>
 						<p class="notice">
@@ -561,6 +561,10 @@
 						<h1>Core Data Migration</h1>
 					</section>
 					<section>
+						<h3>Model Version</h3>
+						<img src="../img/model-version.svg" alt="model version diagram" />
+					</section>
+					<section>
 						<h3>Migraion Type</h3>
 						<p>
 							Migraton allows to automatically convert entities <br>
@@ -582,10 +586,6 @@
 						</table>
 					</section>
 					<section>
-						<h3>Model Version</h3>
-						<img src="../img/model-version.svg" alt="model version diagram" />
-					</section>
-					<section>
 						<h3>Lightweight Migration</h3>
 						<p>
 							Lightweight migrations are perfomed automatically <br/>
@@ -599,7 +599,7 @@
 						</ul>
 					</section>
 					<section>
-						<h3>Coordinator Options</h3>
+						<h3>Store Options</h3>
 						<pre><code class="swift" data-noheader>
 							let options = [
 								NSMigratePersistentStoresAutomaticallyOption : true,

@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Data Storage</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+			-webkit-clip-path: polygon(25% 0%, 75% 0%, 90% 50%, 75% 100%, 25% 100%, 10% 50%);
+			clip-path: polygon(25% 0%, 75% 0%, 90% 50%, 75% 100%, 25% 100%, 10% 50%);
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Remote Data Access</a>
+							</li>
+							<li>
+								<a href="#/3">Alamofire</a>
+							</li>
+							<li>
+								<a href="#/4">Secury</a>
+							</li>
+              <li>
+                <a href="#/5">Restful API</a>
+              </li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/catch.jpg" />
+						</div>
+					</div>
+        </section>
+        <section>
+          <section data-background="../img/force-pull-luke.jpg">
+            <h1>Remote Data Access</h1>
+          </section>
+          <section>
+            <h3>Networking</h3>
+            <img src="../img/networking.png" alt="Networking" />
+          </section>
+          <section>
+            <h3>HTTP</h3>
+          </section>
+          <section>
+            <h3>App Transport Security</h3>
+            <blockquote>
+              Starting in iOS 9.0 and OS X v10.11, a new security feature called
+              App Transport Security (ATS) is enabled by default
+              for all HTTP connections made with NSURLSession.
+              ATS requires that HTTP connections use HTTPS.
+            </blockquote>
+          </section>
+          <section>
+            <h3>HTTPS</h3>
+          </section>
+          <section>
+            <h3>Disabling ATS</h3>
+            <pre><code src="Project/Info.plist">
+              NSAppTransportSecurity : Dictionary
+                NSAllowsArbitraryLoads : YES      // http everywhere - unsafe!
+            </code></pre>
+            <p>
+              Specify domains that are allowed to have http connections:
+            </p>
+            <pre><code src="Project/Info.plist">
+              NSAppTransportSecurity : Dictionary
+                edu.mmcs.sfedu.ru : Dictionary
+                  NSAllowsArbitraryLoads : YES // allows http in domain
+            </code></pre>
+            <p class="notice">
+              iOS 10.0 introduced <code class="hljs-type">NSAllowsArbitraryLoadsInMedia</code> and <br />
+              <code class="hljs-type">NSAllowsArbitraryLoadsInWebContent</code>
+            </p>
+          </section>
+          <section>
+            <h3>URL Session</h3>
+            <img src="../img/nsurlsession.png" alt="URL Session Diagram" />
+            <p>
+              Dispatch queue for remote requests on top of TCP/IP sockets
+            </p>
+          </section>
+          <section>
+            <h3>Shared Session</h3>
+            <pre><code class="swift" data-noheader>
+              let session = URLSession.shared
+              let url = URL(string: "http://edu.mmcs.sfedu.ru/")
+              let task = session.dataTask(with: url) {
+                data, response, error in
+                /* handle response */
+              }
+              task.resume() // start task
+            </code></pre>
+            <p>
+              Default uncofigurable session for handling basic requests
+            </p>
+          </section>
+          <section>
+            <h3>Session Configurtion</h3>
+            <ul>
+              <li><em>Default</em> default session configuration<br>
+                <pre><code class="swift" data-noheader>URLSessionConfiguration.default</code></pre></li>
+              <li><em>Ephimeral</em> doesn't write to cache or cookies<br>
+                <pre><code class="swift" data-noheader>URLSessionConfiguration.ephimeral</code></pre></li>
+              <li><em>Background</em> allows background upload and download<br>
+                <pre><code class="swift" data-noheader>URLSessionConfiguration.background("background.session")</code></pre></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Session Tasks</h3>
+            <ul>
+              <li><em>Data Task</em> sends and receives data using NSData objects<br>
+              <pre><code class="swift" data-noheader>session.dataTask(with: URL)</code></pre></li>
+              <li><em>Upload Task</em> sends data and supports background uploads<br />
+              <pre><code class="swift" data-noheader>session.uploadTask(with: URLRequest, from: Data)</code></pre></li>
+              <li><em>Download Task</em> retrieves data and supports background downloads and uploads<br />
+              <pre><code class="swift" data-noheader>session.downloadTask(with: URL)</code></pre></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Session Delegate</h3>
+            <p>
+              A stack of protocols, <br>each handles different sides session behaviour
+            </p>
+            <ul>
+              <li><code class="hljs-type">URLSessionDelegate</code></li>
+              <li><code class="hljs-type">URLSessionTaskDelegate</code> </li>
+              <li><code class="hljs-type">URLSessionDataDelegate</code> </li>
+              <li><code class="hljs-type">URLSessionDownloadDelegate</code>
+            </ul>
+
+          </section>
+          <section>
+            <h3>Building a Session</h3>
+            <pre><code class="swift" data-noheader>
+              let config = URLSessionConfiguration.default
+              config.allowsCellularAccess = false
+              config.timeoutIntervalforRequest = 30.0
+              let session = URLSession(configuration: config)
+              let url = URL(string: "http://edu.mmcs.sfedu.ru/")
+              let task = session.dataTask(with: url) {
+                  data, response, error in
+                  /* handle response */
+              }
+              task.resume() // start task
+            </code></pre>
+            <p class="notice">
+              If no delegate is assigned to a session, <br>a completion handler must be provided to recieve data
+            </p>
+          </section>
+          <section>
+            <h3>HTTP Response</h3>
+            <pre><code class="swift" data-noheader>
+              let task = session.dataTask(with: url) {
+                  data, response, error in
+                  if let httpResponse = response as? HTTPURLResponse {
+                      switch httpResponse.statusCode {
+                        case 200: print("OK")
+                        case 404: print("Not found")
+                        default:
+                          print("Something else")
+                      }
+                  }
+              }
+            </code></pre>
+          </section>
+          <section>
+            <h3>Download Data</h3>
+            <pre><code class="swift" data-noheader>
+              let request = URLRequest( url: myUrl)
+              request.httpMethod = "GET"
+              /* set any additional HTTP Headers here */
+              let task = session.dataTask(with: request ){
+                  data, response, error in
+                  /* handle response */
+              }
+              task.resume()
+          </code></pre>
+          </section>
+          <section>
+            <h3>Upload Data</h3>
+            <pre><code class="swift" data-noheader>
+              let request = URLRequest(url: myUrl)
+              request.httpMethod = "POST"
+              /* set any additional HTTP Headers here */
+              let task = session.uploadTask(with: request, from: someData ){
+                  data, response, error in
+                  /* handle response */
+              }
+              task.resume()
+          </code></pre>
+          </section>
+          <section>
+            <h3 class="hidden">Alamofire</h3>
+            <img src="../img/alamofire.png" alt="Alamofire" />
+            <small><a href="https://github.com/Alamofire/Alamofire">https://github.com/Alamofire</a></small>
+            <ul>
+              <li>Chainable Request / Response Methods</li>
+              <li>URL / JSON / plist Parameter Encoding</li>
+              <li>Upload File / Data / Stream / MultipartFormData</li>
+              <li>HTTP Response Validation</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Alamo Response</h3>
+            <pre><code data-noheader>
+                Alamofire.request("https://httpbin.org/get")
+                    .validate(statusCode: 200..<300)
+                    .validate(contentType: ["application/json"])
+                    .responseData { response in
+                        switch response.result {
+                        case .success:
+                            print("Validation Successful")
+                        case .failure(let error):
+                            print(error)
+                        }
+                }
+            </code></pre>
+          </section>
+        </section>
+        <section>
+          <h3 style="display:none;">Related Resources</h3>
+          <ul>
+            <li><a href="https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">URL Programming Guide - Apple Developer</a></li>
+            <li><a href="https://developer.apple.com/reference/foundation/urlsession">URLSession - API Reference</a></li>
+          </ul>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script src="../js/swift.js"></script>
+
+    <svg height="0" xmlns="http://www.w3.org/2000/svg">
+        <filter id="drop-shadow">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+            <feOffset dx="12" dy="12" result="offsetblur"/>
+            <feFlood flood-color="rgba(0,0,0,0.5)"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </svg>
+  </body>
+</html>
