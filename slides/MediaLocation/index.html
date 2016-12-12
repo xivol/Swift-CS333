@@ -269,6 +269,21 @@
 					</section>
 					<section>
 						<h3>AV Capture View</h3>
+						<pre><code class="swift" data-noheader>
+							let session = AVCaptureSession()
+							let frontalCamera = AVCaptureDevice.defaultDevice(
+								withDeviceType: .builtInWideAngleCamera,
+								mediaType: AVMediaTypeVideo, position: .front)
+							if let input = try? AVCaptureDevice(frontalCamera) {
+								session.addInput(input)
+							}
+							view.setSession(session,
+								showVideoPreview: true, showAudioPreview: true)
+							view.delegate = self
+						</code></pre>
+						<p>
+							<code class="hljs-type">AVCaptureView</code> is a default way of presenting a video capture
+						</p>
 					</section>
 					<section>
 						<h3>Streaming Media</h3>
@@ -312,10 +327,9 @@
 						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html">Camera Programming Topics for iOS - Apple Developer</a></li>
             <li><a href="https://developer.apple.com/reference/uikit/uiimagepickercontroller">UIPIckerViewController - API Reference</a></li>
 						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html">Core Image Programming Guide - Apple Developer</a></li>
-						https://developer.apple.com/reference/avkit/avplayerviewcontroller
-						https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1
+						<!--https://developer.apple.com/reference/avkit/avplayerviewcontroller-->
+						<!--https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1-->
 						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html">AVFoundation Programming Guide - Apple Developer</a></li>
-
           </ul>
         </section>
 
