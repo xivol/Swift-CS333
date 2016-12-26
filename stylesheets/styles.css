@@ -322,3 +322,10 @@ footer {
     color:#444;
   }
 }
+
+/*  MORE STYLES */
+header section  {
+  font-size:12px;
+  display:block;
+  width: 80%;
+}
