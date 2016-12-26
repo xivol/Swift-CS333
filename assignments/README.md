@@ -1,18 +1,18 @@
 #Assignments
 ###Assignment #1: [Toying with Swift](./task1)
-###Assignment #2: Calculator
+###Assignment #2: The Calculator
 Implement basic calculator without a storyboard.
 
 Separate view from controller from model.
 
-###Assignment #3: Calculator 2: _The Auto Layout_
+###Assignment #3: The Calculator 2: _Eternal constrains_
 Implement Calculator's ViewController using Storyboard and Auto Layout.
 
-###Assignment #4: Memesis
+###Assignment #4: The Memesis
 Implement an app to apply filters and put text on images.
 
-###Assignment #5: Timetable
+###Assignment #5: The Timetable
 Implement a client for [interactive schedule](http://users.mmcs.sfedu.ru/~schedule/).
 
-###Assignment 6: Martian
+###Assignment 6: The Martian
 Implement an image gallery for [photos from Mars](https://api.nasa.gov/api.html#MarsPhotos).
