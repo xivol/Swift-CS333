@@ -22,7 +22,8 @@ Your program should produce basic game log:
 ```
 There is no need to implement complex AI, use random or greedy strategy.
 
-You can port your task from CS252 AI to swift as this assignment.
+You can port your game from (CS253)[http://edu.mmcs.sfedu.ru/course/view.php?id=57] to Swift as this assignment.
 
 The result should be a playground file that prints game session log.
 Every class should be implemented in its own file.
+Read the (style guide)[https://github.com/raywenderlich/swift-style-guide] before you start.
