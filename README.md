@@ -1,2 +1,4 @@
 # Swift-CS333
-SFEDU CS333 Mobile Development
+SFEDU MMCS CS333 Mobile Development
+
+More at https://xivol.github.io/Swift-CS333/
