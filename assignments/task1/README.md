@@ -7,7 +7,7 @@ Implement mechanics of the board game of your choice:
 * [Rummy](https://en.wikipedia.org/wiki/Rummy)
 * [Durak](https://en.wikipedia.org/wiki/Durak)
 * [Monopoly](https://en.wikipedia.org/wiki/Monopoly_(game))
-* [...](https://boardgamegeek.com/browse/boardgamecategory)
+* [...](https://en.wikipedia.org/wiki/List_of_board_games)
 
 _There are hundreds of thousands of different games out there. No duplicates please._
 
