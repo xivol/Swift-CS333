@@ -2,7 +2,10 @@
 
 import UIKit
 
-let tracker = DiceGameTracker()
+let tracker = MultiplayerDiceGameTracker()
 let game = SnakesAndLadders()
+for name in ["Alice", "Maria", "Alex", "Ivan"]{
+    game.join(player: Player(name: name))
+}
 game.delegate = tracker
 game.play()

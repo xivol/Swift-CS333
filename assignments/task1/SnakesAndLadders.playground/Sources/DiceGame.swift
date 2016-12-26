@@ -7,6 +7,10 @@ public protocol DiceGame {
 
 public protocol DiceGameDelegate {
     func gameDidStart(_ game: DiceGame)
-    func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int)
     func gameDidEnd(_ game: DiceGame)
+}
+
+public protocol TurnbasedGameDelegate {
+    func gameDidStartTurn(_ game: DiceGame)
+    func gameDidEndTurn(_ game: DiceGame)
 }

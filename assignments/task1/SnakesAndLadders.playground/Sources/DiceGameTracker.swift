@@ -1,6 +1,6 @@
 import Foundation
 
-public class DiceGameTracker: DiceGameDelegate {
+public class DiceGameTracker: DiceGameDelegate, TurnbasedGameDelegate {
     var numberOfTurns = 0
     public init(){}
     public func gameDidStart(_ game: DiceGame) {
@@ -11,12 +11,24 @@ public class DiceGameTracker: DiceGameDelegate {
         print("The game is using a \(game.dice.sides)-sided dice")
     }
     
-    public func game(_ game: DiceGame, didStartNewTurnWithDiceRoll diceRoll: Int) {
+    public func gameDidStartTurn(_ game: DiceGame) {
         numberOfTurns += 1
-        print("Rolled a \(diceRoll)")
+        print("Turn \(numberOfTurns)")
     }
+    
+    public func gameDidEndTurn(_ game: DiceGame) {}
     
     public func gameDidEnd(_ game: DiceGame) {
         print("The game lasted for \(numberOfTurns) turns")
+    }
+}
+
+public class MultiplayerDiceGameTracker: DiceGameTracker, MultiplayerDiceGameDelegate {
+    public func player(_ player: Player, didStartNewTurnWithDiceRoll diceRoll: Int) {
+        print("\(player.name) rolled a \(diceRoll)")
+    }
+    
+    public func playerWon(_ player: Player) {
+        print("\(player.name) wins!")
     }
 }

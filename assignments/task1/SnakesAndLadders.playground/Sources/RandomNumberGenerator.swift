@@ -4,7 +4,6 @@ public protocol RandomNumberGenerator {
     func random() -> Double
 }
 
-
 public class LinearCongruentialGenerator: RandomNumberGenerator {
     var lastRandom = 42.0
     let m = 139968.0
