@@ -329,7 +329,8 @@ footer {
 /* Menu styles */
 
 ul.menu, ul.books,
-ul.sites, ul.cources, ul.libs {
+ul.sites, ul.cources,
+ul.libs, ul.tasks {
   list-style: none;
   margin-left: 0;
   padding-left: 1.2em;
