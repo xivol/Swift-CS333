@@ -1,0 +1,536 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Custom Controls</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+			-webkit-clip-path: polygon(25% 0%, 75% 0%, 90% 50%, 75% 100%, 25% 100%, 10% 50%);
+			clip-path: polygon(25% 0%, 75% 0%, 90% 50%, 75% 100%, 25% 100%, 10% 50%);
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Custom UI</a>
+							</li>
+							<li>
+								<a href="#/3">Graphics</a>
+							</li>
+							<li>
+								<a href="#/4">Animation</a>
+							</li>
+							<li>
+								<a href="#/5">Gestures</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/puffin.jpg" />
+						</div>
+					</div>
+				</section>
+<!-- Custom UI			-->
+				<section>
+					<section data-background="../img/children-drawing-.jpg">
+						<h1>Custom UI</h1>
+					</section>
+					<section>
+						<h3>Stylish Button</h3>
+						<pre><code src="ViewController.swift">
+							override func viewDidLoad(){
+								super.viewDidLoad()
+								myButton.backgroundColor = UIColor.blackColor()
+								myButton.tintColor = UIColor.whiteColor()
+								myButton.layer.cornerRadius = 6
+							}
+						</code></pre>
+						<p class="notice">
+							Some basic properties of a view can be set in<br />
+							 the Interface Builder
+						</p>
+					</section>
+					<section>
+						<h3>Overriding Default Button</h3>
+						<pre><code src="MyButton.swift">
+							class MyButton: UIButton {
+								func stylize(){
+									self.backgroundColor = UIColor.blackColor()
+									self.tintColor = UIColor.whiteColor()
+									self.layer.cornerRadius = 6
+								}
+								override init(frame: CGRect){
+								    super.init(frame: frame)
+								    stylize()
+								}
+								// ... required methods
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Overriding Default Button : 2</h3>
+						Assign your custom class to a button
+						<img src="../img/my_button.png" />
+						<p class="notice">
+							You should get mixed results: <br />
+							button will look the same in IB, <br />
+							but look as expected in simulator
+						</p>
+					</section>
+					<section>
+						<h3>Rendering in IB</h3>
+						<pre><code src="MyButton.swift">
+							@IBDesignable
+							class MyButton: UIButton {
+								// The following is only executed in the IB
+								override func prepareForInterfaceBuilder() {
+									super.prepareForInterfaceBuilder()
+									// IB tends to override some properties but not the others
+									self.backgroundColor = UIColor.blackColor()
+									// this is basically a hack to get the view to look properly
+								}
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-preprocessor">@IBDesignable</code> shows that class is suitable for instancing in<br />
+							 the Interface Builder
+						</p>
+					</section>
+					<section>
+						<h3>Custom Properties in IB</h3>
+						<pre><code src="MyButton.swift">
+							@IBDesignable
+							class MyButton: UIButton {
+								@IBInspectable var cornerRadius: CGFloat {
+									get{ return layer.cornerRadius }
+									set{ layer.cornerRadius = newValue }
+								}
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-preprocessor">@IBInspectable</code> allows property to be set from<br />
+							 the Interface Builder
+						</p>
+					</section>
+					<section>
+						<h3>Custom Button</h3>
+						<pre><code src="RoundButton.swift">
+							@IBDesignable
+							class RoundButton: UIButton {
+								override func drawRect(rect: CGRect) {
+									var path = UIBezierPath(ovalInRect: rect)
+									// set fill color
+									bacgroundColor.setFill()
+									// fill previously defined path
+  								path.fill()
+								}
+							}
+						</code></pre>
+						<p class="notice">
+							All the drawing happens in the view's graphic context<br />
+						</p>
+					</section>
+				</section>
+<!--Graphics 	-->
+				<section>
+					<section data-background="../img/graphics.jpg">
+						<h1>Graphics</h1>
+					</section>
+					<section>
+						<h3>Graphics Context</h3>
+						<pre><code class="swift" data-noheader>
+							// Create bitmap and make it current context
+							UIGraphicsBeginImageContext(view.frame.size)
+							// Copy image into current context
+							view.image?.draw(in: CGRect(origin: CGPoint.zero,
+							                            size: view.image?.size))
+							/* draw something */
+							// Return an image from current bitmap-based context
+							view.image = UIGraphicsGetImageFromCurrentImageContext()
+							// Remove current bitmap context
+							UIGraphicsEndImageContext()
+						</code></pre>
+						<p>
+							Context contains drawing parameters <br>and all information needed to render the paint
+						</p>
+					</section>
+					<section>
+						<h3>Drawing with Core Graphics</h3>
+						<p>
+							All drawing happens in current graphics context
+						</p>
+						<pre><code data-noheader>
+							func drawLine(from fromPoint: CGPoint, to toPoint: CGPoint) {
+								// Create Path
+								let linePath = UIBezierPath()
+								linePath.moveToPoint(fromPoint)
+								linePath.addLineToPoint(toPoint)
+								// Set up context parameters
+								UIColor.blue.setStroke()
+								linePath.lineWidth = 10
+								linePath.lineCapStyle = .round
+								// Draw path in context
+								linePath.stroke()
+							}
+						</code></pre>
+						<p class="notice">
+							Draw order is important
+						</p>
+						<p>
+							Paths are drawn on top of each other
+						</p>
+					</section>
+					<section>
+						<h3>Get Current Context</h3>
+						<pre><code class="swift" src="CustomButton.swift">
+						override func draw(_ rect: CGRect) {
+							// Get view's current graphics context
+							if let context = UIGraphicsGetCurrentContext() {
+								let startPoint = CGPoint.zero
+								let endPoint = CGPoint(x:0, y:self.bounds.height)
+								// Draw gradient in context
+								context.drawLinearGradient(gradient!,
+								                           start: startPoint,
+								                           end: endPoint,
+								                           options: .drawsAfterEndLocation)
+								}
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Core Graphics Gradient</h3>
+						<pre><code class="swift" src="CustomButton.swift">
+						// Set up gradient colors
+						let colors = [startColor.cgColor, endColor.cgColor]
+						// Set up the color stops
+						let colorLocations:[CGFloat] = [0.0, 1.0]
+						// Set up the color space
+						let colorSpace = CGColorSpaceCreateDeviceRGB()
+						// Create the gradient object
+						let gradient = CGGradient(colorsSpace: colorSpace,
+						                          colors: colors as CFArray,
+						                          locations: colorLocations)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Core Animation Layer</h3>
+						<p>
+							Every view has underlying CALayer
+						</p>
+						<pre><code class="swift" data-noheader>
+							view.layer.contents = UIImage(named: "swift")?.CGImage
+							// Layers can have sublayers
+							let sublayer = CALayer()
+							sublayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
+							sublayer.backgroundColor = UIColor.red.cgColor
+							view.layer.addSublayer(sublayer)
+						</code></pre>
+						<p>
+							Layers are rendered by the GPU
+						</p>
+					</section>
+					<section>
+						<h3>Blessings of GPU Rendering</h3>
+						<br />
+						<ul>
+							<li><em>Fast graphics</em> &ndash; layers are optimized for better use of graphical hardware</li>
+							<li><em>Percise animations</em> &ndash; Core Animation allows for more animation control and complexity then UIKit</li>
+							<li><em>Rasterization control</em> &ndash; layer content can be rasterized once and stored as bitmap</li>
+						</ul>
+					</section>
+					<section>
+						<h3>So Many Layers</h3>
+						<img src="../img/CALayerTour.png" />
+						<small><a href="https://github.com/scotteg/LayerPlayer">https://github.com/scotteg/LayerPlayer</a></small>
+					</section>
+					<section>
+						<h3>Honorable Mention: CAMetalLayer</h3>
+						<div class="row">
+							<div class="col">
+								<img src="../img/metal-logo.png" class="center"/>
+							</div>
+							<div class="col">
+								Allows to use 3d rendering pipeline(shaders) in a layer
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Gradient Layer View</h3>
+						<pre><code class="swift" src="CustomButton2.swift">
+							// layer is read-only property of UIView
+							// we need to override it's type to change it
+							override class var layerClass: Swift.AnyClass {
+								// return Gradient Layer as view's layer type
+								get { return CAGradientLayer.self }
+							}
+							// Simple layer access
+							var gradientLayer: CAGradientLayer! {
+								return layer as! CAGradientLayer
+							}
+							override init(frame: CGRect) {
+								gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+							}
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section data-background="../img/animation.gif">
+						<h1>Animation</h1>
+					</section>
+					<section>
+						<h3>Simple Animation</h3>
+						<pre><code class="swift" data-noheader>
+							// Rotate view 180 degrees
+							UIView.animate( withDuration: 0.25, // length of animation in seconds
+								delay: 0.0, // animation start delay
+								options: [.curveLinear], // timing curve
+								animations: { // animation closure
+									view.transform = view.transform.rotated(by: CGFloat(M_PI))},
+								completion: { finished in // called after animation is complete
+									view.transform = CGAffineTransform.identity
+							})
+						</code></pre>
+						<p>
+							Lineary interpolates values <br /> of a view's properties for a given duration
+						</p>
+						<p class="notice">
+							Uses shortest pass between the values <br />(360&deg; rotation does nothing)
+						</p>
+					</section>
+					<section>
+						<h3>Animatable View Properties</h3>
+						<div class="row" >
+						<ul class="col " style="text-align:right; border-right: solid 2pt #FF8D3C;">
+							<li>frame</li>
+							<li>bounds</li>
+							<li>center</li>
+						</ul>
+						<ul class="col" style="padding-left:0.5em;">
+							<li>transform</li>
+							<li>alpha</li>
+							<li>backgroundColor</li>
+							<li>contentStretch</li>
+						</ul>
+						</div>
+						<p class="notice">
+							You should never animate position properties<br /> of a view with Auto Layout cnstraints
+						</p>
+					</section>
+					<section>
+						<h3>Timing Curve</h3>
+						<p>
+							Defines how fast values change
+						</p>
+						<div class="row">
+							<div class="col">
+								<ol>
+									<li>Linear</li>
+									<li>EaseIn</li>
+									<li>EaseOut</li>
+									<li>EaseInOut</li>
+								</oL>
+							</div>
+							<div class="col">
+								<img src="../img/easing.png" style="border: solid 2pt #FF8D3C;"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Other Options</h3>
+						<ul>
+							<li><em>repeat</em> &ndash; repeats animation ad infinum</li>
+							<li><em>allowUserInteractions</em> &ndash; allows user interactions </li>
+							<li><em>beginFromCurrentState</em> &ndash; animation started in the middle <br>
+								of another animation will use current values of a view</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Keyframe Animation</h3>
+						<p>
+							Interpolates between user defined keyframes
+						</p>
+						<pre><code class="swift" data-noheader>
+							// Rotate view 360 degrees
+							let duration = 1.0
+							UIView.animateKeyframes( withDuration: duration,
+								delay: 0.0,
+								options: [.calculationModeCubic], // interpolation method
+								animations: {  /* define frames here */ }
+							)
+						</code></pre>
+						</section>
+						<section>
+							<h3>Keyframes</h3>
+							<pre><code class="swift" data-noheader>
+								// Rotate 360 degrees animations closure
+								let frames = 6
+								let angle = 2 * M_PI / Double(frames)
+								let frameDuration = duration / Double(frames)
+								for i in 0..&lt;frames {
+									UIView.addKeyframe(
+										withRelativeStartTime: Double(i) * frameDuration,
+										relativeDuration: frameDuration,
+										animations: {
+											sender.transform = sender.transform.rotated(by: CGFloat(angle))
+									})
+								}
+						</code></pre>
+						<p>
+							Each keyframe defines an animation <br> with its own delay and duration
+						</p>
+					</section>
+					<section>
+						<h3>UIView Animation Limits</h3>
+						<div class="row">
+							<div class="col">
+								<ul >
+									<li>Animation is limited to view's properties</li>
+									<li>Doesn't allow custom timing functions</li>
+									<li>CPU based rendering</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/bounce-animation.gif"  class="center"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Layer Animations</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Rendered on GPU</li>
+									<li>Shape Transitions</li>
+									<li>3D Transformations</li>
+									<li>Clipping Animations</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/layer-animation.gif" class="centered"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Basic Animation</h3>
+						<pre><code class="swift" data-noheader>
+							// Create new animation for path property
+							var triangleAnimationLeft = CABasicAnimation(keyPath: "path")
+							// Set up start value
+							triangleAnimationLeft.fromValue = trianglePathSmall.CGPath
+							// Set up finish value
+							triangleAnimationLeft.toValue = trianglePathLeftExtension.CGPath
+							// Set up delay
+							triangleAnimationLeft.beginTime = 0.0
+							// Set up duration
+							triangleAnimationLeft.duration = 0.3
+							// Perfornm animation on a layer
+							triangleLayer.addAnimation(triangleAnimationLeft, forKey: nil)
+						</code></pre>
+						<p>
+							Single triangle corner animation
+						</p>
+					</section>
+					<section>
+						<h3>Keyframe Layer Animation</h3>
+						<pre><code class="swift" data-noheader>
+							// Create new animation for path property
+							var triangleAnimation = CAKeyframeAnimation(keyPath: "path")
+							triangleAnimation.values = [trianglePathSmall.CGPath, trianglePathLeftExtension.CGPath]
+							lineWidthAnimation.duration
+						</code></pre>
+					</section>
+				</section>
+				<!-- Gestures				-->
+								<section>
+									<section data-background="../img/gestures.jpg">
+										<h1>Gestures</h1>
+									</section>
+									<section>
+										<h3>Storyboard Gesture Recognizers</h3>
+									</section>
+									<section>
+										<h3>Simplified Recognition</h3>
+									</section>
+									<section>
+										<h3>UITouch</h3>
+									</section>
+									<section>
+										<h3>Custom Gesture Recognizer</h3>
+									</section>
+								</section>
+<!-- Resources			-->
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
+						</li>
+						<li>
+
+						</li>
+						https://www.raywenderlich.com/115440/auto-layout-tutorial-in-ios-9-part-1-getting-started-2
+						https://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1
+						<li>
+
+						</li>
+						https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html#//apple_ref/doc/uid/TP40010156-CH14-SW1
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
+
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+		    <filter id="drop-shadow">
+		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+		        <feOffset dx="12" dy="12" result="offsetblur"/>
+		        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+		        <feComposite in2="offsetblur" operator="in"/>
+		        <feMerge>
+		            <feMergeNode/>
+		            <feMergeNode in="SourceGraphic"/>
+		        </feMerge>
+		    </filter>
+		</svg>
+	</body>
+</html>

@@ -1,0 +1,559 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Views &amp; Controllers</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+			-webkit-clip-path: polygon(0% 30%, 100% -10%, 100% 70%, 0% 110%);
+			clip-path: polygon(0% 30%, 100% -10%, 100% 70%, 0% 110%);
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">UIKit</a>
+							</li>
+							<li>
+								<a href="#/3">Auto Layout</a>
+							</li>
+							<li>
+								<a href="#/4">Default Controllers</a>
+							</li>
+							<li>
+								<a href="#/5">Handling Segues</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/martin.jpg" />
+						</div>
+					</div>
+				</section>
+<!-- UIKit				-->
+				<section>
+					<section data-background="../img/uikit.png">
+						<h1>UIKit</h1>
+					</section>
+					<section>
+						<h3>View Architecture</h3>
+						<p>
+							Every view has underlying Core Animation layer
+						</p>
+						<ul>
+							<li>
+								<span class="emphasis">UIView</span> &ndash; defines a rectangular region on the screen and handles the drawing and touch events
+							</li>
+							<li>
+								<span class="emphasis">CALayer</span> &ndash; manages the backing store for the view and handles view-related animations
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>View Properties</h3>
+						<pre><code class="swift" data-noheader>
+							// Defines position of the view in it's parent
+							var frame: CGRect
+							// Defines bounding rectangle for view's content
+							var bounds: CGRect
+							// Array of all subviews contained in the view
+							var subview: [UIView]
+							// Access to underlying Core Animation
+							var layer: CALayer
+						</code></pre>
+					</section>
+					<section>
+						<h3>Views Stack</h3>
+						<img src="../img/viewstack.png" class="medium"/>
+					</section>
+					<section>
+						<h3>UIView Subclasses</h3>
+						<table>
+							<tr>
+								<th>UILabel</th>
+								<td>displays static text</td>
+							</tr>
+							<tr>
+								<th>UIPickerView</th>
+								<td>lets the user choose between certain options</td>
+							</tr>
+							<tr>
+								<th>UIImageView</th>
+								<td>displays an image or<br /> an animated sequence of images</td>
+							</tr>
+							<tr>
+								<th>UIWebView</th>
+								<td>can display HTML content</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>UIScrollView</h3>
+						<p>
+							Allows to display content bigger than view's boundaries
+						</p>
+						<table>
+							<tr>
+								<th>UITableView</th>
+								<td> presents data in a scrollable list of<br /> multiple rows</td>
+							</tr>
+							<tr>
+								<th>UICollectionView</th>
+								<td> displays an ordered collection of<br /> data items</td>
+							</tr>
+							<tr>
+								<th>UITextView</th>
+								<td>accepts and displays<br /> multiple lines of text</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>UIControl</h3>
+						<p>
+							Conveys a particular action or intention to the app<br /> through user interaction
+						</p>
+						<table>
+							<tr>
+								<th>UIButton</th>
+								<td>lets a user initiate behavior with a tap</td>
+							</tr>
+							<tr>
+								<th>UITextField</th>
+								<td>allows the user to input a single line of text</td>
+							</tr>
+							<tr>
+								<th>UISwitch</th>
+								<td>lets the user turn an option on and off</td>
+							</tr>
+							<tr>
+								<th>UISlider</th>
+								<td>enables users to interactively modify some adjustable value</td>
+							</tr>
+							<tr>
+								<th>UIDatePicker</th>
+								<td>is used for selecting a specific date, time, or both</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Outlet</h3>
+						<img src="../img/outlet.jpg" />
+						<p>
+							Connects storyboard item to the code
+						</p>
+						<pre><code class="swift" data-noheader>
+							@IBOutlet weak var myButton: UIButton!
+						</code></pre>
+					</section>
+					<section>
+						<h3>Action</h3>
+						<img src="../img/action.jpg" />
+						<p>
+							Connects event handler to a control
+						</p>
+						<pre><code class="swift" data-noheader>
+							@IBAction func buttonTouched(sender: UIButton) { }
+						</code></pre>
+					</section>
+					<section>
+						<h3>Connections</h3>
+						<div class="row">
+							<div class="col">
+								List of all objects <br> connected to the UI element
+								<p class="notice">
+									Element must be removed from connections <br> when deleted
+								</p>
+							</div>
+							<div class="col">
+								<img src="../img/ui_connections.jpg" style="max-height:70%;"/>
+							</div>
+						</div>
+					</section>
+				</section>
+<!-- Auto Layout						-->
+				<section>
+					<section data-background="../img/automatic.jpg">
+						<h1>Auto Layout</h1>
+					</section>
+					<section>
+						<h3>Purpose</h3>
+						<img src="../img/autolayout_purpose.jpg" />
+						<p>
+							Auto Layout provides a set of constraints <br />
+							to describe position and size of a view<br />
+							in relation to its surrondings
+						</p>
+					</section>
+					<section>
+						<h3>Attributes</h3>
+						<img src="../img/layout_attributes.png" class="small"/>
+						<p>
+							Every view has 9 Layout Attributes
+						</p>
+					</section>
+					<section>
+						<h3>Anatomy of Constraint</h3>
+						<img src="../img/layout_constraint.png" />
+						<p>
+							Every constraint describes relationship <br/> between two attributes
+						</p>
+					</section>
+					<section>
+						<h3>Types of Constraints</h3>
+						<ul>
+							<li><em>Alignment Constraint</em> describes how views are positioned in relation to each other and to their container</li>
+							<li><em>Pinning Constaraint</em> describes view's intrinsic attributes and margins</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Alignment Constraints</h3>
+							<img src="../img/alignment_constraints.png" class="medium"/>
+					</section>
+					<section>
+						<h3>Pinning Constraints</h3>
+						<img src="../img/pin_constraints.png" class="small"/>
+					</section>
+					<section>
+						<h3>Debugging Constraints</h3>
+						<ul>
+							<li>
+								<em>Warnings</em> can be resolved automatically by either fixing view, or modifing constraints
+							</li>
+							<li>
+								<em class="error">Errors</em> could only be resolwed by a programmer:
+									<ul>
+										<li><em>Unsatisfiable Layouts</em>: your layout has no valid solution</li>
+										<li><em>Ambiguous Layouts</em>: your layout has two or more possible solutions</li>
+										<li><em>Logical Errors</em>: there is a bug in your layout logic</li>
+									</ul>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Stack View</h3>
+						<div class="row">
+							<div class="col">
+								<img src="../img/simple_stack.png" style="max-height:60%;"/>
+							</div>
+							<div class="col">
+								<p>
+									Allows automatic alignment of contained views <br/> for simplified layout
+								</p>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Intrinsic Content Size</h3>
+						<img src="../img/intrinsic_content_size.png" class="small"/>
+						<ul>
+							<li>
+								<em>Content hugging</em> pulls the view inward <br />so that it fits snugly around the content
+							</li>
+							<li>
+								<em>Compression resistance</em> pushes the view outward<br /> so that it does not clip the content
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Constraints at Runtime</h3>
+						<pre><code class="swift" data-noheader>
+							// Creaye new constraint
+							// myView.Leading = view.LeadingMargin * 1.0 + 0.0
+							let constraint = NSLayoutConstraint(
+								item: myView, attribute: .Leading,
+								relatedBy: .Equal,
+								toItem: view, attribute: .LeadingMargin,
+								multiplier: 1.0, constant: 0.0)
+							// Activate new constraint
+							constraint.active = true
+							// Recalculate view's dimentions
+							myView.layoutIfNeeded()
+							// Remove new constraint
+							myView.removeConstraint(constraint)
+
+						</code></pre>
+					</section>
+        </section>
+<!-- Default Controllers		-->
+				<section>
+					<section data-background="../img/controllers.jpg">
+						<h1>Default Controllers</h1>
+					</section>
+					<section>
+						<h3>Navigation Controller</h3>
+						<img src="../img/navigation_interface.png" />
+						Allows users to navigate to the previous view
+					</section>
+					<section>
+						<h3>Navigation Bar</h3>
+						<img src="../img/uinavbar.png" />
+						<p>
+							A navigation bar can display a left button, title, prompt string and right button(s)
+						</p>
+					</section>
+					<section>
+						<h3>Navigation in Storyboard</h3>
+						<p>
+							Editor &rarr; Embed In &rarr; Navigation Controller
+						</p>
+						<img src="../img/embed_nav_controller.jpg" />
+					</section>
+					<section>
+						<h3>Tab Bar Controller</h3>
+						<img src="../img/uitabbar.png"/>
+						<p>
+							Provides easy access to different views in an app
+						</p>
+						<p>
+							Each view can be a start of separate view stack
+						</p>
+					</section>
+					<section>
+						<h3>Table View Controller</h3>
+						<div class="row">
+							<div class="col">
+								<p>
+									Can be divided into sections
+								</p>
+								<p>
+									Each section contains<br />	 any number of cells
+								</p>
+								<p>
+									Able to present static or <br />dynamic content
+								</p>
+							</div>
+							<div class="col">
+								<img src="../img/uitableview.png"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Table View Cell</h3>
+						<ul>
+							<li>In <em>dynamic</em> Table View <br />
+								Each prototype cell describes appearence of <br />multiple cells in the table. Each prototype has a <em>Reuse Identifier</em>
+							</li>
+							<li>In <em>static</em> Table View <br />
+								Each cell added in Interface Builder describes its own content
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Prototype Cells</h3>
+						<p>
+							Each prototype cell describes appearence of <br />multiple cells in the table
+
+						</p>
+						<img src="../img/reuse.jpg" class="small" />
+						<p>
+							Each prototype cell has a <em>Reuse Identifier</em>
+						</p>
+					</section>
+					<section>
+						<h3>Default Cell Style</h3>
+						<img src="../img/uitableviewcell.jpg" class="medium"/>
+						<pre class="col"><code class="swift" data-noheader>
+							// Returns the label used for the main textual content of the table cell
+							var textLabel: UILabel?
+							// Returns the secondary label of the table cell if one exists
+							var detailTextLabel: UILabel?
+							// Returns the image view of the table cell
+							var imageView: UIImageView?
+						</code></pre>
+					</section>
+					<section>
+						<h3>Table View Data Source</h3>
+						<pre class="col"><code class="swift" src="TableViewController.swift">
+						override func tableView(tableView: UITableView,
+							numberOfRowsInSection section: Int) -> Int {
+							return 5
+						}
+						override func tableView(tableView: UITableView,
+							cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+							let cell = tableView.dequeueReusableCellWithIdentifier("RobinTheMan",
+								forIndexPath: indexPath)
+							cell.textLabel.text = String(indexPath.row)
+							return cell
+						}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Collection View Controller</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Presents views of different sizes</li>
+									<li>Can have horizontal or vertical scrolling</li>
+								</ul>
+							</div>
+							<div class="col">
+
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Collection View Cell</h3>
+					</section>
+				</section>
+<!-- Handling Segues		-->
+				<section>
+					<section data-background="../img/segues.jpg">
+						<h1>Handling Segues</h1>
+					</section>
+					<section>
+						<h3>Segue</h3>
+						<img src="../img/segue_defined_2x.png" />
+						<p>
+							A <em>segue</em> represents the transition from one scene <br> to the next scene
+						</p>
+					</section>
+					<section>
+						<h3>Segue Type</h3>
+						<table>
+							<tr>
+								<th>
+									Show
+								</th>
+								<td>
+									<img src="../img/segue_push.png" class="flat"/>
+								</td>
+								<td>
+									<small>Push on top of main stack</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Show Detail
+								</th>
+								<td>
+									<img src="../img/segue_push.png" class="flat"/>
+								</td>
+								<td>
+									<small>Push on top of detail stack</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Present in Popover
+								</th>
+								<td>
+									<img src="../img/segue_popover.png" class="flat"/>
+								</td>
+								<td>
+									<small>Show in popover view</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Present Modally
+								</th>
+								<td>
+									<img src="../img/segue_modal.png" class="flat"/>
+								</td>
+								<td>
+									<small>Show on top of current root view</small>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									Custom
+								</th>
+								<td>
+									<img src="../img/segue_custom.png" class="flat"/>
+								</td>
+								<td>
+									<small>Custom Segue</small>
+								</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Identifier</h3>
+					</section>
+					<section>
+						<h3>Prepare for Segue</h3>
+					</section>
+					<section>
+						<h3>Perform Segue</h3>
+					</section>
+				</section>
+<!-- Resources			-->
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html">View Controller Programming Guide - Apple Developer</a>
+						</li>
+						<li>
+							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">Auto Layout Guide - Apple Developer</a>
+						</li>
+						<li>
+							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/UIKitUICatalog/index.html">UIKit Catalog - Apple Developer</a>
+						</li>
+						<li>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
+
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+		    <filter id="drop-shadow">
+		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+		        <feOffset dx="12" dy="12" result="offsetblur"/>
+		        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+		        <feComposite in2="offsetblur" operator="in"/>
+		        <feMerge>
+		            <feMergeNode/>
+		            <feMergeNode in="SourceGraphic"/>
+		        </feMerge>
+		    </filter>
+		</svg>
+
+<svg width="480px" height="480px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>Swift-logo</defs>
+    <path d="M42.9,59.7 L15.7,59.7 C10.2,59.7 5.7,55.2 5.7,49.7 L5.7,22.7 C5.7,17.2 10.2,12.7 15.7,12.7 L42.8,12.7 C48.3,12.7 52.8,17.2 52.8,22.7 L52.8,49.8 C52.9,55.2 48.4,59.7 42.9,59.7 L42.9,59.7 Z" id="Shape" stroke="none" fill="#EF5138" fill-rule="evenodd"></path>
+    <path d="M42.8,41.7 L42.8,41.7 C42.8,41.5 42.9,41.3 42.9,41.2 C44.9,33.4 40.1,24.2 32,19.4 C35.5,24.2 37.1,30 35.7,35.1 C35.6,35.6 35.4,36 35.3,36.4 C35.1,36.3 34.9,36.2 34.6,36 C34.6,36 26.6,31 17.9,22.3 C17.7,22.1 22.5,29.3 28.1,35.1 C25.5,33.6 18.2,28.4 13.7,24.2 C14.3,25.1 14.9,26 15.7,26.9 C19.5,31.8 24.5,37.8 30.5,42.4 C26.3,45 20.3,45.2 14.4,42.4 C12.9,41.7 11.6,40.9 10.3,39.9 C12.8,43.9 16.7,47.4 21.4,49.4 C27,51.8 32.6,51.6 36.7,49.4 L36.7,49.4 C38.4,48.3 43,46.6 45.3,51.1 C45.7,52 46.8,46.7 42.8,41.7 L42.8,41.7 Z" id="Shape" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+</svg>
+	</body>
+</html>

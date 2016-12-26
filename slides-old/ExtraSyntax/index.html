@@ -1,0 +1,604 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Swift Syntax. Part 2</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+			-webkit-clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
+			clip-path: polygon(10% 0%, 65% 0, 85% 100%, 30% 100%);
+			max-width:100%;
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Initialization</a>
+							</li>
+							<li>
+								<a href="#/3">Protocols</a>
+							</li>
+							<li>
+								<a href="#/4">Extensions</a>
+							</li>
+							<li>
+								<a href="#/5">Enumerations</a>
+							</li>
+							<li>
+								<a href="#/6">Standart Library</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/swift-bird.jpg" />
+						</div>
+					</div>
+				</section>
+<!-- Initialization				-->
+				<section>
+					<section data-background="../img/swift-og.png">
+						<h1>Initialization</h1>
+					</section>
+					<section>
+						<h3>Structure Initialization</h3>
+						<pre><code data-noheader>
+							struct Point {
+								var x = 0.0, y = 0.0
+							}
+							struct Size {
+								var width = 0.0, height = 0.0
+							}
+							let p = Point(x: 1.0, y: 1.0)
+						</code></pre>
+						<p class="notice">
+							Structures have default memberwise initializers
+						</p>
+					</section>
+					<section>
+						<h3>Class Initialization</h3>
+						<pre><code data-noheader>
+							class Rect {
+								var origin = Point()
+								var size = Size()
+								init() {}
+								init(origin: Point, size: Size) {
+									self.origin = origin
+									self.size = size
+								}
+							}
+						</code></pre>
+						<p class="notice">
+							Classes don't have default memberwise initialisers
+						</p>
+					</section>
+					<section>
+						<h3>Two Kinds of Initializers</h3>
+						<pre><code data-noheader>
+								init(origin: Point, size: Size) { // designated init
+									self.origin = origin
+									self.size = size
+								}
+						</code></pre>
+						<p>
+							<span class="emphasis">Designated initializer</span> fully initializes all proprties of the class
+						</p>
+						<pre><code data-noheader>
+							convenience init(center: Point, size: Size) {
+								let originX = center.x - (size.width / 2)
+								let originY = center.y - (size.height / 2)
+								self.init(origin: Point(x: originX, y: originY), size: size)
+							}
+						</code></pre>
+						<p>
+							<span class="emphasis">Convenience initializer</span> covers specific use case <br> of initialization parameters
+						</p>
+					</section>
+					<section>
+						<h3>Rules of Class Initialization</h3>
+						<ul>
+							<li class="notice">
+								Any designated initializer must call a designated initializer <br> from its superclass
+							</li>
+							<li class="notice">
+								Any convenience initializer must call another initializer <br> from the same class
+							</li>
+							<li class="notice">
+								Any convenience initializer must ultimately call <br> a designated initializer
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Initializer Delegation</h3>
+						<pre><code data-noheader>
+							class TextBox: Rect {
+								var text: String = ""
+								init(text: String, origin: Point, size: Size) { //designated init
+									super.init(origin: origin, size: size)
+									self.text = text;
+								}
+								convenience init(text: String, center: Point, size: Size) {
+									let originX = center.x - (size.width / 2)
+									let originY = center.y - (size.height / 2)
+									self.init(text: text, origin: Point(x: originX, y: originY),
+										size: size)
+								}
+							}
+						</code></pre>
+						<p>
+							<span class="emphasis">↑</span> designated delegate up <span class="emphasis">↑</span>
+						</p>
+						<p>
+							<span class="emphasis">←</span> convenience delegate across <span class="emphasis">→</span>
+						</p>
+					</section>
+					<section>
+						<h3>Initializer Inheritance</h3>
+						<pre><code data-noheader>
+							class TextBox: Rect {
+								var text: String = ""
+								convenience init(text: String, origin: Point, size: Size) {
+									self.init(origin: origin, size: size)
+									self.text = text
+								}
+							}
+							var t = TextBox()
+						</code></pre>
+						<p class="notice">
+							If no designated initializers declared in subclass <br>
+							it inherits designated initializers of its superclass
+						</p>
+					</section>
+					<section>
+						<h3>Required Initializers</h3>
+						<pre><code data-noheader>
+							class Rect {
+								required init(){}
+							}
+							class TextBox {
+								required init(){
+									super.init()
+								}
+							}
+							</code></pre>
+							<p class="notice">
+								Required initializers must be implemented as <br>
+								<code class="hljs-keyword">required</code> or <code class="hljs-keyword">final</code>
+							</p>
+					</section>
+					<section>
+						<h3>Failable Initialization</h3>
+						<pre><code data-noheader>
+							class TextBox: Rect {
+								init? (text: String){
+									if text.characters.count == 0 { return nil }
+									super.init()
+								}
+							}
+						</code></pre>
+						<p class="notice">
+							Failiable initializers return an optional
+						</p>
+					</section>
+				</section>
+<!-- Protocols    	  -->
+        <section>
+          <section data-background="../img/swift-og.png">
+            <h1>Protocols</h1>
+          </section>
+          <section>
+            <h3>Protocol Rquirements</h3>
+            <pre><code data-noheader>
+							protocol IntContainer {
+								var count: UInt { get }
+								subscript(index: Int) -> Int { get }
+								mutating func append(item: Int)
+							}
+            </code></pre>
+            <p>
+							Protocol lists methods and properties <br> required for implementation
+            </p>
+          </section>
+          <section>
+            <h3>Adopting a Protocol</h3>
+            <pre><code data-noheader>
+							class IntStackClass: IntContainer {
+								let elements: [Int]
+								var count {
+									return elements.count
+								}
+								subscript(index: Int) -> Int {
+									return elements[index]
+								}
+								func append(item: Int) {
+									elements.append(item)
+								}
+							}
+            </code></pre>
+            <p>
+            	Structures and classes that adopt a protocol <br> must implement all of the required members
+            </p>
+          </section>
+					<section>
+						<h3>Checking for Conformance</h3>
+						<pre><code data-noheader>
+							if someObject is IntContainer {
+								print((someObject as! IntContainer).count)
+							}
+							// binding is always a better solution
+							if let container = someObject as? IntContainer {
+								print(container.count)
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-keyword">is</code> and <code class="hljs-keyword">as</code> can be used with protocols
+						</p>
+					</section>
+					<section>
+						<h3>Protocol as Type</h3>
+						<pre><code data-noheader>
+							func createContainer(ofSize size: UInt,
+								fillWith value: Int) -> IntContainer
+							{
+								// create some value conforming to IntContainer
+							}
+							let container = createContainer(ofSize: 10, fillwith:0)
+							let conatiners: [IntContainer]
+						</code></pre>
+						<p>
+							Any value of a type that adopts required protocol <br> can be assigned to the variable of protocol type
+						</p>
+						<p class="notice">
+							You can requre multiple protocol conformance by using <code class="hljs-keyword">protocol&lt;someProtocol, anotherProtocol&gt;</code>
+						</p>
+					</section>
+        </section>
+<!-- Extensions				-->
+        <section>
+          <section data-background="../img/swift-og.png">
+            <h1>Extensions</h1>
+          </section>
+					<section>
+						<h3>Extension Properties</h3>
+						<pre><code data-noheader>
+							extension Double {
+							    var km: Double { return self * 1_000.0 }
+							    var  m: Double { return self }
+							    var cm: Double { return self / 100.0 }
+							    var mm: Double { return self / 1_000.0 }
+							    var ft: Double { return self / 3.28084 }
+							}
+							let oneInch = 25.4.mm
+						</code></pre>
+						<p>
+							Extensions can add new functionality to a type <br> but they cannot override existing functionality
+						</p>
+						<p class="notice">
+							Extensions cannot add stored properties
+						</p>
+					</section>
+					<section>
+						<h3>Extension Methods</h3>
+						<pre><code data-noheader>
+							extension Int {
+								func times(do: () -> Void) {
+									for _ in 0..&lt;self {
+											task()
+									}
+								}
+							}
+
+							3.times(do: { print("Hello! ") })
+						</code></pre>
+						<p>
+							The new functionality will be availiable <br>
+							 on all existing instaces of a type
+						</p>
+					</section>
+          <section>
+            <h3>Extension for Protocol Adoption</h3>
+            <pre><code data-noheader>
+							protocol TextRepresentable {
+								var description: String { get }
+							}
+							extension Int: TextRepresentable {
+								var description: String {
+									return "Integer: \(self)"
+								}
+							}
+							var i: TextRepresentable
+							i = 1
+            </code></pre>
+            <p>
+							All existing instances of a type automatically adopt and conform to a protocol
+            </p>
+          </section>
+          <section>
+            <h3>Protocol Extension</h3>
+            <pre><code data-noheader>
+							extension TextRepresentable {
+								var description: String { // default implementation
+									return "I am \(self)!"
+								}
+								func printMe() {
+									print(self.description)
+								}
+							}
+							extention Double: TextRepresentable {}
+            </code></pre>
+            <p>
+              Type should explicitly adopt a protocol
+            </p>
+						<pre><code data-noheader>
+							3.14.printMe() // "I am 3.14!"
+						</code></pre>
+            <p>
+              If no implementation declared in a conforming type <br>
+							default one is used
+            </p>
+          </section>
+          <section>
+            <h3>Adding Constraints</h3>
+            <pre><code data-noheader>
+							extension CollectionType where Generator.Element: TextRepresentable {
+								var description: String {
+									let itemsAsText = self.map { $0.description }
+									return "[" + itemsAsText.joinWithSeparator(", ") + "]"
+								}
+							}
+							var numbers = [3.14, 2.71, 1.8]
+							print(numbers.description)
+            </code></pre>
+          </section>
+        </section>
+<!-- Enumerations      -->
+				<section>
+          <section data-background="../img/swift-og.png">
+            <h1>Enumerations</h1>
+          </section>
+					<section>
+						<h3>Enumeration Syntax</h3>
+						<pre><code data-noheader>
+							enum Compass: Character {
+								case South = "S"
+								case North = "N"
+								case East = "E"
+								case West = "W"
+							}
+						</code></pre>
+						<p>
+							Raw value of enumeration can be integer, <br>
+							floating point number, string or character
+						</p>
+						<pre><code data-noheader>
+							print(Compass.South.rawValue)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Raw Value Initializer</h3>
+						<pre><code data-noheader>
+							var south = Compass(rawValue: "S")
+						</code></pre>
+						<p class="notice">
+							Raw value initalizer returns an optional
+						</p>
+					</section>
+					<section>
+						<h3>Associated Values</h3>
+						<pre><code data-noheader>
+							enum Barcode {
+							    case UPCA(Int, Int, Int, Int)
+							    case QRCode(String)
+							}
+						</code></pre>
+						<p>
+							Enumerations can store associated values of any given type
+						</p>
+						<pre><code data-noheader>
+							var productBarcode = Barcode.UPCA(8, 85909, 51226, 3)»
+
+							switch productBarcode {
+							case let .UPCA(numberSystem, manufacturer, product, check):
+							    print("UPC-A: \(numberSystem), \(manufacturer), \(product), \(check).")
+							case let .QRCode(productCode):
+							    print("QR code: \(productCode).")
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Properties and Methods</h3>
+						<pre><code data-noheader>
+							enum Compass {
+								var opposite: Compass {
+									// return opposite direction
+								}
+							}
+						</code></pre>
+						<p>
+							Enumerations can store properties and methods
+						</p>
+						<p class="notice">
+							Enumerations are value types
+						</p>
+					</section>
+					<section>
+						<h3>Recursive Enumerations</h3>
+						<pre><code data-noheader>
+							indirect enum ArithmeticExpression {
+								case Number(Int)
+								case Addition(ArithmeticExpression, ArithmeticExpression)
+							}
+						</code></pre>
+						<p>
+							Enumeration can refer itself in its declaration <br>
+							with <code class="hljs-keyword">indirect</code>
+						</p>
+						<pre><code data-noheader>
+								let five = ArithmeticExpression.Number(5)
+								let four = ArithmeticExpression.Number(4)
+								let sum = ArithmeticExpression.Addition(five, four)
+						</code></pre>
+					</section>
+        </section>
+<!-- Standart Library -->
+				<section>
+					<section data-background="../img/swift-og.png">
+						<h1>Standart Library</h1>
+					</section>
+					<section>
+						<h3>Bridging to Obective-C</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>String</li>
+									<li>Array</li>
+									<li>Dictionary</li>
+									<li>Set</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li>←</li>
+									<li>←</li>
+									<li>←</li>
+									<li>←</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li>NSString</li>
+									<li>NSArray</li>
+									<li>NSDictionary</li>
+									<li>NSSet</li>
+								</ul>
+							</div>
+						</div>
+							<p>
+								 Global functions and interfaces from NSFoundation <br> are availiable in Swift
+							</p>
+					</section>
+					<section>
+						<h3>String Views</h3>
+						<pre><code data-noheader>
+							let flag = "🇷🇺"
+							print(flag.characters.count)	// Charcter View
+							// Prints "1"
+							print(flag.unicodeScalars.count) // Unicode View
+							// Prints "2"
+							print(flag.utf16.count)		// UTF-16 View
+							// Prints "4"
+							print(flag.utf8.count)		// UTF-8 View
+							// Prints "8"
+						</code></pre>
+						<p class="notice">
+							Each view has its own indices
+						</p>
+					</section>
+					<section>
+						<h3>String Index</h3>
+						<pre><code data-noheader>
+							let start = str.startIndex
+							let end = str.endIndex
+							let range = start.successor()..&lt;end.advancedBy(-2)
+							str.replaceRange(range, with: " swift ")
+						</code></pre>
+					</section>
+					<section>
+						<h3>Array</h3>
+						<pre><code data-noheader>
+							var doubles: [Double] = []
+							var emptyFloats: Array<Float> = Array()
+							doubles.append(contentsOf: [3.0, 2.0, 1.0])
+							doubles += [0.0, -1.0]
+							var index = doubles.index(of: 2.0)
+							for number in doubles {
+								print("\(number)")
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Dictionary</h3>
+					</section>
+					<section>
+						<h3>Set</h3>
+					</section>
+				</section>
+<!-- Resources			-->
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html">Swift Programming Language - Apple Developer</a>
+						</li>
+						<li><a href="https://developer.apple.com/reference/swift">Swift Standart Library - API Reference</a>
+						</li>
+						<li>
+								<a href="https://developer.apple.com/reference/foundation">Foundation - API Reference</a>
+						</li>
+						<li>
+							<a href="https://developer.apple.com/swift/blog/?id=30">Strings in Swift 2 - Swift Blog</a>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
+
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+		    <filter id="drop-shadow">
+		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+		        <feOffset dx="12" dy="12" result="offsetblur"/>
+		        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+		        <feComposite in2="offsetblur" operator="in"/>
+		        <feMerge>
+		            <feMergeNode/>
+		            <feMergeNode in="SourceGraphic"/>
+		        </feMerge>
+		    </filter>
+		</svg>
+
+<svg width="480px" height="480px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>Swift-logo</defs>
+    <path d="M42.9,59.7 L15.7,59.7 C10.2,59.7 5.7,55.2 5.7,49.7 L5.7,22.7 C5.7,17.2 10.2,12.7 15.7,12.7 L42.8,12.7 C48.3,12.7 52.8,17.2 52.8,22.7 L52.8,49.8 C52.9,55.2 48.4,59.7 42.9,59.7 L42.9,59.7 Z" id="Shape" stroke="none" fill="#EF5138" fill-rule="evenodd"></path>
+    <path d="M42.8,41.7 L42.8,41.7 C42.8,41.5 42.9,41.3 42.9,41.2 C44.9,33.4 40.1,24.2 32,19.4 C35.5,24.2 37.1,30 35.7,35.1 C35.6,35.6 35.4,36 35.3,36.4 C35.1,36.3 34.9,36.2 34.6,36 C34.6,36 26.6,31 17.9,22.3 C17.7,22.1 22.5,29.3 28.1,35.1 C25.5,33.6 18.2,28.4 13.7,24.2 C14.3,25.1 14.9,26 15.7,26.9 C19.5,31.8 24.5,37.8 30.5,42.4 C26.3,45 20.3,45.2 14.4,42.4 C12.9,41.7 11.6,40.9 10.3,39.9 C12.8,43.9 16.7,47.4 21.4,49.4 C27,51.8 32.6,51.6 36.7,49.4 L36.7,49.4 C38.4,48.3 43,46.6 45.3,51.1 C45.7,52 46.8,46.7 42.8,41.7 L42.8,41.7 Z" id="Shape" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+</svg>
+	</body>
+</html>

@@ -1,0 +1,612 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. iOS Frameworks</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird {
+			-webkit-clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
+			clip-path: polygon(10% 50%, 30% 0%, 70% 0%, 70% 50%, 70% 100%, 30% 100%);
+			max-width:100%;
+			/*max-height: 100%*/
+		}
+		#xib {
+			background-color: rgba(255,141,60,0.7);
+			border-bottom-left-radius: 0.5em;
+			border-top-left-radius: 0.5em;
+			-webkit-clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
+			clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
+		}
+		#storyboard {
+			background-color: rgba(255,141,60,0.7);
+			border-bottom-right-radius: 0.5em;
+			border-top-right-radius: 0.5em;
+			-webkit-clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
+			clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Layers of iOS</a>
+							</li>
+							<li>
+								<a href="#/3">App Life Cycle</a>
+							</li>
+							<li>
+								<a href="#/4">Model View Controller</a>
+							</li>
+							<li>
+								<a href="#/5">App Delegate</a>
+							</li>
+							<li>
+								<a href="#/6">Storyboard</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/swallow.jpg" />
+						</div>
+					</div>
+				</section>
+<!-- iOS Framework Layers				-->
+				<section>
+					<section data-background="../img/onion_layers.jpg">
+						<h1>Layers of iOS</h1>
+					</section>
+					<section data-transition="fade-out fast">
+						<div class="row">
+							<div class="col">
+								<h3>Stack of Frameworks</h3>
+								<small>
+									Fro low-level access to high-level abstractions
+								</small>
+							</div>
+							<div class="col">
+								<div class="iphone-box">
+									<div class="fw-item">
+										Cocoa Touch
+									</div>
+									<div class="fw-item">
+										Media
+									</div>
+									<div class="fw-item">
+										Core Services
+									</div>
+									<div class="fw-item">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section data-transition="fade-in">
+						<div class="row">
+							<div class="col">
+								<h3 class="hidden">Core OS</h3>
+								<ul>
+									<li>
+										Darwin Kernel<br />
+										<small>Concurrency, Networking, File-system</small>
+									</li>
+									<li>
+										Security<br />
+										<small>Encription, Certificates, Keychain</small>
+									</li>
+									<li>
+										Accessory<br />
+										<small>Bluetooth, Attached hardware communication</small>
+									</li>
+									<li>
+										Accelerate<br />
+										<small>Signal processing, Linear algebra</small>
+									</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="iphone-box">
+									<div class="fw-item">
+										Cocoa Touch
+									</div>
+									<div class="fw-item">
+										Media
+									</div>
+									<div class="fw-item">
+										Core Services
+									</div>
+									<div class="fw-item current">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section data-transition="fade-up">
+						<div class="row">
+							<div class="col">
+								<h3 class="hidden">Core Services</h3>
+								<ul>
+									<li>
+										Foundation<br />
+										<small>Collections, Threads, Socket communication</small>
+									</li>
+									<li>
+										Core Data<br />
+										<small>Internal database storage system</small>
+									</li>
+									<li>
+										Core Media<br />
+										<small>Low-level media data access</small>
+									</li>
+									<li>
+										Core Location<br />
+										<small>Positioning and compass</small>
+									</li>
+									<li>
+										Core Motion<br />
+										<small>Motion-data access</small>
+									</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="iphone-box">
+									<div class="fw-item">
+										Cocoa Touch
+									</div>
+									<div class="fw-item">
+										Media
+									</div>
+									<div class="fw-item current">
+										Core Services
+									</div>
+									<div class="fw-item">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section data-transition="fade-up">
+						<div class="row">
+							<div class="col">
+								<h3 class="hidden">Media</h3>
+								<ul class>
+									<li>
+										Core Graphics<br />
+										<small>Low-lewel drawing</small>
+									</li>
+									<li>
+										Core Animation<br />
+										<small>Low-lewel animation</small>
+									</li>
+									<li>
+										Core Image<br />
+										<small>Image manipulation</small>
+									</li>
+									<li>
+										AV Foundation<br />
+										<small>Recording and playback of audio and video</small>
+									</li>
+									<li>
+										Advanced graphics<br />
+										<small>OpenGL, Metal, SceneKit, SpriteKit</small>
+									</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="iphone-box">
+									<div class="fw-item">
+										Cocoa Touch
+									</div>
+									<div class="fw-item current">
+										Media
+									</div>
+									<div class="fw-item">
+										Core Services
+									</div>
+									<div class="fw-item">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section data-transition="fade-up">
+						<div class="row">
+							<div class="col">
+								<h3 class="hidden">Cocoa Touch</h3>
+								<ul class>
+									<li>
+										UIKit<br />
+										<ul>
+											<li>
+												Lifecycle mangement
+											</li>
+											<li>
+												UI managment
+											</li>
+											<li>
+												Multitasking
+											</li>
+											<li>
+												Notifications
+											</li>
+										</ul>
+									</li>
+									<li>
+										App Extensions<br />
+										<small>Calling an app from within another app</small>
+									</li>
+									<li>
+										Notification Center<br />
+										<small>Showing custom data in notification center</small>
+									</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="iphone-box">
+									<div class="fw-item current">
+										Cocoa Touch
+									</div>
+									<div class="fw-item">
+										Media
+									</div>
+									<div class="fw-item">
+										Core Services
+									</div>
+									<div class="fw-item">
+										Core OS
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+				</section>
+<!-- App Life Cycle						-->
+				<section>
+					<section data-background="../img/circle_of_life.png">
+						<h1>App Life Cycle</h1>
+					</section>
+					<section>
+						<h3>App Bundle</h3>
+						<div  class="row">
+							<div class="col">
+								<img src="../img/AppStore8_2x.png" class=""/>
+							</div>
+							<div class="col bundle" >
+								<ul>
+									<li>App Executable</li>
+									<li>UI files</li>
+									<li>Stored Images</li>
+									<li>Localization Resources</li>
+									<li>Temporary Files</li>
+									<li>Cache</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<div class="row">
+							<div class="col">
+								<h3>Execution States</h3>
+							</div>
+							<div class="col">
+								<img src="../img/high_level_flow_2x.png"  />
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3 class="hidden">States</h3>
+						<div class=" left">
+							<ul>
+								<li>
+									<span class="emphasis">Inactive</span> &ndash; app is executed but cannot recieve any events. <br />
+									Usually right after launch or coming from background
+								</li>
+								<li>
+									<span class="emphasis">Active</span> &ndash; app is up and running
+								</li>
+								<li>
+									<span class="emphasis">Background</span> &ndash; app is finishing it's tasks ready to get closed.
+									Usually right after being switched out or turned off
+								</li>
+								<li>
+									<span class="emphasis">Suspended</span> &ndash; app is not running and can be terminated by the system without any warning
+								</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h3>Allowed Background Tasks</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Audio Player/Recorder</li>
+									<li>Location Updater</li>
+									<li>VoIP Listener</li>
+								</ul>
+							</div>
+							<div clas="col">
+								<ul>
+									<li>Accessory Listener</li>
+									<li>Background Downloader</li>
+									<li>Push Notification Listener</li>
+								</ul>
+							</div>
+						</div>
+						<p class="notice">
+							Background task must be declared in app preferences
+						</p>
+					</section>
+					<section>
+						<h3>App's Limits</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Sandbox FileSystem</li>
+									<li>250/500MB RAM</li>
+									<li>Workflow Guidelines</li>
+									<li>User Permissions</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="iphone-box" style="height:18em;">
+									<img src="../img/Apple-logo-white-md.png" class="logo" />
+								</div>
+							</div>
+						</div>
+					</section>
+				</section>
+<!-- MVC    	  -->
+        <section>
+          <section data-background="../img/model_view.jpg">
+            <h1>Model View Controller</h1>
+          </section>
+          <section>
+						<h3 class="hidden">Roles</h3>
+						<img src="../img/mvc_role_diagram.png" />
+					</section>
+					<section>
+						<h3 class="hidden">App Structure</h3>
+						<img src="../img/Core_Objects_2x.png" style=""/>
+					</section>
+					<section>
+						<h3>Model</h3>
+						<ul class="model">
+							<li>
+								Stored Files
+							</li>
+							<li>
+								CoreData Objects
+							</li>
+							<li>
+								Custom Classes
+							</li>
+						</ul>
+						<p>
+							Describes data and it's relations
+						</p>
+					</section>
+					<section>
+						<h3>View</h3>
+						<ul class="view">
+							<li>
+								.Xib Files
+							</li>
+							<li>
+								Storyboard Views
+							</li>
+							<li>
+								Code-generated Views
+							</li>
+						</ul>
+						<p>
+							Provides interface for data and user actions
+						</p>
+					</section>
+					<section>
+						<h3>Controller</h3>
+						<ul class="controller">
+							<li>
+								AppDelegate Subclass
+							</li>
+							<li>
+								Storyboard Segues
+							</li>
+							<li>
+								Layout Constrains
+							</li>
+							<li>
+								ViewController Subclasses
+							</li>
+						</ul>
+						<p>
+							Describes possible actions and reactions to events
+						</p>
+					</section>
+				</section>
+<!-- App Delegate				-->
+				<section>
+					<section data-background="../img/delegate.jpg">
+            <h1>App Delegate</h1>
+          </section>
+					<section>
+						<h3 class="hidden">App Structure</h3>
+						<img src="../img/Core_Objects_2x.png" style=""/>
+					</section>
+					<section>
+						<h3>UIApplicationDelegate</h3>
+						<p class="controller">
+							Provides custom handlers for system events<br />
+							Handles basic app operations<br/>
+							Stores main window of the app
+						</br/>
+						</p>
+					</section>
+					<section>
+						<h3>UIWindow</h3>
+						<p class="view">
+							Root view of the application<br />
+							Stores View Stack
+						</p>
+					</section>
+					<section>
+						<h3>App Launch</h3>
+						<img src="../img/app_launch.png" class="small"/>
+					</section>
+					<section>
+						<h3>Simple App</h3>
+						<pre><code class="swift" src="AppDelegate.swift">
+						@UIApplicationMain
+						class AppDelegate: UIResponder, UIApplicationDelegate {
+							// Create new UIWindow
+							var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+							func application(application: UIApplication,
+								didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+								// Create root ViewController
+								window!.rootViewController = UIViewController()
+								// Set window to handle input and show it
+								window!.makeKeyAndVisible()
+								return true
+							}
+						}
+						</code></pre>
+					</section>
+				</section>
+<!-- Storyboards				-->
+        <section>
+          <section data-background="../img/storyboard.png">
+            <h1>Storyboards</h1>
+          </section>
+					<section>
+						<h3>Scenes</h3>
+						<img src="../img/indexedtable-demo.jpg" />
+						<p>
+							A <em>scene</em> represents an onscreen content area
+						</p>
+					</section>
+					<section>
+						<h3>Segues</h3>
+						<img src="../img/segue_defined_2x.png" />
+						<p>
+							A <em>segue</em> represents the transition from one scene <br> to the next scene
+						</p>
+					</section>
+					<section>
+						<h3>Designing with Storyboard</h3>
+						<img src="../img/storyboard_bird_sightings.png" style="height:500px;"/>
+						<p>
+							Storyboards allow to graphically lay out<br/>
+							the user’s path through your app
+						</p>
+					</section>
+					<section>
+						<h3>Storyboard vs XiB</h3>
+						<div class="row">
+							<div class="col" id="xib">
+								<h5>.xib</h5>
+								<ul>
+									<li>
+										Single scene
+									</li>
+									<li>
+										A file for every scene
+									</li>
+									<li>
+										Manual scene transition
+									</li>
+								</p>
+							</div>
+							<div class="col" id="storyboard">
+								<h5>Storyboard</h5>
+								<ul>
+									<li>
+										Multiple scenes and segues
+									</li>
+									<li>
+										Can be slow and heavy<br />
+									</li>
+									<li>
+										Not well-suited for collaborative development
+									</li>
+								</ul>
+							</div>
+						</div>
+					</section>
+        </section>
+<!-- Resources			-->
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
+						</li>
+						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">iOS Programming Guide - Apple Developer</a>
+						</li>
+						<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">Model-View-Controller - Apple Developer</a>
+						</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
+
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+		    <filter id="drop-shadow">
+		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+		        <feOffset dx="12" dy="12" result="offsetblur"/>
+		        <feFlood flood-color="rgba(0,0,0,0.5)"/>
+		        <feComposite in2="offsetblur" operator="in"/>
+		        <feMerge>
+		            <feMergeNode/>
+		            <feMergeNode in="SourceGraphic"/>
+		        </feMerge>
+		    </filter>
+		</svg>
+
+<svg width="480px" height="480px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>Swift-logo</defs>
+    <path d="M42.9,59.7 L15.7,59.7 C10.2,59.7 5.7,55.2 5.7,49.7 L5.7,22.7 C5.7,17.2 10.2,12.7 15.7,12.7 L42.8,12.7 C48.3,12.7 52.8,17.2 52.8,22.7 L52.8,49.8 C52.9,55.2 48.4,59.7 42.9,59.7 L42.9,59.7 Z" id="Shape" stroke="none" fill="#EF5138" fill-rule="evenodd"></path>
+    <path d="M42.8,41.7 L42.8,41.7 C42.8,41.5 42.9,41.3 42.9,41.2 C44.9,33.4 40.1,24.2 32,19.4 C35.5,24.2 37.1,30 35.7,35.1 C35.6,35.6 35.4,36 35.3,36.4 C35.1,36.3 34.9,36.2 34.6,36 C34.6,36 26.6,31 17.9,22.3 C17.7,22.1 22.5,29.3 28.1,35.1 C25.5,33.6 18.2,28.4 13.7,24.2 C14.3,25.1 14.9,26 15.7,26.9 C19.5,31.8 24.5,37.8 30.5,42.4 C26.3,45 20.3,45.2 14.4,42.4 C12.9,41.7 11.6,40.9 10.3,39.9 C12.8,43.9 16.7,47.4 21.4,49.4 C27,51.8 32.6,51.6 36.7,49.4 L36.7,49.4 C38.4,48.3 43,46.6 45.3,51.1 C45.7,52 46.8,46.7 42.8,41.7 L42.8,41.7 Z" id="Shape" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+</svg>
+	</body>
+</html>

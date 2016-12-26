@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
     <meta name="viewport" content="width=device-width">
+    <meta  >
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -16,52 +17,130 @@
     <div class="wrapper">
       <header>
         <h1>Swift-CS333</h1>
-        <p>SFEDU CS333 Mobile Development</p>
-
+        <p>SFEDU MMCS<br />
+         CS333 Mobile Development</p>
+        <div>
+          <ul class="menu">
+            <li><a href="http://edu.mmcs.sfedu.ru/course/view.php?id=274">Moodle</a>
+            </li>
+            <li><a href="#slides">Slides</a>
+            </li>
+            <li><a href="#playgrounds">Playgrounds</a>
+            </li>
+            <li><a href="#resources">Resources</a>
+            </li>
+            <li><a href="#assignments">Assignments</a>
+            </li>
+          </ul>
+        </div>
         <ul>
           <li><a href="https://github.com/xivol/Swift-CS333/zipball/master">Download <strong>ZIP File</strong></a></li>
           <li><a href="https://github.com/xivol/Swift-CS333/tarball/master">Download <strong>TAR Ball</strong></a></li>
           <li><a href="https://github.com/xivol/Swift-CS333">View On <strong>GitHub</strong></a></li>
         </ul>
-        <section>
-          <ul>
-          <li><a href="https://xivol.github.io/Swift-CS333/#slides">Slides</a>
-          </li>
-          <li><a href="https://xivol.github.io/Swift-CS333/#playground">Playgrounds</a>
-          </li>
-          <li><a href="https://xivol.github.io/Swift-CS333/#resources">Resources</a>
-          </li>
-          <li><a href="https://xivol.github.io/Swift-CS333/#assignments">Assignments</a>
-          </li>
-          </ul>
-        </section>
       </header>
-
       <section>
         <h3>
-<a id="welcome-to-swift-cs333" class="anchor" href="#welcome-to-swift-cs333" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to <strong>Swift-CS333</strong>.</h3>
+<a id="welcome-to-swift-cs333" class="anchor" href="#welcome-to-swift-cs333" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to <strong>Swift-CS333</strong>!</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
-
+<h3><a id="slides" class="anchor" href="#slides" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>Slides</h3>
+<table>
+  <tr>
+    <td>
+      <strong>2017</strong>
+    </td>
+    <td>
+      <strong>2016</strong>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <ol>
+        <li><a href="#">Introduction</a></li>
+      </ol>
+    </td>
+    <td>
+      <ol>
+        <li><a href="./slides-old/Introduction/">Introduction</a></li>
+        <li><a href="./slides-old/Syntax/">Swift Syntax</a></li>
+        <li><a href="./slides-old/ExtraSyntax/">More Syntax</a></li>
+        <li><a href="./slides-old/FrameworkOverview/">iOS Overview</a></li>
+        <li><a href="./slides-old/ViewControllers/">User Interface</a></li>
+        <li><a href="./slides-old/CustomControls/">Graphics</a></li>
+        <li><a href="./slides-old/DataStorage/">Data Storage</a></li>
+        <li><a href="./slides-old/Concurrency/">Concurrency</a></li>
+        <li><a href="./slides-old/Networking/">Networking</a></li>
+        <li><a href="./slides-old/MediaLocation/">Media &amp; Location</a></li>
+      </ol>
+    </td>
+  </tr>
+</table>
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="playgrounds" class="anchor" href="#playgrounds" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>Playgrounds</h3>
+  <table>
+    <tr>
+      <td><strong>Swift</strong></td>
+      <td><strong>User Interface</strong></td>
+    </tr>
+    <tr>
+      <td><ul>
+          <li><a href="#">Basic Types</a></li>
+      <!--<li><a href="#">Functions</a></li>
+          <li><a href="#">Optionals</a></li>
+          <li><a href="#">Enums</a></li>
+          <li><a href="#">Classes</a></li>
+          <li><a href="#">Containers</a></li>
+          <li><a href="#">Strings</a></li>
+          <li><a href="#">Dates</a></li>
+          <li><a href="#">Files</a></li>
+      -->
+      </ul></td>
+      <td><ul>
+      </ul></td>
+    </tr>
+    <tr>
+      <td><strong>Data Persistence</strong></td>
+      <td><strong>Concurrency&amp;Networking</strong></td>
+    </tr>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
-
+  </table>
 <h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
+<a id="resources" class="anchor" href="#resources" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>Resources</h3>
+  <strong>Books</strong>
+  <ul class="books">
+    <li><a href="https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.0.1).epub">The Swift Programming Language</a> &ndash; the book of swift. Every other book on swift is outdated</li>
+  </ul>
+  <strong>Web-Sites</strong>
+  <ul class="sites">
+    <li><a href="https://swift.org">Swift.org</a> &ndash; official site of open source swift development</li>
+    <li><a href="https://developer.apple.com/swift/resources/">Apple Swift Resources</a> &ndash; several articles and videos from Apple</li>
+    <li><a href="https://www.raywenderlich.com/category/swift">Ray Weтderlich</a> &ndash; articles on mobile development</li>
+    <li><a href="https://github.com/raywenderlich/swift-style-guide">Swift Style Guide</a> &ndash; good style guide for readable swift code</li>
+    <br />
+    <li class="ru"><a href="http://swiftbook.ru">SwiftBook.ru</a> &ndash; russian translation of swift book, a lot of articles and paid cources</li>
+  </ul>
+  <strong>Web-Cources</strong>
+  <ul class="cources">
+    <li><a href="https://itunes.apple.com/ru/course/developing-ios-9-apps-swift/id1104579961">Developing iOS 9 Apps with Swift</a> &ndash; Stanford</li>
+    <li><a href="https://itunes.apple.com/ru/course/ios-development-in-swift/id950659946">iOS Development in Swift</a> &ndash; Plymouth</li>
+    <li><a href="https://www.udacity.com/courses/ios">iOS Courses and Nanodegree Programs</a> &ndash; Udacity</li>
+    <li class="ru"><a href="https://itunes.apple.com/ru/course/razrabotka-ios-prilozenij/id941293188">iOS Development</a> &ndash; HSE</li>
+  </ul>
+  <strong>Libraries</strong>
+  <ul class="libs">
+    <li><a href="https://github.com/apple/swift/">Swift on GitHub</a></a></li>
+    <li><a href="https://github.com/vsouza/awesome-ios">Awesome iOS</a> &ndash; awesome list of iOS Libraries</li>
+    <li><a href="https://github.com/Ramotion">Ramotion</a> &ndash; fancy UI elements</li>
+    <li><a href="https://github.com/raywenderlich/swift-algorithms">Swift Algorithms</a> &ndash; number of useful slgorithms implemented in swift</li>
+  </ul>
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="assignments" class="anchor" href="#assignments" aria-hidden="true">
+  <span aria-hidden="true" class="octicon octicon-link"></span></a>Assignments</h3>
 
-<p>You can <a href="https://help.github.com/articles/basic-writing-and-formatting-syntax/#mentioning-users-and-teams" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/xivol">xivol</a></p>

@@ -166,6 +166,9 @@ header {
 
 header ul {
   list-style:none;
+}
+
+header ul:not(.menu) {
   height:40px;
   padding:0;
   background: #f4f4f4;
@@ -174,7 +177,7 @@ header ul {
   width:270px;
 }
 
-header li {
+header ul:not(.menu) li {
   width:89px;
   float:left;
   border-right:1px solid #e0e0e0;
@@ -189,7 +192,7 @@ header li:last-child a {
   border-radius:0 5px 5px 0;
 }
 
-header ul a {
+header ul:not(.menu) a {
   line-height:1;
   font-size:11px;
   color:#999;
@@ -199,11 +202,11 @@ header ul a {
   height:34px;
 }
 
-header ul a:hover {
+header ul:not(.menu) a:hover {
   color:#999;
 }
 
-header ul a:active {
+header ul:not(.menu) a:active {
   background-color:#f0f0f0;
 }
 
@@ -276,7 +279,7 @@ footer {
     display:inline;
   }
 
-  header ul {
+  header ul:not(.menu) {
     position:absolute;
     right:50px;
     top:52px;
@@ -323,9 +326,38 @@ footer {
   }
 }
 
-/*  MORE STYLES */
-header section  {
-  font-size:12px;
-  display:block;
-  width: 80%;
+/* Menu styles */
+
+ul.menu, ul.books,
+ul.sites, ul.cources, ul.libs {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+
+ul.menu li:before,
+ul.books li:before,
+ul.sites li:before,
+ul.cources li:before,
+ul.libs li:before {
+  /*display: list-item;*/
+  margin-right: 0.2em;
+  width: 1.2em;
+}
+
+ul.menu li:before    { content: "📌"; }
+ul.books li:before   { content: "📙"; }
+ul.sites li:before   { content: "🌐"; }
+ul.cources li:before { content: "🎓"; }
+ul.libs li:before    { content: "⚙"; }
+
+li.ru a:after  {
+  content: "🇷🇺";
+  padding-left: 0.2em;
+}
+
+.notice {
+  font-size: 0.8em;
+  font-color: #e5e5e5;
 }
