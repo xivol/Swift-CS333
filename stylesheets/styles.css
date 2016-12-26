@@ -340,7 +340,8 @@ ul.menu li:before,
 ul.books li:before,
 ul.sites li:before,
 ul.cources li:before,
-ul.libs li:before {
+ul.libs li:before,
+ul.tasks li:before {
   /*display: list-item;*/
   margin-right: 0.2em;
   width: 1.2em;
@@ -351,6 +352,7 @@ ul.books li:before   { content: "📙"; }
 ul.sites li:before   { content: "🌐"; }
 ul.cources li:before { content: "🎓"; }
 ul.libs li:before    { content: "⚙"; }
+ul.tasks li:before    { content: "🎯"; }
 
 li.ru a:after  {
   content: "🇷🇺";
