@@ -26,4 +26,4 @@ You can port your game from (CS253)[http://edu.mmcs.sfedu.ru/course/view.php?id=
 
 The result should be a playground file that prints game session log.
 Every class should be implemented in its own file.
-Read the (style guide)[https://github.com/raywenderlich/swift-style-guide] before you start.
+Read the [style guide](https://github.com/raywenderlich/swift-style-guide) before you start.
