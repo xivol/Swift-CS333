@@ -7,11 +7,11 @@ Implement mechanics of the board game of your choice:
 * [Rummy](https://en.wikipedia.org/wiki/Rummy)
 * [Durak](https://en.wikipedia.org/wiki/Durak)
 * [Monopoly](https://en.wikipedia.org/wiki/Monopoly_(game))
-* [...](https://boardgamegeek.com/browse/boardgamecategory)
+* [...](https://en.wikipedia.org/wiki/List_of_board_games)
 
 _There are hundreds of thousands of different games out there. No duplicates please._
 
-Your program should produce basic game log:
+Your program should implement basic FSM flow of the game. The result should be a playground file that prints game session log:
 ```
     Black: Pawn E3 E4
     White: Knight D3 E5
@@ -22,6 +22,4 @@ There is no need to implement complex AI, use random or greedy strategy.
 
 You can port your game from [CS253](http://edu.mmcs.sfedu.ru/course/view.php?id=57) to Swift as this assignment.
 
-The result should be a playground file that prints game session log.
-Every class should be implemented in its own file.
 Read the [style guide](https://github.com/raywenderlich/swift-style-guide) before you start.
