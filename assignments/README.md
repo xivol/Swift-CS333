@@ -1,5 +1,5 @@
 #Assignments
-###Assignment #1: [Toying with Swift](/task1)
+###Assignment #1: [Toying with Swift](./task1)
 ###Assignment #2: Calculator
 Implement basic calculator without a storyboard.
 
