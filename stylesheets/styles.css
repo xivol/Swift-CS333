@@ -65,6 +65,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+  background-color: #f4f4f4;
 }
 
 p, ul, ol, table, pre, dl {
@@ -359,3 +360,6 @@ li.ru a:after  {
   content: "🇷🇺";
   padding-left: 0.2em;
 }
+
+.playgrounds th:before { content: "🕹"; }
+.slides th:before { content: "🎓"; }
