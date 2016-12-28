@@ -28,7 +28,7 @@ public class SnakesAndLadders: DiceGame, MultiplayerGame, TurnbasedGame {
     var numberOfTurns = 0
     
     public var turns: Int {
-        get{return numberOfTurns}
+        get{ return numberOfTurns }
     }
     
     public func play() {
@@ -45,7 +45,7 @@ public class SnakesAndLadders: DiceGame, MultiplayerGame, TurnbasedGame {
                 
                 delegate?.playerDidStartTurn(p)
                 
-                let diceRoll = (p as! DiceGamePlayer).roll(dice)
+                let diceRoll = dice.roll()
                 delegate?.game(self, didDiceRoll: diceRoll)
             
                 switch p.score + diceRoll {
@@ -57,6 +57,7 @@ public class SnakesAndLadders: DiceGame, MultiplayerGame, TurnbasedGame {
                     p.score = 2 * finalSquare - newSquare
                     delegate?.player(p, didTakeAction: .special(square: p.score, explanation:"went back"))
                 default:
+                    // move player forward
                     p.score += diceRoll
                     delegate?.player(p, didTakeAction: .move(square: p.score))
                     // move player up or down

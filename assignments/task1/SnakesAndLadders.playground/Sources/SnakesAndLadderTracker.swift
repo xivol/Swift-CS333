@@ -1,6 +1,6 @@
 import Foundation
 
-public class SALPlayer: Player, DiceGamePlayer {
+public class SALPlayer: Player {
     public let name: String
     public var score: Int = 0
     

@@ -31,7 +31,7 @@ extension MultiplayerGameDelegate {
         case .win:
             print("\(player.name) wins!")
         case let .move(square):
-            print("\(player.name) moves to \(square)!")
+            print("\(player.name) moves to \(square)")
         case let .special(_, explanation):
             print("\(player.name) \(explanation)")
         }
