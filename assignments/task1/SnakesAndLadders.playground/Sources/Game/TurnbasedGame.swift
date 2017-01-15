@@ -1,9 +1,13 @@
 import Foundation
 
-// Game
+// MARK: TurnbasedGame
 
 public protocol TurnbasedGame: Game {
     var turns: Int { get }
+    var hasEnded: Bool { get }
+    func start()
+    func makeTurn()
+    func end()
 }
 
 // Delegate
@@ -14,6 +18,16 @@ public protocol TurnbasedGameDelegate: GameDelegate {
 }
 
 // Default Implementation
+
+extension TurnbasedGame {
+    public func play() {
+        start()
+        while !self.hasEnded {
+            makeTurn()
+        }
+        end()
+    }
+}
 
 extension TurnbasedGameDelegate {
     public func gameDidStartTurn(_ game: TurnbasedGame) {}

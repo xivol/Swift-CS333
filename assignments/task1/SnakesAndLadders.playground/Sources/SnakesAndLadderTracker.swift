@@ -1,6 +1,6 @@
 import Foundation
 
-public class SALPlayer: Player {
+public class SnakesAndLaddersPlayer: Player {
     public let name: String
     public var score: Int = 0
     
@@ -13,7 +13,7 @@ public class SnakesAndLaddersTracker: SnakesAndLaddersDelegate {
     public init(){}
     
     public func gameDidStartTurn(_ game: TurnbasedGame) {
-        print("======")
+        print("===-===-===")
     }
 
     public func playerDidStartTurn(_ player: Player) {
