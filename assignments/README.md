@@ -1,5 +1,7 @@
 #Assignments
 ###Assignment #1: [Toying with Swift](./task1)
+Implement mechanics of the board game of your choice.
+
 ###Assignment #2: The Calculator
 Implement basic calculator without a storyboard.
 
@@ -14,5 +16,5 @@ Implement an app to apply filters and put text on images.
 ###Assignment #5: The Timetable
 Implement a client for [interactive schedule](http://users.mmcs.sfedu.ru/~schedule/).
 
-###Assignment 6: The Martian
-Implement an image gallery for [photos from Mars](https://api.nasa.gov/api.html#MarsPhotos).
+###Assignment 6: The Stargazer
+Implement an image gallery for [the Astronomy Picture of The Day](https://api.nasa.gov/api.html#apod).
