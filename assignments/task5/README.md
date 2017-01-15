@@ -1,7 +1,7 @@
 Minimal requirements:
-* JSON Serialization/Deserialization
+* Remote data access
 * CoreData local storage
-* Correct behavior without data access
+* Correct behavior without internet access
 
 Incomplete list of open REST APIs:
 * Star Wars: [https://swapi.co/](https://swapi.co/)
