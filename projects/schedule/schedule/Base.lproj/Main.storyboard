@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="FY6-Mu-GGu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Сегодня-->
+        <scene sceneID="41J-oX-JKT">
+            <objects>
+                <tableViewController id="I2y-le-tAc" customClass="ScheduleViewController" customModule="schedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="alC-a4-Ml0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="I2y-le-tAc" id="4tk-oE-t31"/>
+                            <outlet property="delegate" destination="I2y-le-tAc" id="HJH-Ne-V8e"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Сегодня" id="C6r-do-gAh"/>
+                    <connections>
+                        <outlet property="headerLabel" destination="C6r-do-gAh" id="1nV-zX-DyI"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9oK-sZ-KT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="Woq-1m-8uN">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="weekdayEdgePan:" destination="I2y-le-tAc" id="7wN-4Q-6Xa"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="668" y="-103.89805097451276"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KN0-eu-SrO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FY6-Mu-GGu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ciJ-XK-dtL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="I2y-le-tAc" kind="relationship" relationship="rootViewController" id="fXa-37-5Gr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0m3-xE-Xih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-271.19999999999999" y="-103.89805097451276"/>
+        </scene>
+    </scenes>
+</document>
