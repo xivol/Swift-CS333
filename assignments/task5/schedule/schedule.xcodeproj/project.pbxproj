@@ -17,7 +17,13 @@
 		E0CBDE8E1E30F74800C5D61C /* ScheduleViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0CBDE8C1E30F74800C5D61C /* ScheduleViewCell.xib */; };
 		E0CBDE901E30FBB500C5D61C /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDE8F1E30FBB500C5D61C /* Schedule.swift */; };
 		E0CBDE931E31242200C5D61C /* ScheduleViewDoubleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E0CBDE921E31242200C5D61C /* ScheduleViewDoubleCell.xib */; };
-		E0CBDE951E32645000C5D61C /* TableViewCellHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDE941E32645000C5D61C /* TableViewCellHelpers.swift */; };
+		E0CBDEA11E32A99D00C5D61C /* Degree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDE9F1E32A99D00C5D61C /* Degree.swift */; };
+		E0CBDEA21E32A99D00C5D61C /* TableViewCellHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEA01E32A99D00C5D61C /* TableViewCellHelpers.swift */; };
+		E0CBDEA71E32A9FC00C5D61C /* Grade+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEA31E32A9FC00C5D61C /* Grade+CoreDataClass.swift */; };
+		E0CBDEA81E32A9FC00C5D61C /* Grade+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEA41E32A9FC00C5D61C /* Grade+CoreDataProperties.swift */; };
+		E0CBDEA91E32A9FC00C5D61C /* Group+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEA51E32A9FC00C5D61C /* Group+CoreDataClass.swift */; };
+		E0CBDEAA1E32A9FC00C5D61C /* Group+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEA61E32A9FC00C5D61C /* Group+CoreDataProperties.swift */; };
+		E0CBDEAD1E390A1200C5D61C /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0CBDEAC1E390A1200C5D61C /* Server.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +37,15 @@
 		E0CBDE891E30F72900C5D61C /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleViewController.swift; path = schedule/ScheduleViewController.swift; sourceTree = "<group>"; };
 		E0CBDE8B1E30F74800C5D61C /* ScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleViewCell.swift; path = schedule/ScheduleViewCell.swift; sourceTree = "<group>"; };
 		E0CBDE8C1E30F74800C5D61C /* ScheduleViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleViewCell.xib; path = schedule/ScheduleViewCell.xib; sourceTree = "<group>"; };
-		E0CBDE8F1E30FBB500C5D61C /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		E0CBDE8F1E30FBB500C5D61C /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Schedule.swift; path = schedule/Schedule.swift; sourceTree = "<group>"; };
 		E0CBDE921E31242200C5D61C /* ScheduleViewDoubleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScheduleViewDoubleCell.xib; path = schedule/ScheduleViewDoubleCell.xib; sourceTree = "<group>"; };
-		E0CBDE941E32645000C5D61C /* TableViewCellHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellHelpers.swift; sourceTree = "<group>"; };
+		E0CBDE9F1E32A99D00C5D61C /* Degree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Degree.swift; path = schedule/Degree.swift; sourceTree = "<group>"; };
+		E0CBDEA01E32A99D00C5D61C /* TableViewCellHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewCellHelpers.swift; path = schedule/TableViewCellHelpers.swift; sourceTree = "<group>"; };
+		E0CBDEA31E32A9FC00C5D61C /* Grade+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grade+CoreDataClass.swift"; path = "schedule/Grade+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E0CBDEA41E32A9FC00C5D61C /* Grade+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Grade+CoreDataProperties.swift"; path = "schedule/Grade+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E0CBDEA51E32A9FC00C5D61C /* Group+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Group+CoreDataClass.swift"; path = "schedule/Group+CoreDataClass.swift"; sourceTree = "<group>"; };
+		E0CBDEA61E32A9FC00C5D61C /* Group+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Group+CoreDataProperties.swift"; path = "schedule/Group+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E0CBDEAC1E390A1200C5D61C /* Server.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +62,8 @@
 		E0CBDE641E30F1B000C5D61C = {
 			isa = PBXGroup;
 			children = (
+				E0CBDEAB1E3909F300C5D61C /* Network */,
+				E0CBDE961E32A19D00C5D61C /* Model */,
 				E0CBDE911E3123D100C5D61C /* ViewControllers */,
 				E0CBDE6F1E30F1B100C5D61C /* schedule */,
 				E0CBDE6E1E30F1B100C5D61C /* Products */,
@@ -67,11 +81,9 @@
 		E0CBDE6F1E30F1B100C5D61C /* schedule */ = {
 			isa = PBXGroup;
 			children = (
-				E0CBDE8F1E30FBB500C5D61C /* Schedule.swift */,
 				E0CBDE701E30F1B100C5D61C /* AppDelegate.swift */,
 				E0CBDE7A1E30F1B100C5D61C /* Assets.xcassets */,
 				E0CBDE7F1E30F1B100C5D61C /* Info.plist */,
-				E0CBDE771E30F1B100C5D61C /* schedule.xcdatamodeld */,
 			);
 			path = schedule;
 			sourceTree = "<group>";
@@ -85,9 +97,31 @@
 				E0CBDE921E31242200C5D61C /* ScheduleViewDoubleCell.xib */,
 				E0CBDE741E30F1B100C5D61C /* Main.storyboard */,
 				E0CBDE7C1E30F1B100C5D61C /* LaunchScreen.storyboard */,
-				E0CBDE941E32645000C5D61C /* TableViewCellHelpers.swift */,
+				E0CBDEA01E32A99D00C5D61C /* TableViewCellHelpers.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		E0CBDE961E32A19D00C5D61C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E0CBDEA31E32A9FC00C5D61C /* Grade+CoreDataClass.swift */,
+				E0CBDEA41E32A9FC00C5D61C /* Grade+CoreDataProperties.swift */,
+				E0CBDEA51E32A9FC00C5D61C /* Group+CoreDataClass.swift */,
+				E0CBDEA61E32A9FC00C5D61C /* Group+CoreDataProperties.swift */,
+				E0CBDE9F1E32A99D00C5D61C /* Degree.swift */,
+				E0CBDE8F1E30FBB500C5D61C /* Schedule.swift */,
+				E0CBDE771E30F1B100C5D61C /* schedule.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E0CBDEAB1E3909F300C5D61C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E0CBDEAC1E390A1200C5D61C /* Server.swift */,
+			);
+			name = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,11 +200,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0CBDE8D1E30F74800C5D61C /* ScheduleViewCell.swift in Sources */,
-				E0CBDE951E32645000C5D61C /* TableViewCellHelpers.swift in Sources */,
 				E0CBDE791E30F1B100C5D61C /* schedule.xcdatamodeld in Sources */,
+				E0CBDEA81E32A9FC00C5D61C /* Grade+CoreDataProperties.swift in Sources */,
 				E0CBDE8A1E30F72900C5D61C /* ScheduleViewController.swift in Sources */,
+				E0CBDEA71E32A9FC00C5D61C /* Grade+CoreDataClass.swift in Sources */,
+				E0CBDEA91E32A9FC00C5D61C /* Group+CoreDataClass.swift in Sources */,
+				E0CBDEA21E32A99D00C5D61C /* TableViewCellHelpers.swift in Sources */,
+				E0CBDEA11E32A99D00C5D61C /* Degree.swift in Sources */,
 				E0CBDE901E30FBB500C5D61C /* Schedule.swift in Sources */,
 				E0CBDE711E30F1B100C5D61C /* AppDelegate.swift in Sources */,
+				E0CBDEAD1E390A1200C5D61C /* Server.swift in Sources */,
+				E0CBDEAA1E32A9FC00C5D61C /* Group+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +389,8 @@
 				E0CBDE781E30F1B100C5D61C /* schedule.xcdatamodel */,
 			);
 			currentVersion = E0CBDE781E30F1B100C5D61C /* schedule.xcdatamodel */;
-			path = schedule.xcdatamodeld;
+			name = schedule.xcdatamodeld;
+			path = schedule/schedule.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

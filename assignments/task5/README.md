@@ -1,9 +1,13 @@
-Minimal requirements:
-* Remote data access
-* CoreData local storage
-* Correct behavior without internet access
+Implement a client for [interactive schedule](http://users.mmcs.sfedu.ru/~schedule/).
 
-Incomplete list of open REST APIs:
+Minimal requirements:
+* Remote data access;
+* CoreData local storage;
+* Correct behavior without internet access.
+
+As an alternative you can pick any public API and implement a client for that API.
+
+**Incomplete list of open REST APIs:**
 * Star Wars: [https://swapi.co/](https://swapi.co/)
 * Marvel Comics: [https://developer.marvel.com/](https://developer.marvel.com/)
 * Pokemon Games: [https://pokeapi.co/](https://pokeapi.co/)

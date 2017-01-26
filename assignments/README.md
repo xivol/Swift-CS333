@@ -13,7 +13,7 @@ Implement Calculator's ViewController using Storyboard and Auto Layout.
 ###Assignment #4: The Memesis
 Implement an app to apply filters and put text on images.
 
-###Assignment #5: The Timetable
+###Assignment #5: [The Timetable](./task5)
 Implement a client for [interactive schedule](http://users.mmcs.sfedu.ru/~schedule/).
 
 ###Assignment 6: The Stargazer

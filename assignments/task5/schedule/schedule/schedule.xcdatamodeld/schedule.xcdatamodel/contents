@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Grade" representedClassName="Grade" syncable="YES" codeGenerationType="class">
+        <attribute name="degree" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="number" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="groups" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="grade" inverseEntity="Group" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <relationship name="grade" maxCount="1" deletionRule="Nullify" destinationEntity="Grade" inverseName="groups" inverseEntity="Grade" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Group" positionX="-54" positionY="9" width="128" height="90"/>
+        <element name="Grade" positionX="18" positionY="54" width="128" height="90"/>
+    </elements>
+</model>
