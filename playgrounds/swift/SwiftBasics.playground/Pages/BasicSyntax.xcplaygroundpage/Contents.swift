@@ -1,14 +1,13 @@
-//: # Basic Syntax
+//: ## Basic Syntax
 //:[⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)
 //: ****
 //:### Constants and Variables
 let constant = "Constants are declared with 'let'"
 //constant = "You can not change a constant!"
-//: _It is considered a good practice to declare any value as a constant until you have a need to change it to variable._
+//: _It is considered a good practice to declare any value as a constant until you have a need to change it to a variable._
 var variable = "Variables are declared with 'var'"
 variable = "You can assign a new value to a variable"
-//: _You can declare multiple constants or variables in one line
-//: if you separate them with a comma:_
+//: You can declare multiple constants or variables in one line if you separate them with a comma:
 let a = 0, b = 0, c = 0
 //:### Basic Types
 let boolean: Bool = true
@@ -17,38 +16,40 @@ let long: Int = Int.max  // Int64 for x64 systems
 let integer: Int32 = Int32.max
 let short: Int16 = Int16.max
 let byte: Int8 = Int8.max
-let ubyte: UInt8 = UInt8.max
+let ubyte: UInt8 = UInt8.max // there are also UInt16, UInt32, UInt62
 
 let pi: Double = 3.141592653589793
-let e: Float =  2.71828182
-//: _Type of a constant can be inferred from declaration._
-let i = 42
-print("i is inferred as \(type(of: i))")
+let e: Float = 2.71828182
+//: Type of a value can be inferred from the declaration
+let i = 0x2a
+
+"i is inferred as \(type(of: i))"
 
 let π = 3.14
-print("π is inferred as \(type(of: π))")
+"π is inferred as \(type(of: π))"
 
 let star = "⭐️"
-print("star is inferred as \(type(of: star))")
+"star is inferred as \(type(of: star))"
 //:### Type Casting
-//: _There is no implicit type conversions in Swift._
+//: There is no implicit type conversions in Swift.
 let intPi = Int(pi)
 let doubleE = Double(e)
-//: _Chararcter literals are represented the same way as strings, so the below is not a conversion._
+//: But literals has no type, so the following is not a type conversion.
 let fire: Character = "🔥"
+let four: Double = 2 * 2
 //:### Operators
-let arithmetics = 1 + (2 * 3) - 5 / 4 % 2
+let arithmetics = 1 + (2 * 3) - (5 / 4) % 2
 let comparision = ((1 > 2) == (2 < 3)) != ((2 >= 3) == (3<=4))
 let logic = (true && !false) || (!true && false)
 
 let range = 1...3
 let interval = 1..<10
 //:### Control Flow
-//: _In Swift curved braces are required for control flow._
+//: In Swift curved braces are required for control flow.
 if comparision {
-    print( "Comparision result is True" )
+    "Comparision result is True"
 } else {
-    print( "Comparision result is False" )
+    "Comparision result is False"
 }
 
 let signedValue = -1
@@ -82,21 +83,20 @@ case 1, 2, 3, 5, 8, 13, 21, 34, 55, 89:
 default:
     break
 }
-//:_Loops_
+//:_there are the basic loops in Swift_
 for i in 1...10 {
-    print(i, separator: "", terminator: " ")
+    i % 2
 }
-print() // new line
 
 var whileCondition = true
 while whileCondition {
-    print(whileCondition)
+    whileCondition
     whileCondition = false
 }
 
 var repeatCondition = false
 repeat {
-    print(repeatCondition)
+    repeatCondition
 } while repeatCondition
 //: ****
 //: [⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)

@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='rendered'>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='TableOfContents'/>
         <page name='BasicSyntax'/>
         <page name='Tuples'/>
         <page name='Functions'/>
+        <page name='Optionals'/>
         <page name='Collections'/>
+        <page name='Arrays'/>
+        <page name='Strings'/>
+        <page name='Dictionaries'/>
+        <page name='Enumerations'/>
     </pages>
 </playground>

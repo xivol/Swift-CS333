@@ -7,8 +7,13 @@
  - [Basic Syntax](BasicSyntax)
  - [Tuples](Tuples)
  - [Functions](Functions)
- - [Collections](Collections)
  - [Optionals](Optionals)
+ - [Collections](Collections)
+   - [Arrays](Arrays)
+   - [Strings](Strings)
+   - [Dictionaries](Dictionaries)
+   - [Sets](Sets)
+ - [Enumerations](Enumerations)
  ****
  [➡️](@next)
 */

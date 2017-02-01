@@ -1,27 +1,28 @@
 /*:
- # Tuples
+ ## Tuples
  [⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)
  ****
  */
-import Foundation
-//: _All collections are part of Foundation library._
 var pair: (String, Int)
 pair.0 = "Swift"
 pair.1 = 333
 
-print(pair)
+pair
 
 var namedPair: (name: String, age: Int)
 namedPair.name = "Ilya"
 namedPair.age = 28
 
-print(namedPair)
-
+namedPair
+//: Type inferrence
 let point = (x: 0.0, y: -1.0)
-print( type(of: point) )
+
+type(of: point)
 
 let area = (bottomLeft: (-1.0, -1.0), topRight: (1.0, 1.0))
-//: _Tuples are compared from left to right._
+
+type(of: area)
+//: Tuples of the same type are comparable. Tuples are compared from left to right.
 if point > area.bottomLeft && point < area.topRight {
     print("point is inside the (\(area.bottomLeft), \(area.topRight)) area")
 }
@@ -46,8 +47,8 @@ var (first, second) = point
 print( "first: \(first); second: \(second)")
 
 (first, second) = (second, first)
-print( "swapped: first: \(first); second: \(second)")
-//: _Underscore '\_' can be used to ignore some of tuple values._
+print( "swapped\nfirst: \(first); second: \(second)")
+//: _Underscore `_` can be used to ignore some of tuple values._
 let (onlyFirst, _) = point
 print( "first: \(onlyFirst)")
 //: _It can also be used in switch cases:_
@@ -62,7 +63,7 @@ default:
     break
 }
 //: _(Type) ~ Type_
-type(of: ("Hello, Swift!"))
+type(of: ("Hello, Tuple!"))
 type(of: (42))
 type(of: ()) // () ~ Void
 //: [⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)

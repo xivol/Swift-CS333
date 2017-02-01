@@ -14,7 +14,7 @@ showIngredients(sampleIngredients)
 /*:
 The `sortedList(_:)` function uses the `sort(by:)` method to sort the ingredients in place. You'll learn more about sorting in [Processing Sequences and Collections](Processing%20Sequences%20and%20Collections).
 */
-func sortedList(_ list: [Ingredient]) -> [Ingredient] {
+func sortedList( _ list: [Ingredient]) -> [Ingredient] {
     var list = list
     list.sort { first, second in
         return first.name.localizedStandardCompare(second.name) == .orderedAscending
