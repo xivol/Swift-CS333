@@ -1,7 +1,7 @@
 /*:
  ![Swift](apple_swift_logo.png)
  # Swift Basics
- [➡️](@next)
+ [Next](@next)
  ****
  ## Table of contents
  - [Basic Syntax](BasicSyntax)
@@ -15,5 +15,5 @@
    - [Sets](Sets)
  - [Enumerations](Enumerations)
  ****
- [➡️](@next)
+ [Next](@next)
 */

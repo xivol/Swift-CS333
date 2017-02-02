@@ -1,9 +1,8 @@
 //: ## Basic Syntax
-//:[⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)
-//: ****
-//:### Constants and Variables
+//: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)//: ****
+//: ### Constants and Variables
 let constant = "Constants are declared with 'let'"
-//constant = "You can not change a constant!"
+// constant = "You can not change a constant!"
 //: _It is considered a good practice to declare any value as a constant until you have a need to change it to a variable._
 var variable = "Variables are declared with 'var'"
 variable = "You can assign a new value to a variable"
@@ -55,31 +54,31 @@ if comparision {
 let signedValue = -1
 
 if signedValue > 0  {
-    print( "signedValue > 0" )
+    "signedValue > 0"
 } else if signedValue < 0 {
-    print( "signedValue < 0" )
+    "signedValue < 0"
 } else {
-    print( "signedValue == 0" )
+    "signedValue == 0"
 }
 
 switch signedValue {
 case Int.min..<0:
-    print( "signedValue < 0" )
+    "signedValue < 0"
 case 0:
-    print( "signedValue == 0" )
+    "signedValue == 0"
 default:
-    print( "signedValue > 0" )
+    "signedValue > 0"
 }
 //: _There is no implicit fallthrough in switch. Switch clausures must be exauhstive and every case should contain an action._
 let switchValue = 34
 
 switch switchValue {
 case Int.min..<0:
-    print("switchValue is a negative number")
+    "switchValue is a negative number"
 case 0:
-    print("switchValue is a zero")
+    "switchValue is a zero"
 case 1, 2, 3, 5, 8, 13, 21, 34, 55, 89:
-    print("\(switchValue) is one of the first 10 Fibonachi numbers")
+    "\(switchValue) is one of the first 10 Fibonachi numbers"
 default:
     break
 }
@@ -99,4 +98,4 @@ repeat {
     repeatCondition
 } while repeatCondition
 //: ****
-//: [⬅️](@previous) · [⬆️](TableOfContents) · [➡️](@next)
+//: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)

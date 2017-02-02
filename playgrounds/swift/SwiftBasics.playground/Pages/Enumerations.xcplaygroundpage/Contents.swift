@@ -29,8 +29,8 @@ let jack = Rank(rawValue: 11)
 jack?.rawValue
 
 //: ### Type Inferrance
-let card: (Rank, Suit) = (.three, .hearts)
-"\(card.0.rawValue) of \(card.1.rawValue)"
+let card: (rank: Rank, suit: Suit) = (.three, .hearts)
+"\(card.rank.rawValue) of \(card.suit.rawValue)"
 
 let allSuits: [Suit] = [.spades, .hearts, .diamonds,. clubs]
 let allRanks: [Rank] = [.two, .three, .four, .five, .six, .seven, .eight, .nine, .ten, .jack, .queen, .king, .ace]
@@ -41,8 +41,8 @@ var deck: [(Rank, Suit)] = allSuits.flatMap {
     }
 }
 
-for card in deck {
-    "\(card.0) of \(card.1)".capitalized
+for (rank, suit) in deck {
+    "\(rank) of \(suit)".capitalized
 }
 
 //: ### Complex Enumerations
