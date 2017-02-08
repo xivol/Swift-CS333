@@ -134,7 +134,11 @@ function hideBreadcrumbsOn(slide) {
 Reveal.addEventListener('slidechanged', function(event) {
   var slide = event.currentSlide;
   var topBar = document.querySelector(".reveal .topbar");
-
+  /*var $fragment = slide.querySelector('.fragment');
+  if($fragment && $fragment.first.className.indexOf('visible') == -1)
+  {
+    $fragment.first.className +='visible current-fragment';
+  }*/
   if (hideBreadcrumbsOn(slide)) {
     topBar.style.display = "none";
   } else {
@@ -153,7 +157,12 @@ Reveal.addEventListener( 'overviewhidden', function( event ) {
   if (!hideBreadcrumbsOn(Reveal.getCurrentSlide()))
     document.querySelector(".reveal .topbar").style.display = 'block';
 });
-
+/*Reveal.addEventListener( 'fragmentshown', function( event ) {
+    // event.fragment = the fragment DOM element
+} );
+Reveal.addEventListener( 'fragmentshown', function( event ) {
+    // event.fragment = the fragment DOM element
+} );*/
 window.addEventListener('load', function() {
   // PDF-print support
   if (window.location.search.match( /print-pdf/gi ))
