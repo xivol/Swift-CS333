@@ -8,7 +8,7 @@
  - [Tuples](Tuples)
  - [Functions](Functions)
  - [Optionals](Optionals)
- - [Collections](Collections)
+ - Collections
    - [Arrays](Arrays)
    - [Strings](Strings)
    - [Dictionaries](Dictionaries)

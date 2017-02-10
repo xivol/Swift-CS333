@@ -39,7 +39,7 @@ sort( &a, &b)
 a
 b
 //: You can use a tuple type as the return type for a function to return multiple values as part of one compound return value.
-func minmax(_ a: Int, _ b:Int) -> (min: Int, max: Int) {
+func minmax(_ a: Int, _ b:Int) -> (Int, Int) {
     return a > b ? (b, a) : (a, b)
 }
 
@@ -86,13 +86,16 @@ func operation(_ c: Character) -> (Int,Int) -> Int {
 let op = operation("+")
  op(1, 2)
 //: ### Closures
-var modulus = { (a: Int, b: Int) in return a % b }
+var modulus = {
+    (a: Int, b: Int) in
+    return a % b
+}
 modulus(15,4)
 //: Argument type inferrence.
 type(of: modulus)
 modulus = { a, b in return a % b }
 modulus(15,4)
-//: Closures implicitly return result of the last operatior.
+//: Closures implicitly return result of the last operator.
 modulus = { a, b in a % b }
 modulus(15,4)
 //: Shorthand parameter names.

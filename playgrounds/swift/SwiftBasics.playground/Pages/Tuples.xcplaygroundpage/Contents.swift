@@ -45,9 +45,10 @@ if point == (0.0, 0.0) {
 //: _Tuples can be decomposed into a set of variables:_
 var (first, second) = point
 "first: \(first); second: \(second)"
+type(of: first)
 
 (first, second) = (second, first)
-"swapped\nfirst: \(first); second: \(second)"
+"swapped first: \(first); second: \(second)"
 //: _Underscore `_` can be used to ignore some of tuple values._
 let (onlyFirst, _) = point
 "first: \(onlyFirst)"

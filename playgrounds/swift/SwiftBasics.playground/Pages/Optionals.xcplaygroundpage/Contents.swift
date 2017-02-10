@@ -63,6 +63,8 @@ forcedPi = Double(stringPi)
 let threeFromForcedPi = forcedPi.rounded()
 
 //: Optional Chaining
+helloString = "Hello, Playground"
+
 let chainedIndexOfSubstr = helloString?.range(of: "Hello")?.lowerBound
 let chainedBase64 = helloString?.data(using: .utf8)?.base64EncodedString()
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)

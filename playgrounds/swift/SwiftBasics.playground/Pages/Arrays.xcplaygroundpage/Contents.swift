@@ -36,7 +36,8 @@ fibonachi.split(whereSeparator: {
  A collection's `filter(_:)` method returns an array containing only the elements that pass the provided test.
 */
 fibonachi.filter({
-    $0 % 2 == 0
+    elem in
+    elem % 2 == 0
 })
 
 var fibStrings = fibonachi.map({
@@ -55,17 +56,21 @@ fibStrings.flatMap({
 
 //: `reduce(_:,_:)`
 fibonachi[0...5].reduce(0, {
-    $0 + $1
+    sum, elem in
+    sum + elem
 })
 
+fibonachi.reduce(0) {
+    $0 + $1
+}
 //: - Experiment: Every divider of first 20 fibonachi numbers.
 var dividers: [Int:[Int]] = [:]
 fibonachi.forEach {
-    elem in
-    if elem > 2 {
-        dividers[elem] = (2..<elem).filter {elem % $0 == 0}
+    fib in
+    if fib > 2 {
+        dividers[fib] = (2..<fib).filter {fib % $0 == 0}
     } else {
-       dividers[elem] = []
+       dividers[fib] = []
     }
 }
 dividers
