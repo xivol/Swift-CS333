@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='5.0' target-platform='ios'>
-    <timeline fileName='timeline.xctimeline'/>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='TableOfContents'/>
+        <page name='Initializers'/>
+        <page name='PropertiesMethods'/>
+        <page name='Inheritance'/>
+        <page name='ValuesAndReferences'/>
+        <page name='Protocols'/>
+        <page name='Extensions'/>
+        <page name='Generics'/>
+        <page name='Exceptions'/>
+    </pages>
 </playground>
