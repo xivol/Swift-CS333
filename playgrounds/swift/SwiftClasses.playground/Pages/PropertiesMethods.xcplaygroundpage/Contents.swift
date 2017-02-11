@@ -22,7 +22,7 @@ struct CreditsBook {
     }
  
     func hasCourse(withName subject: String) -> Bool {
-        return (credits.index(forKey: subject) != nil)
+        return (self.credits.index(forKey: subject) != nil)
     }
 }
  
@@ -111,5 +111,27 @@ print(pCredits.student.name, "\(pCredits.student.course).\(pCredits.student.grou
 for (subject,value) in pCredits.values {
     print(subject, ":", value)
 }
+//: ### Operators
+let s1 = Student(name: "Mike Smith", course: 1, group: 6)
+//: Operators are overloaded as global functions
+func ==(s1: Student, s2: Student) -> Bool {
+    return s1.name == s2.name
+}
+
+s == s1
+//: You can declare your own operators
+func gcd(_ a: Int, _ b: Int) -> Int { // graetest common denominator
+    if b == 0 {
+        return a
+    }
+    return gcd(a % b, b)
+}
+
+infix operator %% 
+func %%(i: Int, j: Int) -> Int {
+    return gcd(i,j)
+}
+
+//5%%4
 //: ****
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)

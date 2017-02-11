@@ -72,6 +72,5 @@ case .noRealRoots:
 case .doubleRoot(let x):
     "Единственный корень: \(x)"
 case .twoRoots(let x1, let x2):
-    "Два корня: \(x1), \(x2)"
-}
+    "Два корня: \(x1), \(x2)" }
 //: [Table of Contents](TableOfContents) · [Previous](@previous)

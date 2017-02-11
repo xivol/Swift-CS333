@@ -37,6 +37,7 @@ for uScalar in utf64Rep.unicodeScalars {
  ### String Indices
  */
 var abc = "abcdefghijklmnopqrstuvwxyz"
+abc[abc.startIndex]
 guard let start = abc.index(abc.startIndex, offsetBy: 10, limitedBy: abc.endIndex),
      let end = abc.index(abc.endIndex, offsetBy: -10, limitedBy: abc.startIndex)
 else {
@@ -49,6 +50,8 @@ abc.insert("|", at: end)
 abc[start...end]
 abc.removeSubrange(start...end)
 //:
+abc.characters.count
+abc.utf16.startIndex
 let distance = abc.distance(from: start, to: end)
 let insertion = String(repeating: "|", count: distance)
 abc.insert(contentsOf: insertion.characters, at: start)

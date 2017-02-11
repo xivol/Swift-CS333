@@ -6,6 +6,7 @@
 import Foundation
 
 var credits: [String:Int]
+type(of: credits)
 
 credits = [:]
 credits["Student1"] = 60
@@ -20,7 +21,7 @@ for name in credits.keys {
     name.lowercased()
 }
 
-let avg = credits.values.reduce(0, { $0 + $1}) / credits.count
+let avg = Float(credits.values.reduce(0, { $0 + $1})) / Float(credits.count)
 avg
 
 
@@ -36,7 +37,7 @@ let assignments = [ "Toying with Swift":15, "The Calculator":15,
                     "The Calculator 2":15, "The Memesis":20,
                     "The Timetable":15, "The Stargazer":20
 ]
-type(of:assignments)
+type(of: assignments)
 
 let minimumRequired = assignments.filter {
     (key, value) in
@@ -44,8 +45,10 @@ let minimumRequired = assignments.filter {
 }
 type(of: minimumRequired)
 
-let sumOfCredits = minimumRequired.reduce(0){
-    $0 + $1.1
+let sumOfCredits = minimumRequired.reduce(0) {
+    (sum: Int, pair: (key: String, value: Int)) in
+    sum + pair.value
+    // $0 + $1.1
 }
 
 //: - Experiment:

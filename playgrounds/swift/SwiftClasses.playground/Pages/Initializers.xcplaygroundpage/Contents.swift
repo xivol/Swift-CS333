@@ -38,7 +38,7 @@ extension Rectangle {
 //: ### Initializers and Class Heirarchy
 //: If no designated initializers are declared, designated initializers of the superclass are inherited
 class DefaultTextBox: Rectangle {
-    var text = ""
+    var text: String = ""
 }
 let def = DefaultTextBox(center: zero, size: square)
 def.text = "Hello!"

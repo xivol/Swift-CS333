@@ -60,6 +60,7 @@ for s in students {
     else if s is MastersStudent {
         mastersCount += 1
     }
+    s.description
 }
 
 if let g = students[0] as? Graduate {
@@ -83,6 +84,15 @@ for m in manyObjects {
     default:
         break
     }
+}
+
+var many = [Any]()
+many.append(12)
+many.append(student)
+
+if var i = many[0] as? Int {
+    i += 1
+    many[0] = i
 }
 //: ****
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)

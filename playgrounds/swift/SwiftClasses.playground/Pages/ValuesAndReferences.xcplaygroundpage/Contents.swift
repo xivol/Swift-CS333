@@ -1,4 +1,4 @@
-//: ## [Value and Reference Types
+//: ## Value and Reference Types
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)
 //: ****
 import Foundation
@@ -20,6 +20,9 @@ class CreditsBook {
         self.credits = credits
         self.student = student
     }
+    deinit {
+        print ("\(student.name)'s book is being deinitialized")
+    }
 }
 let johnsBook = CreditsBook(student: john, credits: [:])
 johnsBook.credits["Programming 101"] = 89
@@ -30,12 +33,14 @@ anotherBook.credits == johnsBook.credits
 //: Refernce comparision
 anotherBook === johnsBook
 //: Automatic Refernce Counting
+//:
 //: ARC works for every reference type object
 var arcBook: CreditsBook? = CreditsBook(student: john, credits: [:])
 var arcBookRef = arcBook
 
 arcBook = nil
 arcBookRef?.student.name
+print(arcBookRef?.credits.count)
 arcBookRef = nil
 //: ### Strong Reference Cycles
 class Person {
@@ -95,7 +100,13 @@ jenifer = Person(name: "Jenifer Smith")
 let jenifersPhone = Phone(owner: jenifer!)
 print("Unowned Refernce:")
 jenifer = nil
-//jenifersPhone.owner
+//jenifersPhone.owner.name
 
+
+var str = "Hello, String"
+var str2 = str
+str2 += "!"
+
+// str == str2
 //: ****
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)
