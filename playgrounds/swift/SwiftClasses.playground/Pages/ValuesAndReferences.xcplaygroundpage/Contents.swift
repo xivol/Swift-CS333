@@ -40,7 +40,6 @@ var arcBookRef = arcBook
 
 arcBook = nil
 arcBookRef?.student.name
-print(arcBookRef?.credits.count)
 arcBookRef = nil
 //: ### Strong Reference Cycles
 class Person {
@@ -72,7 +71,7 @@ willsPlace?.tenant = will
 print("Cycled Refernce:")
 will = nil
 willsPlace = nil
-print("nothing!")
+print("Nothing!")
 //: ### Weak and Unowned Refernces
 class Pet{
     let species: String
@@ -85,28 +84,24 @@ class Pet{
 }
 var jenifer: Person? = Person(name: "Jenifer Smith")
 var fluffyTheCat = Pet(type: "Cat", name: "Fluffy")
-
 fluffyTheCat.owner = jenifer
+
 print("Weak Refernce:")
 jenifer = nil
-fluffyTheCat.owner
+fluffyTheCat.owner?.name
 
 class Phone {
     unowned var owner: Person
     let number: String = String(arc4random())
     init(owner: Person) { self.owner = owner }
 }
-jenifer = Person(name: "Jenifer Smith")
-let jenifersPhone = Phone(owner: jenifer!)
+var anna: Person? = Person(name: "Anna Smith")
+let annasPhone = Phone(owner: anna!)
+annasPhone.number
+
 print("Unowned Refernce:")
-jenifer = nil
-//jenifersPhone.owner.name
-
-
-var str = "Hello, String"
-var str2 = str
-str2 += "!"
-
-// str == str2
+anna = nil
+//annasPhone.owner.name
 //: ****
 //: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)
+

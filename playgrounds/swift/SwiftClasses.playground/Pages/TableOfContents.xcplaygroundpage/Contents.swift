@@ -7,11 +7,11 @@
  - [Initializers](Initializers)
  - [Computed Properties and Methods](PropertiesMethods)
  - [Inheritance](Inheritance)
- - [Value and Reference Types](ValuesAndReferences)
+ - [Reference Types and Memory Managment](ValuesAndReferences)
  - [Protocols](Protocols)
  - [Extensions](Extensions)
  - [Generics](Generics)
- - [Exceptions](Exceptions)
+ - [Error Handling](Errors)
  ****
  [Next](@next)
  */

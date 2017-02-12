@@ -1,7 +1,6 @@
-//: [Previous](@previous)
+//: ## Protocols
+//: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)
+//: ****
 
-import Foundation
-
-var str = "Hello, playground"
-
-//: [Next](@next)
+//: ****
+//: [Table of Contents](TableOfContents) · [Previous](@previous) · [Next](@next)
