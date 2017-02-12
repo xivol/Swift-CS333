@@ -360,6 +360,9 @@ li.ru a:after  {
   content: "🇷🇺";
   padding-left: 0.2em;
 }
-
+li.apple a:after  {
+  content: "🍎";
+  padding-left: 0.2em;
+}
 .playgrounds th:before { content: "🕹"; }
 .slides th:before { content: "🎓"; }
