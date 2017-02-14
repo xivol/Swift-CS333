@@ -34,207 +34,44 @@
 			</div>
 			<div class="slides">
 				<section>
-					<h2>CS333</h2>
+					<h2><a href="https://xivol.github.io/Swift-CS333/">CS333</a></h2>
 					<h1>Mobile Development</h1>
 					<p>
 						</br>Ilya Loshkarev</br>
 						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
 					</p>
 					<p class="footer">
-						<br>SFEDU 2016
+						<br>SFEDU 2017
 					</p>
 				</section>
 				<section>
 					<h3 class="hidden">Overview</h3>
 					<div class="row">
 						<div class="col">
-					<ul>
-						<li>
-							<a href="#/2">The Basics</a>
-						</li>
-						<li>
-							<a href="#/3">Functions</a>
-						</li>
-						<li>
-							<a href="#/4">Closures</a>
-						</li>
-						<li>
-							<a href="#/5">Classes</a>
-						</li>
-						<li>
-							<a href="#/6">Error Handling</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col">
-					<img id="swift-bird" src="../img/swift-bird.jpg" />
-				</div>
-				</div>
-				</section>
-<!-- Swift Basics			-->
-				<section class="">
-					<section data-background="../img/swift-og.png">
-						<h1>The Basics</h1>
-					</section>
-					<section>
-						<h3>Constants and Variables</h3>
-						<pre><code data-noheader>
-							let pi = 3.14
-							var r = 1.0
-							while r < 100 {
-								let sqr = r * r * pi
-								print("Radius: \(r); Square: \(sqr)")
-								r += 1
-							}
-						</code></pre>
-						<div class="row">
-							<div class="col">
-								<code class="hljs-keyword">let</code> decalres a constant
-							</div>
-							<div class="col">
-								<code class="hljs-keyword">var</code> declares a variable
-							</div>
+							<ul>
+								<li>
+									<a href="#/2">Functions</a>
+								</li>
+								<li>
+									<a href="#/3">Closures</a>
+								</li>
+								<li>
+									<a href="#/4">Collections</a>
+								</li>
+								<li>
+									<a href="#/6">Classes</a>
+								</li>
+								<li>
+									<a href="#/7">Error Handling</a>
+								</li>
+							</ul>
 						</div>
-						<p class="notice">
-							Always declare a constant unless absolutely necessary
-						</p>
-					</section>
-					<section>
-						<h3>Basic Datatypes</h3>
-						<pre><code data-noheader>
-							let i: Int = 1  // default Int is either Int32 or Int64
-							let f: Float = 2.7
-							let d: Double = 3.1
-							let b: Bool = true
-							let s: String = "hello"
-						</code></pre>
-						<p>
-							Swift can infer type of a variable
-						</p>
-						<pre><code data-noheader>
-								let x = 5, y = 3.142, z = true
-								let names = ["Alex", "Anna", "Ivan", "Maria"]
-						</code></pre>
-					</section>
-					<section>
-						<h3>Type Conversion</h3>
-						<p>
-							Swift is type-safe language
-						</p>
-						<pre><code data-noheader>
-							var pi = 3 + 0.14 // literals don't have explicit type
-							let three = 3
-							let pointOneFour = 0.14
-							pi = Double(three) + pointOneFour
-							// implicit type conversions are not allowed
-							let roundPi:Int = Int(pi)
-						</code></pre>
-						<p class="notice">
-							All type conversions must be explicit
-						</p>
-					</section>
-					<section>
-						<h3>Functions</h3>
-						<pre><code data-noheader>
-							func greet(person: String, from hometown: String) -> String {
-								return "Hello, \(person)! Glad you could visit from \(hometown)!"
-							}
-
-							print(greet(person: "Ivan", from: "Rostov"))
-						</code></pre>
-						<p>
-							Every parameter has a name and an argument label
-						</p>
-						<p class="notice">
-							Arguments must be labeled when function is called
-						</p>
-					</section>
-					<section>
-						<h3>Optionals</h3>
-						<pre><code data-noheader>
-							let someNum = "3.14"
-							let number = Double(someNum) // Double?
-							if number != nil {
-								print("parsed number: \(number!)") // unwraped value is 3.14
-							}
-						</code></pre>
-						<p>
-							Optional value contains either value or <code class="hljs-literal">nil</code>
-						</p>
-						<p class="notice">Always make sure optional contains a value before foced unwraping</p>
-					</section>
-					<section>
-						<h3>Conditional Statement</h3>
-						<pre><code data-noheader>
-							let someChar: Character = "z"
-							if someChar >= "0" &amp;&amp; someChar <= "9" {
-								print("This is a digit.")
-							} else if someChar >= "a" &amp;&amp; someChar <= "z" {
-								print("This is a letter.")
-							}
-						</code></pre>
-						<p class="notice">
-							Curved braces are required
-						</p>
-					</section>
-					<section>
-						<h3>Optional Binding</h3>
-						<pre><code data-noheader>
-							let someNum = "3.14"
-							if let number = Double(someNum) { // number is Double!
-								print("parsed number: \(number)")
-							} else {
-								print("\(someNum) is not a number") // number is not reachable
-							}
-						</code></pre>
-						<p class="notice">
-							Bound optional always contains a value
-						</p>
-					</section>
-					<section>
-						<h3>Conditional Statement &ndash; Switch</h3>
-						<pre><code data-noheader>
-							let someChar: Character = "z"
-							switch (someChar) {
-								case "a":
-									print("It is the first letter of the alphabet")
-								case "b"..."y":
-									print("It is some other letter of the alphabet")
-								case "z":
-									print("It is the last letter of the alphabet")
-								default:
-									print("It is some other character")
-							}
-						</code></pre>
-						<p class="notice">
-							Case must always have a body
-						</p>
-					</section>
-          <section>
-            <h3>Loops</h3>
-            <div class="row">
-  						<div class="col"><pre><code data-noheader>
-  							var i = 0
-  							while i < 5 {
-  								i += 1
-  							}
-  							repeat {
-  								i -= 1
-  							} while i > 0
-              </code></pre></div>
-  						<div class="col"><pre><code data-noheader>
-  							for i in 0...10 {
-  								for j in 0...i {
-  									print(".")
-  								}
-  								print("\n")
-
-  							}
-              </code></pre></div>
-            </div>
-          </section>
+						<div class="col">
+							<img id="swift-bird" src="../img/swift-bird.jpg" />
+						</div>
+					</div>
 				</section>
-<!-- Functions      -->
+<!-- Functions    -->
         <section>
           <section data-background="../img/swift-og.png">
             <h1>Functions</h1>
@@ -325,7 +162,7 @@
             </code></pre>
           </section>
         </section>
-<!-- Closures			-->
+<!-- Closures     -->
         <section>
           <section data-background="../img/swift-og.png">
             <h1>Closures</h1>
@@ -466,6 +303,89 @@
             </p>
           </section>
         </section>
+<!-- Collections  -->
+				<section>
+					<section data-background="../img/swift-og.png">
+						<h1>Collections</h1>
+					</section>
+					<section>
+						<h3>Bridging to Obective-C</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>String</li>
+									<li>Array</li>
+									<li>Dictionary</li>
+									<li>Set</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li>←</li>
+									<li>←</li>
+									<li>←</li>
+									<li>←</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li>NSString</li>
+									<li>NSArray</li>
+									<li>NSDictionary</li>
+									<li>NSSet</li>
+								</ul>
+							</div>
+						</div>
+							<p>
+								 Global functions and interfaces from NSFoundation <br> are availiable in Swift
+							</p>
+					</section>
+					<section>
+						<h3>String Views</h3>
+						<pre><code data-noheader>
+							let flag = "🇷🇺"
+							print(flag.characters.count)	// Charcter View
+							// Prints "1"
+							print(flag.unicodeScalars.count) // Unicode View
+							// Prints "2"
+							print(flag.utf16.count)		// UTF-16 View
+							// Prints "4"
+							print(flag.utf8.count)		// UTF-8 View
+							// Prints "8"
+						</code></pre>
+						<p class="notice">
+							Each view has its own indices
+						</p>
+					</section>
+					<section>
+						<h3>String Index</h3>
+						<pre><code data-noheader>
+							let start = str.startIndex
+							let end = str.endIndex
+							let range = start.successor()..&lt;end.advancedBy(-2)
+							str.replaceRange(range, with: " swift ")
+						</code></pre>
+					</section>
+					<section>
+						<h3>Array</h3>
+						<pre><code data-noheader>
+							var doubles: [Double] = []
+							var emptyFloats: Array<Float> = Array()
+							doubles.append(contentsOf: [3.0, 2.0, 1.0])
+							doubles += [0.0, -1.0]
+							var index = doubles.index(of: 2.0)
+							for number in doubles {
+								print("\(number)")
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Dictionary</h3>
+					</section>
+					<section>
+						<h3>Set</h3>
+					</section>
+				</section>
 <!-- Classes      -->
 				<section>
           <section data-background="../img/swift-og.png">
@@ -726,6 +646,7 @@
 						</li>
 						<li><a href="https://developer.apple.com/reference/swift">Swift Standart Library - Apple Developer</a>
 						</li>
+						<li><a href="https://developer.apple.com/reference/foundation">Foundation - API Reference</a>
 					</ul>
 				</section>
 			</div>

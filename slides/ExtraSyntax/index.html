@@ -61,9 +61,6 @@
 							<li>
 								<a href="#/5">Enumerations</a>
 							</li>
-							<li>
-								<a href="#/6">Standart Library</a>
-							</li>
 						</ul>
 						</div>
 						<div class="col">
@@ -236,7 +233,7 @@
             </p>
           </section>
           <section>
-            <h3>Adopting a Protocol</h3>
+            <h3>Conforming to a Protocol</h3>
             <pre><code data-noheader>
 							class IntStackClass: IntContainer {
 								let elements: [Int]
@@ -476,89 +473,6 @@
 						</code></pre>
 					</section>
         </section>
-<!-- Standart Library -->
-				<section>
-					<section data-background="../img/swift-og.png">
-						<h1>Standart Library</h1>
-					</section>
-					<section>
-						<h3>Bridging to Obective-C</h3>
-						<div class="row">
-							<div class="col">
-								<ul>
-									<li>String</li>
-									<li>Array</li>
-									<li>Dictionary</li>
-									<li>Set</li>
-								</ul>
-							</div>
-							<div class="col">
-								<ul>
-									<li>←</li>
-									<li>←</li>
-									<li>←</li>
-									<li>←</li>
-								</ul>
-							</div>
-							<div class="col">
-								<ul>
-									<li>NSString</li>
-									<li>NSArray</li>
-									<li>NSDictionary</li>
-									<li>NSSet</li>
-								</ul>
-							</div>
-						</div>
-							<p>
-								 Global functions and interfaces from NSFoundation <br> are availiable in Swift
-							</p>
-					</section>
-					<section>
-						<h3>String Views</h3>
-						<pre><code data-noheader>
-							let flag = "🇷🇺"
-							print(flag.characters.count)	// Charcter View
-							// Prints "1"
-							print(flag.unicodeScalars.count) // Unicode View
-							// Prints "2"
-							print(flag.utf16.count)		// UTF-16 View
-							// Prints "4"
-							print(flag.utf8.count)		// UTF-8 View
-							// Prints "8"
-						</code></pre>
-						<p class="notice">
-							Each view has its own indices
-						</p>
-					</section>
-					<section>
-						<h3>String Index</h3>
-						<pre><code data-noheader>
-							let start = str.startIndex
-							let end = str.endIndex
-							let range = start.successor()..&lt;end.advancedBy(-2)
-							str.replaceRange(range, with: " swift ")
-						</code></pre>
-					</section>
-					<section>
-						<h3>Array</h3>
-						<pre><code data-noheader>
-							var doubles: [Double] = []
-							var emptyFloats: Array<Float> = Array()
-							doubles.append(contentsOf: [3.0, 2.0, 1.0])
-							doubles += [0.0, -1.0]
-							var index = doubles.index(of: 2.0)
-							for number in doubles {
-								print("\(number)")
-							}
-						</code></pre>
-					</section>
-					<section>
-						<h3>Dictionary</h3>
-					</section>
-					<section>
-						<h3>Set</h3>
-					</section>
-				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
@@ -566,12 +480,6 @@
 						<li><a href="https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TheBasics.html">Swift Programming Language - Apple Developer</a>
 						</li>
 						<li><a href="https://developer.apple.com/reference/swift">Swift Standart Library - API Reference</a>
-						</li>
-						<li>
-								<a href="https://developer.apple.com/reference/foundation">Foundation - API Reference</a>
-						</li>
-						<li>
-							<a href="https://developer.apple.com/swift/blog/?id=30">Strings in Swift 2 - Swift Blog</a>
 						</li>
 					</ul>
 				</section>
