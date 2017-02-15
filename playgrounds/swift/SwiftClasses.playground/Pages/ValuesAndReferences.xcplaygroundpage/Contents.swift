@@ -32,8 +32,7 @@ anotherBook.credits["Calculus"] = 80
 anotherBook.credits == johnsBook.credits
 //: Refernce comparision
 anotherBook === johnsBook
-//: Automatic Refernce Counting
-//:
+//: ### Automatic Refernce Counting
 //: ARC works for every reference type object
 var arcBook: CreditsBook? = CreditsBook(student: john, credits: [:])
 var arcBookRef = arcBook
