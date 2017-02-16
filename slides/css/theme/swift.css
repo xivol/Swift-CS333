@@ -566,7 +566,7 @@ body {
   font-weight: normal; }
 
 .reveal .fw-item.current {
-  background-color: rgba(255,141,60,1);
+  background-color: rgba(255,141,60,0.8);
   color: #eee; }
 
 .reveal .iphone-box img {
@@ -594,20 +594,39 @@ body {
 	border-width: 3em;
 	margin-top: -3em; }
 
+.reveal .application {
+  background-color: rgba(105, 173, 126, 0.4);
+  fill: rgba(105, 173, 126, 0.4);
+  border-radius: 1em;
+  padding: 0.5em;
+  position: relative; }
+  
 .reveal .model {
   background-color: rgba(255,77,88,0.7);
+  fill: rgba(255,77,88,0.7);
   border-radius: 1em;
   padding: 0.5em;
   position: relative; }
 
 .reveal .view {
   background-color: rgba(255,141,60,0.7);
+  fill: rgba(255,141,60,0.7);
   border-radius: 1em;
   padding: 0.5em;
   position: relative; }
 
 .reveal .controller {
   background-color: rgba(19,218,236,0.4);
+  fill: rgba(19,218,236,0.4);
   border-radius: 1em;
   padding: 0.5em;
-  position: relative; }
+  position: relative;}
+
+.reveal .rounded-box {
+  border-radius: 1em; }
+.reveal .blue {
+  background-color: rgba(19,218,236,0.4); }
+.reveal .orange {
+  background-color: rgba(255,141,60,0.7); }
+.reveal .red {
+  background-color: rgba(255,77,88,0.7); }
