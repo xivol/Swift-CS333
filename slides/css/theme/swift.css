@@ -201,7 +201,8 @@ body {
 /*********************************************
  * IMAGES
  *********************************************/
-.reveal section img {
+.reveal section img,
+.reveal section svg {
   margin: 15px 0px;
   -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
   filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.5));
@@ -575,13 +576,7 @@ body {
 .reveal .iphone-box .logo{
   margin-top: 27.5%; }
 
-.reveal .bundle {
-  background-color: rgba(19,218,236,0.4);
-  border-radius: 1em;
-  padding: 0.5em;
-  position: relative; }
-
-.reveal .bundle:after {
+.reveal .arrow:after {
 	right: 100%;
 	top: 50%;
 	border: solid transparent;
@@ -590,7 +585,7 @@ body {
 	width: 0;
 	position: absolute;
 	pointer-events: none;
-	border-right-color: rgba(19,218,236,0.4);
+	border-right-color: rgba(105, 173, 126, 0.4);
 	border-width: 3em;
 	margin-top: -3em; }
 
@@ -600,7 +595,7 @@ body {
   border-radius: 1em;
   padding: 0.5em;
   position: relative; }
-  
+
 .reveal .model {
   background-color: rgba(255,77,88,0.7);
   fill: rgba(255,77,88,0.7);
@@ -620,12 +615,16 @@ body {
   fill: rgba(19,218,236,0.4);
   border-radius: 1em;
   padding: 0.5em;
-  position: relative;}
+  position: relative; }
 
-.reveal .rounded-box {
-  border-radius: 1em; }
+.reveal h3.view,
+.reveal h3.controller,
+.reveal h3.model {
+  border: 3px solid #fff; }
+
 .reveal .blue {
   background-color: rgba(19,218,236,0.4); }
+
 .reveal .orange {
   background-color: rgba(255,141,60,0.7); }
 .reveal .red {

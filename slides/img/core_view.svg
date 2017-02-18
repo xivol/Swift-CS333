@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="width: 75%" viewBox="25 23 273 311" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+    </pattern>
+    <pattern id="pattern-0-0" patternTransform="matrix(0.999998, 0, 0, 1, 500.584503, 312.65448)" xlink:href="#pattern-0"/>
+  </defs>
+  <rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2;" class="view"/>
+  <rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 141, 60); stroke: rgb(255, 255, 255);"/>
+  <text x="95.126" y="102.71" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIWindow</text>
+  <rect x="56.297" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+  <rect x="66.297" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+  <rect x="76.297" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+  <text x="121.623" y="252.879" style="fill: rgb(255, 141, 60); font-family: Oswald; font-size: 27.4px; font-weight: 300; white-space: pre;">View Stack</text>
+  <text x="138.639" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">View</text>
+  <g>
+    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.89423, 109.087391)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866027, 0.5, 113.479319, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+    <path d="M 185.506 154.655 L 134.092 154.708" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 314.480488, -5.117484)"/>
+  </g>
+  <path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
+</svg>

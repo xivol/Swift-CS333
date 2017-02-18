@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="width: 75%" viewBox="25 345 268 316" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+    </pattern>
+  </defs>
+  <rect x="29.952" y="348.493" width="260.021" height="308.647" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+  <text x="129.431" y="637.205" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Model</text>
+  <g transform="matrix(1, 0, 0, 1, -277.922241, 137.766861)">
+    <rect x="335.072" y="369.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+    <rect x="345.072" y="379.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+    <rect x="355.072" y="389.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+    <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 690.162415, 631.606018)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Documents</text>
+  </g>
+  <rect x="64.874" y="370.483" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="model"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499998, 0.866026, -0.866025, -0.5, 207.42751, 428.990672)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 184.949 474.649 L 137.715 474.702" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 636.007486, 313.343476)"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 115.012819, 518.954116)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <text x="80.868" y="421.715" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Data Objects</text>
+</svg>

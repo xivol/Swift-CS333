@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg style="width: 75%" viewBox="0 -84 603 584" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+<svg style="width: 75%" viewBox="24 -62 554 547" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
   <defs>
     <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
     <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
       <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
     </pattern>
-    <pattern id="pattern-0-2" patternTransform="matrix(1, 0, 0, 1.000001, 433.368011, 141.160492)" xlink:href="#pattern-0"/>
-    <pattern id="pattern-0-0" patternTransform="matrix(0.999998, 0, 0, 1, 500.584503, 312.65448)" xlink:href="#pattern-0"/>
+    <pattern id="pattern-0-0" patternTransform="matrix(1, 0, 0, 1, 433.259003, 138.816498)" xlink:href="#pattern-0"/>
   </defs>
-  <rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2;" class="view"/>
-  <rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 141, 60); stroke: rgb(255, 255, 255);"/>
+  <rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" class="view"/>
+  <rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2;stroke: rgb(255, 255, 255);" class="view"/>
   <text x="95.126" y="102.71" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIWindow</text>
   <rect x="56.297" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
   <rect x="66.297" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
   <rect x="76.297" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
   <text x="121.623" y="252.879" style="fill: rgb(255, 141, 60); font-family: Oswald; font-size: 27.4px; font-weight: 300; white-space: pre;">View Stack</text>
   <text x="138.639" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">View</text>
-  <rect x="312.557" y="30.353" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2; fill: rgb(36, 168, 183); stroke-opacity: 0.7; fill-opacity: 0.7;"/>
+  <rect x="312.557" y="30.353" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2;stroke-opacity: 0.7;" class="controller"/>
   <g>
     <rect x="341.298" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
     <rect x="351.298" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
     <rect x="361.298" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
     <text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 676.517456, 447.544373)">View Controllers</text>
   </g>
-  <rect x="348.483" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255); fill: rgb(36, 168, 183);"/>
+  <rect x="348.483" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="controller"/>
   <text x="365.757" y="100.315" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">AppDelegate</text>
   <text x="398.093" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Controller</text>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866024, 0.499999, -0.499998, 0.866026, 242.976251, 39.573331)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
@@ -31,7 +30,7 @@
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 252.573367, 191.868125)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   <path d="M 334.058 237.937 L 274.194 237.99" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866025, 353.537106, 284.282923)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-  <rect x="29.952" y="348.493" width="542.864" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="controller"/>
+  <rect x="29.952" y="348.493" width="542.864" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
   <text x="269.773" y="468.795" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Model</text>
   <g transform="matrix(1, 0, 0, 1, 6, -1.415817)">
     <rect x="335.072" y="369.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
@@ -39,25 +38,24 @@
     <rect x="355.072" y="389.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
     <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 690.162415, 631.606018)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Documents</text>
   </g>
-  <rect x="64.874" y="370.483" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255); fill: rgb(194, 70, 78);"/>
+  <rect x="64.874" y="370.483" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="model"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 244.341952, 360.468574)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   <path d="M 331.644 406.538 L 266.146 406.591" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866026, 352.305784, 452.883447)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   <text x="80.868" y="421.715" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Data Objects</text>
-  <rect x="29.952" y="-57.058" width="542.864" height="68.233" rx="21.555" ry="21.555" style="stroke-width: 2; fill: rgb(105, 173, 126); fill-opacity: 0.7;"/>
+  <rect x="29.952" y="-57.058" width="542.864" height="68.233" rx="21.555" ry="21.555" class="application"/>
   <text x="226.349" y="-5.033" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIAppliction</text>
   <g>
     <path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0-2);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
     <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   </g>
-  <g>
-    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.89423, 109.087391)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866027, 0.5, 113.479319, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-    <path d="M 185.506 154.655 L 134.092 154.708" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 314.480488, -5.117484)"/>
-  </g>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866027, -0.866025, -0.5, 205.894216, 109.087379)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 113.479321, 198.050948)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 470.831 148.79 L 415.687 148.843" style="stroke-width: 2; fill-opacity: 0; fill: none; stroke: url(#pattern-0-0);" transform="matrix(0, 1, -1, 0, 592.075515, -294.442511)"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499994, 0.86603, -0.866023, -0.5, 556.679845, 262.046639)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866024, 0.866025, 0.499999, 464.264416, 380.010933)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
   <path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
   <path d="M 458.474 28.12 L 427.992 28.173" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);" transform="matrix(0, 1, -1, 0, 471.379498, -415.08651)"/>
   <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 396.913035, 60.050442)" style="fill: rgb(255, 255, 255); stroke-width: 2; stroke: rgb(255, 255, 255);" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 185.573 151.722 L 134.159 151.775" style=" stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 311.614517, -8.117481)"/>
 </svg>

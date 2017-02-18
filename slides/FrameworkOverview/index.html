@@ -70,13 +70,13 @@
 								<a href="#/3">App Life Cycle</a>
 							</li>
 							<li>
-								<a href="#/5">App Delegate</a>
+								<a href="#/5">Model View Controller</a>
 							</li>
 							<li>
-								<a href="#/4">Model View Controller</a>
+								<a href="#/4">App Delegate</a>
 							</li>
 							<li>
-								<a href="#/6">Storyboard</a>
+								<a href="#/6">View Controllers</a>
 							</li>
 						</ul>
 						</div>
@@ -301,7 +301,7 @@
 							<div class="col">
 								<img src="../img/AppStore8_2x.png" class=""/>
 							</div>
-							<div class="col bundle" >
+							<div class="col application arrow" >
 								<ul>
 									<li>App Executable</li>
 									<li>UI files</li>
@@ -319,7 +319,49 @@
 								<h3>Execution States</h3>
 							</div>
 							<div class="col">
-								<img src="../img/high_level_flow_2x.png"  />
+								<!--<img src="../img/high_level_flow_2x.png"  />-->
+								<svg style="width: 75%" viewBox="19 -53 327 639" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+								  <defs>
+								    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+								    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+								      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+								    </pattern>
+								    <pattern id="pattern-0-2" patternTransform="matrix(1, 0, 0, 1.000001, 433.368011, 141.160492)" xlink:href="#pattern-0"/>
+								  </defs>
+								  <rect x="29.952" y="70.714" width="262.868" height="258.431" rx="21.555" ry="21.555" style="stroke-width: 2;" class="controller"/>
+								  <text x="110.463" y="317.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Foreground</text>
+								  <rect x="65.757" y="101.094" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								  <rect x="65.972" y="212.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								  <rect x="65.716" y="-26.15" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 398.651642, 213.73201)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Not Running</text>
+								  <text x="398.093" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Controller</text>
+								  <rect x="29.952" y="348.493" width="265.931" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+								  <text x="102.867" y="468.795" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Background</text>
+								  <rect x="66.287" y="362.862" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+								  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 399.647858, 604.811707)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Background</text>
+								  <g>
+								    <path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0-2);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
+								    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  </g>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.894245, 160.655245)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 113.47938, 222.618192)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 170.121 190.838 L 149.477 190.891" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 350.66351, 31.065494)"/>
+								  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 427.557129, 454.355133)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Active</text>
+								  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 419.165192, 341.530426)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Inactive</text>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866025, 247.573275, 70.786613)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 264.116 400.648 L 284.716 400.648 L 284.536 116.856 L 263.855 116.987" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 247.843447, 354.168586)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866025, -0.5, 205.894231, 31.438554)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 113.47975, 110.401868)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 176.765 69.628 L 143.223 69.292" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 229.454021, -90.53403)"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 246.572665, -39.436635)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 257.738 529.707 L 311.964 529.707 L 311.545 5.881 L 266.727 6.122" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+								  <rect x="66.287" y="497.992" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+								  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 406.321106, 738.607422)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Suspended</text>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866027, -0.866025, -0.5, 134.0215, 420.229708)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866026, 0.5, 41.606711, 509.193053)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  <path d="M 111.773 465.907 L 64.046 465.994" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 553.860011, 378.041017)"/>
+								</svg>
 							</div>
 						</div>
 					</section>
@@ -346,7 +388,7 @@
 					</section>
 					<section>
 						<h3>Allowed Background Tasks</h3>
-						<div class="row orange rounded-box">
+						<div class="row application">
 							<div class="col">
 								<ul>
 									<li>Audio Player/Recorder</li>
@@ -387,7 +429,7 @@
 				</section>
 <!-- MVC    	  -->
         <section>
-          <section data-background="../img/model_view.jpg">
+          <section data-background="../img/model_view_controller.png">
             <h1>Model View Controller</h1>
           </section>
           <section>
@@ -396,18 +438,13 @@
 					</section>
 					<section>
 						<h3 class="hidden">App Structure</h3>
-						<img src="../img/Core_Objects_2x.png" style=""/>
-					</section>
-					<section>
-						<h3 class="hidden">App Structure</h3>
-						<svg style="width: 75%" viewBox="0 -84 603 584" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+						<svg style="width: 70%" viewBox="24 -62 554 547" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
 						  <defs>
 						    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
 						    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
 						      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
 						    </pattern>
-						    <pattern id="pattern-0-2" patternTransform="matrix(1, 0, 0, 1.000001, 433.368011, 141.160492)" xlink:href="#pattern-0"/>
-						    <pattern id="pattern-0-0" patternTransform="matrix(0.999998, 0, 0, 1, 500.584503, 312.65448)" xlink:href="#pattern-0"/>
+						    <pattern id="pattern-0-0" patternTransform="matrix(1, 0, 0, 1, 433.259003, 138.816498)" xlink:href="#pattern-0"/>
 						  </defs>
 						  <rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" class="view"/>
 						  <rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2;stroke: rgb(255, 255, 255);" class="view"/>
@@ -451,115 +488,295 @@
 						    <path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0-2);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
 						    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
 						  </g>
-						  <g>
-						    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.89423, 109.087391)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-						    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866027, 0.5, 113.479319, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-						    <path d="M 185.506 154.655 L 134.092 154.708" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 314.480488, -5.117484)"/>
-						  </g>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866027, -0.866025, -0.5, 205.894216, 109.087379)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 113.479321, 198.050948)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 470.831 148.79 L 415.687 148.843" style="stroke-width: 2; fill-opacity: 0; fill: none; stroke: url(#pattern-0);" transform="matrix(0, 1, -1, 0, 592.075515, -294.442511)"/>
 						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499994, 0.86603, -0.866023, -0.5, 556.679845, 262.046639)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
 						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866024, 0.866025, 0.499999, 464.264416, 380.010933)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
-						  <path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
+						  <path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
 						  <path d="M 458.474 28.12 L 427.992 28.173" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);" transform="matrix(0, 1, -1, 0, 471.379498, -415.08651)"/>
 						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 396.913035, 60.050442)" style="fill: rgb(255, 255, 255); stroke-width: 2; stroke: rgb(255, 255, 255);" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 185.573 151.722 L 134.159 151.775" style=" stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 311.614517, -8.117481)"/>
 						</svg>
 					</section>
 					<section>
-						<h3>Model</h3>
+						<h3 class="hidden">Model</h3>
 						<div class="row">
 							<div class="col">
-								<p>Describes data and its relations</p>
+								<ul >
+									<li>Core Data</li>
+									<li>Managed Object Classes</li>
+									<li>Documents &amp; Fies</li>
+								</ul>
 							</div>
 							<div class="col">
-								<ul class="model">
-									<li>
-										CoreData Objects
-									</li>
-									<li>
-										Managed Object Classes
-									</li>
-									<li>
-										Stored Files
-									</li>
-								</ul>
+								<svg style="width: 75%" viewBox="25 345 268 316" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+									<defs>
+										<style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+										<pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+											<path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+										</pattern>
+									</defs>
+									<rect x="29.952" y="348.493" width="260.021" height="308.647" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+									<text x="129.431" y="637.205" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Model</text>
+									<g transform="matrix(1, 0, 0, 1, -277.922241, 137.766861)">
+										<rect x="335.072" y="369.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+										<rect x="345.072" y="379.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+										<rect x="355.072" y="389.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+										<text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 690.162415, 631.606018)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Documents</text>
+									</g>
+									<rect x="64.874" y="370.483" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="model"/>
+									<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499998, 0.866026, -0.866025, -0.5, 207.42751, 428.990672)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+									<path d="M 184.949 474.649 L 137.715 474.702" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 636.007486, 313.343476)"/>
+									<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 115.012819, 518.954116)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+									<text x="80.868" y="421.715" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Data Objects</text>
+								</svg>
+								<small>Describes data and its relations</small>
 							</div>
 						</div>
 					</section>
 					<section>
-						<h3>View</h3>
+						<h3 class="hidden">View</h3>
 						<div class="row">
 							<div class="col">
-								<p>Provides interface for data and user actions</p>
+								<ul>
+									<li>XIB Files</li>
+									<li>Storyboard Files</li>
+									<li>Code-generated Views</li>
+								</ul>
 							</div>
 							<div class="col">
-								<ul class="view">
-									<li>
-										.Xib Files
-									</li>
-									<li>
-										Storyboard Views
-									</li>
-									<li>
-										Code-generated Views
-									</li>
-								</ul>
+								<svg style="width: 75%" viewBox="25 23 273 311" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+								  <defs>
+								    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+								    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+								      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+								    </pattern>
+								    <pattern id="pattern-0-0" patternTransform="matrix(0.999998, 0, 0, 1, 500.584503, 312.65448)" xlink:href="#pattern-0"/>
+								  </defs>
+								  <rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2;" class="view"/>
+								  <rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="view"/>
+								  <text x="95.126" y="102.71" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIWindow</text>
+								  <rect x="56.297" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+								  <rect x="66.297" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+								  <rect x="76.297" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+								  <text x="121.623" y="252.879" style="fill: rgb(255, 141, 60); font-family: Oswald; font-size: 27.4px; font-weight: 300; white-space: pre;">View Stack</text>
+								  <text x="138.639" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">View</text>
+								  <g>
+								    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.89423, 109.087391)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866027, 0.5, 113.479319, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								    <path d="M 185.506 154.655 L 134.092 154.708" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 314.480488, -5.117484)"/>
+								  </g>
+								  <path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
+								</svg>
+								<small>Provides interface for data and user actions</small>
 							</div>
 						</div>
 					</section>
 					<section>
-						<h3>Controller</h3>
+						<h3 class="hidden">Controller</h3>
 						<div class="row">
 							<div class="col">
-								<p>Describes possible actions and reactions to events</p>
+								<ul>
+									<li>UIApplicationDelegate</li>
+									<li>Storyboard Segues</li>
+									<li>Layout Constraints</li>
+									<li>ViewControllers</li>
+								</ul>
 							</div>
 							<div class="col">
-								<ul class="controller">
-									<li>
-										AppDelegate Subclass
-									</li>
-									<li>
-										Storyboard Segues
-									</li>
-									<li>
-										Layout Constraints
-									</li>
-									<li>
-										ViewControllers
-									</li>
-								</ul>
-
+								<svg style="width: 75%" viewBox="306 25 275 311" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+								  <defs>
+								    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+								    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+								      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+								    </pattern>
+								  </defs>
+								  <rect x="312.557" y="30.353" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7" class="controller"/>
+								  <g>
+								    <rect x="341.298" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								    <rect x="351.298" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								    <rect x="361.298" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								    <text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 676.517456, 447.544373)">View Controllers</text>
+								  </g>
+								  <rect x="348.483" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="controller"/>
+								  <text x="365.757" y="100.315" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">AppDelegate</text>
+								  <text x="398.093" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Controller</text>
+								  <g>
+								    <path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
+								    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+								  </g>
+								</svg>
+								<small>Describes actions and reactions to events</small>
 							</div>
 						</div>
-
 					</section>
 				</section>
 <!-- App Delegate				-->
 				<section>
 					<section data-background="../img/delegate.jpg">
-            <h1>App Delegate</h1>
-          </section>
+						<h1>App Delegate</h1>
+					</section>
 					<section>
 						<h3 class="hidden">App Structure</h3>
-						<img src="../img/Core_Objects_2x.png" style=""/>
+						<svg style="width: 70%" viewBox="24 -62 554 547" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+							<defs>
+								<style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+								<pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+									<path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+								</pattern>
+							</defs>
+							<rect x="29.952" y="28.756" width="262.868" height="300.389" rx="21.555" ry="21.555" class="view"/>
+							<rect x="65.079" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2;stroke: rgb(255, 255, 255);" class="view"/>
+							<text x="95.126" y="102.71" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIWindow</text>
+							<rect x="56.297" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+							<rect x="66.297" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+							<rect x="76.297" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke: rgb(255, 141, 60); stroke-width: 2; fill: rgb(255, 255, 255);"/>
+							<text x="121.623" y="252.879" style="fill: rgb(255, 141, 60); font-family: Oswald; font-size: 27.4px; font-weight: 300; white-space: pre;">View Stack</text>
+							<text x="138.639" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">View</text>
+							<rect x="312.557" y="30.353" width="262.868" height="300.389" rx="21.555" ry="21.555" style="stroke-width: 2;stroke-opacity: 0.7;" class="controller"/>
+							<g>
+								<rect x="341.298" y="185.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								<rect x="351.298" y="195.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								<rect x="361.298" y="205.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+								<text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 676.517456, 447.544373)">View Controllers</text>
+							</g>
+							<rect x="348.483" y="50.746" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="controller"/>
+							<text x="365.757" y="100.315" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">AppDelegate</text>
+							<text x="398.093" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Controller</text>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866024, 0.499999, -0.499998, 0.866026, 242.976251, 39.573331)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 346.044 85.468 L 261.3 86.081" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 252.573367, 191.868125)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 334.058 237.937 L 274.194 237.99" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866025, 353.537106, 284.282923)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<rect x="29.952" y="348.493" width="542.864" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+							<text x="269.773" y="468.795" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Model</text>
+							<g transform="matrix(1, 0, 0, 1, 6, -1.415817)">
+								<rect x="335.072" y="369.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+								<rect x="345.072" y="379.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+								<rect x="355.072" y="389.724" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+								<text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 690.162415, 631.606018)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Documents</text>
+							</g>
+							<rect x="64.874" y="370.483" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; stroke: rgb(255, 255, 255);" class="model"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 244.341952, 360.468574)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 331.644 406.538 L 266.146 406.591" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866026, 352.305784, 452.883447)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<text x="80.868" y="421.715" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Data Objects</text>
+							<rect x="29.952" y="-57.058" width="542.864" height="68.233" rx="21.555" ry="21.555" class="application"/>
+							<text x="226.349" y="-5.033" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIAppliction</text>
+							<g>
+								<path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0-2);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
+								<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							</g>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866027, -0.866025, -0.5, 205.894216, 109.087379)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 113.479321, 198.050948)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 470.831 148.79 L 415.687 148.843" style="stroke-width: 2; fill-opacity: 0; fill: none; stroke: url(#pattern-0);" transform="matrix(0, 1, -1, 0, 592.075515, -294.442511)"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499994, 0.86603, -0.866023, -0.5, 556.679845, 262.046639)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866024, 0.866025, 0.499999, 464.264416, 380.010933)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 550.278 322.628 L 470.891 322.681" style="fill: none; stroke-width: 2; stroke: url(#pattern-0);" transform="matrix(0, 1, -1, 0, 833.238991, -187.930057)"/>
+							<path d="M 458.474 28.12 L 427.992 28.173" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(255, 255, 255);" transform="matrix(0, 1, -1, 0, 471.379498, -415.08651)"/>
+							<path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 396.913035, 60.050442)" style="fill: rgb(255, 255, 255); stroke-width: 2; stroke: rgb(255, 255, 255);" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+							<path d="M 185.573 151.722 L 134.159 151.775" style=" stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 311.614517, -8.117481)"/>
+						</svg>
 					</section>
 					<section>
 						<h3>UIApplicationDelegate</h3>
-						<p class="controller">
-							Provides custom handlers for system events<br />
-							Handles basic app operations<br/>
-							Stores main window of the app
-						</br/>
-						</p>
+							<ul class="controller">
+								<li>Responds to changes in the execution state</li>
+								<li>Responds to system notifications</li>
+								<li>Allows for state preservation and restoration</li>
+								<li>Stores main window</li>
+							</ul>
+					</section>
+					<section>
+						<h3>Execution State Changes</h3>
+						<pre><code class="swift" src="UIApplicationDelegate">
+							// Launch time
+							application(_: willFinishLaunchingWithOptions:)
+							application(_: didFinishLaunchingWithOptions:)
+							// Transitioning to the foreground
+							applicationDidBecomeActive(_:)
+							// Transitioning to the background
+							applicationDidEnterBackground(_:)
+							// Transitioning to the inactive state
+							applicationWillResignActive(_:) // from foreground
+							applicationWillEnterForeground(_:) // from background
+							// Termination
+							applicationWillTerminate(_:) // when not suspended
+						</code></pre>
+					</section>
+					<section>
+						<h3 class="hidden">App Launch</h3>
+						<svg style="width: 70%" viewBox="24 -62 554 547" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+						  <defs>
+						    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+						    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+						      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+						    </pattern>
+						  </defs>
+						  <rect x="312.557" y="46.914" width="262.868" height="433.315" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="controller"/>
+						  <rect x="350.388" y="143.414" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+						  <rect x="351.648" y="234.317" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+						  <rect x="29.952" y="46.445" width="264.998" height="283.623" rx="21.555" ry="21.555" class="application"/>
+						  <text x="365.757" y="95.03" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">AppDelegate</text>
+						  <rect x="29.952" y="348.493" width="263.334" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+						  <g transform="matrix(1, 0, 0, 1, 6, -1.415817)"/>
+						  <text x="98.084" y="426.576" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Event Loop</text>
+						  <text x="85.686" y="96.299" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">UIAppliction</text>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866027, 0.866026, 0.499999, 111.661375, 235.845469)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <rect x="67.581" y="232.026" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(105,173,126);"/>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(105,173,126); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 382.800201, 474.840912)">Restore UI state</text>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866025, 362.475064, 316.117945)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866026, 360.879484, 221.293862)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 111.661436, 53.923532)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 342.065 175.218 L 300.908 175.98 L 301.67 216.375 L 159.906 215.613" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.647343, 0, 0, 0.647342, 617.708252, 355.176697)">willFinishLaunching</text>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.647343, 0, 0, 0.647342, 629.903015, 445.3508)">State Restoration</text>
+						  <rect x="351.648" y="328.064" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866026, 362.475096, 409.865104)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(36, 168, 183); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.647343, 0, 0, 0.647342, 617.708252, 538.860107)">didFinishLaunching</text>
+						  <path d="M 342.065 272.014" style="fill: none; stroke: black;"/>
+						  <path d="M 341.303 269.727 L 259.751 269.727" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+						  <path d="M 342.015 363.465 L 300.763 363.465 L 300.763 316.198 L 158.963 315.339" style="fill: none; stroke-width: 2; stroke: rgb(255, 255, 255);"/>
+						  <text x="-390.505" y="-256.785" transform="matrix(1.325106, 0, 0, 1.325104, 947.978027, 797.829041)" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">...</text>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.866027, -0.499999, 0.5, -0.866025, 428.219144, 480.335779)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 407.758 433.506 L 294.748 433.076" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+						  <rect x="67.581" y="129.26" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(105,173,126);"/>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(105,173,126); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 382.800201, 372.075104)">Load main UI file</text>
+						  <rect x="67.581" y="-52.706" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(105,173,126);"/>
+						  <text x="-390.505" y="-256.785" style="fill: rgb(105,173,126); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;" transform="matrix(0.76118, 0, 0, 0.761179, 377.484741, 189.222931)">User taps the app</text>
+						  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866027, 0.866025, 0.5, 111.661427, 357.857574)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+						  <path d="M 157.663 304.864 L 157.857 340.517" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+						</svg>
+					</section>
+					<section>
+						<h3>App State Restoration</h3>
+						<pre><code class="swift" src="UIApplicationDelegate">
+							// If App should save or restore state
+							application(_:shouldSaveApplicationState:)
+							application(_:shouldRestoreApplicationState:)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Notification Response</h3>
+						<pre><code class="swift" src="UIApplicationDelegate">
+							// System Events
+							applicationDidReceiveMemoryWarning(_:)
+							applicationSignificantTimeChange(_:)
+							application(_:open:options:)
+							// Local Notifications
+							application(_:didReceive:)
+							// Remote Notifications
+							application(_:didReceiveRemoteNotification:fetchCompletionHandler:)
+						</code></pre>
 					</section>
 					<section>
 						<h3>UIWindow</h3>
-						<p class="view">
-							Root View of the application<br />
-							Stores View Stack
-						</p>
-					</section>
-					<section>
-						<h3>App Launch</h3>
-						<img src="../img/app_launch.png" class="small"/>
+						<ul class="view">
+							<li>Root View</li>
+							<li>Sets Screen bounds for the App</li>
+							<li>Stores View Stack</li>
+						</ul>
 					</section>
 					<section>
 						<h3>Simple App</h3>
@@ -567,7 +784,7 @@
 						@UIApplicationMain
 						class AppDelegate: UIResponder, UIApplicationDelegate {
 							// Create new UIWindow
-							var window: UIWindow? = UIWindow(frame: UIScreen.mainScreen().bounds)
+							var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
 							func application(application: UIApplication,
 								didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -581,7 +798,94 @@
 						</code></pre>
 					</section>
 				</section>
-<!-- Storyboards				-->
+<!-- View Stack					-->
+				<section>
+					<section data-background="../img/stack.png">
+						<h1>View Controllers</h1>
+					</section>
+					<section>
+						<h3>UIView</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Defines a rectangular area</li>
+									<li>Renders its Content</li>
+									<li>May contain Subviews</li>
+									<li>Manages Resizing Behaivour</li>
+									<li>Recieves User Input</li>
+								</ul>
+							</div>
+							<div class="col">
+								<div class="view" style="padding:0;margin:auto;border-radius:0px;width:80%">
+									<img src="../img/swallow.jpg" alt="swift" class="flat">
+								</div>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>UIVewController</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Manages a set of views that makes up user interface</li>
+									<li>Loads and Disposes Views</li>
+									<li>Manages User Interactions</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/uitableview.png" alt="table" class="small">
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>View State Changes</h3>
+						<pre><code class="swift" src="UIViewController">
+							// After view has finished loading from file
+							viewDidLoad()
+							// View State Transitions
+							viewWillAppear()
+							viewDidAppear()
+							viewWillDisappear()
+							viewDidDisappear()
+						</code></pre>
+					</section>
+					<section>
+						<h3 class="hidden">View Stack</h3>
+						<img src="../img/viewstack.png" class="medium"/>
+					</section>
+					<section>
+						<h3>User Interactions</h3>
+						<pre><code class="swift" src="UIViewController">
+							button.addTarget(self,
+									action: #selector(buttonTouch(sender:)),
+									for: .touchUpInside)
+						</code></pre>
+						<p>
+							Target — the controller whose action method is called
+						</p>
+						<p>
+							Action — the method of the controller that is called
+						</p>
+					</section>
+					<section>
+						<h3>UIControlEvents</h3>
+						<code class="hljs-type">
+						<ul>
+							<li>touchDown</li>
+							<li>touchDownRepeat</li>
+							<li>touchUpInside</li>
+							<li>touchUpOutside</li>
+						</ul>
+
+						<ul>
+							<li>touchDragInside</li>
+							<li>touchDragOutside</li>
+							<li>touchDragEnter</li>
+							<li>touchDragExit</li>
+						</ul><br />...</code>
+					</section>
+				</section>
+<!-- Storyboards
         <section>
           <section data-background="../img/storyboard.png">
             <h1>Storyboards</h1>
@@ -641,16 +945,18 @@
 							</div>
 						</div>
 					</section>
-        </section>
+        </section>-->
 <!-- Resources			-->
 				<section>
-					<h3 style="display:none;">Related Resources</h3>
+					<h3 class="hidden">Related Resources</h3>
 					<ul>
 						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
 						</li>
 						<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Introduction/Introduction.html">iOS Programming Guide - Apple Developer</a>
 						</li>
 						<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Model-View-Controller/Model-View-Controller.html">Model-View-Controller - Apple Developer</a>
+						</li>
+						<li><a href="https://developer.apple.com/reference/uikit/uiapplicationdelegate">UIApplicationDelegate – API Reference</a>
 						</li>
 					</ul>
 				</section>

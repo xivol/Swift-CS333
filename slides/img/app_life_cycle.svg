@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg style="width: 75%" viewBox="19 -53 327 639" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style id="bx-google-fonts">@import url(https://fonts.googleapis.com/css?family=Oswald:300,400,700);</style>
+    <pattern id="pattern-0" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" viewBox="0 0 100 100">
+      <path d="M 0 0 L 50 0 L 50 100 L 0 100 Z" style="fill: rgb(255, 255, 255);"/>
+    </pattern>
+    <pattern id="pattern-0-2" patternTransform="matrix(1, 0, 0, 1.000001, 433.368011, 141.160492)" xlink:href="#pattern-0"/>
+  </defs>
+  <rect x="29.952" y="70.714" width="262.868" height="258.431" rx="21.555" ry="21.555" style="stroke-width: 2;" class="controller"/>
+  <text x="110.463" y="317.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Foreground</text>
+  <rect x="65.757" y="101.094" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+  <rect x="65.972" y="212.662" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+  <rect x="65.716" y="-26.15" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(36, 168, 183);"/>
+  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 398.651642, 213.73201)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Not Running</text>
+  <text x="398.093" y="319.055" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Controller</text>
+  <rect x="29.952" y="348.493" width="265.931" height="131.6" rx="21.555" ry="21.555" style="stroke-width: 2; stroke-opacity: 0.7;" class="model"/>
+  <text x="102.867" y="468.795" style="fill: rgb(255, 255, 255); font-family: Oswald; font-size: 27px; font-weight: 300; white-space: pre;">Background</text>
+  <rect x="66.287" y="362.862" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 399.647858, 604.811707)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Background</text>
+  <g>
+    <path d="M 472.596 151.134 L 414.14 151.187" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: url(#pattern-0-2);" transform="matrix(0, 1, -1, 0, 594.52848, -292.207516)"/>
+    <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866025, 0.5, 397.048198, 198.050931)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  </g>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866026, -0.5, 205.894245, 160.655245)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866025, 0.5, 113.47938, 222.618192)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 170.121 190.838 L 149.477 190.891" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 350.66351, 31.065494)"/>
+  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 427.557129, 454.355133)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Active</text>
+  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 419.165192, 341.530426)" style="fill: rgb(14, 147, 162); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Inactive</text>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866025, 247.573275, 70.786613)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 264.116 400.648 L 284.716 400.648 L 284.536 116.856 L 263.855 116.987" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 247.843447, 354.168586)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866026, -0.866025, -0.5, 205.894231, 31.438554)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866026, 0.866026, 0.499999, 113.47975, 110.401868)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 176.765 69.628 L 143.223 69.292" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 229.454021, -90.53403)"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.866027, 0.499999, -0.5, 0.866026, 246.572665, -39.436635)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 257.738 529.707 L 311.964 529.707 L 311.545 5.881 L 266.727 6.122" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;"/>
+  <rect x="66.287" y="497.992" width="188.624" height="68.803" rx="11.177" ry="11.177" style="stroke-width: 2; fill: rgb(255, 255, 255); stroke: rgb(194, 70, 79);"/>
+  <text x="-390.505" y="-256.785" transform="matrix(0.76118, 0, 0, 0.761179, 406.321106, 738.607422)" style="fill: rgb(194, 70, 79); font-family: Oswald; font-size: 36px; font-weight: 300; white-space: pre;">Suspended</text>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(-0.499999, 0.866027, -0.866025, -0.5, 134.0215, 420.229708)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 40.901 22.536 L 47.274 33.575 L 34.528 33.575 L 40.901 22.536 Z" transform="matrix(0.499999, -0.866025, 0.866026, 0.5, 41.606711, 509.193053)" style="fill: rgb(255, 255, 255); stroke-width: 2;" bx:shape="triangle 34.528 22.536 12.746 11.039 0.5 0 1@9e554ebf"/>
+  <path d="M 111.773 465.907 L 64.046 465.994" style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2;" transform="matrix(0, 1, -1, 0, 553.860011, 378.041017)"/>
+</svg>
