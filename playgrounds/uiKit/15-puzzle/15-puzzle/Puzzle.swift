@@ -31,17 +31,16 @@ class Puzzle {
     func shuffle() {
         let offsets = [(1,0),(0,1),(-1,0),(0,-1)]
         var (i,j) = blankPosition
-        for _ in 1...size * size {
-            let t = Int(arc4random()) % offsets.count
-            let k = (i + offsets[t].0) < 0 ? 0 :
-                (i + offsets[t].0) == size ? size-1 : (i + offsets[t].0)
-            let l = (j + offsets[t].1) < 0 ? 0 :
-                (j + offsets[t].1) >= size ? size-1 : (j + offsets[t].1)
+        for _ in 1...(size * size) {
+            let (offX,offY) = offsets[Int(arc4random()) % offsets.count]
+            let k = (i + offX) < 0 ? 0 :
+                (i + offX) == size ? size-1 : (i + offX)
+            let l = (j + offY) < 0 ? 0 :
+                (j + offY) >= size ? size-1 : (j + offY)
             if i != k || j != l {
                 swap(&board[k][l], &board[i][j])
                 i = k
                 j = l
-                print(i,j,"->",k,l)
             }
         }
     }
