@@ -6,8 +6,8 @@ Requirements:
 * Functionality should be separated from representation.
 * Should have the following View Stack:
  - NavigationController
-  - CalculatorController
-   - Buttons
+   - CalculatorController
+     - Buttons
 
 The binary is built for iPhone SE.
 `To install the binary just drag an app into simulator window!`

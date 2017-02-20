@@ -2,7 +2,7 @@
 ###Assignment #1: [Toying with Swift](./task1)
 Implement mechanics of the board game of your choice.
 
-###Assignment #2: The Calculator
+###Assignment #2: [The Calculator](./task2)
 Implement basic calculator without a storyboard.
 
 Separate view from controller from model.
