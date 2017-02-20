@@ -1,0 +1,25 @@
+//
+//  AppDelegate.swift
+//  15-puzzle
+//
+//  Created by Илья Лошкарёв on 19.02.17.
+//  Copyright © 2017 Илья Лошкарёв. All rights reserved.
+//
+
+import UIKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
+
+    var window: UIWindow? =  UIWindow(frame: UIScreen.main.bounds)
+    var timer: Timer!
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        srand48(Int(Date().timeIntervalSince1970)) // seed for UIColor.random
+        
+        window?.rootViewController = ViewController()
+        window?.makeKeyAndVisible()
+        return true
+    }
+
+}
+
