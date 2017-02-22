@@ -9,19 +9,23 @@
 /* Begin PBXBuildFile section */
 		E01FFA671E59EED600BC48BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFA661E59EED600BC48BB /* AppDelegate.swift */; };
 		E01FFA691E59EED600BC48BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFA681E59EED600BC48BB /* ViewController.swift */; };
-		E01FFA6E1E59EED600BC48BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E01FFA6D1E59EED600BC48BB /* Assets.xcassets */; };
 		E01FFA791E59EFB500BC48BB /* Puzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFA781E59EFB500BC48BB /* Puzzle.swift */; };
-		E01FFA7B1E59F32C00BC48BB /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFA7A1E59F32C00BC48BB /* UIColor+Random.swift */; };
+		E01FFA7B1E59F32C00BC48BB /* UIColor+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFA7A1E59F32C00BC48BB /* UIColor+Helpers.swift */; };
+		E01FFAC71E5CBBD800BC48BB /* RadialGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFAC61E5CBBD800BC48BB /* RadialGradientButton.swift */; };
+		E01FFAC91E5CBE4200BC48BB /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */; };
+		E01FFACC1E5D7AF500BC48BB /* CGPoint+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFACB1E5D7AF500BC48BB /* CGPoint+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E01FFA631E59EED600BC48BB /* 15-puzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "15-puzzle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E01FFA661E59EED600BC48BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E01FFA681E59EED600BC48BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E01FFA6D1E59EED600BC48BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E01FFA721E59EED600BC48BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E01FFA781E59EFB500BC48BB /* Puzzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Puzzle.swift; sourceTree = "<group>"; };
-		E01FFA7A1E59F32C00BC48BB /* UIColor+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
+		E01FFA7A1E59F32C00BC48BB /* UIColor+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Helpers.swift"; sourceTree = "<group>"; };
+		E01FFAC61E5CBBD800BC48BB /* RadialGradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientButton.swift; sourceTree = "<group>"; };
+		E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadialGradientLayer.swift; path = ../RadialGradientLayer.swift; sourceTree = "<group>"; };
+		E01FFACB1E5D7AF500BC48BB /* CGPoint+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,40 @@
 		E01FFA651E59EED600BC48BB /* 15-puzzle */ = {
 			isa = PBXGroup;
 			children = (
+				E02986071E5D8F4500F326BB /* Helpers */,
+				E02986061E5D8EFF00F326BB /* UI */,
+				E01FFACA1E5CD45100BC48BB /* Puzzle */,
 				E01FFA661E59EED600BC48BB /* AppDelegate.swift */,
-				E01FFA681E59EED600BC48BB /* ViewController.swift */,
-				E01FFA6D1E59EED600BC48BB /* Assets.xcassets */,
 				E01FFA721E59EED600BC48BB /* Info.plist */,
-				E01FFA781E59EFB500BC48BB /* Puzzle.swift */,
-				E01FFA7A1E59F32C00BC48BB /* UIColor+Random.swift */,
+				E01FFA681E59EED600BC48BB /* ViewController.swift */,
 			);
 			path = "15-puzzle";
+			sourceTree = "<group>";
+		};
+		E01FFACA1E5CD45100BC48BB /* Puzzle */ = {
+			isa = PBXGroup;
+			children = (
+				E01FFA781E59EFB500BC48BB /* Puzzle.swift */,
+			);
+			name = Puzzle;
+			sourceTree = "<group>";
+		};
+		E02986061E5D8EFF00F326BB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E01FFAC61E5CBBD800BC48BB /* RadialGradientButton.swift */,
+				E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		E02986071E5D8F4500F326BB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E01FFA7A1E59F32C00BC48BB /* UIColor+Helpers.swift */,
+				E01FFACB1E5D7AF500BC48BB /* CGPoint+Helpers.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,7 +154,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01FFA6E1E59EED600BC48BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,10 +164,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E01FFA7B1E59F32C00BC48BB /* UIColor+Random.swift in Sources */,
+				E01FFA7B1E59F32C00BC48BB /* UIColor+Helpers.swift in Sources */,
 				E01FFA791E59EFB500BC48BB /* Puzzle.swift in Sources */,
+				E01FFAC71E5CBBD800BC48BB /* RadialGradientButton.swift in Sources */,
 				E01FFA691E59EED600BC48BB /* ViewController.swift in Sources */,
+				E01FFAC91E5CBE4200BC48BB /* RadialGradientLayer.swift in Sources */,
 				E01FFA671E59EED600BC48BB /* AppDelegate.swift in Sources */,
+				E01FFACC1E5D7AF500BC48BB /* CGPoint+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,9 +273,9 @@
 		E01FFA761E59EED600BC48BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 84LQ3B37P5;
 				INFOPLIST_FILE = "15-puzzle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.sfedu.loshkarev.-5-puzzle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -254,9 +286,9 @@
 		E01FFA771E59EED600BC48BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 84LQ3B37P5;
 				INFOPLIST_FILE = "15-puzzle/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.sfedu.loshkarev.-5-puzzle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -283,6 +315,7 @@
 				E01FFA771E59EED600BC48BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
