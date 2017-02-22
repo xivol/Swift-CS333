@@ -38,6 +38,7 @@ class RadialGradientLayer: CALayer {
         colors = source.colors
         super.init(layer: layer)
     }
+    
     init(center: CGPoint, radius: CGFloat, colors: [CGColor]){
         self.center = center
         self.radius = radius

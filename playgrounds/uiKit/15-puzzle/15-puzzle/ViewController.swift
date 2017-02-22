@@ -10,10 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, PuzzleDelegate {
     var puzzle: Puzzle!
-    var size = 2
-    let maxSize = 10
+    let maxSize = 6
     
-    var buttons = [[UIButton]]()
+    var buttons: [[UIButton]]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +20,16 @@ class ViewController: UIViewController, PuzzleDelegate {
     }
     
     func resetPuzzle(){
-        if let oldPuzzle = view.subviews.first {
-            cleanup(oldPuzzle)
-        }
-        puzzle = Puzzle(of: size)
+        buttons = [[UIButton]]()
+        var size = puzzle?.size ?? 1
+        if size == maxSize { size = 1 }
+        puzzle = Puzzle(of: size + 1)
         puzzle.delegate = self // potential cycle
-        initUI()
+        initBoard()
 
     }
     
-    func cleanup(_ container: UIView) {
-        container.removeFromSuperview()
-        buttons = [[UIButton]]()
-    }
-    
-    func initUI() {
+    func initBoard() {
         let container = UIView(frame: CGRect(x: 0, y: (view.bounds.height - view.bounds.width) / 2,
                                              width: view.bounds.width, height: view.bounds.width))
         container.backgroundColor = UIColor.white
@@ -51,7 +45,14 @@ class ViewController: UIViewController, PuzzleDelegate {
                 container.addSubview(button)
             }
         }
-        view.addSubview(container)
+        guard let oldContainer = view.subviews.first else {
+            view.addSubview(container)
+            return
+        }
+        UIView.transition(from: oldContainer, to: container,
+                          duration: 1,
+                          options: .transitionFlipFromRight,
+                          completion: nil)
     }
     
     func createGridButton(row: Int, col: Int, of size: CGSize) -> UIButton {
@@ -59,6 +60,7 @@ class ViewController: UIViewController, PuzzleDelegate {
         var button: UIButton!
         if puzzle.board[row][col] == 0 { // empty tile
             button = UIButton(frame: CGRect(origin: buttonOrigin, size: size))
+            button.setTitleColor(UIColor.clear, for: .normal)
         } else {
             button = RadialGradientButton.puzzleTile(frame: CGRect(origin: buttonOrigin, size: size),
                                                      color: UIColor.random)
@@ -80,22 +82,25 @@ class ViewController: UIViewController, PuzzleDelegate {
     // MARK: Actions
     
     func buttonTouched(sender: UIButton) {
-        guard let number = Int(sender.title(for: .normal)!), !isAnimating
-        else { return }
+        guard let number = Int(sender.title(for: .normal)!) else { return }
+        
         if puzzle.tileIsAdjancedToBlank(tileWith: number) {
             puzzle.switchBlank(with: number)
         } else {
             // animate movable tiles
             for tile in puzzle.movableTiles {
-                let shakeDirection = 5 * CGPoint(x: puzzle.blankPosition.col - tile.col,
-                                                 y: puzzle.blankPosition.row - tile.row)
                 let button = buttons[tile.row][tile.col]
+                let shakeDirection = button.frame.width * 0.1 * CGPoint(x: puzzle.blankPosition.col - tile.col,
+                                                 y: puzzle.blankPosition.row - tile.row)
                 
+                view.isUserInteractionEnabled = false // disable interactions
                 UIView.animate(withDuration: 0.1) {
                     button.center += shakeDirection
                 }
                 UIView.animate(withDuration: 0.1, delay: 0.09, options: .curveLinear, animations: {
                     button.center -= shakeDirection
+                }, completion: { [weak self] _ in
+                    self?.view.isUserInteractionEnabled = true // enable interactions
                 })
             }
         }
@@ -108,38 +113,33 @@ class ViewController: UIViewController, PuzzleDelegate {
         let (k,l) = secondTilePos
         let centerFirst = buttons[i][j].center
         let centerSecond = buttons[k][l].center
+        view.isUserInteractionEnabled = false
         UIView.animate(withDuration: 0.2) {
             self.buttons[i][j].center = centerSecond
         }
         UIView.animate(withDuration: 0.2, animations: {
             self.buttons[k][l].center = centerFirst
-        }, completion: { _ in
-            swap(&self.buttons[i][j], &self.buttons[k][l])
+        }, completion: { [weak self] _ in
+            if self != nil {
+                swap(&self!.buttons[i][j], &self!.buttons[k][l])
+                self!.view.isUserInteractionEnabled = true
+            }
         })
     }
     
     func puzzleIsSolved(puzzle: Puzzle) {
         if isAnimating {
-            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [weak self](_) in
+            Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [weak self] _ in
                 self?.puzzleIsSolved(puzzle: puzzle)
             }
             return
         }
-        let alert = UIAlertController(title: "☆ Congratulations ☆", message: "You've cleared rank \(size)!", preferredStyle: UIAlertControllerStyle.alert)
-        if size < maxSize {
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { action in
-                //self.clearUI()
-                self.buttons = [[UIButton]]()
-                self.size += 1
-                self.resetPuzzle()
-            }))
-        } else { // finished the game
-            alert.addAction(UIAlertAction(title: "Start again!", style: .default, handler: {_ in
-                self.size = 2
-                self.resetPuzzle()
-            }))
-        }
-        
+        let alert = UIAlertController(title: "☆ Congratulations ☆", message: "You've cleared rank \(puzzle.size)!", preferredStyle: UIAlertControllerStyle.alert)
+        let title = puzzle.size < maxSize ? "Next" : "Start again!"
+        alert.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.default){
+            _ in
+            self.resetPuzzle()
+        })
         self.present(alert, animated: true, completion: nil)
     }
     
