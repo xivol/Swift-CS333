@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, PuzzleDelegate {
+class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDelegate {
     var puzzle: Puzzle!
     let maxSize = 6
     
@@ -17,6 +17,13 @@ class ViewController: UIViewController, PuzzleDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         resetPuzzle()
+        // Init gesture recognition
+        let swipeDirections: [UISwipeGestureRecognizerDirection] = [.down, .up, .left, .right]
+        for direction in swipeDirections {
+            let recognizer = UISwipeGestureRecognizer(target: self, action: #selector(gesture(recognizer:)))
+            recognizer.direction = direction
+            view.addGestureRecognizer(recognizer)
+        }
     }
     
     func resetPuzzle(){
@@ -26,7 +33,6 @@ class ViewController: UIViewController, PuzzleDelegate {
         puzzle = Puzzle(of: size + 1)
         puzzle.delegate = self // potential cycle
         initBoard()
-
     }
     
     func initBoard() {
@@ -58,7 +64,8 @@ class ViewController: UIViewController, PuzzleDelegate {
     func createGridButton(row: Int, col: Int, of size: CGSize) -> UIButton {
         let buttonOrigin = CGPoint(x: CGFloat(col) * size.width, y: CGFloat(row) * size.height)
         var button: UIButton!
-        if puzzle.board[row][col] == 0 { // empty tile
+        if puzzle.board[row][col] == 0 {
+            // Empty Tile
             button = UIButton(frame: CGRect(origin: buttonOrigin, size: size))
             button.setTitleColor(UIColor.clear, for: .normal)
         } else {
@@ -78,6 +85,14 @@ class ViewController: UIViewController, PuzzleDelegate {
         }
         return false
     }
+    
+    // MARK: Transistion
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("screen size changed to \(size)")
+    }
+    
+    
     
     // MARK: Actions
     
@@ -105,6 +120,30 @@ class ViewController: UIViewController, PuzzleDelegate {
             }
         }
     }
+    
+    func gesture(recognizer: UISwipeGestureRecognizer) {
+        let tiles = puzzle.movableTiles
+        let tileDirections = puzzle.movableTiles.flatMap {
+            (row, col) -> UISwipeGestureRecognizerDirection? in
+            switch (puzzle.blankPosition.col - col, puzzle.blankPosition.row - row) {
+            case (1,_):
+                return UISwipeGestureRecognizerDirection.right
+            case (-1,_):
+                return UISwipeGestureRecognizerDirection.left
+            case (_,1):
+                return UISwipeGestureRecognizerDirection.down
+            case (_,-1):
+                return UISwipeGestureRecognizerDirection.up
+            default:
+                print("Unexpected direction!")
+                return nil
+            }
+        }
+        if let index = tileDirections.index(of: recognizer.direction) {
+            let (i,j) = tiles[index]
+            puzzle.switchBlank(with: puzzle.board[i][j])
+        }
+    }
 
     // MARK: PuzzleDelegate
     
@@ -129,20 +168,28 @@ class ViewController: UIViewController, PuzzleDelegate {
     
     func puzzleIsSolved(puzzle: Puzzle) {
         if isAnimating {
+            // Wait for animation to end
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [weak self] _ in
                 self?.puzzleIsSolved(puzzle: puzzle)
             }
             return
         }
+        
+        let confetti = ConfettiView(frame: view.bounds)
+        
         let alert = UIAlertController(title: "☆ Congratulations ☆", message: "You've cleared rank \(puzzle.size)!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.view.addSubview(confetti)
+        alert.view.sendSubview(toBack: confetti)
+        confetti.startConfetti()
         let title = puzzle.size < maxSize ? "Next" : "Start again!"
         alert.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.default){
-            _ in
+            [weak confetti](_) in
+            confetti?.stopConfetti()
             self.resetPuzzle()
         })
+        
         self.present(alert, animated: true, completion: nil)
     }
-    
 
     
 }

@@ -54,7 +54,7 @@ extension RadialGradientButton {
         let button = RadialGradientButton(frame: frame)
         button.bounds = CGRect(x: 1, y: 1, width: frame.width - 1, height: frame.height - 1)
         button.startColor = color
-        button.endColor = color.darker!
+        button.endColor = color.darkened!
         // Title
         button.titleLabel?.font = button.titleLabel?.font.withSize(button.bounds.width / 2)
         // Corners
