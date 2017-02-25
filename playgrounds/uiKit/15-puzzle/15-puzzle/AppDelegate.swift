@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         srand48(Int(Date.timeIntervalSinceReferenceDate)) // seed for UIColor.random
-        
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
+ 
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         return true

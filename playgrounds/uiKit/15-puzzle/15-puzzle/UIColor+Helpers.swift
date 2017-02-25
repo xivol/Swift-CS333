@@ -9,14 +9,14 @@
 import UIKit
 
 extension UIColor {
-    struct HSVComponents {
+    struct HSBComponents {
         var hue: CGFloat
         var saturation: CGFloat
         var brightness: CGFloat
         var alpha: CGFloat
     }
     
-    var hsv: HSVComponents? {
+    var hsb: HSBComponents? {
         var hue: CGFloat = 0
         var sat: CGFloat = 0
         var bri: CGFloat = 0
@@ -25,11 +25,11 @@ extension UIColor {
                                  saturation: UnsafeMutablePointer(&sat),
                                  brightness: UnsafeMutablePointer(&bri),
                                  alpha: UnsafeMutablePointer(&alp))
-        return didGet ? HSVComponents(hue: hue, saturation: sat, brightness: bri, alpha: alp) : nil
+        return didGet ? HSBComponents(hue: hue, saturation: sat, brightness: bri, alpha: alp) : nil
     }
     
-    convenience init(components hsv: HSVComponents) {
-        self.init(hue: hsv.hue, saturation: hsv.saturation, brightness: hsv.brightness, alpha: hsv.alpha)
+    convenience init(components hsb: HSBComponents) {
+        self.init(hue: hsb.hue, saturation: hsb.saturation, brightness: hsb.brightness, alpha: hsb.alpha)
     }
     
     static var random: UIColor {
@@ -37,9 +37,9 @@ extension UIColor {
     }
     
     var darkened: UIColor? {
-        if var hsv = self.hsv {
-            hsv.brightness *= 0.3
-            return UIColor(components: hsv)
+        if var hsb = self.hsb {
+            hsb.brightness *= 0.3
+            return UIColor(components: hsb)
         }
         return nil
     }

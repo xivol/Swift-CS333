@@ -29,7 +29,7 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
     func resetPuzzle(){
         buttons = [[UIButton]]()
         var size = puzzle?.size ?? 1
-        if size == maxSize { size = 1 }
+        size = (size == maxSize) ? 1 : size
         puzzle = Puzzle(of: size + 1)
         puzzle.delegate = self // potential cycle
         initBoard()
@@ -51,14 +51,15 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
                 container.addSubview(button)
             }
         }
-        guard let oldContainer = view.subviews.first else {
+        if let oldContainer = view.subviews.first {
+            UIView.transition(from: oldContainer, to: container,
+                              duration: 1,
+                              options: .transitionFlipFromRight,
+                              completion: nil)
+        } else {
             view.addSubview(container)
-            return
         }
-        UIView.transition(from: oldContainer, to: container,
-                          duration: 1,
-                          options: .transitionFlipFromRight,
-                          completion: nil)
+        
     }
     
     func createGridButton(row: Int, col: Int, of size: CGSize) -> UIButton {
@@ -76,7 +77,7 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
         return button
     }
     
-    // if buttons are animated
+    // If buttons are animated
     var isAnimating: Bool {
         for button in buttons.flatMap({$0}) {
             if (button.layer.animationKeys()?.count ?? 0) > 0 {
@@ -85,14 +86,6 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
         }
         return false
     }
-    
-    // MARK: Transistion
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        print("screen size changed to \(size)")
-    }
-    
-    
     
     // MARK: Actions
     
@@ -126,13 +119,13 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
         let tileDirections = puzzle.movableTiles.flatMap {
             (row, col) -> UISwipeGestureRecognizerDirection? in
             switch (puzzle.blankPosition.col - col, puzzle.blankPosition.row - row) {
-            case (1,_):
+            case (1,0):
                 return UISwipeGestureRecognizerDirection.right
-            case (-1,_):
+            case (-1,0):
                 return UISwipeGestureRecognizerDirection.left
-            case (_,1):
+            case (0,1):
                 return UISwipeGestureRecognizerDirection.down
-            case (_,-1):
+            case (0,-1):
                 return UISwipeGestureRecognizerDirection.up
             default:
                 print("Unexpected direction!")
@@ -167,7 +160,7 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
     }
     
     func puzzleIsSolved(puzzle: Puzzle) {
-        if isAnimating {
+        if self.isAnimating {
             // Wait for animation to end
             Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [weak self] _ in
                 self?.puzzleIsSolved(puzzle: puzzle)
@@ -175,19 +168,20 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
             return
         }
         
-        let confetti = ConfettiView(frame: view.bounds)
-        
         let alert = UIAlertController(title: "☆ Congratulations ☆", message: "You've cleared rank \(puzzle.size)!", preferredStyle: UIAlertControllerStyle.alert)
+        // Confetti
+        let confetti = ConfettiView(frame: view.bounds)
         alert.view.addSubview(confetti)
         alert.view.sendSubview(toBack: confetti)
         confetti.startConfetti()
+        // Button
         let title = puzzle.size < maxSize ? "Next" : "Start again!"
         alert.addAction(UIAlertAction(title: title, style: UIAlertActionStyle.default){
             [weak confetti](_) in
             confetti?.stopConfetti()
             self.resetPuzzle()
         })
-        
+        // Present
         self.present(alert, animated: true, completion: nil)
     }
 

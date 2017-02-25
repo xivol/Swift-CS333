@@ -79,7 +79,7 @@ class ConfettiView: UIView {
             confetti.contents = image.cgImage
             confetti.scale = 0.05 * bounds.width / image.size.width
         }  else {
-            print("no confetti image!")
+            print("No confetti image!")
         }
         return confetti
     }
