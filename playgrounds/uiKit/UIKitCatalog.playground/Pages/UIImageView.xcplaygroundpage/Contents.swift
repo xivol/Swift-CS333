@@ -1,7 +1,6 @@
 import UIKit
 import PlaygroundSupport
 
-
 let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 400, height: 250))
 imageView.image = #imageLiteral(resourceName: "swift.png")
 imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -12,4 +11,5 @@ imageView.animationImages = swift
 imageView.animationRepeatCount = -1
 imageView.animationDuration = 1.5
 //imageView.startAnimating()
+
 PlaygroundPage.current.liveView = imageView

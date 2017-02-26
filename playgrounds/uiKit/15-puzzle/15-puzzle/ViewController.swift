@@ -167,12 +167,12 @@ class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDeleg
             }
             return
         }
-        
+        let confetti = ConfettiView(frame: view.bounds)
         let alert = UIAlertController(title: "☆ Congratulations ☆", message: "You've cleared rank \(puzzle.size)!", preferredStyle: UIAlertControllerStyle.alert)
         // Confetti
-        let confetti = ConfettiView(frame: view.bounds)
-        alert.view.addSubview(confetti)
-        alert.view.sendSubview(toBack: confetti)
+        //alert.view.addSubview(confetti)
+        //alert.view.sendSubview(toBack: confetti)
+        alert.view.insertSubview(confetti, at: 0)
         confetti.startConfetti()
         // Button
         let title = puzzle.size < maxSize ? "Next" : "Start again!"

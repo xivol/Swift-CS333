@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='UIView'/>
+        <page name='UILabel'/>
+        <page name='UIImageView'/>
+        <page name='UIScrollView'/>
+        <page name='UIButton'/>
+        <page name='UISwitch'/>
+    </pages>
+</playground>

@@ -11,6 +11,4 @@ label.textAlignment = .center
 label.font = UIFont(name: "AmericanTypewriter", size: 32)
 // for other font names visit http://iosfonts.com/
 
-
-
 PlaygroundPage.current.liveView = label
