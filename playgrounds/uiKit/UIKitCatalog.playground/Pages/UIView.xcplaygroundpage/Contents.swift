@@ -1,5 +1,5 @@
 import UIKit
-//import PlaygroundSupport
+import PlaygroundSupport
 
 let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
 
@@ -26,4 +26,4 @@ circle.layer.shadowColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1).cg
 circle.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).withAlphaComponent(0.7)
 containerView.addSubview(circle)
 
-//PlaygroundPage.current.liveView = containerView
+PlaygroundPage.current.liveView = containerView

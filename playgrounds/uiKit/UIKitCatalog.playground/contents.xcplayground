@@ -5,7 +5,13 @@
         <page name='UILabel'/>
         <page name='UIImageView'/>
         <page name='UIScrollView'/>
+        <page name='UIStackView'/>
         <page name='UIButton'/>
         <page name='UISwitch'/>
+        <page name='UIStepper'/>
+        <page name='UISlider'/>
+        <page name='UIDatePicker'/>
+        <page name='UIPickerView'/>
+        <page name='UITableView'/>
     </pages>
 </playground>
