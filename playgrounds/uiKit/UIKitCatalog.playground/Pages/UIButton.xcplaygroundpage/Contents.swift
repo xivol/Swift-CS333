@@ -1,7 +1,7 @@
 import UIKit
 import PlaygroundSupport
 
-class Handler {
+class Controller {
     let message: String!
     let label: UILabel!
     @objc func buttonTouched() {
@@ -29,8 +29,8 @@ button.setTitle("Touch Me!", for: .normal)
 button.setTitleColor(#colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1), for: .normal)
 button.titleLabel?.font = UIFont(name: "Chalkduster", size: 16)
 
-let buttonH = Handler(with:"Again!", for: displayLabel)
-button.addTarget(buttonH, action: #selector(Handler.buttonTouched), for: .touchUpInside)
+let buttonH = Controller(with:"Again!", for: displayLabel)
+button.addTarget(buttonH, action: #selector(Controller.buttonTouched), for: .touchUpInside)
 
 containerView.addSubview(button)
 
@@ -38,19 +38,17 @@ let details = UIButton(type: .detailDisclosure)
 details.frame.origin = CGPoint(x: 110, y: 70)
 details.tintColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
 
-let detailsH = Handler(with:"More!", for: displayLabel)
-details.addTarget(detailsH, action: #selector(Handler.buttonTouched), for: .touchUpInside)
+let detailsH = Controller(with:"More!", for: displayLabel)
+details.addTarget(detailsH, action: #selector(Controller.buttonTouched), for: .touchUpInside)
 
 containerView.addSubview(details)
 
 let custom = UIButton(frame: CGRect(x: 100, y: 120, width: 50, height: 50))
-custom.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-custom.setTitle("Stop", for: .normal)
-custom.setTitle("!!!", for: .highlighted)
-custom.layer.cornerRadius = custom.bounds.width / 2
+custom.setImage("😡".image, for: .normal)
+custom.setImage("💀".image, for: .highlighted)
 
-let customH = Handler(with:"Stop touching!", for: displayLabel)
-custom.addTarget(customH, action: #selector(Handler.buttonTouched), for: .touchUpInside)
+let customH = Controller(with:"Stop touching!", for: displayLabel)
+custom.addTarget(customH, action: #selector(Controller.buttonTouched), for: .touchUpInside)
 
 containerView.addSubview(custom)
 

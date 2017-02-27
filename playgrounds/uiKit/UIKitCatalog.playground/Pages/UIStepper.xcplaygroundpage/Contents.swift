@@ -1,7 +1,7 @@
 import UIKit
 import PlaygroundSupport
 
-class Handler {
+class Controller {
     let label: UILabel!
     @objc func valueChanged(sender: UIStepper) {
         label.textColor = sender.tintColor
@@ -31,16 +31,17 @@ stepper.layer.cornerRadius = 5
 stepper.maximumValue = 10
 stepper.stepValue = 0.5
 
-let handler = Handler(with: displayLabel)
-stepper.addTarget(handler, action: #selector(Handler.valueChanged(sender:)), for: .valueChanged)
+let controller = Controller(with: displayLabel)
+stepper.addTarget(controller, action: #selector(Controller.valueChanged(sender:)), for: .valueChanged)
 containerView.addSubview(stepper)
 
 let imageSteps = UIStepper(frame: CGRect(origin: CGPoint(x: origin.x, y: size.height * 3), size: size))
 imageSteps.backgroundColor = .white
-imageSteps.setIncrementImage(#imageLiteral(resourceName: "Forward_000000_32.png"), for: .normal)
-imageSteps.setDecrementImage(#imageLiteral(resourceName: "Back_000000_32.png"), for: .normal)
+imageSteps.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+imageSteps.setIncrementImage("🔺".image, for: .normal)
+imageSteps.setDecrementImage("🔻".image, for: .normal)
 
-imageSteps.addTarget(handler, action: #selector(Handler.valueChanged(sender:)), for: .valueChanged)
+imageSteps.addTarget(controller, action: #selector(Controller.valueChanged(sender:)), for: .valueChanged)
 containerView.addSubview(imageSteps)
 
 PlaygroundPage.current.liveView = containerView

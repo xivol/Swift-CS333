@@ -1,7 +1,7 @@
 import UIKit
 import PlaygroundSupport
 
-class Handler {
+class Controller {
     let label: UILabel!
     @objc func datePicked(sender: UIDatePicker) {
         let formatter = DateFormatter()
@@ -38,8 +38,8 @@ let displayLabel = UILabel(frame: CGRect(x: 0, y: 200, width: 250, height: 50))
 displayLabel.textAlignment = .center
 containerView.addSubview(displayLabel)
 
-let handler = Handler(with: displayLabel)
-datePicker.addTarget(handler, action: #selector(Handler.datePicked(sender:)), for: .valueChanged)
-timePicker.addTarget(handler, action: #selector(Handler.datePicked(sender:)), for: .valueChanged)
+let controller = Controller(with: displayLabel)
+datePicker.addTarget(controller, action: #selector(Controller.datePicked(sender:)), for: .valueChanged)
+timePicker.addTarget(controller, action: #selector(Controller.datePicked(sender:)), for: .valueChanged)
 
 PlaygroundPage.current.liveView = containerView
