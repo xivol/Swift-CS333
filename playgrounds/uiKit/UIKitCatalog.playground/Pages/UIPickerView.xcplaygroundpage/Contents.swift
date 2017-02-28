@@ -36,12 +36,15 @@ class Controller: NSObject, UIPickerViewDelegate {
         let items = [ dataSource.data(forRow: pickerView.selectedRow(inComponent: 0), inComponent: 0),
                       dataSource.data(forRow: pickerView.selectedRow(inComponent: 1), inComponent: 1),
                       dataSource.data(forRow: pickerView.selectedRow(inComponent: 2), inComponent: 2)]
+        
         if items[0] == items[1] && items[1] == items[2] {
             let win = UILabel(frame: pickerView.frame)
+        
             win.text = "WIN!!!"
             win.textAlignment = .center
             win.font = UIFont(name: "Chalkduster", size: 48)
             win.textColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+            
             pickerView.addSubview(win)
             // show and hide
             win.alpha = 0

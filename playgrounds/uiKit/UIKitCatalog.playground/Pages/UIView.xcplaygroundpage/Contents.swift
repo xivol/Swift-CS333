@@ -1,4 +1,3 @@
-//: # UIView
 import UIKit
 import PlaygroundSupport
 

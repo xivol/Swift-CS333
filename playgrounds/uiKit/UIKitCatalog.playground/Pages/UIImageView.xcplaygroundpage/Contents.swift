@@ -8,10 +8,12 @@ imageView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803
 imageView.contentMode = .scaleAspectFit
 //: ### Animation Images
 let moonView = UIImageView(frame: CGRect(x: 10, y: 10, width: 50, height: 50))
+
 let moon = ["🌑".image, "🌘".image, "🌗".image, "🌖".image, "🌕".image, "🌔".image, "🌓".image, "🌒".image]
 moonView.animationImages = moon
 moonView.animationRepeatCount = -1
 moonView.animationDuration = 1
+moonView.contentMode = .center
 imageView.addSubview(moonView)
 
 PlaygroundPage.current.liveView = imageView

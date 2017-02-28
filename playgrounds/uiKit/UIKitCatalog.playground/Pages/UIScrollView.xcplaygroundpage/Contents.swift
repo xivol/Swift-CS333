@@ -16,7 +16,7 @@ class Zoom: NSObject, UIScrollViewDelegate {
     }
 }
 
-let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 400, height: 250))
+let scrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 400, height: 400))
 
 let imageView = UIImageView(image: #imageLiteral(resourceName: "swift.png"))
 
@@ -28,7 +28,7 @@ scrollView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 let zoomDelegate = Zoom(content: imageView)
 scrollView.bouncesZoom = false
 scrollView.minimumZoomScale = scrollView.bounds.width / imageView.bounds.width
-scrollView.maximumZoomScale = 1
+scrollView.maximumZoomScale = 6
 scrollView.delegate = zoomDelegate // ??? doesn't work in playground ???
 
 PlaygroundPage.current.liveView = scrollView

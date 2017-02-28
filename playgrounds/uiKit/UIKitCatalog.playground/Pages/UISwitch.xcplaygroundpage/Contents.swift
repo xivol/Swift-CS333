@@ -36,8 +36,8 @@ for i in 0..<(rows * cols) {
     swtch.tintColor = UIColor.random
     swtch.onTintColor = swtch.tintColor
     
-    let displayView = UIView(frame: CGRect(x: swtch.frame.origin.x-10, y: swtch.frame.origin.y-5,
-                                           width: 10, height: 10))
+    let displayFrame = CGRect(x: swtch.frame.origin.x - 10, y: swtch.frame.origin.y - 5, width: 10, height: 10)
+    let displayView = UIView(frame: displayFrame)
     displayView.layer.cornerRadius = displayView.bounds.width / 2
     
     let controller = Controller(with: displayView)

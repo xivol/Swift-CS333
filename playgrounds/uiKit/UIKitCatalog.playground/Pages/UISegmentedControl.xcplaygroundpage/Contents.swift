@@ -2,19 +2,19 @@ import UIKit
 import PlaygroundSupport
 
 class Controller {
-    let views: UIView!
+    let container: UIView!
     @objc func valueChanged(sender: UISegmentedControl) {
-        guard let visible = views.subviews.index(where: { $0.isHidden == false }) else {
-            views.subviews[sender.selectedSegmentIndex].isHidden = false
+        guard let visible = container.subviews.index(where: { $0.isHidden == false }) else {
+            container.subviews[sender.selectedSegmentIndex].isHidden = false
             return
         }
         if visible != sender.selectedSegmentIndex {
-            UIView.transition(from: views.subviews[visible], to: views.subviews[sender.selectedSegmentIndex], duration: 0.5, options: [.showHideTransitionViews, .transitionFlipFromBottom], completion: nil)
+            UIView.transition(from: container.subviews[visible], to: container.subviews[sender.selectedSegmentIndex], duration: 0.5, options: [.showHideTransitionViews, .transitionFlipFromBottom], completion: nil)
         }
     }
     
-    init(with views: UIView){
-        self.views = views
+    init(with container: UIView){
+        self.container = container
     }
 }
 
@@ -37,7 +37,7 @@ let formatter = NumberFormatter()
 formatter.numberStyle = .spellOut
 
 for i in 1...number {
-    segmentedControl.insertSegment(withTitle: "\(i)", at: UInt(number), animated: false) // sintax error?
+    segmentedControl.insertSegment(withTitle: "\(i)", at: UInt(number), animated: false) // ??? bridging error ???
     let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 70))
     
     label.isHidden = true
@@ -53,7 +53,6 @@ for i in 0..<number {
     let segmentColor = UIColor(displayP3Red: CGFloat(i) * 0.2, green: CGFloat(i) * 0.1, blue: CGFloat(number - i) * 0.2, alpha: 1)
     segmentedControl.subviews[number - i - 1].tintColor = segmentColor
     views.subviews[i].backgroundColor = segmentColor
-    views.subviews[i].layer.cornerRadius = 2
 }
 
 let colorController = Controller(with: views)
