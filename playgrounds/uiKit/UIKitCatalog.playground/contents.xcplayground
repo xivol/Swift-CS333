@@ -8,6 +8,7 @@
         <page name='UIScrollView'/>
         <page name='UIStackView'/>
         <page name='UIButton'/>
+        <page name='UIToolbar'/>
         <page name='UISwitch'/>
         <page name='UIStepper'/>
         <page name='UISegmentedControl'/>

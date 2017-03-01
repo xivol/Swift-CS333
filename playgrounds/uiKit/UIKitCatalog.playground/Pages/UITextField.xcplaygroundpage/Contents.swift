@@ -31,7 +31,7 @@ containerView.addSubview(textField)
 
 let pass = UITextField(frame: CGRect(x: 0, y: 50, width: 250, height: 30))
 pass.borderStyle = .line
-pass.textColor = pass.tintColor
+pass.textColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
 pass.placeholder = "password"
 
 pass.isSecureTextEntry = true

@@ -1,3 +1,7 @@
+//: # UILabel
+//: A view that displays one or more lines of read-only text, often used in conjunction with controls to describe their intended purpose.
+//:
+//: [UILabel API Reference](https://developer.apple.com/reference/uikit/uilabel)
 import UIKit
 import PlaygroundSupport
 
@@ -9,6 +13,6 @@ label.textColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.34
 label.shadowColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
 label.textAlignment = .center
 label.font = UIFont(name: "AmericanTypewriter", size: 32)
-// for other font famuly names visit http://iosfonts.com/
+// for other font family names visit http://iosfonts.com/
 
 PlaygroundPage.current.liveView = label

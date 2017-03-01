@@ -1,3 +1,7 @@
+//: # UIActivityIndicatorView
+//: Use an activity indicator to show that a task is in progress. An activity indicator appears as a “gear” that is either spinning or stopped.
+//:
+//: [UIActivityIndicatorView API Reference](https://developer.apple.com/reference/uikit/uiactivityindicatorview)
 import UIKit
 import PlaygroundSupport
 
@@ -10,6 +14,7 @@ let size = CGSize(width: containerView.bounds.width / CGFloat(number),
 for i in 0..<number {
     for j in 0..<number {
         let frame = CGRect(x: CGFloat(i) * size.width, y: CGFloat(j) * size.height, width: size.width, height: size.height)
+        
         let indicator = UIActivityIndicatorView(frame: frame)
         
         indicator.activityIndicatorViewStyle = .whiteLarge
