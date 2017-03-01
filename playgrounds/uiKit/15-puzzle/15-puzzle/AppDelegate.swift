@@ -12,10 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow? =  UIWindow(frame: UIScreen.main.bounds)
-    var timer: Timer!
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        srand48(Int(Date().timeIntervalSince1970)) // seed for UIColor.random
-        
+        srand48(Int(Date.timeIntervalSinceReferenceDate)) // seed for UIColor.random
+ 
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         return true

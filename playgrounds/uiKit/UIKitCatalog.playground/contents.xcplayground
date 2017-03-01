@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='UIView'/>
+        <page name='UILabel'/>
+        <page name='UIActivityIndicator'/>
+        <page name='UIImageView'/>
+        <page name='UIScrollView'/>
+        <page name='UIStackView'/>
+        <page name='UIButton'/>
+        <page name='UIToolbar'/>
+        <page name='UISwitch'/>
+        <page name='UIStepper'/>
+        <page name='UISegmentedControl'/>
+        <page name='UISlider'/>
+        <page name='UITextField'/>
+        <page name='UIDatePicker'/>
+        <page name='UIPickerView'/>
+        <page name='UITableView'/>
+        <page name='UICollectionView'/>
+    </pages>
+</playground>

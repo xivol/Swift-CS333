@@ -16,7 +16,7 @@ protocol PuzzleDelegate: class { // weak delegates work only for class-bound pro
 class Puzzle {
     let size: Int
     var board: [[Int]]
-    weak var delegate: PuzzleDelegate?  // break potencial cycle
+    weak var delegate: PuzzleDelegate?  // break potensial cycle
     
     init(of size: Int) {
         self.size = size
@@ -31,8 +31,8 @@ class Puzzle {
     func shuffle() {
         let offsets = [(1,0),(0,1),(-1,0),(0,-1)]
         var (i,j) = blankPosition
-        for _ in 1...(size * size) {
-            let (offX,offY) = offsets[Int(arc4random()) % offsets.count]
+        for _ in 1...(size * size * size) {
+            let (offX, offY) = offsets[Int(arc4random()) % offsets.count]
             let k = (i + offX) < 0 ? 0 :
                 (i + offX) == size ? size-1 : (i + offX)
             let l = (j + offY) < 0 ? 0 :
@@ -45,11 +45,11 @@ class Puzzle {
         }
     }
     
-    var blankPosition: (Int,Int) {
+    var blankPosition: (row: Int, col: Int) {
         return positionOf(number: 0)!
     }
     
-    func positionOf(number: Int) -> (Int,Int)? {
+    func positionOf(number: Int) -> (row: Int, col: Int)? {
         guard (0..<size * size).contains(number) else {
             return nil
         }
@@ -57,7 +57,7 @@ class Puzzle {
         return (i, board[i].index(where: { $0 == number })!)
     }
     
-    func hasNumberAdjancedToBlank(_ number: Int) -> Bool {
+    func tileIsAdjancedToBlank(tileWith number: Int) -> Bool {
         guard let (i, j) = positionOf(number: number) else {
             return false
         }
@@ -68,6 +68,23 @@ class Puzzle {
             i == blankRow - 1 && j == blankCol ||
             i == blankRow && j == blankCol + 1 ||
             i == blankRow && j == blankCol - 1 
+    }
+    
+    var movableTiles: [(row: Int, col: Int)] {
+        let offsets = [(1,0),(0,1),(-1,0),(0,-1)]
+        let (i, j) = blankPosition
+        return offsets.flatMap {
+            (offX, offY) in
+            let k = (i + offX) < 0 ? nil :
+                (i + offX) == size ? nil : (i + offX)
+            let l = (j + offY) < 0 ? nil :
+                (j + offY) >= size ? nil : (j + offY)
+            if let x = k, let y = l {
+                return (x,y)
+            } else {
+                return nil
+            }
+        }
     }
     
     func switchBlank(with tileNumber: Int){
