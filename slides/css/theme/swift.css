@@ -219,8 +219,7 @@ body {
   max-height: 65%; }
 
 .reveal section .col img {
-  max-width: 80%;
-  max-height: 80%; }
+  max-width: 80%; }
 
 .reveal section .col img.large {
   max-width: 100%;
@@ -629,3 +628,6 @@ body {
   background-color: rgba(255,141,60,0.7); }
 .reveal .red {
   background-color: rgba(255,77,88,0.7); }
+
+.reveal .round {
+  border-radius: 50%; }

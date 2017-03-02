@@ -73,6 +73,20 @@
 						<h1>Custom UI</h1>
 					</section>
 					<section>
+						<h3>View Architecture</h3>
+						<p>
+							Every view has underlying Core Animation layer
+						</p>
+						<ul>
+							<li>
+								<span class="emphasis">UIView</span> &ndash; defines a rectangular region on the screen and handles the drawing and touch events
+							</li>
+							<li>
+								<span class="emphasis">CALayer</span> &ndash; manages the backing store for the view and handles view-related animations
+							</li>
+						</ul>
+					</section>
+					<section>
 						<h3>Stylish Button</h3>
 						<pre><code src="ViewController.swift">
 							override func viewDidLoad(){

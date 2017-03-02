@@ -22,7 +22,7 @@ class Model: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Create new cell
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellReuseIdentifier)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: cellReuseIdentifier)
         // or REUSE existing cell that is out of sight
         //let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
         // add Accessories
