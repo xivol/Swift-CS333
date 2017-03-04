@@ -146,7 +146,7 @@
 								Conveys a particular action or intention in response to user interactions
 							</div>
 							<div class="col">
-								<img src="../img/uicontrols.png" alt="UIControl examples">
+								<img src="../img/uicontrol.png" alt="UIControl examples">
 							</div>
 						</div>
 					</section>
@@ -242,7 +242,17 @@
 						</code></pre>
 					</section>
 					<section>
-						<h3>Presenting</h3>
+						<h3>Presentation</h3>
+						<pre><code class="swift" src ="UIViewController">
+							// Presents a view controller in a primary context
+							show(_:sender:)
+							// Presents a view controller in a secondary (or detail) context
+							showDetailViewController(_:sender:)
+							// Presents a view controller in a secondary (or detail) context
+							present(_:animated:completion:)
+							// Dismisses the view controller that was presented modally by the view controller
+							dismiss(animated:completion:)
+						</code></pre>
 					</section>
 					<section>
 						<h3>Navigation Controller</h3>
