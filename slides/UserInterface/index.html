@@ -27,15 +27,15 @@
 			background-color: rgba(255,141,60,0.7);
 			border-bottom-left-radius: 0.5em;
 			border-top-left-radius: 0.5em;
-			-webkit-clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
-			clip-path: polygon(0% 0%, 0% 100%, 90% 100%, 100% 0%);
+			-webkit-clip-path: polygon(0% 0%, 0% 100%, 95% 100%, 100% 0%);
+			clip-path: polygon(0% 0%, 0% 100%, 95% 100%, 100% 0%);
 		}
 		#storyboard {
 			background-color: rgba(255,141,60,0.7);
 			border-bottom-right-radius: 0.5em;
 			border-top-right-radius: 0.5em;
-			-webkit-clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
-			clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 0%);
+			-webkit-clip-path: polygon(5% 0%, 0% 100%, 100% 100%, 110% 0%);
+			clip-path: polygon(5% 0%, 0% 100%, 100% 100%, 110% 0%);
 		}
 		</style>
 	</head>
@@ -109,8 +109,8 @@
 						</div>
 					</section>
 					<section>
-						<h3>View Properties</h3>
-						<pre><code class="swift" data-noheader>
+						<h3>UIView Properties</h3>
+						<pre><code class="swift" src="UIView">
 							// Defines position of the view in it's parent
 							var frame: CGRect
 							// Defines bounding rectangle for view's content
@@ -138,30 +138,32 @@
 					</section>
 					<section>
 						<h3>UIControl</h3>
-						<p>
-							Conveys a particular action or intention in response <br/>
-							to user interactions
-						</p>
+						<div class="row">
+							<div class="col">
+								Conveys a particular action or intention in response to user interactions
+							</div>
+							<div class="col">
+								<img src="../img/uicontrols.png" alt="UIControl examples">
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>UIControl Subclasses</h3>
 						<table>
 							<tr>
-								<th>UIButton</th>
-								<td>lets a user initiate behavior with a tap</td>
+								<th>UIButton</th><td>lets a user initiate behavior with a tap</td>
 							</tr>
 							<tr>
-								<th>UITextField</th>
-								<td>allows the user to input a single line of text</td>
+								<th>UITextField</th><td>allows the user to input a single line of text</td>
 							</tr>
 							<tr>
-								<th>UISwitch</th>
-								<td>lets the user turn an option on and off</td>
+								<th>UISwitch</th><td>lets the user turn an option on and off</td>
 							</tr>
 							<tr>
-								<th>UISlider</th>
-								<td>enables users to interactively modify some adjustable value</td>
+								<th>UISlider</th><td>enables users to interactively modify some adjustable value</td>
 							</tr>
 							<tr>
-								<th>UIDatePicker</th>
-								<td>is used for selecting a specific date, time, or both</td>
+								<th>UIDatePicker</th><td>is used for selecting a specific date, time, or both</td>
 							</tr>
 						</table>
 					</section>
@@ -237,6 +239,9 @@
 						</code></pre>
 					</section>
 					<section>
+						<h3>Presenting</h3>
+					</section>
+					<section>
 						<h3>Navigation Controller</h3>
 						<img src="../img/navigation_interface.png" />
 						Allows users to navigate to the previous view
@@ -276,80 +281,28 @@
 							<div class="col">
 								<ul>
 									<li>Can be divided into sections</li>
-									<li>Each section contains <br />any number of cells</li>
-									<li>Able to present static or <br />dynamic content</li>
+									<li>Each section contains <br/>any number of cells</li>
+									<li>Has default editing <br/>and deleting behaviour</li>
 								</ul>
 							</div>
 							<div class="col">
-								<img src="../img/uitableview.png" class="small"/>
+								<img src="../img/uitableview.png" class="small" alt="table view"/>
 							</div>
 						</div>
-					</section>
-					<section>
-						<h3>Table View Cell</h3>
-						<ul>
-							<li>In <em>dynamic</em> Table View <br />
-								Each prototype cell describes appearence of <br />multiple cells in the table. Each prototype has a <em>Reuse Identifier</em>
-							</li>
-							<li>In <em>static</em> Table View <br />
-								Each cell added in Interface Builder describes its own content
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Prototype Cells</h3>
-						<p>
-							Each prototype cell describes appearence of <br />multiple cells in the table
-						</p>
-						<img src="../img/reuse.jpg" class="small" />
-						<p>
-							Each prototype cell has a <em>Reuse Identifier</em>
-						</p>
-					</section>
-					<section>
-						<h3>Default Cell Style</h3>
-						<img src="../img/uitableviewcell.jpg" class="medium"/>
-						<pre class="col"><code class="swift" data-noheader>
-							// Returns the label used for the main textual content of the table cell
-							var textLabel: UILabel?
-							// Returns the secondary label of the table cell if one exists
-							var detailTextLabel: UILabel?
-							// Returns the image view of the table cell
-							var imageView: UIImageView?
-						</code></pre>
-					</section>
-					<section>
-						<h3>Table View Data Source</h3>
-						<pre class="col"><code class="swift" src="TableViewController.swift">
-						override func tableView(tableView: UITableView,
-							numberOfRowsInSection section: Int) -> Int {
-							return 5
-						}
-						override func tableView(tableView: UITableView,
-							cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-							let cell = tableView.dequeueReusableCellWithIdentifier("RobinTheMan",
-								forIndexPath: indexPath)
-							cell.textLabel.text = String(indexPath.row)
-							return cell
-						}
-						</code></pre>
 					</section>
 					<section>
 						<h3>Collection View Controller</h3>
 						<div class="row">
 							<div class="col">
 								<ul>
-									<li>Presents views of different sizes</li>
-									<li>Can have horizontal or vertical scrolling</li>
+									<li>Each cell can have different size and content</li>
+									<li>Layout manages cells dimentions and distribution</li>
 								</ul>
 							</div>
 							<div class="col">
-
+								<img src="../img/uicollectionview.png" alt="collection view">
 							</div>
 						</div>
-					</section>
-					<section>
-						<h3>Collection View Layout</h3>
 					</section>
 				</section>
 <!-- Storyboards-->
@@ -358,12 +311,46 @@
 						<h1>Storyboards</h1>
 					</section>
 					<section>
+						<h3>XIB Files</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>XML represntation of a view hierarchy</li>
+									<li>Is attached to a specific view or controller class</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/xib.png" alt="xib file">
+							</div>
+						</div>
+					</section>
+					<section>
 						<h3>Scenes</h3>
-						<img src="../img/indexedtable-demo.jpg" />
-						<p>
-							A <em>scene</em> represents an onscreen content area <br />
-							usually a single View Controller
-						</p>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>A <em>scene</em> represents an onscreen content area</li>
+									<li>usually a single <br />View Controller</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/indexedtable-demo.jpg" alt=""/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Designing with Storyboard</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Storyboards allow to graphically lay out<br/>
+									the user’s path through the app</li>
+								</ul>
+							</div>
+							<div class="col">
+								<img src="../img/storyboard_bird_sightings.png" alt=""/>
+							</div>
+						</div>
 					</section>
 					<section>
 						<h3>Segues</h3>
@@ -373,7 +360,7 @@
 						</p>
 					</section>
 					<section>
-						<h3>Segue Type</h3>
+						<h3>Segue Types</h3>
 						<table>
 							<tr>
 								<th>Show</th>
@@ -403,48 +390,21 @@
 						</table>
 					</section>
 					<section>
-						<h3>Designing with Storyboard</h3>
-						<img src="../img/storyboard_bird_sightings.png" style="height:500px;"/>
-						<p>
-							Storyboards allow to graphically lay out<br/>
-							the user’s path through your app
+						<h3>Using the Segues</h3>
+						<pre><code class="swift" src="UIViewController">
+							// Allows to make changes to the controllers before segue is performed
+							func prepare(for: UIStoryboardSegue, sender: Any?)
+							// Performs segue with specific identifier
+							func performSegue(withIdentifier: String, sender: Any?)
+							// Determines if the specific segue should be performed
+							func shouldPerformSegue(withIdentifier: String, sender: Any?)
+						</code></pre>
+						<p class="notice">
+							Each segue has an identifier to distinguish it in storyboard
 						</p>
 					</section>
 					<section>
-						<h3>Storyboard vs XiB</h3>
-						<div class="row">
-							<div class="col" id="xib">
-								<h5>.xib</h5>
-								<ul>
-									<li>
-										Single scene
-									</li>
-									<li>
-										A file for every scene
-									</li>
-									<li>
-										Manual scene transition
-									</li>
-								</p>
-							</div>
-							<div class="col" id="storyboard">
-								<h5>Storyboard</h5>
-								<ul>
-									<li>
-										Multiple scenes and segues
-									</li>
-									<li>
-										Can be slow and heavy<br />
-									</li>
-									<li>
-										Not well-suited for collaborative development
-									</li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					<section>
-						<h3>Outlet</h3>
+						<h3>Outlets</h3>
 						<img src="../img/outlet.jpg" />
 						<p>
 							Connects storyboard item to the code
@@ -454,7 +414,7 @@
 						</code></pre>
 					</section>
 					<section>
-						<h3>Action</h3>
+						<h3>Actions</h3>
 						<img src="../img/action.jpg" />
 						<p>
 							Connects event handler to a control
@@ -467,13 +427,36 @@
 						<h3>Connections</h3>
 						<div class="row">
 							<div class="col">
-								List of all objects <br> connected to the UI element
-								<p class="notice">
-									Element must be removed from connections <br> when deleted
-								</p>
+								<ul>
+									<li>List of all objects
+										<br> connected to the UI element</li>
+									<li class="notice">Element must be removed from connections
+										<br> when deleted</li>
+								</ul>
 							</div>
 							<div class="col">
-								<img src="../img/ui_connections.jpg" style="max-height:70%;"/>
+								<img src="../img/ui_connections.jpg" class="medium"/>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Storyboard vs XIB</h3>
+						<div class="row">
+							<div class="col" id="xib">
+								<h5>XIB</h5>
+								<ul>
+									<li>Single scene</li>
+									<li>A file for every scene</li>
+									<li>Manual scene transition</li>
+								</p>
+							</div>
+							<div class="col" id="storyboard">
+								<h5>Storyboard</h5>
+								<ul>
+									<li>Multiple scenes and segues</li>
+									<li>Can be slow and heavy</li>
+									<li>Not well-suited for collaborative development</li>
+								</ul>
 							</div>
 						</div>
 					</section>
@@ -494,9 +477,29 @@
 					</section>
 					<section>
 						<h3>Attributes</h3>
-						<img src="../img/layout_attributes.png" class="small"/>
+						<div class="row">
+							<code class="hljs-type">
+							<div class="col">
+								<ul>
+									<li>Top</li>
+									<li>Bottom</li>
+									<li>Leading</li>
+									<li>Trailing</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li>Width</li>
+									<li>Height</li>
+									<li>Center X</li>
+									<li>Center Y</li>
+									<li>Baseline</li>
+								</ul>
+							</div>
+							</code>
+						</div>
 						<p>
-							Every view has 9 Layout Attributes
+							Every view has 9 layout attributes
 						</p>
 					</section>
 					<section>
@@ -507,19 +510,54 @@
 						</p>
 					</section>
 					<section>
-						<h3>Types of Constraints</h3>
-						<ul>
-							<li><em>Alignment Constraint</em> describes how views are positioned in relation to each other and to their container</li>
-							<li><em>Pinning Constaraint</em> describes view's intrinsic attributes and margins</li>
-						</ul>
+						<h3>Autoresizing Mask</h3>
+						<div class="row">
+							<div class="col">
+								A depreciated way to define<br>
+								view's resizing behaviour
+							</div>
+							<div class="col">
+								<img src="../img/autoresizing_mask.png" alt="Autoresizing Mask">
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Constraints at Runtime</h3>
+						<pre><code class="swift" data-noheader>
+							// Remove automatic constraints
+							button.translatesAutoresizingMaskIntoConstraints = false
+							// Create new constraints
+							var constraints = [
+								// Only views in the same view heirarchy can be constrained
+								button.topAnchor.constraint(equalTo: inputLabel.bottomAnchor),
+								button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+								button.widthAnchor.constraint(equalTo: view.bounds.width, multiplier: 1 / buttons.count)
+							]
+							// Activate the constraints
+							NSLayoutConstraint.activate(constraints)
+						</code></pre>
 					</section>
 					<section>
 						<h3>Alignment Constraints</h3>
-							<img src="../img/alignment_constraints.png" class="medium"/>
+						<div class="row">
+							<div class="col">
+								Describe how views are positioned in relation to each other and to their container
+							</div>
+							<div class="col">
+								<img src="../img/alignment_constraints.png" class="small"/>
+							</div>
+						</div>
 					</section>
 					<section>
 						<h3>Pinning Constraints</h3>
-						<img src="../img/pin_constraints.png" class="small"/>
+						<div class="row">
+							<div class="col">
+								Describe view's intrinsic attributes and margins
+							</div>
+							<div class="col">
+								<img src="../img/pin_constraints.png" class="medium"/>
+							</div>
+						</div>
 					</section>
 					<section>
 						<h3>Debugging Constraints</h3>
@@ -541,12 +579,10 @@
 						<h3>Stack View</h3>
 						<div class="row">
 							<div class="col">
-								<img src="../img/simple_stack.png" style="max-height:60%;"/>
+									Allows automatic alignment of contained views <br/> for simplified layout
 							</div>
 							<div class="col">
-								<p>
-									Allows automatic alignment of contained views <br/> for simplified layout
-								</p>
+								<img src="../img/simple_stack.png" style="max-height:60%;"/>
 							</div>
 						</div>
 					</section>
@@ -555,98 +591,134 @@
 						<img src="../img/intrinsic_content_size.png" class="small"/>
 						<ul>
 							<li>
-								<em>Content hugging</em> pulls the view inward <br />so that it fits snugly around the content
+								<em>Content hugging</em> pulls the view inward <br />
+								so that it fits snugly around the content
 							</li>
 							<li>
-								<em>Compression resistance</em> pushes the view outward<br /> so that it does not clip the content
+								<em>Compression resistance</em> pushes the view outward<br />
+								so that it does not clip the content
 							</li>
 						</ul>
 					</section>
+        </section>
+<!-- Gestures		-->
+				<section>
+					<section data-background="../img/gestures.jpg">
+						<h1>Gestures</h1>
+					</section>
 					<section>
-						<h3>Constraints at Runtime</h3>
-						<pre><code class="swift" data-noheader>
-							// Creaye new constraint
-							// myView.Leading = view.LeadingMargin * 1.0 + 0.0
-							let constraint = NSLayoutConstraint(
-								item: myView, attribute: .Leading,
-								relatedBy: .Equal,
-								toItem: view, attribute: .LeadingMargin,
-								multiplier: 1.0, constant: 0.0)
-							// Activate new constraint
-							constraint.active = true
-							// Recalculate view's dimentions
-							myView.layoutIfNeeded()
-							// Remove new constraint
-							myView.removeConstraint(constraint)
-
+						<h3>UIEvent</h3>
+						<div class="row">
+							<div class="col">
+								Contains information about the event that the app uses to decide how to respond to the event
+							</div>
+							<div class="col">
+								<ul>
+									<li><em>Motion Event</em></li>
+									<li><em>Touch Event</em></li>
+									<li><em>Physical Button</em></li>
+									<li><em>Remote Event</em></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>UIResponder</h3>
+						<p>
+							An abstract interface for responding to and handling events
+						</p>
+						<pre><code class="swift" src="UIResponder">
+							// Recieve touch
+							touchesBegan(_:with:)
+							touchesMoved(_:with:)
+							touchesEnded(_:with:)
+							// Recieve motion
+							motionBegan(_:with:)
+							motionEnded(_:with:)
+							// Physical button pressed
+							pressesBegan(_:with:)
+							pressesChanged(_:with:)
+							pressesEnded(_:with:)
+							// Reset recognition process
+							reset()
 						</code></pre>
 					</section>
-        </section>
-<!-- Handling Segues		-->
-				<section>
-					<section data-background="../img/segues.jpg">
-						<h1>Handling Segues</h1>
+					<section>
+						<h3>Gesture Recognizers</h3>
+						<div class="row">
+							<div class="col" style="text-align: left;">
+								Gesture recognizers convert low-level event handling code into higher-level actions
+							</div>
+							<div class="col">
+								<img src="../img/gesture_recognizer.png" alt="gesture recognizer flow">
+							</div>
+						</div>
 					</section>
 					<section>
-						<h3>Segue</h3>
-						<img src="../img/segue_defined_2x.png" />
-						<p>
-							A <em>segue</em> represents the transition from one scene <br> to the next scene
-						</p>
+						<h3>UIGestureRecognizer</h3>
+						<code class="hljs-type"><ul>
+							<li>UITapGestureRecognizer</li>
+							<li>UISwipeGestureRecognizer</li>
+							<li>UIPanGestureRecognizer</li>
+							<li>UIPinchGestureRecognizer</li>
+							<li>UIRotationGestureRecognizer</li>
+							<li>UILongPressGestureRecognizer</li>
+						</ul></code>
 					</section>
 					<section>
-						<h3>Segue Type</h3>
-						<table>
-							<tr>
-								<th>Show</th>
-								<td><img src="../img/segue_push.png" class="round flat"/></td>
-								<td><small>Push on top of main stack</small></td>
-							</tr>
-							<tr>
-								<th>Show Detail</th>
-								<td><img src="../img/segue_push.png" class="round flat"/></td>
-								<td><small>Push on top of detail stack</small></td>
-							</tr>
-							<tr>
-								<th>Present in Popover</th>
-								<td><img src="../img/segue_popover.png" class="round flat"/></td>
-								<td><small>Show in popover view</small></td>
-							</tr>
-							<tr>
-								<th>Present Modally</th>
-								<td><img src="../img/segue_modal.png" class="round flat"/></td>
-								<td><small>Show on top of current root view</small></td>
-							</tr>
-							<tr>
-								<th>Custom</th>
-								<td><img src="../img/segue_custom.png" class="round flat"/>
-								</td><td><small>Custom Segue</small></td>
-							</tr>
-						</table>
+						<h3>Adding Gesture Recognizers</h3>
+						<pre><code class="swift" src="ViewController.swift">
+							let recognizer = UISwipeGestureRecognizer(target: self,
+									action: #selector(swipeGesture(sender:)))
+							recognizer.direction = .down
+							view.addGestureRecognizer(recognizer)
+						</code></pre>
 					</section>
 					<section>
-						<h3>Identifier</h3>
+						<h3>Recognizer States</h3>
+						<img src="../img/gr_state_transitions.png" alt="recognizer state changes">
 					</section>
 					<section>
-						<h3>Prepare for Segue</h3>
+						<h3>Custom Gesture Recognizers</h3>
+						<pre><code class="swift" src="Recognizer.swift">
+							override func touchesEnded(_ touches: Set&lt;UITouch&gt;,
+														with event: UIEvent?) {
+								super.tochesEnded(touches, with: event)
+								if state == .possible &amp;&amp; someCondition {
+									state = .recognized // gesture is recognized
+								} else {
+									state = .failed // recognition failed
+								}
+						</code></pre>
 					</section>
 					<section>
-						<h3>Perform Segue</h3>
+						<h3>Shake Recognition</h3>
+						<pre><code class="swift" src="ViewController.swift">
+							override var canBecomeFirstResponder: Bool { return true }
+							override func viewDidAppear(_ animated: Bool){
+								self.becomeFirstResponder()
+							}
+							override func motionEnded(_ motion: UIEventSubtype,
+														with event: UIEvent?) {
+								if motion == UIEventSubtype.motionShake { doTheShake() }
+							}
+						</code></pre>
 					</section>
 				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
+						<li>
+							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/UIKitUICatalog/index.html">UIKit Catalog - Apple Developer</a>
+						</li>
 						<li><a href="https://developer.apple.com/library/content/featuredarticles/ViewControllerPGforiPhoneOS/index.html">View Controller Programming Guide - Apple Developer</a>
 						</li>
 						<li>
 							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/AutolayoutPG/index.html">Auto Layout Guide - Apple Developer</a>
 						</li>
 						<li>
-							<a href="https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/UIKitUICatalog/index.html">UIKit Catalog - Apple Developer</a>
-						</li>
-						<li>
+							<a href="https://developer.apple.com/library/content/documentation/EventHandling/Conceptual/EventHandlingiPhoneOS/Introduction/Introduction.html">Event Handling Guide - Apple Developer</a>
 						</li>
 					</ul>
 				</section>
