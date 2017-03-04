@@ -63,19 +63,22 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">View</a>
+								<a href="#/2">Views</a>
 							</li>
 							<li>
 								<a href="#/3">View Controllers</a>
 							</li>
 							<li>
-								<a href="#/4">Storyboard</a>
+								<a href="#/4">Storyboards</a>
 							</li>
 							<li>
 								<a href="#/5">Auto Layout</a>
 							</li>
 							<li>
 								<a href="#/6">Gestures</a>
+							</li>
+							<li>
+								<a href="#/7">Custom Views</a>
 							</li>
 						</ul>
 						</div>
@@ -505,9 +508,27 @@
 					<section>
 						<h3>Anatomy of Constraint</h3>
 						<img src="../img/layout_constraint.png" />
-						<p>
-							Every constraint describes relationship <br/> between two attributes
-						</p>
+						<ul>
+							<li>Every constraint describes relationship between two attributes</li>
+							<li>A set of constraints provide a system of linear equations</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Constraints at Runtime</h3>
+						<pre><code class="swift" data-noheader>
+							// Remove automatic constraints
+							button.translatesAutoresizingMaskIntoConstraints = false
+							// Create new constraints
+							var constraints = [
+								// Only views in the same view heirarchy can be constrained
+								button.topAnchor.constraint(equalTo: inputLabel.bottomAnchor),
+								button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+								button.widthAnchor.constraint(equalTo: view.bounds.width,
+															  multiplier: 1 / buttons.count)
+							]
+							// Activate the constraints
+							NSLayoutConstraint.activate(constraints)
+						</code></pre>
 					</section>
 					<section>
 						<h3>Autoresizing Mask</h3>
@@ -520,22 +541,6 @@
 								<img src="../img/autoresizing_mask.png" alt="Autoresizing Mask">
 							</div>
 						</div>
-					</section>
-					<section>
-						<h3>Constraints at Runtime</h3>
-						<pre><code class="swift" data-noheader>
-							// Remove automatic constraints
-							button.translatesAutoresizingMaskIntoConstraints = false
-							// Create new constraints
-							var constraints = [
-								// Only views in the same view heirarchy can be constrained
-								button.topAnchor.constraint(equalTo: inputLabel.bottomAnchor),
-								button.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-								button.widthAnchor.constraint(equalTo: view.bounds.width, multiplier: 1 / buttons.count)
-							]
-							// Activate the constraints
-							NSLayoutConstraint.activate(constraints)
-						</code></pre>
 					</section>
 					<section>
 						<h3>Alignment Constraints</h3>
@@ -566,12 +571,12 @@
 								<em>Warnings</em> can be resolved automatically by either fixing view, or modifing constraints
 							</li>
 							<li>
-								<em class="error">Errors</em> could only be resolwed by a programmer:
-									<ul>
-										<li><em>Unsatisfiable Layouts</em>: your layout has no valid solution</li>
-										<li><em>Ambiguous Layouts</em>: your layout has two or more possible solutions</li>
-										<li><em>Logical Errors</em>: there is a bug in your layout logic</li>
-									</ul>
+								<em>Errors</em> could only be resolwed by a programmer:
+								<ul>
+									<li><em>Unsatisfiable Layouts</em>: your layout has no valid solution</li>
+									<li><em>Ambiguous Layouts</em>: your layout has two or more possible solutions</li>
+									<li><em>Logical Errors</em>: there is a bug in your layout logic</li>
+								</ul>
 							</li>
 						</ul>
 					</section>
@@ -610,7 +615,7 @@
 						<h3>UIEvent</h3>
 						<div class="row">
 							<div class="col">
-								Contains information about the event that the app uses to decide how to respond to the event
+								Contains information about the event
 							</div>
 							<div class="col">
 								<ul>
@@ -705,6 +710,120 @@
 						</code></pre>
 					</section>
 				</section>
+<!-- Custom UI		-->
+<section>
+	<section data-background="../img/children-drawing-.jpg">
+		<h1>Custom Views</h1>
+	</section>
+	<section>
+		<h3>View Architecture</h3>
+		<p>
+			Every view has underlying Core Animation Layer
+		</p>
+		<ul>
+			<li>
+				<code class="hljs-type">UIView</code> &ndash; defines a rectangular region on the screen and handles the drawing and touch events
+			</li>
+			<li>
+				<code class="hljs-type">CALayer</code> &ndash; manages graphical properties of the view and handles view-related animations
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Stylish Button</h3>
+		<pre><code src="ViewController.swift">
+			override func viewDidLoad(){
+				super.viewDidLoad()
+				myButton.backgroundColor = UIColor.blackColor()
+				myButton.tintColor = UIColor.whiteColor()
+				myButton.layer.cornerRadius = 6
+			}
+		</code></pre>
+		<p class="notice">
+			Some basic properties of a view can be set in<br />
+			 the Interface Builder
+		</p>
+	</section>
+	<section>
+		<h3>Overriding Default Button</h3>
+		<pre><code src="MyButton.swift">
+			class MyButton: UIButton {
+				func stylize(){
+					self.backgroundColor = UIColor.blackColor()
+					self.tintColor = UIColor.whiteColor()
+					self.layer.cornerRadius = 6
+				}
+				override init(frame: CGRect){
+						super.init(frame: frame)
+						stylize()
+				}
+				// ... required methods
+			}
+		</code></pre>
+	</section>
+	<section>
+		<h3>Overriding Default Button : 2</h3>
+		Assign your custom class to a button
+		<img src="../img/my_button.png" />
+		<p class="notice">
+			You should get mixed results: <br />
+			button will look the same in IB, <br />
+			but look as expected in simulator
+		</p>
+	</section>
+	<section>
+		<h3>Rendering in IB</h3>
+		<pre><code src="MyButton.swift">
+			@IBDesignable
+			class MyButton: UIButton {
+				// The following is only executed in the IB
+				override func prepareForInterfaceBuilder() {
+					super.prepareForInterfaceBuilder()
+					// IB tends to override some properties set in viewDidLoad ???
+					self.backgroundColor = UIColor.blackColor()
+				}
+			}
+		</code></pre>
+		<p>
+			<code class="hljs-preprocessor">@IBDesignable</code> shows that class is suitable for instancing in<br />
+			 the Interface Builder
+		</p>
+	</section>
+	<section>
+		<h3>Custom Properties in IB</h3>
+		<pre><code src="MyButton.swift">
+			@IBDesignable
+			class MyButton: UIButton {
+				@IBInspectable var cornerRadius: CGFloat {
+					get{ return layer.cornerRadius }
+					set{ layer.cornerRadius = newValue }
+				}
+			}
+		</code></pre>
+		<p>
+			<code class="hljs-preprocessor">@IBInspectable</code> allows property to be set from<br />
+			 the Interface Builder
+		</p>
+	</section>
+	<section>
+		<h3>Custom Button</h3>
+		<pre><code src="RoundButton.swift">
+			@IBDesignable
+			class RoundButton: UIButton {
+				override func drawRect(rect: CGRect) {
+					var path = UIBezierPath(ovalInRect: rect)
+					// set fill color
+					bacgroundColor.setFill()
+					// fill previously defined path
+					path.fill()
+				}
+			}
+		</code></pre>
+		<p class="notice">
+			All the drawing happens in the view's graphic context<br />
+		</p>
+	</section>
+</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
