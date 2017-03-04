@@ -73,9 +73,9 @@ class ConfettiView: UIView {
         confetti.emissionRange = CGFloat(M_PI_4)
         confetti.spin = CGFloat(3.5 * intensity)
         confetti.spinRange = CGFloat(4.0 * intensity)
-        
-        // WARNING: A layer can set this property to a CGImageRef to display the image as its contents.
+
         if let image = UIImage(named: "confetti") {
+        // WARNING: A layer should set this property to a CGImage to display the image as its contents.
             confetti.contents = image.cgImage
             confetti.scale = 0.05 * bounds.width / image.size.width
         }  else {

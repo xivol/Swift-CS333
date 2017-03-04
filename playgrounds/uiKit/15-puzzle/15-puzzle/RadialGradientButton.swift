@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 class RadialGradientButton: UIButton {
 
     @IBInspectable var cornerRadius: Float {
