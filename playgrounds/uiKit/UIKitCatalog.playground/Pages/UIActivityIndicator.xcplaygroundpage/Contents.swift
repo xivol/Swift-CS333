@@ -8,7 +8,7 @@ import PlaygroundSupport
 let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 250, height: 250))
 //containerView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 
-let number = 6
+let number = 3
 let size = CGSize(width: containerView.bounds.width / CGFloat(number),
                   height: containerView.bounds.width / CGFloat(number))
 for i in 0..<number {

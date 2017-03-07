@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, PuzzleDelegate, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, PuzzleDelegate {
     var puzzle: Puzzle!
     let maxSize = 6
     

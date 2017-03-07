@@ -1,3 +1,7 @@
+//: # UIButton
+//: A `UIButton` object is a view that executes your custom code in response to user interactions.
+//:
+//: [UIButton API Reference](https://developer.apple.com/reference/uikit/uibutton)
 import UIKit
 import PlaygroundSupport
 
