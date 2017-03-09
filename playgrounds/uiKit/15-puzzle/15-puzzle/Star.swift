@@ -25,8 +25,10 @@ extension UIBezierPath {
     }
 }
 
-struct Star{
+struct Star {
+    
     let points: Int
+    
     var inOut: CGFloat = 0.5
     
     init?(points: Int) {
