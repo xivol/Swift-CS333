@@ -15,7 +15,7 @@
 		E01FFAC91E5CBE4200BC48BB /* RadialGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */; };
 		E01FFACC1E5D7AF500BC48BB /* CGPoint+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01FFACB1E5D7AF500BC48BB /* CGPoint+Helpers.swift */; };
 		E029860B1E606D2900F326BB /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E029860A1E606D2900F326BB /* ConfettiView.swift */; };
-		E029860F1E60703C00F326BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E029860E1E60703C00F326BB /* Images.xcassets */; };
+		E064BB531E716BCB00FF2C30 /* Star.swift in Sources */ = {isa = PBXBuildFile; fileRef = E064BB521E716BCB00FF2C30 /* Star.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RadialGradientLayer.swift; path = ../RadialGradientLayer.swift; sourceTree = "<group>"; };
 		E01FFACB1E5D7AF500BC48BB /* CGPoint+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Helpers.swift"; sourceTree = "<group>"; };
 		E029860A1E606D2900F326BB /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
-		E029860E1E60703C00F326BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E064BB521E716BCB00FF2C30 /* Star.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Star.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,6 @@
 		E01FFA651E59EED600BC48BB /* 15-puzzle */ = {
 			isa = PBXGroup;
 			children = (
-				E029860E1E60703C00F326BB /* Images.xcassets */,
 				E02986071E5D8F4500F326BB /* Helpers */,
 				E02986061E5D8EFF00F326BB /* UI */,
 				E01FFACA1E5CD45100BC48BB /* Puzzle */,
@@ -87,6 +86,7 @@
 				E01FFAC61E5CBBD800BC48BB /* RadialGradientButton.swift */,
 				E01FFAC81E5CBE4200BC48BB /* RadialGradientLayer.swift */,
 				E029860A1E606D2900F326BB /* ConfettiView.swift */,
+				E064BB521E716BCB00FF2C30 /* Star.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -160,7 +160,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E029860F1E60703C00F326BB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +170,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E064BB531E716BCB00FF2C30 /* Star.swift in Sources */,
 				E01FFA7B1E59F32C00BC48BB /* UIColor+Helpers.swift in Sources */,
 				E01FFA791E59EFB500BC48BB /* Puzzle.swift in Sources */,
 				E01FFAC71E5CBBD800BC48BB /* RadialGradientButton.swift in Sources */,

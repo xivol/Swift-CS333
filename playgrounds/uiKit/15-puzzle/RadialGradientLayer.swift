@@ -23,7 +23,7 @@ class RadialGradientLayer: CALayer {
         }
     }
     
-    override init(){
+    override init() {
         super.init()
         needsDisplayOnBoundsChange = true
     }
@@ -48,12 +48,19 @@ class RadialGradientLayer: CALayer {
     
     required init(coder aDecoder: NSCoder) {
         super.init()
+        center = aDecoder.decodeCGPoint(forKey: "center")
+        radius = CGFloat(aDecoder.decodeDouble(forKey: "radius"))
+        colors = aDecoder.decodeObject(forKey: "colors") as! [CGColor]
      }
     
     override func draw(in ctx: CGContext) {
         ctx.saveGState()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: [0.0,1.0])
+
+        //ctx.addPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath)
+        //ctx.clip() ??? no AA
+        
         ctx.drawRadialGradient(gradient!, startCenter: center, startRadius: 0, endCenter: center, endRadius: radius, options: .drawsAfterEndLocation)
     }
     

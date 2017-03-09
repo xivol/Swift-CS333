@@ -74,7 +74,10 @@ class ConfettiView: UIView {
         confetti.spin = CGFloat(3.5 * intensity)
         confetti.spinRange = CGFloat(4.0 * intensity)
 
-        if let image = UIImage(named: "confetti") {
+        let star = Star(points: 5)!
+        
+        if let image = star.image(of: CGSize(width: 30, height: 30)) {
+            //UIImage(named: "confetti")
         // WARNING: A layer should set this property to a CGImage to display the image as its contents.
             confetti.contents = image.cgImage
             confetti.scale = 0.05 * bounds.width / image.size.width
