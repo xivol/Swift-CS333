@@ -132,7 +132,7 @@
 				TargetAttributes = {
 					E01FFA621E59EED600BC48BB = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 84LQ3B37P5;
+						DevelopmentTeam = NUE223H73G;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -281,7 +281,7 @@
 		E01FFA761E59EED600BC48BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 84LQ3B37P5;
+				DEVELOPMENT_TEAM = NUE223H73G;
 				INFOPLIST_FILE = "15-puzzle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -294,7 +294,7 @@
 		E01FFA771E59EED600BC48BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = 84LQ3B37P5;
+				DEVELOPMENT_TEAM = NUE223H73G;
 				INFOPLIST_FILE = "15-puzzle/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -26,6 +26,10 @@ class ViewController: UIViewController, PuzzleDelegate {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     func resetPuzzle(){
         buttons = [[UIButton]]()
         var size = puzzle?.size ?? 1

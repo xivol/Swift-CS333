@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. Custom Controls</title>
+		<title>Swift-CS333. Graphics &amp; Animation</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -33,14 +33,14 @@
 			</div>
 			<div class="slides">
 				<section>
-					<h2>CS333</h2>
+					<h2><a href="https://xivol.github.io/Swift-CS333/">CS333</a></h2>
 					<h1>Mobile Development</h1>
 					<p>
 						</br>Ilya Loshkarev</br>
 						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
 					</p>
 					<p class="footer">
-						<br>SFEDU 2016
+						<br>SFEDU 2017
 					</p>
 				</section>
 				<section>
@@ -49,16 +49,16 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">Custom UI</a>
+								<a href="#/2">Graphics</a>
 							</li>
 							<li>
-								<a href="#/3">Graphics</a>
+								<a href="#/3">Layers</a>
 							</li>
 							<li>
 								<a href="#/4">Animation</a>
 							</li>
 							<li>
-								<a href="#/5">Gestures</a>
+								<a href="#/5">Imaging</a>
 							</li>
 						</ul>
 						</div>
@@ -67,8 +67,6 @@
 						</div>
 					</div>
 				</section>
-<!-- Custom UI			-->
-
 <!--Graphics 	-->
 				<section>
 					<section data-background="../img/graphics.jpg">
@@ -76,24 +74,41 @@
 					</section>
 					<section>
 						<h3>Graphics Context</h3>
-						<pre><code class="swift" data-noheader>
-							// Create bitmap and make it current context
-							UIGraphicsBeginImageContext(view.frame.size)
-							// Copy image into current context
-							view.image?.draw(in: CGRect(origin: CGPoint.zero,
-							                            size: view.image?.size))
-							/* draw something */
-							// Return an image from current bitmap-based context
-							view.image = UIGraphicsGetImageFromCurrentImageContext()
-							// Remove current bitmap context
-							UIGraphicsEndImageContext()
-						</code></pre>
 						<p>
 							Context contains drawing parameters <br>and all information needed to render the paint
 						</p>
+						<p>
+							Graphical Contexts are organized in form of a stack
+						</p>
 					</section>
 					<section>
-						<h3>Drawing with Core Graphics</h3>
+						<h3>Current Context</h3>
+						<pre><code class="swift" src="CustomView.swift">
+						override func draw(_ rect: CGRect) {
+							// Get view's current graphics context
+							if let context = UIGraphicsGetCurrentContext() {
+								/* draw something */
+							}
+						}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Image Context</h3>
+						<pre><code class="swift" data-noheader>
+							// Create bitmap and make it current context
+							UIGraphicsBeginImageContext(image.size)
+							// Copy image into current context
+							image.draw(in: CGRect(origin: CGPoint.zero,
+							                            size: image.size))
+							/* draw something  on top of the image*/
+							// Return an image from current bitmap-based context
+							image = UIGraphicsGetImageFromCurrentImageContext()
+							// Remove current bitmap context
+							UIGraphicsEndImageContext()
+						</code></pre>
+					</section>
+					<section>
+						<h3>Drawing with UI Graphics</h3>
 						<p>
 							All drawing happens in current graphics context
 						</p>
@@ -117,23 +132,6 @@
 						<p>
 							Paths are drawn on top of each other
 						</p>
-					</section>
-					<section>
-						<h3>Get Current Context</h3>
-						<pre><code class="swift" src="CustomButton.swift">
-						override func draw(_ rect: CGRect) {
-							// Get view's current graphics context
-							if let context = UIGraphicsGetCurrentContext() {
-								let startPoint = CGPoint.zero
-								let endPoint = CGPoint(x:0, y:self.bounds.height)
-								// Draw gradient in context
-								context.drawLinearGradient(gradient!,
-								                           start: startPoint,
-								                           end: endPoint,
-								                           options: .drawsAfterEndLocation)
-								}
-							}
-						</code></pre>
 					</section>
 					<section>
 						<h3>Core Graphics Gradient</h3>
@@ -211,7 +209,13 @@
 						</code></pre>
 					</section>
 				</section>
-
+<!--	Layers		-->
+				<section>
+					<section>
+						<h1>Layers</h1>
+					</section>
+				</section>
+<!--	Animation		-->
 				<section>
 					<section data-background="../img/animation.gif">
 						<h1>Animation</h1>
@@ -220,7 +224,8 @@
 						<h3>Simple Animation</h3>
 						<pre><code class="swift" data-noheader>
 							// Rotate view 180 degrees
-							UIView.animate( withDuration: 0.25, // length of animation in seconds
+							UIView.animate(
+								withDuration: 0.25, // length of animation in seconds
 								delay: 0.0, // animation start delay
 								options: [.curveLinear], // timing curve
 								animations: { // animation closure
@@ -230,10 +235,10 @@
 							})
 						</code></pre>
 						<p>
-							Lineary interpolates values <br /> of a view's properties for a given duration
+							Interpolates values of the view's properties
 						</p>
 						<p class="notice">
-							Uses shortest pass between the values <br />(360&deg; rotation does nothing)
+							Uses shortest path between the values <br />(360&deg; rotation does nothing!)
 						</p>
 					</section>
 					<section>
@@ -256,18 +261,18 @@
 						</p>
 					</section>
 					<section>
-						<h3>Timing Curve</h3>
+						<h3>Animation Options</h3>
 						<p>
-							Defines how fast values change
+							Timing Curve – defines how fast values change
 						</p>
 						<div class="row">
 							<div class="col">
-								<ol>
-									<li>Linear</li>
-									<li>EaseIn</li>
-									<li>EaseOut</li>
-									<li>EaseInOut</li>
-								</oL>
+								<code class="hljs-type"><ul>
+									<li>linear</li>
+									<li>easeIn</li>
+									<li>easeOut</li>
+									<li>easeInOut</li>
+								</ul></code>
 							</div>
 							<div class="col">
 								<img src="../img/easing.png" style="border: solid 2pt #FF8D3C;"/>
@@ -277,21 +282,22 @@
 					<section>
 						<h3>Other Options</h3>
 						<ul>
-							<li><em>repeat</em> &ndash; repeats animation ad infinum</li>
-							<li><em>allowUserInteractions</em> &ndash; allows user interactions </li>
-							<li><em>beginFromCurrentState</em> &ndash; animation started in the middle <br>
+							<li><code class="hljs-type">repeat</code> &ndash; repeats animation ad infinum</li>
+							<li><code class="hljs-type">allowUserInteractions</code> &ndash; allows user interactions </li>
+							<li><code class="hljs-type">beginFromCurrentState</code> &ndash; animation started in the middle <br>
 								of another animation will use current values of a view</li>
 						</ul>
 					</section>
 					<section>
 						<h3>Keyframe Animation</h3>
 						<p>
-							Interpolates between user defined keyframes
+							Interpolates values between user defined keyframes
 						</p>
 						<pre><code class="swift" data-noheader>
 							// Rotate view 360 degrees
 							let duration = 1.0
-							UIView.animateKeyframes( withDuration: duration,
+							UIView.animateKeyframes(
+								withDuration: duration,
 								delay: 0.0,
 								options: [.calculationModeCubic], // interpolation method
 								animations: {  /* define frames here */ }
@@ -325,7 +331,7 @@
 								<ul >
 									<li>Animation is limited to view's properties</li>
 									<li>Doesn't allow custom timing functions</li>
-									<li>CPU based rendering</li>
+									<li>CPU capped rendering</li>
 								</ul>
 							</div>
 							<div class="col">
@@ -348,6 +354,9 @@
 								<img src="../img/layer-animation.gif" class="centered"/>
 							</div>
 						</div>
+					</section>
+					<section>
+						<h3>Animatable Layer Properties</h3>
 					</section>
 					<section>
 						<h3>Basic Animation</h3>
@@ -379,39 +388,17 @@
 						</code></pre>
 					</section>
 				</section>
-				<!-- Gestures				-->
-								<section>
-									<section data-background="../img/gestures.jpg">
-										<h1>Gestures</h1>
-									</section>
-									<section>
-										<h3>Storyboard Gesture Recognizers</h3>
-									</section>
-									<section>
-										<h3>Simplified Recognition</h3>
-									</section>
-									<section>
-										<h3>UITouch</h3>
-									</section>
-									<section>
-										<h3>Custom Gesture Recognizer</h3>
-									</section>
-								</section>
+<!--	Imaging		-->
+				<section>
+					<section>
+						<h1>Imaging</h1>
+					</section>
+				</section>
 <!-- Resources			-->
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
-						<li><a href="https://developer.apple.com/library/content/documentation/Miscellaneous/Conceptual/iPhoneOSTechOverview/Introduction/Introduction.html">iOS Technology Overview - Apple Developer</a>
-						</li>
-						<li>
-
-						</li>
-						https://www.raywenderlich.com/115440/auto-layout-tutorial-in-ios-9-part-1-getting-started-2
-						https://www.raywenderlich.com/90690/modern-core-graphics-with-swift-part-1
-						<li>
-
-						</li>
-						https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html#//apple_ref/doc/uid/TP40010156-CH14-SW1
+						<li><a href="https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html">Cocoa Drawing Overview – Apple Developer</a></li>
 					</ul>
 				</section>
 			</div>
