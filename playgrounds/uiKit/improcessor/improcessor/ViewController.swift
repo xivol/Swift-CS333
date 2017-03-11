@@ -16,6 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var currentFilterName = ""
+    let context = CIContext()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,11 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          }
         
         if let outputImage = filter.outputImage {
-            UIGraphicsBeginImageContext(outputImage.extent.size)
-            let ctx = CIContext(cgContext: UIGraphicsGetCurrentContext()!, options: nil)
-            let result = ctx.createCGImage(outputImage, from: outputImage.extent)
-            UIGraphicsEndImageContext()
-            
+            let result = context.createCGImage(outputImage, from: outputImage.extent)
             return UIImage(cgImage: result!)
         } else {
             print ("Empty output", filter)
@@ -141,6 +138,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             return
         }
         filters.setFilter = {
+            CGLayer.init(<#T##context: CGContext##CGContext#>, size: <#T##CGSize#>, auxiliaryInfo: <#T##CFDictionary?#>)
             [weak self] filterName in
             self?.currentFilterName = filterName
             self?.process(image: (self?.imageView.image)!)

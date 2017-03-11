@@ -57,7 +57,8 @@ class RadialGradientLayer: CALayer {
         ctx.saveGState()
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: [0.0,1.0])
-
+        CGLayer(ctx, size: CGSize.zero, auxiliaryInfo: nil)
+        
         //ctx.addPath(UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath)
         //ctx.clip() ??? no AA
         

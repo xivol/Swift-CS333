@@ -58,7 +58,7 @@
 								<a href="#/4">Animation</a>
 							</li>
 							<li>
-								<a href="#/5">Imaging</a>
+								<a href="#/5">Processing Images</a>
 							</li>
 						</ul>
 						</div>
@@ -99,7 +99,7 @@
 							UIGraphicsBeginImageContext(image.size)
 							// Copy image into current context
 							image.draw(in: CGRect(origin: CGPoint.zero,
-							                            size: image.size))
+									size: image.size))
 							/* draw something  on top of the image*/
 							// Return an image from current bitmap-based context
 							image = UIGraphicsGetImageFromCurrentImageContext()
@@ -134,18 +134,52 @@
 						</p>
 					</section>
 					<section>
+						<h3>Drawing with Core Graphics</h3>
+						<pre><code data-noheader>
+							context.addRect(rect: CGRect(x: 0, y:0,
+							                             width: 250, height: 250))
+							context.setFillColor(UIColor.white.cgColor)
+							context.setStrokeColor(UIColor.black.cgColor)
+							context.setLineWidth(5)
+							context.fillPath()
+							context.strokePath()
+						</code></pre>
+					</section>
+					<section>
 						<h3>Core Graphics Gradient</h3>
 						<pre><code class="swift" src="CustomButton.swift">
-						// Set up gradient colors
 						let colors = [startColor.cgColor, endColor.cgColor]
-						// Set up the color stops
 						let colorLocations:[CGFloat] = [0.0, 1.0]
-						// Set up the color space
 						let colorSpace = CGColorSpaceCreateDeviceRGB()
-						// Create the gradient object
 						let gradient = CGGradient(colorsSpace: colorSpace,
 						                          colors: colors as CFArray,
 						                          locations: colorLocations)
+						context.drawLinearGradient(gradient,
+						                       start: CGPoint.zero,
+						                       end: CGPoint(x: 1, y: 1),
+						                       options: .drawsAfterEndLocation)
+						</code></pre>
+					</section>
+				</section>
+<!--	Layers		-->
+				<section>
+					<section data-background="../img/layers.jpg">
+						<h1>Layers</h1>
+					</section>
+					<section>
+						<h3>Core Graphics Layer</h3>
+						<p>CGLayer &ndash; An offscreen context for reusing content drawn with Core Graphics</p>
+						<ul>
+							<li>High-quality offscreen rendering of drawing that you plan to reuse</li>
+							<li>Repeated drawing</li>
+							<li>Offscreen buffering</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Creating a Layer</h3>
+						<pre><code class="swift" data-noheader>
+							let layer = CGLayer(context, size: CGSize(width: 100, height: 100), auxiliaryInfo: nil)
+							let layerContext = layer?.context
 						</code></pre>
 					</section>
 					<section>
@@ -154,7 +188,7 @@
 							Every view has underlying CALayer
 						</p>
 						<pre><code class="swift" data-noheader>
-							view.layer.contents = UIImage(named: "swift")?.CGImage
+							view.layer.contents = UIImage(named: "swift")?.cgImage
 							// Layers can have sublayers
 							let sublayer = CALayer()
 							sublayer.frame = CGRect(x: 50, y: 50, width: 100, height: 100)
@@ -189,30 +223,6 @@
 								Allows to use 3d rendering pipeline(shaders) in a layer
 							</div>
 						</div>
-					</section>
-					<section>
-						<h3>Gradient Layer View</h3>
-						<pre><code class="swift" src="CustomButton2.swift">
-							// layer is read-only property of UIView
-							// we need to override it's type to change it
-							override class var layerClass: Swift.AnyClass {
-								// return Gradient Layer as view's layer type
-								get { return CAGradientLayer.self }
-							}
-							// Simple layer access
-							var gradientLayer: CAGradientLayer! {
-								return layer as! CAGradientLayer
-							}
-							override init(frame: CGRect) {
-								gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-							}
-						</code></pre>
-					</section>
-				</section>
-<!--	Layers		-->
-				<section>
-					<section>
-						<h1>Layers</h1>
 					</section>
 				</section>
 <!--	Animation		-->
@@ -384,14 +394,101 @@
 							// Create new animation for path property
 							var triangleAnimation = CAKeyframeAnimation(keyPath: "path")
 							triangleAnimation.values = [trianglePathSmall.CGPath, trianglePathLeftExtension.CGPath]
-							lineWidthAnimation.duration
 						</code></pre>
 					</section>
 				</section>
-<!--	Imaging		-->
+<!--	Processing Images		-->
 				<section>
+					<section data-background="../img/imaging.png">
+						<h1>Processing Images</h1>
+					</section>
 					<section>
-						<h1>Imaging</h1>
+						<h3>What is an Image?</h3>
+						<ul>
+							<li><code class="hljs-type">UIImage</code> &ndash; higher-level image object. Immutable, created from existing image content</li>
+							<li><code class="hljs-type">CGImage</code> &ndash; bitmap representation of an image. Mutable</li>
+							<li><code class="hljs-type">CIImage</code> &ndash; a "recipe" for an image, executed only when you request that an image be rendered for display or output</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Image ⇄ Image</h3>
+						<pre><code class="swift" data-noheader>
+							cgImage = uiImage.cgImage // nil if uiImage contains ciImage reference
+							ciImage = uiImage.ciImage // nil if uiImage contains ciImage reference ?
+							uiImage = UIImage(ciImage: ciImage)
+							uiImage = UIImage(cgImage: cgImage)
+						</code></pre>
+						<p class="notice">
+							<code class="hljs-type">UIImage</code> can display <code class="hljs-type">CIImage</code> but to save it as a file <br />
+							it has to be rendered first
+						</p>
+					</section>
+					<section>
+						<h3>Image Filtering</h3>
+						<div class="row">
+							<div class="col">
+								<img src="../img/filter-cat-before.jpg" alt="cat before" class="small">
+							</div>
+							<div class="col arrow-right">
+								<img src="../img/filter-cat-after.jpg" alt="cat after" class="small">
+							</div>
+						</div>
+						<small>
+							Filter is a piece of software that examines an input image pixel by pixel<br />
+							and algorithmically applies some effect in order to create an output image
+						</small>
+					</section>
+					<section>
+						<h3>Discovering Filters</h3>
+						<pre><code class="swift" data-noheader>
+							CIFilter.filterNames(inCategories: nil) // all availiable
+							CIFilter.filterNames(inCategory: category)
+						</code></pre>
+						<p>
+							Core Image provides methods that let you query the system <br>
+							for the available built-in filters
+						</p>
+					</section>
+					<section>
+						<h3>Filter Category</h3>
+						<ul>
+							<li>The type of effect produced by the filter</li>
+							<li>The usage of the filter (still image, video, etc)</li>
+							<li>Whether the filter is provided by Core Image</li>
+						</ul>
+						<p class="notice">
+							A filter can be a member of more than one category
+						</p>
+					</section>
+					<section>
+						<h3>Filter Configuration</h3>
+						<pre><code class="swift" data-noheader>
+							let filter = CIFilter(name: "CIThermal")
+							filter.setValue(uiImage.ciImage!, forKey: kCIInputImageKey)
+							if let output = filter.outputImage {
+								let cgImage = CIContext().createCGImage(output, from: output.extent)
+								uiImage = UIImage(cgImage: cgImage)
+							}
+						</code></pre>
+						<p class="notice">
+							There are some useful Swift wrappers for filters out there: <br />
+							<a href="https://github.com/jefflovejapan/CIFilterKit">CIFilterKit</a>
+						</p>
+					</section>
+					<section>
+						<h3>Filter Chaining</h3>
+						<pre><code class="swift" data-noheader>
+							let ciImage = CIImage(image: uiImage)
+							let chainedResult = ciImage.applyingFilter("CIPhotoEffectProcess",
+								withInputParameters: nil).applyingFilter("CIBloom",
+									withInputParameters: [
+										kCIInputRadiusKey: 10.0,
+										kCIInputIntensityKey: 1.0
+									])
+						</code></pre>
+						<p class="notice">
+							Core Image combines chained filters into a single operation
+						</p>
 					</section>
 				</section>
 <!-- Resources			-->
@@ -399,6 +496,8 @@
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
 						<li><a href="https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html">Cocoa Drawing Overview – Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_tasks/ci_tasks.html">Core Image Programming Guide – Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Reference/CoreImageFilterReference/#/">Filter Reference – Apple Developer</a></li>
 					</ul>
 				</section>
 			</div>
