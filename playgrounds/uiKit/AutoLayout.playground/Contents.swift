@@ -98,8 +98,8 @@ NSLayoutConstraint.activate([
 ])
 
 // Removing/Deactivating constraints
-let constraints = controller.view.constraints.flatMap {
-    return $0.firstItem === subviews[6] || $0.secondItem === subviews[6] ? $0 : nil
+let constraints = controller.view.constraints.filter {
+    return $0.firstItem === subviews[6] || $0.secondItem === subviews[6]
 }
 
 NSLayoutConstraint.deactivate(constraints)
