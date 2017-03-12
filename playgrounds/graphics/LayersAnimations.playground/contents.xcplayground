@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='Layer'/>
+        <page name='Layer Mask'/>
+        <page name='Gradient Layer'/>
+        <page name='Shape Layer'/>
+        <page name='Stroke Animation'/>
+        <page name='Keyframe Animation'/>
+    </pages>
+</playground>
