@@ -168,11 +168,12 @@
 					</section>
 					<section>
 						<h3>Core Graphics Layer</h3>
-						<p>CGLayer &ndash; An offscreen context for reusing content drawn with Core Graphics</p>
+						<p>An offscreen context for reusing content <br> drawn with Core Graphics</p>
 						<ul>
-							<li>High-quality offscreen rendering of drawing that you plan to reuse</li>
-							<li>Repeated drawing</li>
-							<li>Offscreen buffering</li>
+							<ul>
+								<li>Repeated drawing</li>
+								<li>Offscreen rendering</li>
+							</ul>
 						</ul>
 					</section>
 					<section>
@@ -180,10 +181,21 @@
 						<pre><code class="swift" data-noheader>
 							let layer = CGLayer(context, size: CGSize(width: 100, height: 100), auxiliaryInfo: nil)
 							let layerContext = layer?.context
+							/* draw something */
+							context.draw(layer, at: CGPoint.zero)
 						</code></pre>
 					</section>
 					<section>
 						<h3>Core Animation Layer</h3>
+						<p>
+							An object that manages image-based content <br>and allows you to perform animations on that content
+						</p>
+						<p class="notice">
+							Completely unrelated to <code>CGLayer</code>
+						</p>
+					</section>
+					<section>
+						<h3>View's Layer</h3>
 						<p>
 							Every view has underlying CALayer
 						</p>
@@ -201,7 +213,7 @@
 					</section>
 					<section>
 						<h3>Blessings of GPU Rendering</h3>
-						<br />
+						<br/>
 						<ul>
 							<li><em>Fast graphics</em> &ndash; layers are optimized for better use of graphical hardware</li>
 							<li><em>Percise animations</em> &ndash; Core Animation allows for more animation control and complexity then UIKit</li>
@@ -354,7 +366,7 @@
 						<div class="row">
 							<div class="col">
 								<ul>
-									<li>Rendered on GPU</li>
+									<li>Processed on GPU</li>
 									<li>Shape Transitions</li>
 									<li>3D Transformations</li>
 									<li>Clipping Animations</li>
@@ -367,33 +379,79 @@
 					</section>
 					<section>
 						<h3>Animatable Layer Properties</h3>
+						<small>
+							<code class="hljs-type">
+								anchorPoint
+								backgroundColor
+								backgroundFilters
+								borderColor
+								borderWidth
+								bounds
+								compositingFilter
+								contents
+								contentsRect
+								cornerRadius
+								doubleSided
+								filters
+								frame
+								hidden
+								mask
+								masksToBounds
+								opacity
+								position
+								shadowColor
+								shadowOffset
+								shadowOpacity
+								shadowPath
+								shadowRadius
+								sublayers
+								sublayerTransform
+								transform
+								zPosition
+							</code>
+						</small>
+						<p class="notice">
+							Any of the layer's properties can be animated
+						</p>
 					</section>
 					<section>
 						<h3>Basic Animation</h3>
 						<pre><code class="swift" data-noheader>
-							// Create new animation for path property
-							var triangleAnimationLeft = CABasicAnimation(keyPath: "path")
-							// Set up start value
-							triangleAnimationLeft.fromValue = trianglePathSmall.CGPath
-							// Set up finish value
-							triangleAnimationLeft.toValue = trianglePathLeftExtension.CGPath
-							// Set up delay
-							triangleAnimationLeft.beginTime = 0.0
-							// Set up duration
-							triangleAnimationLeft.duration = 0.3
-							// Perfornm animation on a layer
-							triangleLayer.addAnimation(triangleAnimationLeft, forKey: nil)
+							let fillAnimation = CABasicAnimation(keyPath: "fillColor")
+							fillAnimation.fromValue = UIColor.clear.cgColor
+							fillAnimation.toValue = UIColor.white.cgColor
+							fillAnimation.duration = 1
+							layer.add(fillAnimation, forKey: "fill animation")
+						</code></pre>
+						<p class="notice">
+							Basic animation animates one property at a time
+						</p>
+					</section>
+					<section>
+						<h3>Group Animation</h3>
+						<pre><code class="swift" data-noheader>
+							end.beginTime = 1
+							let groupAnimation = CAAnimationGroup()
+							groupAnimation.animations = [start,end]
+							groupAnimation.duration = 3
+							circle.add(groupAnimation, forKey: "group stroke")
 						</code></pre>
 						<p>
-							Single triangle corner animation
+							<code class="hljs-type">beginTime</code> – sets the delay in the group animation
 						</p>
 					</section>
 					<section>
 						<h3>Keyframe Layer Animation</h3>
 						<pre><code class="swift" data-noheader>
-							// Create new animation for path property
-							var triangleAnimation = CAKeyframeAnimation(keyPath: "path")
-							triangleAnimation.values = [trianglePathSmall.CGPath, trianglePathLeftExtension.CGPath]
+							let keyframeAnimation = CAKeyframeAnimation(keyPath: "path")
+							keyframeAnimation.values = []
+							for points in 5...10 {
+							    let starPath = UIBezierPath(starWithNumberOfPoints: points, centeredAt: view.center, innerRadius: view.bounds.width / 6, outerRadius: view.bounds.width / 3)
+							    keyframeAnimation.values?.append(starPath.cgPath)
+							}
+							keyframeAnimation.duration = 5
+							keyframeAnimation.autoreverses = true
+							star.add(keyframeAnimation, forKey: "points")
 						</code></pre>
 					</section>
 				</section>
@@ -496,6 +554,7 @@
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
 						<li><a href="https://developer.apple.com/library/content/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/GraphicsDrawingOverview/GraphicsDrawingOverview.html">Cocoa Drawing Overview – Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html">Core Animation Programming Guide – Apple Developer</a></li>
 						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_tasks/ci_tasks.html">Core Image Programming Guide – Apple Developer</a></li>
 						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Reference/CoreImageFilterReference/#/">Filter Reference – Apple Developer</a></li>
 					</ul>
@@ -506,7 +565,6 @@
 		<script src="../lib/js/head.min.js"></script>
 		<script src="../js/reveal.js"></script>
 		<script src="../js/swift.js"></script>
-
 		<svg height="0" xmlns="http://www.w3.org/2000/svg">
 		    <filter id="drop-shadow">
 		        <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
