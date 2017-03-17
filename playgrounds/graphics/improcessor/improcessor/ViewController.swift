@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate {
     
@@ -14,9 +15,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var filterButton: UIBarButtonItem!
     
-    var currentFilterName = ""
+    var currentFilterName = "CIColorInvert"
     let context = CIContext()
+    
+    var miniature: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +29,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         cameraButtonTouched(self)
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     // MARK: Actions
     
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        //print(imageView.image?.cgImage)
-        let activity = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
-        present(activity, animated:true, completion:nil)
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, self, #selector(image(_:didFinishSavingWithError: contextInfo:)), nil)
+
     }
     
     @IBAction func cameraButtonTouched(_ sender: Any) {
@@ -43,6 +51,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func filterButtonTouched(_ sender: Any) {
+        process(image: imageView.image!)
+    }
+    
+    // MARK: ImageDidFinishSavingWithError
+    
+    func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        guard error == nil else {
+            print ("saveing error")
+            return
+        }
+        
+        let alert = UIAlertController(title: "Saved", message: "Image saved to default photo album", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true)
+    }
+    
     // MARK: ImagePickerControllerDelegate
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -52,9 +77,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         dismiss(animated: true, completion: nil)
         update(with: info[UIImagePickerControllerOriginalImage] as! UIImage)
+        miniature = createMiniature(from: imageView.image!)
+        filterButton.image = filter(inputImage: miniature)
     }
     
     // MARK: ScrollViewDelegate
@@ -97,22 +123,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             print("Wrong filter", currentFilterName)
             return nil
         }
-        
-        if let ciImage = CIImage(image: image) {
-            filter.setValue(ciImage, forKey: kCIInputImageKey)
-        } else {
-            print ("Wrong image", image)
-            return nil
-         }
-        
-        if let outputImage = filter.outputImage {
-            let result = context.createCGImage(outputImage, from: outputImage.extent)
-            return UIImage(cgImage: result!)
-        } else {
-            print ("Empty output", filter)
-            return nil
-        }
-        
+        return filter.apply(to: image)?.withRenderingMode(.alwaysOriginal)
     }
     
     func update(with image: UIImage) {
@@ -121,6 +132,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.frame = CGRect(origin: CGPoint.zero, size: image.size)
         imageView.image = image
         
+        miniature = createMiniature(from: image)
+        filterButton.image = filter(inputImage: miniature)
+        
         scrollView.contentSize = image.size
         scrollView.minimumZoomScale = max(scrollView.frame.width  / image.size.width,
                                           scrollView.frame.height / image.size.height)
@@ -128,20 +142,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         scrollView.setZoomScale(scrollView.minimumZoomScale, animated: true)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let filters = segue.destination as? FiltersTableViewController else {
-            return
-        }
-        filters.setFilter = {
-            [weak self] filterName in
-            self?.currentFilterName = filterName
-            self?.process(image: (self?.imageView.image)!)
-        }
+    func createMiniature(from image: UIImage) -> UIImage {
+        let height: CGFloat = 30
+        let width = image.size.width * height / image.size.height
+        
+        UIGraphicsBeginImageContext( CGSize(width: width, height: height))
+        imageView.image!.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
     }
     
 }

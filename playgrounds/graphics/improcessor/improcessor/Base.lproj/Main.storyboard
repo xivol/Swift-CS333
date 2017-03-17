@@ -24,9 +24,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5n-qB-rLw">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="add" id="DDH-IM-lUS">
+                                    <barButtonItem title="filter" id="DDH-IM-lUS">
                                         <connections>
-                                            <segue destination="Oa0-Bi-jdk" kind="show" identifier="Filters" id="Fah-D4-bfs"/>
+                                            <action selector="filterButtonTouched:" destination="BYZ-38-t0r" id="3dm-Gj-1v1"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MRA-pG-8cv"/>
@@ -78,6 +78,7 @@
                     <navigationItem key="navigationItem" title="I'm a Processor" id="ByV-3R-DWe"/>
                     <connections>
                         <outlet property="activityIndicator" destination="WED-ln-UTy" id="JPz-gU-dZJ"/>
+                        <outlet property="filterButton" destination="DDH-IM-lUS" id="T10-oM-Uc8"/>
                         <outlet property="imageView" destination="hm5-eZ-bjw" id="S4r-Hg-Wds"/>
                         <outlet property="saveButton" destination="ENY-9r-p2o" id="nQa-oc-GPa"/>
                         <outlet property="scrollView" destination="yZs-nf-rCp" id="Kly-p6-YgT"/>
@@ -86,43 +87,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="856.79999999999995" y="789.35532233883066"/>
-        </scene>
-        <!--Filters-->
-        <scene sceneID="8FJ-28-7Ci">
-            <objects>
-                <tableViewController title="Filters" id="Oa0-Bi-jdk" customClass="FiltersTableViewController" customModule="improcessor" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="eql-hp-Mxi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" textLabel="1Je-GJ-Umo" style="IBUITableViewCellStyleDefault" id="pOX-Vo-3uq">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pOX-Vo-3uq" id="gBk-QC-CQx">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Je-GJ-Umo">
-                                            <rect key="frame" x="15" y="0.0" width="325" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Oa0-Bi-jdk" id="ahf-Z7-8iv"/>
-                            <outlet property="delegate" destination="Oa0-Bi-jdk" id="Rgk-AL-iVE"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TI8-kp-3Wb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1682" y="789"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kof-n6-skl">
