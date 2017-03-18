@@ -128,7 +128,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func update(with image: UIImage) {
         scrollView.setZoomScale(scrollView.maximumZoomScale, animated: false)
-        
+        //let url = URL(fileURLWithPath: "/usr/local/lib")
         imageView.frame = CGRect(origin: CGPoint.zero, size: image.size)
         imageView.image = image
         
