@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Model Changes</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+      -webkit-clip-path: polygon(10% 0%, 90% 10%, 90% 100%, 10% 90%);
+			clip-path: polygon(10% 0%, 90% 10%, 90% 100%, 10% 90%);
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2><a href="https://xivol.github.io/Swift-CS333/">CS333</a></h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2017
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Key-Value Coding</a>
+							</li>
+							<li>
+								<a href="#/3">Notifications</a>
+							</li>
+							<li>
+								<a href="#/4">iCloud KeyValue Storage</a>
+							</li>
+							<li>
+								<a href="#/5">iCloud Documents</a>
+							</li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/owl.jpg" />
+						</div>
+					</div>
+				</section>
+				<section data-background="../img/key-value.jpg">
+					<section>
+						<h1>Key-Value Coding</h1>
+					</section>
+				</section>
+<!-- Notifications -->
+				<section>
+					<section data-background="../img/notification.jpeg">
+						<h1>Notifications</h1>
+					</section>
+					<section>
+						<h3>Observer Pattern</h3>
+						<div class="row">
+							<div class="col">
+								A software design pattern in which an object maintains a list of observers and notifies them automatically of any state changes
+							</div>
+							<div class="col">
+							<img src="../img/observer.gif" alt="Observer Diagram" />
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Notification Center</h3>
+						<div class="row">
+							<div class="col">
+							Provides a mechanism for broadcasting information within a program
+							</div>
+							<div class="col">
+							<img src="../img/notificationcenter_2x.png" alt="Notification Center Diagram" />
+							</div>
+						</div>
+						<pre><code class="swift" data-noheader>
+						let defaultCenter = NotificationCenter.default
+						</code></pre>
+					</section>
+					<section>
+					<h3>Notification</h3>
+					<pre><code class="swift" data-noheader>
+					  name: String // unique name
+					  object: AnyObject? // sender
+					  userInfo: [:]? // additional data
+					</code></pre>
+					<p>
+					An object distributed through Notification Center
+					</p>
+					</section>
+					<section>
+					<h3>Post</h3>
+					<pre><code class="swift" data-noheader>
+						defaultCenter.post(name: "MyNotification", object: self)
+						defaultCenter.post(name: "MyNotificationWithPayload",
+							object: self,
+							userInfo: ["payload" : myPayload])
+					</code></pre>
+					<p class="notice">
+						Any notification should have a unique name within an app
+					</p>
+					<p>
+						It is a good idea to store notification names in an enumeration
+					</p>
+					</section>
+					<section>
+						<h3>Observe</h3>
+						<pre><code class="swift" data-noheader>
+							defaultCenter.addObserver(self,
+								selector: #selector(myNotificationHandler),
+								name: "MyNotification", object: sender)
+						</code></pre>
+						<p>
+							Calls <code class="hljs-type">self.myNotificationHandler</code> <br>
+							whenever <code class="hljs-type ">MyNotification</code> is posted
+						</p>
+						<pre><code class="swift" data-noheader>
+							defaultCenter.removeObserver(self,
+								name: "MyNotification", object: sender)
+						</code></pre>
+						<p class="notice">
+							Observers should be removed manually on deinit
+						</p>
+					</section>
+					<section>
+						<h3>Observe with Block</h3>
+						<pre><code class="swift" data-noheader>
+						defaultCenter.addObserver(forName: "MyNotification",
+							object: sender, queue: nil) {
+								[weak self] notification in
+								/* handle notification */
+							}
+						</code></pre>
+						<p>
+							Performs closure in specified queue
+						</p>
+						<p class="notice">
+							Strong references to <code class="hljs-keyword">self</code> in closures <br>
+							can create reference cycles
+						</p>
+					</section>
+					<section>
+						<h3>Concurrency</h3>
+						<pre><code class="swift" data-noheader>
+						DispatchQueue.main.async {
+							defaultCenter.post(name: "MyNotification", object: nil,
+								userInfo: ["data":data])
+						}
+						</code></pre>
+						<p>
+							Regular notification centers deliver notifications on the thread <br>
+							in which the notification was posted
+						</p>
+					</section>
+					<section>
+						<h3>Core Data Notifications</h3>
+						<pre><code class="swift" data-noheader>
+						defaultCenter.addObserver(self,
+							selector: #selector(managedObjectContextObjectsDidChange),
+							name: NSManagedObjectContextObjectsDidChangeNotification,
+							object: context)
+						</code></pre>
+						<p>
+							Managed Object Context has three types of notifications
+						</p>
+						<pre><code class="swift" data-noheader>
+							// NSManagedObjectContext ObjectsDidChange Notification
+							// NSManagedObjectContext WillSave Notification
+							// NSManagedObjectContext DidSave Notification
+						</code></pre>
+					</section>
+					<section>
+						<h3>Context Did Change</h3>
+						<pre><code class="swift" data-noheader>
+						func managedObjectContextObjectsDidChange(notification: NSNotification) {
+							// userInfo holds information about the changes
+						guard let userInfo = notification.userInfo else { return }
+						if let inserts =
+							userInfo[NSInsertedObjectsKey] as? Set&lt;NSManagedObject&gt; {  }
+						if let updates =
+							userInfo[NSUpdatedObjectsKey] as? Set&lt;NSManagedObject&gt; {  }
+						if let deletes =
+							userInfo[NSDeletedObjectsKey] as? Set&lt;NSManagedObject&gt; {  }
+						}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Considered Harmful?</h3>
+						<ul>
+							<li>Notifications make it harder to trace the flow of control</li>
+							<li>Deinitialized observers crash the app</li>
+							<li>Notification centers are not well suited for unit tests</li>
+						</ul>
+					</section>
+					<section data-background="../img/notification-flow-chart.png" data-background-size="contain" class="clear">
+						<h3 class="hidden">Other Options</h3>
+					</section>
+				</section>
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html">Concurrency - Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/videos/play/wwdc2016/720/">Concurrent Programming With GCD in Swift 3 - WWDC2016</a></li>
+						<li><a href="https://developer.apple.com/reference/dispatch">Dispatch API Reference - Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/Notifications/Articles/Notifications.html">Notification Programming Topics - Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/reference/foundation/notificationcenter">Notification Center API Reference - Apple Developer</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="../lib/js/head.min.js"></script>
+		<script src="../js/reveal.js"></script>
+		<script src="../js/swift.js"></script>
+
+		<svg height="0" xmlns="http://www.w3.org/2000/svg">
+			<filter id="drop-shadow">
+				<feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+				<feOffset dx="12" dy="12" result="offsetblur"/>
+				<feFlood flood-color="rgba(0,0,0,0.5)"/>
+				<feComposite in2="offsetblur" operator="in"/>
+				<feMerge>
+					<feMergeNode/>
+					<feMergeNode in="SourceGraphic"/>
+				</feMerge>
+			</filter>
+		</svg>
+	</body>
+</html>
