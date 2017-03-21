@@ -1,4 +1,4 @@
-###Assignment #2: The Calculator
+### Assignment #2: The Calculator
 Implement a basic calculator.
 
 Requirements:
