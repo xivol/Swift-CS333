@@ -34,7 +34,6 @@ class ConfettiView: UIView {
         // initialization
         colors = [UIColor.yellow, UIColor.yellow, UIColor.yellow, UIColor.white]
         intensity = 0.5
-        
         active = false
     }
     
@@ -65,16 +64,16 @@ class ConfettiView: UIView {
         
         confetti.birthRate = 10.0 * intensity
         confetti.lifetime = 180.0 * intensity
-        //confetti.lifetimeRange = 0
         confetti.color = color.cgColor
         confetti.velocity = CGFloat(350.0 * intensity)
-        //confetti.velocityRange = CGFloat(40.0 * intensity)
         confetti.emissionLongitude = CGFloat(M_PI)
         confetti.emissionRange = CGFloat(M_PI_4)
         confetti.spin = CGFloat(3.5 * intensity)
         confetti.spinRange = CGFloat(4.0 * intensity)
 
-        if let image = UIImage(named: "confetti") {
+        let star = Star(points: 5)
+        
+        if let image = star?.image(of: CGSize(width: 30, height: 30)) {
         // WARNING: A layer should set this property to a CGImage to display the image as its contents.
             confetti.contents = image.cgImage
             confetti.scale = 0.05 * bounds.width / image.size.width
