@@ -1,45 +1,40 @@
 //
 //  MasterViewController.swift
-//  notes-archive
+//  notes-core-data
 //
-//  Created by Илья Лошкарёв on 18.03.17.
+//  Created by Илья Лошкарёв on 22.03.17.
 //  Copyright © 2017 Илья Лошкарёв. All rights reserved.
 //
 
 import UIKit
+import CoreData
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
 
     var detailViewController: DetailViewController? = nil
-    
-    var notes = [Note]() {
-        didSet {
-            // Update reference
-            if let app = UIApplication.shared.delegate as? AppDelegate {
-                app.storage = notes as NSCoding
-            }
-        }
-    }
+    var fetchController : NSFetchedResultsController<Note>!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
-
+        // Button setup
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.navigationItem.rightBarButtonItem = addButton
-        
+        // Split View Controller
         if let split = self.splitViewController {
             let controllers = split.viewControllers
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
-        
-        // Unarchive from file
-        if let app = UIApplication.shared.delegate as? AppDelegate {
-            if let storedNotes = app.unarchiveStorage(atPath: nil) as? [Note] {
-                notes = storedNotes // strong reference
-            }
-            app.storage = notes as NSCoding
+        // Fetched Results Controller
+        fetchController =  Note.fetchResults(for: Note.fetchRequest(),
+                                             withDelegate: self as NSFetchedResultsControllerDelegate)
+        do {
+            try fetchController.performFetch()
+        } catch {
+            let nserror = error as NSError
+            fatalError("Fetch error \(nserror), \(nserror.userInfo)")
         }
     }
 
@@ -57,13 +52,10 @@ class MasterViewController: UITableViewController {
         }
         
         let ok = UIAlertAction(title: "OK", style: .default) {
-            [weak input, weak self] action in
+            [weak input] action in
             if let text = input?.textFields?.first?.text {
-                let note = Note(content: text)
-                self?.notes.insert(note, at: 0)
-                
-                let indexPath = IndexPath(row: 0, section: 0)
-                self?.tableView.insertRows(at: [indexPath], with: .automatic)
+                let _ = Note(content: text)
+                // CoreDataContainer.saveContext()
             } else {
                 print("no valid input")
             }
@@ -82,9 +74,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let note = notes[indexPath.row]
+            let object = self.fetchController.object(at: indexPath)
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = note
+                controller.detailItem = object
+                
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -94,38 +87,53 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchController.sections?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notes.count
+        let sectionInfo = self.fetchController.sections![section]
+        return sectionInfo.numberOfObjects
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let note = notes[indexPath.row]
-        cell.textLabel!.text = note.content
-        cell.detailTextLabel!.text = Note.dateFormatter.string(from: note.date)
-        cell.backgroundColor = note.color
+        
+        let note = self.fetchController.object(at: indexPath)
+        self.configureCell(cell, withData: note)
         return cell
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
         return true
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            notes.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-            print("insert")
+            CoreDataContainer.context.delete(self.fetchController.object(at: indexPath))
+            // CoreDataContainer.saveContext()
         }
     }
 
+    func configureCell(_ cell: UITableViewCell, withData data: Note) {
+        cell.textLabel!.text = data.content!
+        cell.detailTextLabel!.text = Note.dateFormatter.string(from: data.date as! Date)
+        cell.backgroundColor = data.color!
+    }
+
+    // MARK: - Fetched Results Controller
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
+        case .insert:
+            self.tableView.insertRows(at: [newIndexPath!], with: .left)
+        case .update:
+            configureCell(self.tableView.cellForRow(at: indexPath!)!, withData: anObject as! Note)
+        case .move:
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
 
 }
 
