@@ -67,96 +67,95 @@
 						</div>
 					</div>
 				</section>
+<!-- Dispatch	-->
 				<section>
-				<section data-background="../img/grand-central-station.jpg">
-					<h1>Grand Central Dispatch</h1>
-				</section>
-				<section>
-					<h3>Concurrency &amp; Parallelism</h3>
-					<img src="../img/threads.png" alt="Parallelism and Concurrency"/>
-				</section>
-				<section>
-					<h3>Queue Abstraction</h3>
-					<img src="../img/gcd.jpg" alt="GCD Queues" />
-				</section>
-				<section>
-					<h3>Dispatch Queue</h3>
-					<div class="row">
-						<div class="col" style="text-align:right;">
-							Dispatch Queues are objects that maintain a queue of tasks
-							and execute these tasks <br> in their turn
+					<section data-background="../img/grand-central-station.jpg">
+						<h1>Grand Central Dispatch</h1>
+					</section>
+					<section>
+						<h3>Concurrency &amp; Parallelism</h3>
+						<img src="../img/threads.png" alt="Parallelism and Concurrency"/>
+					</section>
+					<section>
+						<h3>Queue Abstraction</h3>
+						<img src="../img/gcd.jpg" alt="GCD Queues" />
+					</section>
+					<section>
+						<h3>Dispatch Queues</h3>
+						<div class="row">
+							<div class="col" style="text-align:right;">
+								Dispatch Queues are objects that maintain a queue of tasks
+								and execute these tasks <br> in their turn
+							</div>
+							<div class="col">
+								<img src="../img/dispatch-queue.png" alt="" />
+							</div>
 						</div>
-						<div class="col">
-							<img src="../img/dispatch-queue.png" alt="" />
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>Queue Type vs Dispatch Type</h3>
-					<div class="row">
-						<div class="col">
-							<p>Queue</p>
-						</div>
-						<div class="col">
-							<ul>
-								<li>Concurrent - unordered</li>
-								<li>Serial - ordered</li>
-							</ul>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<p>Dispatch</p>
-						</div>
-						<div class="col">
-							<ul>
-								<li>Async - no wait</li>
-								<li>Sync - wait</li>
-							</ul>
-						</div>
-					</div>
-				</section>
-				<section>
-					<h3>Quality of Service</h3>
-					<p>
-						System prioritizes and schedules queues <br>
-						according to their QoS attribute<br />
-					</p>
-					<ol>
-						<li>User Interactive</li>
-						<li>User Initiated</li>
-						<li>Utility - Default</li>
-						<li>Background</li>
-					</ol>
-				</section>
-				<section>
-					<h3>Ghost of the Syntax Past</h3>
-					<pre><code class="swift" data-noheader>
-					// Get some queue to put our task into
-					dispatch_async( dispatch_get_global_queue(
-						Int(QOS_CLASS_USER_INITIATED.rawValue), 0) )
-					{
-						/* do some heavy work */
-						dispatch_async(dispatch_get_main_queue()) {
-							/* present results to the user */
+					</section>
+					<section>
+						<h3>Queue Type vs Task Type</h3>
+						<table>
+							<tr>
+								<th rowspan="2">Queue</th>
+								<td><code class="hljs-type">concurrent</code></td>
+								<td>unordered</td>
+							</tr>
+							<tr>
+								<td><code class="hljs-type">serial</code></td>
+								<td>ordered</td>
+							</tr>
+							<tr>
+								<th rowspan="2" style="border-bottom:none;">Task</th>
+								<td><code class="hljs-type">async</code></td>
+								<td>non blocking</td>
+							</tr>
+							<tr>
+								<td><code class="hljs-type">sync</code></td>
+								<td>blocking</td>
+							</tr>
+						</table>
+					</section>
+					<section>
+						<h3>Ghost of the Syntax Past</h3>
+						<pre><code class="swift" data-noheader>
+						// Get some queue to put our task into
+						dispatch_async( dispatch_get_global_queue(
+							Int(QOS_CLASS_USER_INITIATED.rawValue), 0) )
+						{
+							/* do some heavy work */
+							dispatch_async(dispatch_get_main_queue()) {
+								/* present results to the user */
+							}
 						}
-					}
-					</code></pre>
-					<p class="notice">
-					Depricated since iOS 10.0 👌
-					</p>
-				</section>
-				<section>
+						</code></pre>
+						<p class="notice">
+							Depricated since iOS 10.0 👌
+						</p>
+					</section>
+					<section>
 					<h3>Calling for Dispatch Queues</h3>
 					<pre><code class="swift" data-noheader>
 					// Get some queue to put our task into
-					DispatchQueue.global(qos: .qosUserInitiated).async {
-						/* do some heavy work */
+					DispatchQueue.global(qos: .userInitiated).async {
+						/* do some task */
 						DispatchQueue.main.async {
 							/* present results to the user */
 						}
 					}
 					</code></pre>
+				</section>
+					<section>
+					<h3>Quality of Service</h3>
+					<pre><code class="swift" data-noheader>
+					.userInteractive  // highest priority
+					.userInitiated
+					.utility          // default
+					.background       // lowest priority
+					</code></pre>
+					<p>
+						System prioritizes and schedules queues <br/>
+						according to their QoS attribute
+					</p>
 				</section>
 					<section>
 						<h3>Creating Dispatch Queues</h3>
@@ -173,13 +172,208 @@
 							Created queue can be accessed by label
 						</p>
 					</section>
-				</section>
-				<section data-background="../img/key-value.jpg">
 					<section>
+						<h3>Dispatch Groups</h3>
+						<pre><code class="swift" data-noheader>
+							let group = DispatchGroup()
+							DispatchQueue.global().async(group: group){
+								/* do stuff */
+							}
+							group.wait() // wait for every task in group to complete
+
+							group.notify(queue: DispatchQueue.main) {
+								/* do this after every task in the group is completed */
+							}
+						</code></pre>
+						<p>Allow to perform barrier based synchronisation</p>
+					</section>
+					<section>
+						<h3>Dispatch Semaphores</h3>
+						<pre><code class="swift" data-noheader>
+							let semaphore = DispatchSemaphore(value: 10)
+							semaphore.wait()
+								/* access some shared data */
+							semaphore.signal()
+						</code></pre>
+						<p>
+							 Implementation of a traditional counting semaphore
+						</p>
+					</section>
+				</section>
+<!-- Operation Queues -->
+				<section>
+					<section data-background="../img/operation-queue.jpg">
+						<h1>Operation Queues</h1>
+					</section>
+					<section>
+						<h3>Operation</h3>
+						<pre><code class="swift" data-noheader>
+						// Performs the receiver’s non-concurrent task
+						func main()
+						// The block to execute after the operation’s main task is completed
+						var completionBlock: (() -> Void)?
+						</code></pre>
+						<p>
+							An abstract class you use to encapsulate the code and data associated with a single task
+						</p>
+					</section>
+					<section>
+						<h3>Operation Queue</h3>
+						<pre><code class="swift" data-noheader>
+							let q = OperationQueue()
+							q.qualityOfService = .utility
+							q.maxConcurrentOperationCount = 10
+							q.isSuspended = true
+							let op = BlockOperation { /* do stuff */ }
+							op.completionHandler = { /* do other stuff */}
+							q.addOperation(op: op)
+							q.isSuspended = false
+							q.waitUntilAllOperationsAreFinished()
+						</code></pre>
+						<p></p>
+					</section>
+					<section>
+						<h3>Operation Priority &amp; Dependencies</h3>
+						<pre><code class="swift" data-noheader>
+							let op = BlockOperation { /* do stuff */ }
+							op.queuePriority = .high
+							let dependentOp = BlockOperation { /* do other stuff */ }
+							dependantOP.addDependency(op) // requires 'op' to be completed
+							q.addOperation(op)
+						</code></pre>
+						<p>Operation Queue schedules operations according to their dependencies and priority</p>
+					</section>
+					<section>
+						<h3>Operation Status</h3>
+						<pre><code class="swift" data-noheader>
+							var isCancelled: Bool
+							var isReady: Bool
+							var isExecuting: Bool
+							var isFinished: Bool
+							var isConcurrent: Bool
+						</code></pre>
+					</section>
+					<section>
+						<h3>Subclassing Operation</h3>
+						<pre><code class="swift" data-noheader>
+							class FileringOperation: Operation {
+								var filter: CIFilter!
+								weak var imageView: UIImageView?
+								var result: UIImage?
+
+								func main() {
+									if isCanceled { return }
+									if let source = imageView?.image {
+										result = filter.apply(to: source)
+									}
+								}
+							}
+						</code></pre>
+					</section>
+				</section>
+<!-- Key-Value Coding -->
+				<section>
+					<section data-background="../img/key-value.jpg">
 						<h1>Key-Value Coding</h1>
 					</section>
 					<section>
+						<h3>KVC</h3>
+						<p>
+							Key-value coding is a mechanism that allows objects to provide indirect access to their properties
+						</p>
+						<pre><code class="swift" data-noheader>
+							// Returns the value for the property identified by a given key
+							func value(forKey key: String) -> Any?
+							// Sets the property of the receiver specified by a given key to a given value
+							func setValue(_ value: Any?, forKey key: String)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Adopting KVC</h3>
+						<pre><code class="swift" data-noheader>
+							class KVCCompliant: NSObject {
+								var name: String = ""
+							}
+							let kvc: KVCCompliant
+							kvc.setValue("I'm a KVC Object", forKey: "name")
+						</code></pre>
+						<p class="notice">
+							There is no explicit KVC protocol, but any subclass of <code class="hljs-type">NSObject</code> is KVC compliant
+						</p>
+					</section>
+					<section>
 						<h3>Key-Value Observers</h3>
+						<p>
+							Key-value observing is a mechanism that allows objects to be notified of changes to specified properties of other objects
+						</p>
+						<pre><code class="swift" src="KVO/Observer">
+							func observeValue(forKeyPath keyPath: String?, of object: Any?,
+								change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+						</code></pre>
+						<pre><code class="swift" src="KVO/Observed">
+							func addObserver(_ observer: NSObject, forKeyPath keyPath: String,
+								options: NSKeyValueObservingOptions = [], context: UnsafeMutableRawPointer?)
+							func removeObserver(_ observer: NSObject, forKeyPath keyPath: String)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Responsible Observation</h3>
+						<pre><code class="swift" src="KVO/Observer.swift">
+							class MyObserver: NSObject {
+								var myContext = 88888888
+								override init() {
+									super.init()
+									objectToObserve.addObserver(self,
+												forKeyPath: #keyPath(Observed.propertyName),
+												options: .new, context: &amp;myContext)
+								}
+								deinit {
+									objectToObserve.removeObserver(self,
+												forKeyPath: #keyPath(Observed.propertyName),
+												context: &amp;myContext)
+								}
+							}
+							</code></pre>
+					</section>
+					<section>
+						<h3>Responding to KeyValue Changes</h3>
+						<pre><code class="swift" src="KVO/Observer.swift">
+							override func observeValue(forKeyPath keyPath: String?, of object: Any?,
+									change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+								if context == &amp;myContext {
+									if let newValue = change?[.newKey] {
+										print("Value changed: \(newValue)")
+									}
+								} else {
+									super.observeValue(forKeyPath: keyPath, of: object,
+										change: change, context: context)
+								}
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Considered Harmful!</h3>
+						<ul>
+							<li>Comes through one method</li>
+							<li>Requires you to handle superclasses yourself</li>
+							<li>Obscures control flow</li>
+							<li class="notice">Can crash when deregistering</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Property Observers</h3>
+						<pre><code class="swift" data-noheader>
+							class Note {
+								var content: String {
+									willSet {
+										print("content will be set to \(content)")
+									}
+									didSet {
+										print("content has been set to \(content)")
+									}
+								}
+							}
+						</code></pre>
 					</section>
 				</section>
 <!-- Notifications -->
