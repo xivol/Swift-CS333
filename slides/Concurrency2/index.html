@@ -63,7 +63,7 @@
 						</ul>
 						</div>
 						<div class="col">
-							<img id="swift-bird" src="../img/owl.jpg" />
+							<img id="swift-bird" src="../img/catch.jpg" />
 						</div>
 					</div>
 				</section>
@@ -133,17 +133,20 @@
 						</p>
 					</section>
 					<section>
-					<h3>Calling for Dispatch Queues</h3>
-					<pre><code class="swift" data-noheader>
-					// Get some queue to put our task into
-					DispatchQueue.global(qos: .userInitiated).async {
-						/* do some task */
-						DispatchQueue.main.async {
-							/* present results to the user */
+						<h3>Dispatch Queues since Swift 3</h3>
+						<pre><code class="swift" data-noheader>
+						// Get some queue to put our task into
+						DispatchQueue.global(qos: .userInitiated).async {
+							/* do some task */
+							DispatchQueue.main.async {
+								/* present results to the user */
+							}
 						}
-					}
-					</code></pre>
-				</section>
+						</code></pre>
+						<p class="notice">
+							Any UI operation should be performed on the main queue
+						</p>
+					</section>
 					<section>
 					<h3>Quality of Service</h3>
 					<pre><code class="swift" data-noheader>
