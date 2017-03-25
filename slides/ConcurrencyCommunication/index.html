@@ -295,7 +295,7 @@
 						<h3>Adopting KVC</h3>
 						<pre><code class="swift" data-noheader>
 							class KVCCompliant: NSObject {
-								var name: String = ""
+								dynamic var name: String = ""
 							}
 							let kvc: KVCCompliant
 							kvc.setValue("I'm a KVC Object", forKey: "name")
@@ -383,17 +383,6 @@
 				<section>
 					<section data-background="../img/notification.jpeg">
 						<h1>Notifications</h1>
-					</section>
-					<section>
-						<h3>Observer Pattern</h3>
-						<div class="row">
-							<div class="col">
-								A software design pattern in which an object maintains a list of observers and notifies them automatically of any state changes
-							</div>
-							<div class="col">
-							<img src="../img/observer.gif" alt="Observer Diagram" />
-							</div>
-						</div>
 					</section>
 					<section>
 						<h3>Notification Center</h3>
