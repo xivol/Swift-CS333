@@ -19,10 +19,10 @@
  		</script>
 		<style>
 		#swift-bird{
-      transform: rotate(180deg);
-      -webkit-clip-path: polygon(10% 0%, 90% 10%, 90% 90%, 10% 100%);
-			clip-path: polygon(10% 0%, 90% 10%, 90% 90%, 10% 100%);
-			/*max-height: 100%*/
+
+      -webkit-clip-path: polygon(10% 10%, 100% 0%, 90% 90%, 0% 100%);
+			clip-path: polygon(10% 10%, 100% 0%, 90% 90%, 0% 100%);
+			max-width: 100%
 		}
 		</style>
 	</head>
@@ -34,14 +34,14 @@
 			</div>
 			<div class="slides">
 				<section>
-					<h2>CS333</h2>
+					<h2><a href="https://xivol.github.io/Swift-CS333/">CS333</a></h2>
 					<h1>Mobile Development</h1>
 					<p>
 						</br>Ilya Loshkarev</br>
 						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
 					</p>
 					<p class="footer">
-						<br>SFEDU 2016
+						<br>SFEDU 2017
 					</p>
 				</section>
 				<section>
@@ -58,201 +58,226 @@
 							<li>
 								<a href="#/4">Authentication</a>
 							</li>
-              <li>
-                <a href="#/5">Restful API</a>
-              </li>
+							<li>
+								<a href="#/5">Restful API</a>
+							</li>
 						</ul>
 						</div>
 						<div class="col">
-							<img id="swift-bird" src="../img/catch.jpg" />
+							<img id="swift-bird" src="../img/networking.jpg" />
 						</div>
 					</div>
-        </section>
+				</section>
 <!-- Networking     -->
-        <section>
-          <section data-background="../img/networking.gif">
-            <h1>Networking</h1>
-          </section>
-          <section>
-            <h3>HTTP</h3>
-          </section>
-          <section>
-            <h3>App Transport Security</h3>
-            <blockquote>
-              Starting in iOS 9.0 and OS X v10.11, a new security feature called
-              App Transport Security (ATS) is enabled by default
-              for all HTTP connections made with NSURLSession.
-              ATS requires that HTTP connections use HTTPS.
-            </blockquote>
-          </section>
-          <section>
-            <h3>HTTPS</h3>
-          </section>
-          <section>
-            <h3>Disabling ATS</h3>
-            <pre><code src="Project/Info.plist">
-              NSAppTransportSecurity : Dictionary
-                NSAllowsArbitraryLoads : YES      // http everywhere - unsafe!
-            </code></pre>
-            <p>
-              Specify domains that are allowed to have http connections:
-            </p>
-            <pre><code src="Project/Info.plist">
-              NSAppTransportSecurity : Dictionary
-                edu.mmcs.sfedu.ru : Dictionary
-                  NSAllowsArbitraryLoads : YES // allows http in domain
-            </code></pre>
-            <p class="notice">
-              iOS 10.0 introduced <code class="hljs-type">NSAllowsArbitraryLoadsInMedia</code> and <br />
-              <code class="hljs-type">NSAllowsArbitraryLoadsInWebContent</code>
-            </p>
-          </section>
-          <section>
-            <h3>URL Session</h3>
-            <img src="../img/nsurlsession.png" alt="URL Session Diagram" />
-            <p>
-              Dispatch queue for remote requests on top of TCP/IP sockets
-            </p>
-          </section>
-          <section>
-            <h3>Shared Session</h3>
-            <pre><code class="swift" data-noheader>
-              let session = URLSession.shared
-              let url = URL(string: "http://edu.mmcs.sfedu.ru/")
-              let task = session.dataTask(with: url) {
-                data, response, error in
-                /* handle response */
-              }
-              task.resume() // start task
-            </code></pre>
-            <p>
-              Default uncofigurable session for handling basic requests
-            </p>
-          </section>
-          <section>
-            <h3>Session Configurtion</h3>
-            <ul>
-              <li><em>Default</em> default session configuration<br>
-                <pre><code class="swift" data-noheader>URLSessionConfiguration.default</code></pre></li>
-              <li><em>Ephimeral</em> doesn't write to cache or cookies<br>
-                <pre><code class="swift" data-noheader>URLSessionConfiguration.ephimeral</code></pre></li>
-              <li><em>Background</em> allows background upload and download<br>
-                <pre><code class="swift" data-noheader>URLSessionConfiguration.background("background.session")</code></pre></li>
-            </ul>
-          </section>
-          <section>
-            <h3>Session Tasks</h3>
-            <ul>
-              <li><em>Data Task</em> sends and receives data using NSData objects<br>
-              <pre><code class="swift" data-noheader>session.dataTask(with: URL)</code></pre></li>
-              <li><em>Upload Task</em> sends data and supports background uploads<br />
-              <pre><code class="swift" data-noheader>session.uploadTask(with: URLRequest, from: Data)</code></pre></li>
-              <li><em>Download Task</em> retrieves data and supports background downloads and uploads<br />
-              <pre><code class="swift" data-noheader>session.downloadTask(with: URL)</code></pre></li>
-            </ul>
-          </section>
-          <section>
-            <h3>Session Delegate</h3>
-            <ul>
-              <li><code class="hljs-type">URLSessionDelegate</code><br />
-              Authentication on a session-level, Session errors</li>
-              <li><code class="hljs-type">URLSessionTaskDelegate</code><br />
-              Authentication requests, Redirects, Completion</li>
-              <li><code class="hljs-type">URLSessionDataDelegate</code><br />
-              Recieved Data, Should use cache</li>
-              <li><code class="hljs-type">URLSessionDownloadDelegate</code><br />
-              Download has finished, started, progressed</li>
-            </ul>
-          </section>
-          <section>
-            <h3>Building a Session</h3>
-            <pre><code class="swift" data-noheader>
-              let config = URLSessionConfiguration.default
-              config.allowsCellularAccess = false
-              config.timeoutIntervalforRequest = 30.0
-              let session = URLSession(configuration: config)
-              let url = URL(string: "http://edu.mmcs.sfedu.ru/")
-              let task = session.dataTask(with: url) {
-                  data, response, error in
-                  /* handle response */
-              }
-              task.resume() // start task
-            </code></pre>
-            <p class="notice">
-              If no delegate is assigned to a session, <br>a completion handler must be provided to recieve data
-            </p>
-          </section>
-          <section>
-            <h3>HTTP Response</h3>
-            <pre><code class="swift" data-noheader>
-              let task = session.dataTask(with: url) {
-                  data, response, error in
-                  if let httpResponse = response as? HTTPURLResponse {
-                      switch httpResponse.statusCode {
-                        case 200: print("OK")
-                        case 404: print("Not found")
-                        default:
-                          print("Something else")
-                      }
-                  }
-              }
-            </code></pre>
-          </section>
-          <section>
-            <h3>HTTP Headers</h3>
-            <p>
-              HTTP headers can be setup as part of each request or<br />
-              as default headers in configuration
-            </p>
-            <pre><code class="swift" data-noheader>
-              let config = URLSessionConfiguration.default
-              config.allowsCellularAccess = false
-              config.timeoutIntervalforRequest = 30.0
-              config.httpAdditionalHeaders["Some Header"] = someValue
-            </code></pre>
-          </section>
-          <section>
-            <h3>Download Data</h3>
-            <pre><code class="swift" data-noheader>
-              let request = URLRequest( url: myUrl)
-              request.httpMethod = "GET"
-              /* set any additional HTTP Headers here */
-              let task = session.dataTask(with: request ){
-                  data, response, error in
-                  /* handle response */
-              }
-              task.resume()
-          </code></pre>
-          </section>
-          <section>
-            <h3>Upload Data</h3>
-            <pre><code class="swift" data-noheader>
-              let request = URLRequest(url: myUrl)
-              request.httpMethod = "POST"
-              /* set any additional HTTP Headers here */
-              let task = session.uploadTask(with: request, from: someData ){
-                  data, response, error in
-                  /* handle response */
-              }
-              task.resume()
-          </code></pre>
-          </section>
-          <section>
-            <h3>URL with Parameters</h3>
-            <pre><code class="swift" data-noheader>
-              let urlComponents = URLComponents(
-                  URL: baseUrl,
-                  resolvingAgainstBaseURL: true)!
-              urlComponents.path = relativePathString
-              urlComponents.query = parametersString.addingPercentEncoding(
-                  withAllowedCharacters: .urlHostAllowed)
-              let request = URLRequest(url: urlComponents.url!)
-            </code></pre>
-          </section>
-          <section>
-            <h3>Multipart HTTP Header</h3>
-          </section>
-        </section>
+				<section>
+					<section data-background="../img/networking.gif">
+							<h1>Networking</h1>
+					</section>
+					<section>
+						<h3>Remote Data Cost</h3>
+						<div class="row">
+							<div class="col">
+								<ul>
+									<li>Battery Life</li>
+									<li>System Perfomance</li>
+									<li>Data Transfer Cost</li>
+								</ul>
+							</div>
+							<div class="col">
+								<ul>
+									<li><em>Optimize Assets</em></li>
+									<li></li>
+									<li><em>Cache Data</em></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>Reachability Check</h3>
+						<pre><code class="swift" data-noheader>
+							var flags: SCNetworkReachabilityFlags = []
+							if !SCNetworkReachabilityGetFlags(hostRoute, &amp;flags) {
+								return false
+							}
+							if flags.contains(.reachable){
+								return true
+							}
+						</code></pre>
+						<p class="notice">The reachability API helps to determine if <br>a remote host is reachable</p>
+					</section>
+					<section>
+						<h3>App Transport Security</h3>
+						<blockquote>
+							<p>Starting in iOS 9.0 and OS X v10.11, a new security feature called
+							App Transport Security (ATS) is enabled by default
+							for all HTTP connections made with NSURLSession.
+							ATS requires that HTTP connections use HTTPS.</p>
+							<cite>&mdash; <a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW33">Apple Docs</a></cite>
+						</blockquote>
+					</section>
+					<section>
+						<h3>Disabling ATS</h3>
+						<pre><code src="Project/Info.plist">
+						NSAppTransportSecurity : Dictionary
+							NSAllowsArbitraryLoads : YES      // http everywhere - unsafe!
+						</code></pre>
+						<p>Specify domains that are allowed to have http connections:</p>
+						<pre><code src="Project/Info.plist">
+						NSAppTransportSecurity : Dictionary
+							edu.mmcs.sfedu.ru : Dictionary
+								NSAllowsArbitraryLoads : YES // allows http in the domain
+						</code></pre>
+						<p class="notice">
+							iOS 10.0 introduced <code class="hljs-type">NSAllowsArbitraryLoadsInMedia</code> and <br />
+							<code class="hljs-type">NSAllowsArbitraryLoadsInWebContent</code>
+						</p>
+					</section>
+					<section>
+						<h3>URL Session</h3>
+						<img src="../img/nsurlsession.png" alt="URL Session Diagram" />
+						<p>Dispatch queue for remote requests on top of TCP/IP sockets</p>
+					</section>
+					<section>
+						<h3>Shared Session</h3>
+						<pre><code class="swift" data-noheader>
+						  let session = URLSession.shared
+						  let url = URL(string: "http://edu.mmcs.sfedu.ru/")
+						  let task = session.dataTask(with: url) {
+						    data, response, error in
+						    /* handle response */
+						  }
+						  task.resume() // start task
+						</code></pre>
+						<p>Default uncofigurable session for handling basic requests</p>
+					</section>
+					<section>
+						<h3>Session Configurtion</h3>
+						<ul>
+						  <li><em>Default</em> default session configuration<br>
+						    <pre><code class="swift" data-noheader>URLSessionConfiguration.default</code></pre></li>
+						  <li><em>Ephimeral</em> doesn't write to cache or cookies<br>
+						    <pre><code class="swift" data-noheader>URLSessionConfiguration.ephimeral</code></pre></li>
+						  <li><em>Background</em> allows background upload and download<br>
+						    <pre><code class="swift" data-noheader>URLSessionConfiguration.background("background.session")</code></pre></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Session Tasks</h3>
+						<ul>
+						  <li><em>Data Task</em> sends and receives data using NSData objects<br>
+						  <pre><code class="swift" data-noheader>session.dataTask(with: URL)</code></pre></li>
+						  <li><em>Upload Task</em> sends data and supports background uploads<br />
+						  <pre><code class="swift" data-noheader>session.uploadTask(with: URLRequest, from: Data)</code></pre></li>
+						  <li><em>Download Task</em> retrieves data and supports background downloads and uploads<br />
+						  <pre><code class="swift" data-noheader>session.downloadTask(with: URL)</code></pre></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Session Delegate</h3>
+						<ul>
+						  <li><code class="hljs-type">URLSessionDelegate</code><br />
+						  Authentication on a session-level, Session errors</li>
+						  <li><code class="hljs-type">URLSessionTaskDelegate</code><br />
+						  Authentication requests, Redirects, Completion</li>
+						  <li><code class="hljs-type">URLSessionDataDelegate</code><br />
+						  Recieved Data, Should use cache</li>
+						  <li><code class="hljs-type">URLSessionDownloadDelegate</code><br />
+						  Download has finished, started, progressed</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Building a Session</h3>
+						<pre><code class="swift" data-noheader>
+						  let config = URLSessionConfiguration.default
+						  config.allowsCellularAccess = false
+						  config.timeoutIntervalforRequest = 30.0
+						  let session = URLSession(configuration: config)
+						  let url = URL(string: "http://edu.mmcs.sfedu.ru/")
+						  let task = session.dataTask(with: url) {
+						      data, response, error in
+						      /* handle response */
+						  }
+						  task.resume() // start task
+						</code></pre>
+						<p class="notice">If no delegate is assigned to a session,
+							<br>a completion handler must be provided to recieve data</p>
+					</section>
+					<section>
+						<h3>HTTP Response</h3>
+						<pre><code class="swift" data-noheader>
+						  let task = session.dataTask(with: url) {
+						      data, response, error in
+						      if let httpResponse = response as? HTTPURLResponse {
+						          switch httpResponse.statusCode {
+						            case 200: print("OK")
+						            case 404: print("Not found")
+						            default:
+						              print("Something else")
+						          }
+						      }
+						  }
+						</code></pre>
+					</section>
+					<section>
+						<h3>HTTP Headers</h3>
+						<p>HTTP headers can be setup as part of each request or<br />
+							as default headers in configuration</p>
+						<pre><code class="swift" data-noheader>
+						  let config = URLSessionConfiguration.default
+						  config.allowsCellularAccess = false
+						  config.timeoutIntervalforRequest = 30.0
+						  config.httpAdditionalHeaders["Some Header"] = someValue
+						</code></pre>
+					</section>
+					<section>
+						<h3>Download Data</h3>
+						<pre><code class="swift" data-noheader>
+						  let request = URLRequest( url: myUrl)
+						  request.httpMethod = "GET"
+						  /* set any additional HTTP Headers here */
+						  let task = session.dataTask(with: request ){
+						      data, response, error in
+						      /* handle response */
+						  }
+						  task.resume()
+						</code></pre>
+					</section>
+					<section>
+						<h3>Upload Data</h3>
+						<pre><code class="swift" data-noheader>
+						  let request = URLRequest(url: myUrl)
+						  request.httpMethod = "POST"
+						  /* set any additional HTTP Headers here */
+						  let task = session.uploadTask(with: request, from: someData ){
+						      data, response, error in
+						      /* handle response */
+						  }
+						  task.resume()
+						</code></pre>
+					</section>
+					<section>
+						<h3>URL with Parameters</h3>
+						<pre><code class="swift" data-noheader>
+						  let urlComponents = URLComponents(
+						      URL: baseUrl,
+						      resolvingAgainstBaseURL: true)!
+						  urlComponents.path = relativePathString
+						  urlComponents.query = parametersString.addingPercentEncoding(
+						      withAllowedCharacters: .urlHostAllowed)
+						  let request = URLRequest(url: urlComponents.url!)
+						</code></pre>
+					</section>
+					<section>
+						<h3>WebViews</h3>
+						<p>class to embed web content in your app</p>
+						<pre><code class="swift" data-noheader>
+							let webView = UIWebView()
+							let request = URLRequest(url: myUrl)
+							webView.loadRequest(request)
+						</code></pre>
+						<p class="notice">Web​View objects can be used to display <br> Keynote, PDF, and Pages documents</p>
+					</section>
+				</section>
 <!-- Alamofire    -->
         <section>
           <section data-background="../img/alamo-fire.jpg">
@@ -458,7 +483,9 @@
               <li>Access APIs with given token</li>
             </ol>
             <p class="notice">
-              Theese two tokens could be given by a servers differnet from an API provider
+              Theese two tokens could be given by <thead>
+
+              </thead> servers differnet from an API provider
             </p>
           </section>
           <section>
@@ -559,17 +586,13 @@
             <h1>Restful API</h1>
           </section>
           <section>
-            <h3>Rest</h3>
+            <h3>Representational State Transfer </h3>
             <p>
-              A protocol that utilses HTTP headers and JSON data <br />
-              to access server endpoints
-            </p>
-            <p class="notice">
-              Non standartized
+              <em>Non standartized</em> protocol that utilises HTTP headers and JSON data to access server endpoints
             </p>
           </section>
           <section>
-            <h3>Expected API Specification</h3>
+            <h3>Expected RESTful API</h3>
             <table>
               <tr>
                 <td>URL/Header</td><th>GET</th><th>POST</th><th>PUT</th><th>DELETE</th>
@@ -586,72 +609,141 @@
               </tr>
             </table>
           </section>
-          <section>
-            <h3>Query Parameters<br /><small>with URLSession</small></h3>
-            <ul style="display: block;">
-              <li>URL Encoded<br/>
-                <pre><code class="swift" data-noheader>urlComponents.query = parametersString</code></pre>
-              </li>
-              <li>HTTP Headers<br/>
-                <pre><code class="swift" data-noheader>request.addValue(key, parameters[key])</code></pre>
-              </li>
-              <li>HTTP Body<br />
-                <pre><code class="swift" data-noheader>request.body = parametersString</code></pre>
-              </li>
-            </ul>
-          </section>
-          <section>
-            <h3>Javascript Object Notation</h3>
-            <p>
-              Is usually used for parameters encoding
-            </p>
-          </section>
-          <section>
-            <h3>JSON Serialization</h3>
-            <pre><code data-noheader>
-              // Serialize any KVC compliant object to JSON string
-              let data = JSONSerialization.data(withJsonObject: bird, options:[])
-              // Deserialize string into NSObject
-              if let json = ( try? JSONSerialization.jsonObject(with:
-                  data!, options: []) ) as? [String: AnyObject]
-              {
-                  print(json["name"] as? String)
-              }
-            </code></pre>
-          </section>
-          <section>
-            <h3>Object Mapper</h3>
-            <small><a href="https://github.com/Hearst-DD/ObjectMapper">github.com/ObjectMapper</a></small>
-          </section>
-          <section>
-            <h3>Mappable</h3>
-          </section>
-          <section>
-            <h3>Alamofire Object Mapper</h3>
-            <small><a href="https://github.com/tristanhimmelman/AlamofireObjectMapper">github.com/AlamofireObjectMaper</a></small>
-          </section>
-          <section>
-            <h3>Remote Synchronization</h3>
-          </section>
-          <section>
-            <h3>RestKit</h3>
-            <small><a href="https://github.com/RestKit/">github.com/RestKit</a></small>
-          </section>
-          <section>
-            <h3>Sync</h3>
-            <small><a href="https://github.com/SyncDB/Sync">github.com/SyncDB</a></small>
-          </section>
-        </section>
-        <section>
-          <h3 style="display:none;">Related Resources</h3>
-          <ul>
-            <li><a href="https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">URL Programming Guide - Apple Developer</a></li>
-            <li><a href="https://developer.apple.com/reference/foundation/urlsession">URLSession - API Reference</a></li>
-            <li><a href="https://github.com/Alamofire/Alamofire">Alamofire - GitHub</a></li>
-            <li><a href="https://developer.apple.com/swift/blog/?id=37">Working with JSON in Swift - Swift Blog</a></li>
-            <li><a href="https://github.com/tristanhimmelman/AlamofireObjectMapper">AlamofireObjectMapper - GitHub</a></li>
-          </ul>
-        </section>
+					<section>
+						<h3>Query Parameters<br /><small>with URLSession</small></h3>
+						<ul style="display: block;">
+							<li>URL Encoded<br/>
+								<pre><code class="swift" data-noheader>urlComponents.query = parametersString</code></pre>
+							</li>
+							<li>HTTP Headers<br/>
+								<pre><code class="swift" data-noheader>request.addValue(key, parameters[key])</code></pre>
+							</li>
+							<li>HTTP Body<br />
+								<pre><code class="swift" data-noheader>request.body = parametersString</code></pre>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Query Parameters<br /><small>with Alamofire</small></h3>
+						<ul style="display: block;">
+							<li>URL Encoded<br/>
+								<pre><code class="swift" data-noheader>
+									Alamofire.request("https://httpbin.org/get", parameters: parameters,
+										encoding: URLEncoding.queryString)
+								</code></pre>
+							</li>
+							<li>HTTP Headers<br/>
+								<pre><code class="swift" data-noheader>
+									Alamofire.request("https://httpbin.org/headers",
+										headers: parameters)
+								</code></pre>
+							</li>
+							<li>HTTP Body<br/>
+								<pre><code class="swift" data-noheader>
+									Alamofire.request("https://httpbin.org/get", parameters: parameters,
+										encoding: URLEncoding.httpBody)
+								</code></pre>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Javascript Object Notation</h3>
+						<div class="row">
+							<div class="col">
+								<pre><code class="nohighlight">
+									{
+									  "firstName": "Иван",
+									  "lastName": "Иванов",
+									  "address": {
+									    "streetAddress": "Московское ш., 101, кв.101",
+									    "city": "Ленинград",
+									    "postalCode": 101101
+									  }
+									}
+								</code></pre>
+							</div>
+							<div class="col">
+								<img src="../img/JSON.svg" alt="json logo" class="large">
+							</div>
+						</div>
+					</section>
+					<section>
+						<h3>JSON Serialization</h3>
+						<pre><code class="swift" data-noheader>
+							// Serialize any KVC compliant object to JSON string
+							let data = JSONSerialization.data(withJsonObject: person, options:[])
+							// Deserialize string into NSObject
+							if let json = ( try? JSONSerialization.jsonObject(with: data!,
+									options: []) ) as? [String: AnyObject]
+							{
+								print(json["firstName"] as? String)
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Object Mapper</h3>
+						<small><a href="https://github.com/Hearst-DD/ObjectMapper">github.com/ObjectMapper</a></small>
+						<p>Simple JSON Object mapping written in Swift</p>
+						<ul>
+							<li>Mapping JSON to objects</li>
+							<li>Mapping objects to JSON</li>
+							<li>Nested Objects</li>
+							<li>Custom transformations during mapping</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Mappable</h3>
+						<small>a protocol, defines mapping of JSON parameters to object properties</small>
+						<pre><code class="swift" data-noheader>
+							class Temperature: Mappable {
+								var celsius: Float
+								required init?(map: Map) {
+									guard let c = map.JSON["celsius"] else { return nil }
+									celsius = c
+								}
+								mutating func mapping(map: Map) {
+									celsius  &lt;- map["celsius"]
+								}
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Alamofire Object Mapper</h3>
+						<small><a href="https://github.com/tristanhimmelman/AlamofireObjectMapper">github.com/AlamofireObjectMaper</a></small>
+						<pre><code class="swift" data-noheader>
+						Alamofire.request(url).responseObject {
+							(response: DataResponse&lt;Temperature&gt;) in
+							print(response.result.value.celsius)
+						}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Database Synchronization</h3>
+						<p>SyncDB</p>
+						<small><a href="https://github.com/SyncDB/Sync">github.com/SyncDB</a></small>
+						<p>
+							Automatically maps CoreData objects to JSON
+						</p>
+						<pre><code class="swift" data-noheader>
+							Sync.changes( json["data"] as! [[String : Any]],
+									inEntityNamed: "Data",
+									dataStack: self.dataStack) {
+								error in
+								completion(error)
+							}
+						</code></pre>
+						</table>
+					</section>
+				</section>
+				<section>
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">URL Programming Guide - Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/reference/foundation/urlsession">URLSession - API Reference</a></li>
+						<li><a href="https://github.com/Alamofire/Alamofire">Alamofire - GitHub</a></li>
+						<li><a href="https://developer.apple.com/swift/blog/?id=37">Working with JSON in Swift - Swift Blog</a></li>
+					</ul>
+				</section>
 
 
       </div>
