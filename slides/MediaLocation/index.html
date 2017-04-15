@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Swift-CS333. Media &amp; Location</title>
+		<title>Swift-CS333. Location &amp; Media</title>
 
 		<link rel="stylesheet" href="../css/reveal.css">
 		<link rel="stylesheet" href="../css/theme/swift.css">
@@ -33,14 +33,14 @@
 			</div>
 			<div class="slides">
 				<section>
-					<h2>CS333</h2>
+					<h2><a href="https://xivol.github.io/Swift-CS333/">CS333</a></h2>
 					<h1>Mobile Development</h1>
 					<p>
 						</br>Ilya Loshkarev</br>
 						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
 					</p>
 					<p class="footer">
-						<br>SFEDU 2016
+						<br>SFEDU 2017
 					</p>
 				</section>
 				<section>
@@ -49,139 +49,166 @@
 						<div class="col">
 						<ul>
 							<li>
-								<a href="#/2">Images</a>
+								<a href="#/2">Core Location</a>
 							</li>
 							<li>
-								<a href="#/3">AVFoundation</a>
+								<a href="#/3">Map Kit</a>
 							</li>
 							<li>
-								<a href="#/4">Location</a>
+								<a href="#/4">AV Foundation</a>
 						</ul>
 						</div>
 						<div class="col">
 							<img id="swift-bird" src="../img/flurry.jpg" />
 						</div>
 					</div>
-        </section>
-<!-- Images     -->
-        <section>
-          <section data-background="../img/camera.jpg">
-            <h1>Images</h1>
-          </section>
-          <section>
-            <h3>Image Picker</h3>
-						<pre><code class="swift"data-noheader>
-							let imagePickerView = UIImagePickerController()
-							imagePickerView.delegate = self
-							// present image picker
-							self.present(imagePickerView, animated: true, completion: nil)
-						</code></pre>
-						<p>
-							Standart controller to access Photos and Camera <br> from within any app
-						</p>
-          </section>
-					<section>
-						<h3>Sources and Media Types</h3>
-						<pre><code class="swift"data-noheader>
-							// open Camera
-							imagePickerView.sourceType = .camera
-							imagePickerView.cameraDevice = .rear  // .front
-							// open Photos
-							imagePickerView.sourceType = .photoLibrary
-							imagePickerView.allowEditing = false
-							// open Camera Roll
-							imagePickerView.sourceType = .savedPhotosAlbum
-							// type of media to show
-							imagePickerView.mediaTypes = [
-								// kUTTypeMovie, - only images
-								kUTTypeImage
-							]
-						</code></pre>
+				</section>
+<!--	Location	-->
+				<section>
+					<section data-background="../img/location.jpg">
+						<h1>Core Location</h1>
 					</section>
 					<section>
-						<h3>Picker Delegate</h3>
-						<pre><code class="swift"data-noheader>
-							func imagePickerController(picker: UIImagePickerController,
-								didFinishPickingMediaWithInfo info: [String : Any]) {
-								if info[UIImagePickerControllerMediaType] == kUTTypeImage {
-									let chosenImage = // captured photo or image from library
-										info[UIImagePickerControllerOriginalImage] as! UIImage
-								} else {
-									let movieURL = // URL of media file
-										info[UIImagePickerControllerMediaURL] as! URL
-								}
-								dismiss(animated: true, completion: nil)
-							}
-						</code></pre>
-					</section>
-          <section>
-            <h3>Core Image</h3>
-						<p>
-							Library for image processing
-						</p>
-						<pre><code data-noheader>
-							// CIImage is a base image class
-							let inputCIImage = CIImage(image: inputImage)!
-							// All filters are created by name
-							let blurFilter = CIFilter(name: "CIGaussianBlur")!
-							blurFilter.setValue(inputCIImage, forKey: kCIInputImageKey)
-							blurFilter.setValue(8, forKey: kCIInputRadiusKey)
-							let cgImage = context.createCGImage(blurFilter.outputImage!,
-								fromRect: outputImage.extent())
-						</code></pre>
-						<p>
-							Low-level library, KVC parameters setup
-						</p>
-						<p>
-							There are &gt;150 default filters
-						</p>
-						<small><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html">
-							Core Image Filter Reference - Apple Developer
-						</a></small>
-          </section>
-					<section>
-						<h3>Filter Chains</h3>
-						<pre><code data-noheader>
-						let outputImage = inputCIImage
-							.applyingFilter(
-							    "CICrystallize",
-							    withInputParameters: [
-							        kCIInputRadiusKey: 50
-							    ])
-							.applyingFilter(
-							   "CICMYKHalftone",
-							    withInputParameters: [
-							       kCIInputWidthKey: 35
-							   ])
-						</code></pre>
-						<p class="notice">
-							Image filtering takes some time <br>
-							it is better to perform it in a separate queue
-						</p>
+						<h3>Location Manager</h3>
+						<ul>
+							<li>Tracks changes in the user’s current location</li>
+							<li>Reports changes from the onboard compass</li>
+							<li>Monitors regions of interest</li>
+							<li>Reports the range to nearby beacons</li>
+						</ul>
 					</section>
 					<section>
-						<h3>Save Image to Photos</h3>
+						<h3>Permissions</h3>
 						<pre><code data-noheader>
-						func save(image: UIImage, to album: PHAssetCollection) {
-							PHPhotoLibrary.shared().performChanges({
-								// Request creating an asset from the image
-								let creationRequest =
-									PHAssetChangeRequest.creationRequestForAsset(from: image)
-								// Request editing the album
-								if let addAssetRequest =
-									PHAssetCollectionChangeRequest(for: album)
-								{
-									addAssetRequest.addAssets(
-										[creationRequest.placeholderForCreatedAsset!])
-								}
-							}, completionHandler: nil)
-						}
+							// Authorize for location tracking in foreground
+							locationManager.requestWhenInUseAuthorization()
+							// Authorize for location tracking in background
+							locationManager.requestAlwaysAuthorization()
+						</code></pre>
+						<p class="notice"> Fails silently without permission</p>
+						<p>Requires related privacy keys in <code class="hljs-type">Info.plist</code></p>
+					</section>
+					<section>
+						<h3>Authorization Status</h3>
+						<pre><code src="CLAuthorizationStatus">
+							.authorizedAlways // authorization for background updates
+							.authorizedWhenInUse // authorization for foreground updates
+							.notDetermined // authorization is not granted yet
+							.restricted // authorization is restricted by the device
+							.denied // authorization is explicitly denied
 						</code></pre>
 						<pre><code class="swift" data-noheader>
-							UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved), nil)
+							CLLocationManager.authorizationStatus()
 						</code></pre>
 					</section>
+					<section>
+						<h3>Enable Location Updates</h3>
+						<pre><code class="swift" data-noheader>
+							locationManager.startUpdatingLocation()
+							locationManager.startMonitoringSignificantLocationChanges()
+							locationManager.startUpdatingHeading()
+							locationManager.startMonitoring(for: CLRegion)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Location Manager Delegate</h3>
+						<pre><code class="swift" data-noheader>
+							locationManager(_:didChangeAuthorization:)
+							locationManager(_:didUpdateLocations:)
+							locationManager(_:didUpdateTo:from:)
+							locationManager(_:didUpdateHeading:)
+							locationManager(_:didEnterRegion:)
+						</code></pre>
+						<p>The protocol whose methods you use to receive events from an associated location manager object</p>
+					</section>
+					<section>
+						<h3>Location</h3>
+						<pre><code class="swift" src="CLLocation">
+							var coordinate: CLLocationCoordinate2D
+							var altitude: CLLocationDistance
+							var timestamp: Date
+							var speed: CLLocationSpeed
+							var course: CLLocationDirection
+						</code></pre>
+					</section>
+					<section>
+						<h3>Accuracy</h3>
+						<pre><code class="swift" data-noheader>
+							locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+							locationManager.distanceFilter = 1
+							let accuracy = locationManager.location!.horisontalAccuracy
+						</code></pre>
+						<p class="notice">
+							Less accurate location methods save battery power
+						</p>
+					</section>
 				</section>
+<!--	MapKit	-->
+				<section>
+					<section data-background="../img/map.jpg">
+						<h1>Map Kit</h1>
+					</section>
+					<section>
+						<h3>Apple Maps</h3>
+						<ul>
+							<li>Released with iOS 6 (19.09.12)</li>
+							<li>Replaced Google Maps</li>
+							<li>Fully vectorized</li>
+						</ul>
+					</section>
+					<section>
+						<h3>MapView</h3>
+						<pre><code class="swift" data-noheader>
+							mapView.mapType = .hybrid
+							mapView.showBuildings = true
+						</code></pre>
+						<p>An MKMapView object provides an embeddable map interface, similar to the one provided by the Maps application</p>
+					</section>
+					<section>
+						<h3>Annotations</h3>
+						<pre><code class="swift" data-noheader>
+							protocol MKAnnotation : NSObjectProtocol {
+								public var coordinate: CLLocationCoordinate2D { get }
+
+								optional public var title: String? { get }
+								optional public var subtitle: String? { get }
+							}
+						</code></pre>
+						<p>To use this protocol, you adopt it in any custom objects that store or represent annotation data</p>
+					</section>
+					<section>
+						<h3>Map View Delegate</h3>
+						<pre><code class="swift" data-noheader>
+							mapView(_:viewFor:)
+						</code></pre>
+					</section>
+					<section>
+						<h3>Annotation Views</h3>
+						<pre><code class="swift" data-noheader>
+							func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+								let pin = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as! MKPinAnnotationView
+								pin.annotation = annotation
+								return pin
+							}
+						</code></pre>
+						<p class="notice">Annotation views remain anchored to the map at the point specified by their associated annotation object</p>
+					</section>
+					<section>
+						<h3>Geocoding</h3>
+						<pre><code class="swift" src="CLGeocoder">
+							geocodeAddressString(addressString: String, completionHandler:([CLPlacemark]?, Error?) -> Void)
+							reverseGeocodeLocation(_ location: CLLocation, completionHandler: ([CLPlacemark]?, Error?) -> Void)
+						</code></pre>
+						<p>Provides services for converting between a coordinate and the user-friendly representation of that coordinate</p>
+					</section>
+					<section>
+						<h3>Directions</h3>
+					</section>
+					<section>
+						<h3>Overlay</h3>
+					</section>
+				</section>
+<!--	AV Foundation	-->
 				<section>
 					<section data-background="../img/movie-projector.jpg">
 						<h1>AVKit</h1>
@@ -213,7 +240,7 @@
 						</p>
 					</section>
 					<section>
-						<h3>AV Player View Controller</h3>
+						<h3>AVPlayer ViewController</h3>
 						<pre><code class="swift" data-noheader>
 							let player = AVPlayer(url: videoURL)
 							let playerViewController = AVPlayerViewController()
@@ -317,21 +344,13 @@
 					</section>
 				</section>
 				<section>
-					<section>
-						<h1>Location</h1>
-					</section>
-				</section>
-        <section>
-          <h3 style="display:none;">Related Resources</h3>
-          <ul>
-						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html">Camera Programming Topics for iOS - Apple Developer</a></li>
-            <li><a href="https://developer.apple.com/reference/uikit/uiimagepickercontroller">UIPIckerViewController - API Reference</a></li>
-						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html">Core Image Programming Guide - Apple Developer</a></li>
-						<!--https://developer.apple.com/reference/avkit/avplayerviewcontroller-->
+					<h3 style="display:none;">Related Resources</h3>
+					<ul>
+						<li><a href="https://developer.apple.com/reference/avkit/avplayerviewcontroller">AVPlayerViewController</a></li>
 						<!--https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1-->
 						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html">AVFoundation Programming Guide - Apple Developer</a></li>
-          </ul>
-        </section>
+					</ul>
+				</section>
 
 
       </div>
