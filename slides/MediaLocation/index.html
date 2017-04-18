@@ -162,7 +162,7 @@
 							mapView.mapType = .hybrid
 							mapView.showBuildings = true
 						</code></pre>
-						<p>An MKMapView object provides an embeddable map interface, similar to the one provided by the Maps application</p>
+						<p>Provides an embeddable map interface, similar to the one provided by the Maps application</p>
 					</section>
 					<section>
 						<h3>Annotations</h3>
@@ -186,7 +186,8 @@
 						<h3>Annotation Views</h3>
 						<pre><code class="swift" data-noheader>
 							func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-								let pin = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView") as! MKPinAnnotationView
+								let pin = mapView.dequeueReusableAnnotationView(
+										withIdentifier: "pinAnnotationView") as! MKPinAnnotationView
 								pin.annotation = annotation
 								return pin
 							}
@@ -194,15 +195,20 @@
 						<p class="notice">Annotation views remain anchored to the map at the point specified by their associated annotation object</p>
 					</section>
 					<section>
-						<h3>Geocoding</h3>
+						<h3>Geocoder</h3>
 						<pre><code class="swift" src="CLGeocoder">
-							geocodeAddressString(addressString: String, completionHandler:([CLPlacemark]?, Error?) -> Void)
-							reverseGeocodeLocation(_ location: CLLocation, completionHandler: ([CLPlacemark]?, Error?) -> Void)
+							geocodeAddressString(addressString: String,
+										completionHandler:([CLPlacemark]?, Error?) -> Void)
+							reverseGeocodeLocation(_ location: CLLocation,
+										completionHandler: ([CLPlacemark]?, Error?) -> Void)
 						</code></pre>
 						<p>Provides services for converting between a coordinate and the user-friendly representation of that coordinate</p>
 					</section>
 					<section>
-						<h3>Directions</h3>
+						<h3>Map Item</h3>
+					</section>
+					<section>
+						<h3>DirectionsRequest</h3>
 					</section>
 					<section>
 						<h3>Overlay</h3>
