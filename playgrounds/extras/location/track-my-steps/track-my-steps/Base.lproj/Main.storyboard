@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="QW0-to-ULr">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tracks-->
+        <scene sceneID="Pv3-EV-lDM">
+            <objects>
+                <tableViewController id="ESu-Wt-YKw" customClass="TrackListController" customModule="track_my_steps" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="a8g-5h-3gH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tJe-IV-gU9">
+                            <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="Start"/>
+                            <connections>
+                                <action selector="startNewTrack:" destination="ESu-Wt-YKw" eventType="touchUpInside" id="u9j-sB-c57"/>
+                                <segue destination="BYZ-38-t0r" kind="popoverPresentation" identifier="showTracking" popoverAnchorView="tJe-IV-gU9" id="U7C-2V-L04">
+                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                </segue>
+                            </connections>
+                        </button>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="RPh-4u-bED">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RPh-4u-bED" id="r89-Ku-dLU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="tyT-Da-QTT" kind="show" id="nEC-4g-xMw"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ESu-Wt-YKw" id="HY8-3s-Jun"/>
+                            <outlet property="delegate" destination="ESu-Wt-YKw" id="B95-xr-Bkg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Tracks" id="lB7-OY-zkf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2CO-vh-FNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="347" y="-376"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="MBb-Tg-Y9R">
+            <objects>
+                <navigationController id="QW0-to-ULr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c9A-j0-gxh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ESu-Wt-YKw" kind="relationship" relationship="rootViewController" id="cik-kV-n4W"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GCN-dU-4Hh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-518" y="-376"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="track_my_steps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="jEw-yf-Zeg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.25098040700000002" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Tracking" id="euI-bz-zd4">
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="MQz-yh-9Cn"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCv-dg-AxS" customClass="TimeLabel" customModule="track_my_steps" customModuleProvider="target">
+                                <rect key="frame" x="-0.5" y="166" width="375" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="79" id="QDV-fL-5hy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QVz-iP-xnW" customClass="RoundButton" customModule="track_my_steps" customModuleProvider="target">
+                                <rect key="frame" x="133" y="279" width="108.5" height="108.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="QVz-iP-xnW" secondAttribute="height" multiplier="1:1" id="a0d-vl-7ZN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Pause"/>
+                                <connections>
+                                    <action selector="playPause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjI-mA-s2r"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4m-jj-UFH" customClass="RoundButton" customModule="track_my_steps" customModuleProvider="target">
+                                <rect key="frame" x="149.5" y="423" width="75.5" height="74.5"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="M4m-jj-UFH" secondAttribute="height" multiplier="1:1" id="wmJ-O8-DeJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Stop"/>
+                                <connections>
+                                    <action selector="stopTracking:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hUH-gW-65k"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="QCv-dg-AxS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Hv-g0-BFh"/>
+                            <constraint firstItem="QVz-iP-xnW" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.3" id="8Px-8C-U0Q"/>
+                            <constraint firstItem="M4m-jj-UFH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="HM8-Tx-WSH"/>
+                            <constraint firstItem="QCv-dg-AxS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="Or9-Mh-3nh"/>
+                            <constraint firstItem="M4m-jj-UFH" firstAttribute="width" secondItem="QVz-iP-xnW" secondAttribute="width" multiplier="0.7" id="Ygr-YC-QCl"/>
+                            <constraint firstItem="QVz-iP-xnW" firstAttribute="top" secondItem="QCv-dg-AxS" secondAttribute="bottom" constant="34" id="a5h-fk-gC7">
+                                <variation key="heightClass=compact-widthClass=compact" constant="4"/>
+                            </constraint>
+                            <constraint firstItem="M4m-jj-UFH" firstAttribute="top" secondItem="QVz-iP-xnW" secondAttribute="bottom" constant="35.5" id="byM-oF-mF4"/>
+                            <constraint firstItem="QVz-iP-xnW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="mNl-6A-B3u"/>
+                            <constraint firstItem="QVz-iP-xnW" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.3" constant="-4" id="tJC-ug-Ky4"/>
+                            <constraint firstItem="QVz-iP-xnW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tNG-GG-s8e"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8Px-8C-U0Q"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="8Px-8C-U0Q"/>
+                                <exclude reference="tJC-ug-Ky4"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="pause" destination="QVz-iP-xnW" id="52c-am-oNT"/>
+                        <outlet property="stop" destination="M4m-jj-UFH" id="hK5-sR-p9g"/>
+                        <outlet property="timeLabel" destination="QCv-dg-AxS" id="x2w-mW-zHf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="349"/>
+        </scene>
+        <!--Track-->
+        <scene sceneID="XsZ-r2-5jB">
+            <objects>
+                <viewController id="tyT-Da-QTT" customClass="MapViewController" customModule="track_my_steps" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oX6-Ty-Lle"/>
+                        <viewControllerLayoutGuide type="bottom" id="UNb-kN-R2x"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ahi-I9-A1r">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="satellite" pitchEnabled="NO" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Aw-mN-qxY">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="UNb-kN-R2x" firstAttribute="top" secondItem="3Aw-mN-qxY" secondAttribute="bottom" id="6zH-2W-0ty"/>
+                            <constraint firstAttribute="trailing" secondItem="3Aw-mN-qxY" secondAttribute="trailing" id="TgF-hE-ylW"/>
+                            <constraint firstItem="3Aw-mN-qxY" firstAttribute="leading" secondItem="ahi-I9-A1r" secondAttribute="leading" id="lf4-eJ-nN3"/>
+                            <constraint firstItem="3Aw-mN-qxY" firstAttribute="top" secondItem="oX6-Ty-Lle" secondAttribute="bottom" id="p1W-vK-Sg3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Track" id="S9v-zF-tHS"/>
+                    <connections>
+                        <outlet property="mapView" destination="3Aw-mN-qxY" id="MVX-uK-w0D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9u-C1-bI3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1239" y="-376"/>
+        </scene>
+    </scenes>
+</document>
