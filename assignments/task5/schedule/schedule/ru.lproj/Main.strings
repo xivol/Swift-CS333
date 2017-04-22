@@ -1,0 +1,36 @@
+
+/* Class = "UITableViewController"; title = "Master"; ObjectID = "7bK-jq-Zjz"; */
+"7bK-jq-Zjz.title" = "Master";
+
+/* Class = "UIViewController"; title = "Detail"; ObjectID = "JEX-9P-axG"; */
+"JEX-9P-axG.title" = "Detail";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Kea-P8-41Y"; */
+"Kea-P8-41Y.text" = "Label";
+
+/* Class = "UILabel"; text = "Details"; ObjectID = "RHw-V3-WK2"; */
+"RHw-V3-WK2.text" = "Details";
+
+/* Class = "UINavigationController"; title = "Master"; ObjectID = "RMx-3f-FxP"; */
+"RMx-3f-FxP.title" = "Master";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SUb-oN-MlC"; */
+"SUb-oN-MlC.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Timetable"; ObjectID = "Zdf-7t-Un8"; */
+"Zdf-7t-Un8.title" = "Расписание";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "fc7-LT-mBj"; */
+"fc7-LT-mBj.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Class"; ObjectID = "mOI-FS-AaM"; */
+"mOI-FS-AaM.title" = "Предметы";
+
+/* Class = "UILabel"; text = "Time Label"; ObjectID = "q0C-Bs-rnw"; */
+"q0C-Bs-rnw.text" = "Time Label";
+
+/* Class = "UILabel"; text = "Time Label"; ObjectID = "xs6-l2-0wY"; */
+"xs6-l2-0wY.text" = "Time Label";
+
+/* Class = "UILabel"; text = "Subject"; ObjectID = "yWm-Bj-fng"; */
+"yWm-Bj-fng.text" = "Subject";
