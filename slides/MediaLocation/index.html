@@ -56,6 +56,10 @@
 							</li>
 							<li>
 								<a href="#/4">AV Foundation</a>
+							</li>
+							<li>
+								<a href="#/5">User Notifications</a>
+							</li>
 						</ul>
 						</div>
 						<div class="col">
@@ -145,7 +149,7 @@
 				</section>
 <!--	MapKit	-->
 				<section>
-					<section data-background="../img/map.jpg">
+					<section data-background="../img/apple-maps.png">
 						<h1>Map Kit</h1>
 					</section>
 					<section>
@@ -263,9 +267,9 @@
 						</p>
 					</section>
 					<section>
-						<h3>Player Notifications</h3>
+						<h3>Player Callbacks</h3>
 						<p>
-							Most AVPlayer Notifications are KVO based
+							Most AVPlayer callbacks are KVO based
 						</p>
 						<pre><code class="swift" data-noheader>
 						// new item
@@ -299,6 +303,9 @@
 								recorder.record()
 							}
 						</code></pre>
+						<p class="notice">
+
+						</p>
 					</section>
 					<section>
 						<h3>AV Capture View</h3>
@@ -349,12 +356,150 @@
 						<small><a href="https://developer.apple.com/library/content/samplecode/AVCam/Introduction/Intro.html">AVCam Example - Apple Developer</a></small>
 					</section>
 				</section>
+<!-- User Notifications	-->
+				<section>
+					<section data-background="../img/notification-bell.jpg">
+						<h1>User Notification</h1>
+					</section>
+					<section>
+						<h3>Notification</h3>
+						<ul>
+							<li>Alert – displays a text message with possible media attachment and actions</li>
+							<li>Badge – shows a number on the app's icon</li>
+							<li>Sound – bing! din-don! etc.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>User Notification Center</h3>
+						<p>Manages the notification-related activities for your app</p>
+						<pre><code class="swift" data-noheader>
+							let center = UNUserNotificationCenter.current()
+							center.getNotificationSettings
+								{ setting in print(settings.authorizationStatus) }
+							center.requestAuthorization(options: [.alert, .sound, .badge])
+								{ granted, error in print (granted) }
+						</code></pre>
+					</section>
+					<section>
+						<h3>User Notification Center Delegate</h3>
+						<pre><code class="swift" data-noheader>
+							func userNotificationCenter(_ center: UNUserNotificationCenter,
+								didReceive response: UNNotificationResponse,
+								withCompletionHandler completionHandler: @escaping () -> Void)
+								{ /* user taped on notififcation */ }
+							func userNotificationCenter(_ center: UNUserNotificationCenter,
+								willPresent notification: UNNotification,
+								withCompletionHandler completionHandler:
+									@escaping (UNNotificationPresentationOptions) -> Void)
+								{ /* notification should be presented in foreground */ }
+						</code></pre>
+					</section>
+					<section>
+						<h3>Notification Content</h3>
+						<p>Stores the content of a local or remote notification</p>
+						<pre><code class="swift" data-noheader>
+							var content = UNMutableNotificationContent()
+							content.title = "Notification"
+							content.body = "Hello Word!"
+							content.sound = UNNotificationSound.default()
+							content.attachments = [ try UNNotificationAttachment(
+									identifier: "attachmentImage", url: imageUrl, options: nil) ]
+						</code></pre>
+					</section>
+					<section>
+						<h3>Notification Triggers</h3>
+						<p>Provides common behavior for subclasses that trigger the delivery of a notification</p>
+						<pre><code class="swift" data-noheader>
+							UNTimeIntervalNotificationTrigger // triggers after timeout
+							UNCalendarNotificationTrigger // triggers at specified moment
+							UNLocationNotificationTrigger // triggers for location in region
+						</code></pre>
+					</section>
+					<section>
+						<h3>Notification Request</h3>
+						<p>Encompasses a notification’s content and the condition that triggers its delivery</p>
+						<pre><code class="swift" data-noheader>
+						let request = UNNotificationRequest( identifier: "notificationID",
+									content: content, trigger: trigger)
+						center.add(request) { error in print(error?.localizedDescription) }
+						</code></pre>
+					</section>
+					<section>
+						<h3>Apple Push Notification Service</h3>
+						<img src="../img/remote_notif_simple_2x.png" alt="Remote Notification Scheme">
+						<p></p>
+					</section>
+					<section>
+						<h3>Remote Notifications Setup</h3>
+						<ol>
+							<li>Enable remote notifications (<em>XCode</em>)</li>
+							<li>Register with Apple Push Notification service (<em>developer.apple.com</em>)</li>
+							<li>Receive an app-specific device token</li>
+							<li>Send the device token to your notification provider server</li>
+							<li>Handle incoming remote notifications</li>
+						</ol>
+					</section>
+					<section>
+						<h3>Registering for APN</h3>
+						<pre><code class="swift" data-noheader>
+							UIApplication.shared.registerForRemoteNotifications()
+						</code></pre>
+						<pre><code class="swift" src="UIApplicationDelegate">
+							application(_:didRegisterForRemoteNotificationsWithDeviceToken:)
+							application(_:didFailToRegisterForRemoteNotificationsWithError:)
+						</code></pre>
+						<p class="notice">Device token should be sent by Provider to APN Services <br>
+							 for the notification to be delivered</p>
+					</section>
+					<section>
+						<h3>Handling Remote Notifications</h3>
+						<pre><code class="swift" src="UIApplicationDelegate">
+							func application(_ application: UIApplication,
+							didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+							fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)) {
+								guard let data = userInfo as? [String : Any] else { return }
+								// process data and call handler
+								completionHandler(.newData)
+							}
+						</code></pre>
+						<p>The system launches your app <br>
+							(and puts it in the background state) <br>
+							when a remote notification arrives</p>
+					</section>
+					<section>
+						<h3>Notification Service Extension</h3>
+						<pre><code class="swift" data-noheader>
+							class NotificationService: UNNotificationServiceExtension {
+								override func didReceiveNotificationRequest(
+										request: UNNotificationRequest,
+										withContentHandler contentHandler: (UNNotificationContent) -&gt; Void)
+									{ /* populate notification content */ }
+								override func serviceExtensionTimeWillExpire() {
+									// notififcation will be terminated
+								}
+							}
+						</code></pre>
+						<p class="notice">
+							Additional binary target compiled by Xcode
+						</p>
+					</section>
+					<section>
+						<h3>Notification Content Extension</h3>
+						<p>Allows to configure UIViewController as attachment</p>
+						<img src="../img/add-nce-target.png" alt="Notification Content Extemsion" class="small">
+						<p class="notice">
+							Additional binary target compiled by Xcode
+						</p>
+					</section>
+				</section>
 				<section>
 					<h3 style="display:none;">Related Resources</h3>
 					<ul>
 						<li><a href="https://developer.apple.com/reference/avkit/avplayerviewcontroller">AVPlayerViewController</a></li>
 						<!--https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1-->
 						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html">AVFoundation Programming Guide - Apple Developer</a></li>
+						<li><a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/index.html#//apple_ref/doc/uid/TP40008194-CH3-SW1">Local and Remote Notification Programming Guide</a></li>
+						<li><a href="https://developer.apple.com/reference/usernotifications">UserNotifications – API Reference</a></li>
 					</ul>
 				</section>
 
