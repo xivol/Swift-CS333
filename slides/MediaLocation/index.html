@@ -382,7 +382,7 @@
 					</section>
 					<section>
 						<h3>User Notification Center Delegate</h3>
-						<pre><code class="swift" data-noheader>
+						<pre><code class="swift" src="UNUserNotificationCenterDelegate">
 							func userNotificationCenter(_ center: UNUserNotificationCenter,
 								didReceive response: UNNotificationResponse,
 								withCompletionHandler completionHandler: @escaping () -> Void)
@@ -401,6 +401,7 @@
 							var content = UNMutableNotificationContent()
 							content.title = "Notification"
 							content.body = "Hello Word!"
+							content.badge = 42
 							content.sound = UNNotificationSound.default()
 							content.attachments = [ try UNNotificationAttachment(
 									identifier: "attachmentImage", url: imageUrl, options: nil) ]
@@ -417,7 +418,7 @@
 					</section>
 					<section>
 						<h3>Notification Request</h3>
-						<p>Encompasses a notification’s content and the condition that triggers its delivery</p>
+						<p>Contains a notification’s content and the condition that triggers its delivery</p>
 						<pre><code class="swift" data-noheader>
 						let request = UNNotificationRequest( identifier: "notificationID",
 									content: content, trigger: trigger)
@@ -468,15 +469,17 @@
 					</section>
 					<section>
 						<h3>Notification Service Extension</h3>
+						<p>
+							Provides additional notififcation handling logic
+						</p>
 						<pre><code class="swift" data-noheader>
 							class NotificationService: UNNotificationServiceExtension {
 								override func didReceiveNotificationRequest(
 										request: UNNotificationRequest,
 										withContentHandler contentHandler: (UNNotificationContent) -&gt; Void)
 									{ /* populate notification content */ }
-								override func serviceExtensionTimeWillExpire() {
-									// notififcation will be terminated
-								}
+								override func serviceExtensionTimeWillExpire()
+									{ /* notififcation will be terminated */ }
 							}
 						</code></pre>
 						<p class="notice">
@@ -485,7 +488,8 @@
 					</section>
 					<section>
 						<h3>Notification Content Extension</h3>
-						<p>Allows to configure UIViewController as attachment</p>
+						<p>Allows to configure UIViewController<br />
+							 as an attachment for notififcation</p>
 						<img src="../img/add-nce-target.png" alt="Notification Content Extemsion" class="small">
 						<p class="notice">
 							Additional binary target compiled by Xcode
