@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)https://xivol.github.io/Swift-CS333/slides/Concurrency/index.html#/ -->
+<html class=" js no-mobile desktop no-ie chrome chrome53 swift-cs333-section slides-section concurrency-section gradient rgba opacity textshadow multiplebgs boxshadow borderimage borderradius cssreflections csstransforms csstransitions no-touch retina fontface domloaded w-1280 gt-240 gt-320 gt-480 gt-640 gt-768 gt-800 gt-1024 lt-1440 lt-1680 lt-1920 no-portrait landscape" id="index-page"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Data Storage</title>
+
+		<link rel="stylesheet" href="./Swift-CS333. Data Storage_files/reveal.css">
+		<link rel="stylesheet" href="./Swift-CS333. Data Storage_files/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script><link rel="stylesheet" type="text/css" href="./Swift-CS333. Data Storage_files/paper.css">
+		<style>
+		#swift-bird{
+      -webkit-clip-path: polygon(10% 0%, 90% 10%, 90% 100%, 10% 90%);
+			clip-path: polygon(10% 0%, 90% 10%, 90% 100%, 10% 90%);
+			/*max-height: 100%*/
+		}
+		</style><script type="text/javascript" src="./Swift-CS333. Data Storage_files/marked.js"></script><script type="text/javascript" src="./Swift-CS333. Data Storage_files/markdown.js"></script><script type="text/javascript" src="./Swift-CS333. Data Storage_files/reveal-chart.js"></script><script type="text/javascript" src="./Swift-CS333. Data Storage_files/chart.min.js"></script><script type="text/javascript" src="./Swift-CS333. Data Storage_files/notes.js"></script><script type="text/javascript" src="./Swift-CS333. Data Storage_files/highlight.pack.js"></script>
+	</head>
+	<body>
+		<div class="reveal slide center" role="application" data-transition-speed="default" data-background-transition="fade">
+			<div class="topbar" style="display: none;">
+				<div class="breadcrumbs">Overview</div>
+			<div class="slide-number" style="display: block;"><span class="slide-number-a">1</span><span class="slide-number-delimiter">/</span><span class="slide-number-b">28</span></div></div>
+			<div class="slides" style="width: 960px; height: 700px; left: 50%; top: 50%; bottom: auto; right: auto; transform: translate(-50%, -50%) scale(0.847286);">
+				<section class="present" style="top: 28.5px; display: block;">
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						<br>Ilya Loshkarev<br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section class="future" style="top: 15.5px; display: block;" hidden="" aria-hidden="true">
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="https://xivol.github.io/Swift-CS333/slides/Concurrency/index.html#/2">Grand Central Dispatch</a>
+							</li>
+							<li>
+								<a href="https://xivol.github.io/Swift-CS333/slides/Concurrency/index.html#/3">Operation Queues</a>
+							</li>
+							<li>
+								<a href="https://xivol.github.io/Swift-CS333/slides/Concurrency/index.html#/4">Core Data Concurrency</a>
+							</li>
+              <li>
+                <a href="https://xivol.github.io/Swift-CS333/slides/Concurrency/index.html#/5">Notifications</a>
+              </li>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="./Swift-CS333. Data Storage_files/catch.jpg">
+						</div>
+					</div>
+        </section>
+				<section hidden="" aria-hidden="true" class="stack future" style="top: 0px; display: block;" data-previous-indexv="0">
+          <section data-background="../img/grand-central-station.jpg" data-background-image="../img/grand-central-station.jpg" style="top: 138px; display: block;">
+            <h1>Grand Central Dispatch</h1>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 77.5px; display: none;">
+            <h3>Concurrency &amp; Parallelism</h3>
+            <img src="./Swift-CS333. Data Storage_files/threads.png" alt="Parallelism and Concurrency">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Queue Abstraction</h3>
+            <img src="./Swift-CS333. Data Storage_files/gcd.jpg" alt="GCD Queues">
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Dispatch Queue</h3>
+            <div class="row">
+              <div class="col" style="text-align:right;">
+                Dispatch Queues are objects that maintain a queue of tasks
+                and execute these tasks <br> in their turn
+              </div>
+              <div class="col">
+                <img src="./Swift-CS333. Data Storage_files/dispatch-queue.png" alt="">
+              </div>
+            </div>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Queue Type vs Dispatch Type</h3>
+            <div class="row">
+              <div class="col">
+                <p>
+                  Queue
+                </p>
+                <ul>
+                  <li>Concurrent - unordered</li>
+                  <li>Serial - ordered</li>
+                </ul>
+              </div>
+              <div class="col">
+                <p>
+                  Dispatch
+                </p>
+                <ul>
+                  <li>Async - no wait</li>
+                  <li>Sync - wait</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Quality of Service</h3>
+            <p>
+              System prioritizes and schedules queues <br>
+              according to their QoS attribute<br>
+            </p>
+            <ol>
+              <li>User Interactive</li>
+              <li>User Initiated</li>
+              <li>Utility</li>
+              <li>Background</li>
+              <li>Default</li>
+            </ol>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Ghost of the Syntax Past</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-comment">// Get some queue to put our task into</span>
+dispatch_async(
+  dispatch_get_global_queue(
+    <span class="hljs-type">Int</span>(<span class="hljs-type">QOS_CLASS_USER_INITIATED</span>.rawValue), <span class="hljs-number">0</span>) )
+  {
+    <span class="hljs-comment">/* do some heavy TASK */</span>
+    dispatch_async(dispatch_get_main_queue()) {
+      <span class="hljs-comment">/* present results to the user */</span>
+    }
+  }</code></pre>
+          <p class="notice">
+            Depricated since iOS 10.0 👌
+          </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Calling for Dispatch Queues</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-comment">// Get some queue to put our task into</span>
+<span class="hljs-type">DispatchQueue</span>.global(qos: .qosUserInitiated).async {
+    <span class="hljs-comment">/* do some heavy work */</span>
+    <span class="hljs-type">DispatchQueue</span>.main.async {
+        <span class="hljs-comment">/* present results to the user */</span>
+    }
+}</code></pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Creating Dispatch Queues</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-keyword">let</span> backgroundQueue = <span class="hljs-type">DispatchQueue</span>(label: <span class="hljs-string">"com.app.queue"</span>,
+    qos: .background,
+    attributes: .concurrent)
+
+backgroundQueue.async {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">"Dispatched to background queue"</span>)
+}</code></pre>
+          </section>
+				</section>
+<!-- Operation Queues-->
+        <section hidden="" aria-hidden="true" class="stack future" style="top: 0px; display: none;" data-previous-indexv="0">
+          <section style="top: 219px; display: none;">
+            <h1>Operation Queue</h1>
+          </section>
+        </section>
+<!-- Core Data Concurrency        -->
+        <section hidden="" aria-hidden="true" class="stack future" style="top: 330px; display: none;" data-previous-indexv="0">
+          <section data-background="../img/core-concurrency.jpg" data-background-image="../img/core-concurrency.jpg" style="top: 330px; display: none;">
+            <h1>Core Data Concurrency</h1>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Private Queue</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-keyword">let</span> privateMOC = <span class="hljs-type">NSManagedObjectContext</span>(
+    concurrencyType: .<span class="hljs-type">PrivateQueueConcurrencyType</span>)
+privateMOC.parentContext = context</code></pre>
+            <p>
+              Child context with its own private queue <br>
+              allows to perform concurrent operations
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Perform Block</h3>
+            <pre><code class="swift hljs" data-noheader="">privateMOC.performBlock {
+    <span class="hljs-keyword">for</span> data <span class="hljs-keyword">in</span> collection {
+        <span class="hljs-comment">/* insert objects into the private context */</span>
+    }
+    <span class="hljs-comment">// save changes to parent context</span>
+    <span class="hljs-keyword">try</span>! privateMOC.save()
+    context.performBlockAndWait {
+        <span class="hljs-comment">/* go to main queue to save changes */</span>
+        <span class="hljs-keyword">try</span>! context.save()
+    }
+}</code></pre>
+          <p>
+            <code>performBlock</code> puts closure into context's queue of operations
+          </p>
+          </section>
+        </section>
+<!-- Notifications -->
+        <section hidden="" aria-hidden="true" class="stack future" style="top: 330px; display: none;" data-previous-indexv="0">
+          <section data-background="../img/notification.jpeg" data-background-image="../img/notification.jpeg" style="top: 330px; display: none;">
+            <h1>Notifications</h1>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Observer Pattern</h3>
+            <div class="row">
+              <div class="col">
+              A software design pattern in which an object maintains a list of observers and notifies them automatically of any state changes
+              </div>
+              <div class="col">
+                <img src="./Swift-CS333. Data Storage_files/observer.gif" alt="Observer Diagram">
+              </div>
+            </div>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Notification Center</h3>
+            <div class="row">
+              <div class="col">
+                Provides a mechanism for broadcasting information within a program
+              </div>
+              <div class="col">
+                <img src="./Swift-CS333. Data Storage_files/notificationcenter_2x.png" alt="Notification Center Diagram">
+              </div>
+            </div>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-keyword">let</span> defaultCenter = <span class="hljs-type">NotificationCenter</span>.<span class="hljs-keyword">default</span></code></pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Notification</h3>
+            <pre><code class="swift hljs" data-noheader="">name: <span class="hljs-type">String</span> <span class="hljs-comment">// unique name</span>
+object: <span class="hljs-type">AnyObject</span>? <span class="hljs-comment">// sender</span>
+userInfo: [:]? <span class="hljs-comment">// additional data</span></code></pre>
+            <p>
+              An object distributed through Notification Center
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Post</h3>
+            <pre><code class="swift hljs" data-noheader="">defaultCenter.post(name: <span class="hljs-string">"MyNotification"</span>, object: <span class="hljs-keyword">self</span>)
+defaultCenter.post(name: <span class="hljs-string">"MyNotificationWithPayload"</span>,
+    object: <span class="hljs-keyword">self</span>,
+    userInfo: [<span class="hljs-string">"payload"</span> : myPayload])</code></pre>
+            <p class="notice">
+              Any notification should have a unique name within an app
+            </p>
+            <p>
+              It is a good idea to store notification names in an enumeration
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Observe</h3>
+            <pre><code class="swift hljs" data-noheader="">defaultCenter.addObserver(<span class="hljs-keyword">self</span>,
+    selector: #selector(myNotificationHandler),
+    name: <span class="hljs-string">"MyNotification"</span>, object: sender)</code></pre>
+            <p>
+              Calls <code class="hljs-type">self.myNotificationHandler</code> <br>
+              whenever <code class="hljs-type ">MyNotification</code> is posted
+            </p>
+            <pre><code class="swift hljs" data-noheader="">defaultCenter.removeObserver(<span class="hljs-keyword">self</span>,
+    name: <span class="hljs-string">"MyNotification"</span>, object: sender)</code></pre>
+            <p class="notice">
+              Observers should be removed manually on deinit
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Observe with Block</h3>
+            <pre><code class="swift hljs" data-noheader="">defaultCenter.addObserver(forName: <span class="hljs-string">"MyNotification"</span>,
+    object: sender, queue: <span class="hljs-literal">nil</span>) {
+      [<span class="hljs-keyword">weak</span> <span class="hljs-keyword">self</span>] notification <span class="hljs-keyword">in</span>
+      <span class="hljs-comment">/* handle notification */</span>
+    }</code></pre>
+            <p>
+              Performs closure in specified queue
+            </p>
+            <p class="notice">
+              Strong references to <code class="hljs-keyword">self</code> in closures <br>
+              can create reference cycles
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Concurrency</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-type">DispatchQueue</span>.main.async {
+    defaultCenter.post(name: <span class="hljs-string">"MyNotification"</span>, object: <span class="hljs-literal">nil</span>,
+        userInfo: [<span class="hljs-string">"data"</span>:data])
+}</code></pre>
+            <p>
+              Regular notification centers deliver notifications on the thread <br>
+              in which the notification was posted
+            </p>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Core Data Notifications</h3>
+            <pre><code class="swift hljs" data-noheader="">defaultCenter.addObserver(<span class="hljs-keyword">self</span>,
+    selector: #selector(managedObjectContextObjectsDidChange),
+    name: <span class="hljs-type">NSManagedObjectContextObjectsDidChangeNotification</span>,
+    object: context)</code></pre>
+            <p>
+              Managed Object Context has three types of notifications
+            </p>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-comment">// NSManagedObjectContext ObjectsDidChange Notification</span>
+<span class="hljs-comment">// NSManagedObjectContext WillSave Notification</span>
+<span class="hljs-comment">// NSManagedObjectContext DidSave Notification</span></code></pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Context Did Change</h3>
+            <pre><code class="swift hljs" data-noheader=""><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">managedObjectContextObjectsDidChange</span><span class="hljs-params">(notification: <span class="hljs-type">NSNotification</span>)</span></span> {
+    <span class="hljs-comment">// userInfo holds information about the changes</span>
+    <span class="hljs-keyword">guard</span> <span class="hljs-keyword">let</span> userInfo = notification.userInfo <span class="hljs-keyword">else</span> { <span class="hljs-keyword">return</span> }
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> inserts =
+        userInfo[<span class="hljs-type">NSInsertedObjectsKey</span>] <span class="hljs-keyword">as</span>? <span class="hljs-type">Set</span>&lt;<span class="hljs-type">NSManagedObject</span>&gt; {  }
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> updates =
+        userInfo[<span class="hljs-type">NSUpdatedObjectsKey</span>] <span class="hljs-keyword">as</span>? <span class="hljs-type">Set</span>&lt;<span class="hljs-type">NSManagedObject</span>&gt; {  }
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> deletes =
+        userInfo[<span class="hljs-type">NSDeletedObjectsKey</span>] <span class="hljs-keyword">as</span>? <span class="hljs-type">Set</span>&lt;<span class="hljs-type">NSManagedObject</span>&gt; {  }
+}</code></pre>
+          </section>
+          <section class="future" aria-hidden="true" style="top: 330px; display: none;">
+            <h3>Considered Harmful?</h3>
+            <ul>
+              <li>Notifications make it harder to trace the flow of control</li>
+              <li>Deinitialized observers crash the app</li>
+              <li>Notification centers are not well suited for unit tests</li>
+            </ul>
+          </section>
+          <section data-background="../img/notification-flow-chart.png" data-background-size="contain" class="clear future" aria-hidden="true" data-background-image="../img/notification-flow-chart.png" style="top: 330px; display: none;">
+            <h3 class="hidden">Other Options</h3>
+          </section>
+        </section>
+        <section hidden="" aria-hidden="true" class="future" style="top: 330px; display: none;">
+          <h3 style="display:none;">Related Resources</h3>
+          <ul>
+            <li><a href="https://developer.apple.com/library/content/documentation/General/Conceptual/ConcurrencyProgrammingGuide/ConcurrencyandApplicationDesign/ConcurrencyandApplicationDesign.html">Concurrency - Apple Developer</a></li>
+            <li><a href="https://developer.apple.com/videos/play/wwdc2016/720/">Concurrent Programming With GCD in Swift 3 - WWDC2016</a></li>
+            <li><a href="https://developer.apple.com/reference/dispatch">Dispatch API Reference - Apple Developer</a></li>
+            <li><a href="https://developer.apple.com/library/prerelease/content/documentation/Cocoa/Conceptual/Notifications/Articles/Notifications.html">Notification Programming Topics - Apple Developer</a></li>
+            <li><a href="https://developer.apple.com/reference/foundation/notificationcenter">Notification Center API Reference - Apple Developer</a></li>
+          </ul>
+        </section>
+
+
+      </div>
+    <div class="backgrounds"><div class="slide-background present" data-loaded="true" style="display: block;"></div><div class="slide-background future" data-loaded="true" style="display: block;"></div><div class="slide-background stack future" data-loaded="true" style="display: block;"><div class="slide-background present" data-background-hash="../img/grand-central-station.jpgnullnullnullnullnullnullnullnull" data-loaded="true" style="display: block; background-image: url(&quot;../img/grand-central-station.jpg&quot;);"></div><div class="slide-background future" data-loaded="true" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" data-loaded="true" style="display: none;"><div class="slide-background present" data-loaded="true" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" data-background-hash="../img/core-concurrency.jpgnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background present" data-background-hash="../img/notification.jpegnullnullnullnullnullnullnullnull" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background future" style="display: none;"></div><div class="slide-background clear future" data-background-hash="../img/notification-flow-chart.pngcontainnullnullnullnullnullnullnull" style="background-size: contain; display: none;"></div></div><div class="slide-background future" style="display: none;"></div></div><div class="progress" style="display: block;"><span style="width: 0px;"></span></div><aside class="controls" style="display: block;"><button class="navigate-left" aria-label="previous slide"></button><button class="navigate-right enabled" aria-label="next slide"></button><button class="navigate-up" aria-label="above slide"></button><button class="navigate-down" aria-label="below slide"></button></aside><div class="speaker-notes" data-prevent-swipe=""></div><div class="pause-overlay"></div><div id="aria-status-div" aria-live="polite" aria-atomic="true" style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px 1px 1px 1px);">
+					CS333
+					Mobile Development
+					
+						Ilya Loshkarev
+						loshkarev.i@gmail.com
+					
+					
+						SFEDU 2016
+					
+				</div></div>
+
+    <script src="./Swift-CS333. Data Storage_files/head.min.js"></script>
+    <script src="./Swift-CS333. Data Storage_files/reveal.js"></script>
+    <script src="./Swift-CS333. Data Storage_files/swift.js"></script>
+
+    <svg height="0" xmlns="http://www.w3.org/2000/svg">
+        <filter id="drop-shadow">
+            <fegaussianblur in="SourceAlpha" stdDeviation="4"></fegaussianblur>
+            <feoffset dx="12" dy="12" result="offsetblur"></feoffset>
+            <feflood flood-color="rgba(0,0,0,0.5)"></feflood>
+            <fecomposite in2="offsetblur" operator="in"></fecomposite>
+            <femerge>
+                <femergenode></femergenode>
+                <femergenode in="SourceGraphic"></femergenode>
+            </femerge>
+        </filter>
+    </svg>
+  
+
+</body></html>

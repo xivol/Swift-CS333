@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Swift-CS333. Media &amp; Location</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/swift.css">
+		<!-- Theme used for syntax highlighting of code included in main theme -->
+		<!-- Printing and PDF exports -->
+		<script type="text/javascript">
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+ 		</script>
+		<style>
+		#swift-bird{
+      -webkit-clip-path: polygon(5% 20%, 90% -10%, 90% 80%, 5% 110%);
+			clip-path: polygon(5% 20%, 90% -10%, 90% 80%, 5% 110%);
+			/*max-height: 100%*/
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="topbar">
+				<div class="breadcrumbs">
+				</div>
+			</div>
+			<div class="slides">
+				<section>
+					<h2>CS333</h2>
+					<h1>Mobile Development</h1>
+					<p>
+						</br>Ilya Loshkarev</br>
+						<a href="mailto:loshkarev.i@gmail.com">loshkarev.i@gmail.com</a>
+					</p>
+					<p class="footer">
+						<br>SFEDU 2016
+					</p>
+				</section>
+				<section>
+					<h3 class="hidden">Overview</h3>
+					<div class="row">
+						<div class="col">
+						<ul>
+							<li>
+								<a href="#/2">Images</a>
+							</li>
+							<li>
+								<a href="#/3">AVFoundation</a>
+							</li>
+							<li>
+								<a href="#/4">Location</a>
+						</ul>
+						</div>
+						<div class="col">
+							<img id="swift-bird" src="../img/flurry.jpg" />
+						</div>
+					</div>
+        </section>
+<!-- Images     -->
+        <section>
+          <section data-background="../img/camera.jpg">
+            <h1>Images</h1>
+          </section>
+          <section>
+            <h3>Image Picker</h3>
+						<pre><code class="swift"data-noheader>
+							let imagePickerView = UIImagePickerController()
+							imagePickerView.delegate = self
+							// present image picker
+							self.present(imagePickerView, animated: true, completion: nil)
+						</code></pre>
+						<p>
+							Standart controller to access Photos and Camera <br> from within any app
+						</p>
+          </section>
+					<section>
+						<h3>Sources and Media Types</h3>
+						<pre><code class="swift"data-noheader>
+							// open Camera
+							imagePickerView.sourceType = .camera
+							imagePickerView.cameraDevice = .rear  // .front
+							// open Photos
+							imagePickerView.sourceType = .photoLibrary
+							imagePickerView.allowEditing = false
+							// open Camera Roll
+							imagePickerView.sourceType = .savedPhotosAlbum
+							// type of media to show
+							imagePickerView.mediaTypes = [
+								// kUTTypeMovie, - only images
+								kUTTypeImage
+							]
+						</code></pre>
+					</section>
+					<section>
+						<h3>Picker Delegate</h3>
+						<pre><code class="swift"data-noheader>
+							func imagePickerController(picker: UIImagePickerController,
+								didFinishPickingMediaWithInfo info: [String : Any]) {
+								if info[UIImagePickerControllerMediaType] == kUTTypeImage {
+									let chosenImage = // captured photo or image from library
+										info[UIImagePickerControllerOriginalImage] as! UIImage
+								} else {
+									let movieURL = // URL of media file
+										info[UIImagePickerControllerMediaURL] as! URL
+								}
+								dismiss(animated: true, completion: nil)
+							}
+						</code></pre>
+					</section>
+          <section>
+            <h3>Core Image</h3>
+						<p>
+							Library for image processing
+						</p>
+						<pre><code data-noheader>
+							// CIImage is a base image class
+							let inputCIImage = CIImage(image: inputImage)!
+							// All filters are created by name
+							let blurFilter = CIFilter(name: "CIGaussianBlur")!
+							blurFilter.setValue(inputCIImage, forKey: kCIInputImageKey)
+							blurFilter.setValue(8, forKey: kCIInputRadiusKey)
+							let cgImage = context.createCGImage(blurFilter.outputImage!,
+								fromRect: outputImage.extent())
+						</code></pre>
+						<p>
+							Low-level library, KVC parameters setup
+						</p>
+						<p>
+							There are &gt;150 default filters
+						</p>
+						<small><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html">
+							Core Image Filter Reference - Apple Developer
+						</a></small>
+          </section>
+					<section>
+						<h3>Filter Chains</h3>
+						<pre><code data-noheader>
+						let outputImage = inputCIImage
+							.applyingFilter(
+							    "CICrystallize",
+							    withInputParameters: [
+							        kCIInputRadiusKey: 50
+							    ])
+							.applyingFilter(
+							   "CICMYKHalftone",
+							    withInputParameters: [
+							       kCIInputWidthKey: 35
+							   ])
+						</code></pre>
+						<p class="notice">
+							Image filtering takes some time <br>
+							it is better to perform it in a separate queue
+						</p>
+					</section>
+					<section>
+						<h3>Save Image to Photos</h3>
+						<pre><code data-noheader>
+						func save(image: UIImage, to album: PHAssetCollection) {
+							PHPhotoLibrary.shared().performChanges({
+								// Request creating an asset from the image
+								let creationRequest =
+									PHAssetChangeRequest.creationRequestForAsset(from: image)
+								// Request editing the album
+								if let addAssetRequest =
+									PHAssetCollectionChangeRequest(for: album)
+								{
+									addAssetRequest.addAssets(
+										[creationRequest.placeholderForCreatedAsset!])
+								}
+							}, completionHandler: nil)
+						}
+						</code></pre>
+						<pre><code class="swift" data-noheader>
+							UIImageWriteToSavedPhotosAlbum(image, self, #selector(imageSaved), nil)
+						</code></pre>
+					</section>
+				</section>
+				<section>
+					<section data-background="../img/movie-projector.jpg">
+						<h1>AVKit</h1>
+					</section>
+					<section>
+						<h3>Anatomy of Media</h3>
+						<img src="../img/avasset_track.png" alt="asset tracks" />
+						<p>
+							<code class="hljs-type">AVAsset</code> is a container for media streams
+						</p>
+					</section>
+					<section>
+						<h3>AV Player</h3>
+						<pre><code class="swift" data-noheader>
+							let player = AVPlayer(url: videoURL)
+							if player.currentItem.status == .readyToPlay {
+								player.play()
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-type">AVPlayer</code> is a basic object to play media files
+						</p>
+					</section>
+					<section>
+						<h3>Anatomy of Player</h3>
+						<img src="../img/avplayer.png" alt="AVPlayer Classes Connections" />
+						<p>
+							<code class="hljs-type">AVAsset</code> is a container for media streams
+						</p>
+					</section>
+					<section>
+						<h3>AV Player View Controller</h3>
+						<pre><code class="swift" data-noheader>
+							let player = AVPlayer(url: videoURL)
+							let playerViewController = AVPlayerViewController()
+							playerViewController.player = player
+							self.present(playerViewController, animated: true) {
+								if let player = playerViewController.player!,
+									player.currentItem.status == .readyToPlay {
+										playerViewController.player!.play()
+									}
+							}
+						</code></pre>
+						<p>
+							<code class="hljs-type">AVPlayerViewController</code> is a default way of presenting audio and video
+						</p>
+					</section>
+					<section>
+						<h3>Player Notifications</h3>
+						<p>
+							Most AVPlayer Notifications are KVO based
+						</p>
+						<pre><code class="swift" data-noheader>
+						// new item
+						player.addObserver(self, forKeyPath: "currentItem",
+							options: [.new, .initial] , context: nil)
+						// errors
+						player.addObserver(self, forKeyPath: "status",
+							options: nil , context: nil)
+						// update periodically
+						player.addPeriodicTimeObserver(
+							forInterval: CMTimeMake(1, 100), queue: DispatchQueue.main) {
+								time in print(String(format: "%02.2f", CMTimeGetSeconds(time)))
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>Queue Player</h3>
+						<pre><code data-noheader>
+							let queuePlayer = AVQueuePlayer()
+							let playerItem = AVPlayerItem(url:fileURL)
+							queuePlayer.insert(playerItem, afterItem:nil)
+							// queue as many items as you like
+							queuePlayer.play()
+						</code></pre>
+					</section>
+					<section>
+						<h3>Audio Recorder</h3>
+						<pre><code data-noheader>
+							let recorder = AVAudioRecorder(url: resultURL, settings: [:])?
+							if recorder.prepareToRecord() {
+								recorder.record()
+							}
+						</code></pre>
+					</section>
+					<section>
+						<h3>AV Capture View</h3>
+						<pre><code class="swift" data-noheader>
+							let session = AVCaptureSession()
+							let frontalCamera = AVCaptureDevice.defaultDevice(
+								withDeviceType: .builtInWideAngleCamera,
+								mediaType: AVMediaTypeVideo, position: .front)
+							if let input = try? AVCaptureDevice(frontalCamera) {
+								session.addInput(input)
+							}
+							view.setSession(session,
+								showVideoPreview: true, showAudioPreview: true)
+							view.delegate = self
+						</code></pre>
+						<p>
+							<code class="hljs-type">AVCaptureView</code> is a default way of presenting a video capture
+						</p>
+					</section>
+					<section>
+						<h3>Streaming Media</h3>
+						<pre><code class="swift" data-noheader>
+						let asset = AVURLAsset(streamURL)
+						asset.resourceLoader.setDelegate(self, queue: DispatchQueue.main)
+						// play video/audio
+						let playerItem = AVPlayerItem(asset:asset)
+						let player = AVPlayer(playerItem)
+						// pause if playerItem is not ready yet
+						NSNotificationCenter.default.addObserver(self,
+							selector: #selector(pauseIfStalled),
+							name: AVPlayerItemPlaybackStalledNotification, object: nil)
+						player.play()
+						</code></pre>
+						<p>
+							If you don't need to handle loading process events <br>
+							default resourceLoader works just fine
+						</p>
+					</section>
+					<section>
+						<h3>Hardware Access</h3>
+						<pre><code data-noheader>
+							let session = AVCaptureSession()
+						</code></pre>
+						<p>
+							Allows to access any capture devices <br/>
+							and configure capture settings
+						</p>
+						<small><a href="https://developer.apple.com/library/content/samplecode/AVCam/Introduction/Intro.html">AVCam Example - Apple Developer</a></small>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Location</h1>
+					</section>
+				</section>
+        <section>
+          <h3 style="display:none;">Related Resources</h3>
+          <ul>
+						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/CameraAndPhotoLib_TopicsForIOS/Introduction/Introduction.html">Camera Programming Topics for iOS - Apple Developer</a></li>
+            <li><a href="https://developer.apple.com/reference/uikit/uiimagepickercontroller">UIPIckerViewController - API Reference</a></li>
+						<li><a href="https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/CoreImaging/ci_intro/ci_intro.html">Core Image Programming Guide - Apple Developer</a></li>
+						<!--https://developer.apple.com/reference/avkit/avplayerviewcontroller-->
+						<!--https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1-->
+						<li><a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html">AVFoundation Programming Guide - Apple Developer</a></li>
+          </ul>
+        </section>
+
+
+      </div>
+    </div>
+
+    <script src="../lib/js/head.min.js"></script>
+    <script src="../js/reveal.js"></script>
+    <script src="../js/swift.js"></script>
+
+    <svg height="0" xmlns="http://www.w3.org/2000/svg">
+        <filter id="drop-shadow">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+            <feOffset dx="12" dy="12" result="offsetblur"/>
+            <feFlood flood-color="rgba(0,0,0,0.5)"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge>
+                <feMergeNode/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </svg>
+  </body>
+</html>
