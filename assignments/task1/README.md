@@ -1,4 +1,4 @@
-###Assignment #1: Toying with Swift
+### Assignment #1: Toying with Swift
 Implement mechanics of the board game of your choice:
 * [Chess](https://en.wikipedia.org/wiki/Chess)
 * [Draughts](https://en.wikipedia.org/wiki/Draughts)
